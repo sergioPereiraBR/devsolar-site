@@ -1,0 +1,92 @@
+.navbarCustom {
+    /* Estilos específicos ou overrides para a navbar */
+    transition: height 0.3s ease;
+    /* Transição suave se a altura mudar */
+}
+
+.navbarBrandCustom {
+    cursor: pointer;
+}
+
+.logo {
+    /* Ajustes finos no logo se necessário */
+    height: 38px;
+
+    /* Exemplo */
+    max-width: 100%;
+
+    /* Mantém proporção se altura for definida */
+}
+
+.navLinkCustom {
+    font-weight: 350;
+    margin: 0 0.5rem;
+    /* Espaçamento entre links */
+    padding: 0.5rem 0.25rem !important;
+    /* Ajuste padding padrão do Nav.Link */
+    position: relative;
+    transition: color 0.3s ease;
+    color: #001f52;
+    /* Cor padrão do link */
+}
+
+.navLinkCustom::after {
+    /* Linha animada abaixo do link no hover/active */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary);
+    /* Use sua variável de cor primária */
+    transition: width 0.3s ease;
+}
+
+.navLinkCustom:hover,
+.navLinkCustom:focus {
+    color: var(--primary) !important;
+    /* Cor no hover */
+}
+
+.navLinkCustom:hover::after,
+.navLinkCustom:focus::after {
+    width: 100%;
+    /* Expande a linha no hover */
+}
+
+
+.loginButton {
+    /* Estilos específicos para o botão de login */
+    font-weight: 500;
+    /* Ex: border-width: 2px; */
+}
+
+.align-items-center .navLinkCustom {
+    font-weight: 900 !important;
+}
+
+/* Ajustes para mobile se necessário */
+@media (max-width: 991px) {
+    .navLinkCustom {
+        margin: 0.5rem 0;
+        /* Espaçamento vertical no mobile */
+        text-align: center;
+        /* Centraliza links no mobile */
+        padding: 0.75rem 1rem !important;
+        /* Padding maior no mobile */
+    }
+
+    .navLinkCustom::after {
+        display: none;
+        /* Remove linha animada no mobile */
+    }
+
+    .loginButton {
+        width: 100%;
+        /* Botão ocupa largura total no mobile */
+        margin-top: 1rem !important;
+        /* Espaço acima do botão no mobile */
+    }
+}

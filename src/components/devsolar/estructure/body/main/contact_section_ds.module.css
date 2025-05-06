@@ -1,0 +1,162 @@
+.contactSection {
+    padding: 60px 0;
+    background-color: var(--branco);
+}
+
+.sectionTitle {
+    color: var(--footer-color);
+    /* Use suas variáveis */
+}
+
+.sectionSubtitle {
+    color: #555;
+}
+
+/* Estilos para Informações de Contato */
+/*
+.contactItem {
+    /* Estilos se necessário, mas muito é tratado pelo Bootstrap */
+/*
+}*/
+
+.iconWrapper {
+    width: 50px;
+    height: 50px;
+    /* background-color: #f0f8ff; */
+    /* Cor de fundo do ícone (ex: azul claro) */
+    /* Ou use: background-color: var(--light); */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    color: var(--primary);
+    /* Cor do ícone */
+    font-size: 1.2rem;
+    /* Tamanho do ícone */
+}
+
+.contactTitle {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--footer-color);
+}
+
+.contactText {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.contactLink {
+    text-decoration: none;
+    /* Remove sublinhado padrão */
+}
+
+.contactLink:hover .contactText {
+    color: var(--primary);
+    /* Muda cor do texto no hover */
+    text-decoration: underline;
+}
+
+
+/* Estilos para Links Sociais */
+.socialLinksContainer {
+    gap: 15px;
+    /* Espaço entre ícones */
+}
+
+.socialIconLink {
+    display: inline-flex;
+    /* Para alinhar e dimensionar corretamente */
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #eee;
+    /* Fundo padrão */
+    color: var(--footer-color);
+    /* Cor do ícone */
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.socialIconLink:hover {
+    background-color: var(--primary);
+    /* Cor primária no hover */
+    color: var(--branco);
+    transform: scale(1.1);
+}
+
+/* Cores específicas por rede (opcional) */
+.socialIconLink[href*="facebook.com"]:hover {
+    background-color: #3b5998;
+}
+
+.socialIconLink[href*="instagram.com"]:hover {
+    background-color: #e4405f;
+}
+
+.socialIconLink[href*="linkedin.com"]:hover {
+    background-color: #0077b5;
+}
+
+.socialIconLink[href*="youtube.com"]:hover {
+    background-color: #ff0000;
+}
+
+.socialIconLink[href*="wa.me"]:hover {
+    background-color: #25d366;
+}
+
+
+/* Estilos para o Card do Formulário */
+.formCard {
+    border: none;
+    /* Remove borda padrão */
+    border-radius: 8px;
+    background-color: var(--light);
+}
+
+.formTitle {
+    color: var(--footer-color);
+}
+
+/* Estilo do Botão Submit */
+.submitButton {
+    /* Use as classes btn e btn-primary-custom ou defina estilos aqui */
+    /* Exemplo: */
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--branco) !important;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.submitButton:hover {
+    background-color: #e68a00 !important;
+    /* Tom mais escuro */
+    border-color: #e68a00 !important;
+}
+
+.submitButton:disabled {
+    opacity: 0.65;
+}
+
+/* Responsividade */
+@media (max-width: 991px) {
+    .socialLinksContainer {
+        justify-content: center;
+        /* Centraliza ícones sociais em telas menores */
+    }
+
+    .contactSection .text-center {
+        /* Garante que os títulos fiquem centralizados se o layout quebrar */
+        text-align: center !important;
+    }
+}

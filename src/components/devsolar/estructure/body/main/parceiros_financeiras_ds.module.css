@@ -1,0 +1,96 @@
+.sectionPartners {
+    padding: 60px 0;
+    background-color: var(--light);
+}
+
+.sectionTitle {
+    color: var(--footer-color);
+    /* Cor escura para o título principal */
+    margin-bottom: 15px;
+}
+
+.sectionSubtitle {
+    color: #666;
+    max-width: 600px;
+    /* Limita largura do subtítulo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subsection {
+    margin-bottom: 50px;
+    /* Espaço entre as seções de Fornecedores e Financeiras */
+}
+
+.subsectionTitle {
+    text-align: center;
+    color: var(--primary);
+    /* Cor de destaque para títulos das subseções */
+    margin-bottom: 35px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    /* Para a linha funcionar corretamente */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Linha abaixo do título da subseção */
+.subsectionTitle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    /* Posição abaixo do texto */
+    width: 60px;
+    /* Largura da linha */
+    height: 3px;
+    background-color: var(--primary);
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+}
+
+
+.partnerGrid {
+    display: grid;
+    /* Cria colunas responsivas:
+       - Tenta encaixar o máximo de colunas com largura mínima de 300px.
+       - Cada coluna ocupa uma fração igual do espaço (1fr).
+       - Em telas pequenas, terá apenas 1 coluna. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    /* Espaço entre os cards */
+}
+
+/* Ajustes finos para responsividade (opcional) */
+@media (max-width: 768px) {
+    .partnerGrid {
+        /* Em telas médias, pode forçar 2 colunas se preferir */
+        /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+        /* Reduz um pouco o título principal */
+    }
+
+    .subsectionTitle {
+        font-size: 1.4rem;
+        /* Reduz títulos das subseções */
+    }
+}
+
+@media (max-width: 576px) {
+    .partnerGrid {
+        /* Garante 1 coluna em telas bem pequenas */
+        grid-template-columns: 1fr;
+        gap: 20px;
+        /* Reduz o espaço entre os cards */
+    }
+
+    .sectionPartners {
+        padding: 40px 0;
+        /* Reduz padding da seção */
+    }
+}

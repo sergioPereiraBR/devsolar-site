@@ -1,0 +1,412 @@
+/* ... (Mantenha seus estilos existentes para .footer, .footerContainer, .footerGrid, etc.) ... */
+.footer {
+    background-color: var(--footer-color);
+    /* Cor de fundo principal */
+    color: var(--branco);
+    /* Cor padrão do texto */
+    padding: 60px 0 20px 0;
+    /* Espaçamento interno (maior em cima) */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: auto;
+    /* Empurra para o final da página */
+}
+
+.footerContainer {
+    max-width: 1140px;
+    /* Exemplo */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footerGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footerColumn {
+    /* Estilos para cada coluna */
+}
+
+/* Coluna Info */
+.footerInfo .footerLogo {
+    margin-bottom: 20px;
+    /* Mais espaço abaixo do logo */
+}
+
+.footerInfo .logoImg {
+    /* Estilo específico para a tag Image do logo */
+    height: 48px;
+    max-width: 100%;
+}
+
+.footerInfo .slogan {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.footerInfo .contactInfo {
+    font-size: 0.9rem;
+    /* Tamanho menor para info de contato */
+}
+
+.footerInfo .contactItem {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.footerInfo .contactItem a {
+    /* Estilo para links tel e mailto */
+    color: inherit;
+    /* Herda a cor do pai (.contactItem) */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footerInfo .contactItem a:hover {
+    color: var(--primary);
+    text-decoration: none;
+    /* Mantém sem sublinhado se preferir */
+}
+
+.footerInfo .contactIcon {
+    color: var(--primary);
+    /* Cor dos ícones de contato */
+    margin-right: 10px;
+    /* Espaço entre ícone e texto */
+    width: 20px;
+    /* Largura fixa para alinhamento */
+    text-align: center;
+}
+
+.footerInfo .contactItem div {
+    /* Para o bloco de endereço */
+    line-height: 1.5;
+}
+
+
+/* Colunas de Links */
+.footerLinks .footerTitle {
+    /* Reutiliza estilo do título */
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footerLinks .footerTitle::after {
+    /* Reutiliza linha */
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary);
+    opacity: 0.6;
+}
+
+.footerLinks ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footerLinks li {
+    margin-bottom: 10px;
+}
+
+.footerLinks a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footerLinks a:hover {
+    color: var(--primary);
+    transform: translateX(5px);
+    font-weight: 900;
+}
+
+
+/* Coluna Social */
+.footerSocial .footerTitle {
+    /* Reutiliza estilo */
+    /* ... */
+}
+
+.footerSocial .socialLinksContainer {
+    gap: 12px;
+    /* Espaço entre ícones sociais */
+}
+
+.socialIconLinkFooter {
+    /* Classe específica para ícones sociais no footer */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    /* Tamanho do ícone social */
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fundo sutil */
+    color: var(--primary);
+    /* Cor do ícone */
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.1rem;
+    /* Tamanho do ícone FA */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.socialIconLinkFooter:hover {
+    background-color: var(--primary);
+    color: var(--branco);
+    /* Cor do ícone no hover */
+    transform: scale(1.1);
+}
+
+/* Cores específicas por rede (opcional) */
+.socialIconLinkFooter[href*="facebook.com"]:hover {
+    background-color: #3b5998;
+}
+
+.socialIconLinkFooter[href*="instagram.com"]:hover {
+    background-color: #e4405f !important;
+}
+
+.socialIconLinkFooter[href*="linkedin.com"]:hover {
+    background-color: #0077b5;
+}
+
+.socialIconLinkFooter[href*="youtube.com"]:hover {
+    background-color: #ff0000;
+}
+
+.socialIconLinkFooter[href*="wa.me"]:hover {
+    background-color: #25d366;
+}
+
+/* Newsletter */
+.footerTitleNewsletter {
+    /* Estilo similar ao footerTitle */
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 15px;
+    /* Menos espaço antes do form */
+    margin-top: 30px;
+    /* Espaço acima vindo do container social */
+}
+
+.newsletterForm {
+    display: flex;
+    max-width: 100%;
+    /* Ocupa largura da coluna */
+    background-color: var(--branco);
+    border-radius: 4px;
+    overflow: hidden;
+    /* Para o border-radius funcionar com o botão */
+    margin-bottom: 10px;
+    /* Espaço antes do feedback */
+}
+
+/* ... (estilos input e button do newsletter) ... */
+.newsletterForm button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.newsletterForm button .spinner-border {
+    /* Estilo do spinner */
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.15em;
+}
+
+.newsletterForm input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: none;
+    /* Remove borda padrão */
+    background-color: transparent;
+    /* Usa fundo do form */
+    color: #333;
+    /* Cor do texto digitado */
+    min-width: 0;
+    /* Permite encolher */
+    outline: none;
+}
+
+.newsletterForm input::placeholder {
+    color: #888;
+}
+
+.newsletterForm button {
+    padding: 10px 15px;
+    background-color: var(--primary);
+    color: var(--branco);
+    /* Ícone branco */
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    /* Tamanho do ícone */
+    transition: background-color 0.3s ease;
+}
+
+.newsletterForm button:hover {
+    background-color: #e68a00;
+    /* Tom mais escuro no hover */
+}
+
+/* Feedback da Newsletter */
+.newsletterFeedback {
+    min-height: 20px;
+    /* Reserva espaço para a mensagem */
+    margin-top: 5px;
+}
+
+.newsletterFeedback p {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.successMessage {
+    color: var(--secondary);
+    /* Verde */
+}
+
+.errorMessage {
+    color: #dc3545;
+    /* Vermelho Bootstrap */
+}
+
+/* Seção Copyright */
+.footerCopyright {
+    text-align: center;
+    padding-top: 25px;
+    margin-top: 40px;
+    border-top: 1px solid var(--white10);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footerCopyright p {
+    margin-bottom: 5px;
+}
+
+.footerCopyright a {
+    /* Estilo para links Política/Termos e Dev */
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    /* Remove sublinhado padrão */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footerCopyright a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.developerCredit a {
+    font-weight: bold;
+}
+
+
+/* Botão WhatsApp Flutuante */
+.whatsappBtn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366;
+    color: white;
+    /* Cor do ícone (se fosse texto) */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px var(--black15);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border: 2px solid var(--branco);
+}
+
+.whatsappBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px var(--black15);
+    background-color: #1ebe57;
+    /* Verde mais escuro */
+}
+
+.whatsappBtn img {
+    /* Estilo aplicado à tag Image do next/image */
+    /* O tamanho é controlado pelas props width/height no componente Image */
+}
+
+
+/* Responsividade (Exemplo - Ajuste conforme necessário) */
+@media (max-width: 991px) {
+    .footerGrid {
+        gap: 40px;
+        /* Aumenta espaço vertical entre colunas empilhadas */
+    }
+}
+
+@media (max-width: 768px) {
+    .footerGrid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        /* Ajusta minmax */
+        text-align: center;
+        /* Centraliza texto nas colunas */
+    }
+
+    .footerInfo .contactItem {
+        justify-content: center;
+        /* Centraliza itens de contato */
+    }
+
+    .footerInfo .contactItem i {
+        /* Remove margem para centralizar com texto */
+        margin-right: 0;
+        margin-bottom: 5px;
+        /* Espaço abaixo do ícone */
+        display: block;
+        /* Ícone em linha própria */
+    }
+
+    .footerInfo .contactItem div {
+        text-align: center;
+        /* Garante texto do endereço centralizado */
+    }
+
+    .footerLinks .footerTitle::after {
+        /* Centraliza linha */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footerSocial .socialLinksContainer {
+        justify-content: center;
+        /* Centraliza ícones sociais */
+    }
+
+    .newsletterForm {
+        max-width: 350px;
+        /* Limita largura no mobile */
+        margin: 0 auto;
+        /* Centraliza */
+    }
+
+    .footerCopyright {
+        font-size: 0.8rem;
+    }
+}

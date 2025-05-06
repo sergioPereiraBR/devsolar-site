@@ -1,0 +1,172 @@
+.sectionBenefits {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+    /* Fundo leve */
+}
+
+.sectionTitle {
+    color: var(--footer-color);
+    margin-bottom: 15px;
+
+}
+
+.sectionSubtitle {
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Card de Benefício Principal */
+.benefitCard {
+    cursor: pointer;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    background-color: var(--branco);
+}
+
+.benefitCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 77, 205, 0.1);
+    border-color: var(--primary);
+}
+
+.benefitIcon {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    display: block;
+    /* Garante margem */
+}
+
+.benefitTitle {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: var(--footer-color);
+}
+
+.benefitDescription {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Estilos do Modal */
+.modalDialog {
+    max-width: 900px;
+    /* Ajuste a largura conforme necessário */
+}
+
+.modalHeader {
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+    /* Fundo leve */
+}
+
+.modalTitle {
+    color: var(--footer-color);
+    font-weight: 600;
+}
+
+/* Card de Categoria (dentro do Modal) */
+.categoryCard {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--branco);
+}
+
+.categoryCard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px var(--black10);
+    border-color: var(--primary);
+    /* Destaque na borda */
+}
+
+.categoryIcon {
+    font-size: 2rem;
+    color: rgba(0, 77, 205, 1);
+    /* Cor diferente para ícones internos */
+}
+
+.categoryDescription {
+    font-size: 0.85rem;
+    color: #777;
+    line-height: 1.5;
+}
+
+/* Corpo do Modal na View de Detalhe */
+.detailModalBody {
+    padding: 25px 30px;
+    max-height: 70vh;
+    /* Limita altura */
+    overflow-y: auto;
+    /* Scroll se necessário */
+}
+
+.detailTitle {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--footer-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detailText {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.citations,
+.references {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.citations h5,
+.references h5 {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.citations p,
+.references p {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.citations strong {
+    color: var(--footer-color);
+}
+
+.citationLink {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.citationLink:hover {
+    text-decoration: underline;
+}
+
+.references p {
+    font-family: monospace;
+    /* Fonte monoespaçada para referências */
+    font-size: 0.8rem;
+}
+
+/* Botão Fale Conosco no Footer */
+.modalFooterButton {
+    /* Adicione estilos específicos se o estilo padrão do botão não for suficiente */
+    /* Exemplo: min-width: 200px; */
+}

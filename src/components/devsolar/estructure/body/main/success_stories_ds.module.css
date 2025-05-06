@@ -1,0 +1,262 @@
+/* SuccessStoriesDS.module.css */
+
+.sectionCases {
+    padding: 60px 0;
+    background-color: var(--light)
+}
+
+.sectionTitle {
+    color: var(--footer-color);
+    margin-bottom: 15px;
+}
+
+.sectionSubtitle {
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video {
+    color: black;
+    background-color: black;
+    color: black;
+    border-color: black;
+    box-shadow: #333;
+}
+
+.carouselContainer {
+    /* Adiciona padding lateral para as setas de navegação não ficarem coladas */
+    padding: 0 40px;
+    position: relative;
+    /* Necessário para posicionar setas customizadas se precisar */
+}
+
+.mySwiper {
+    padding-bottom: 45px !important;
+    /* Espaço para a paginação (pontos) */
+}
+
+/* Estilização dos Cards dentro do Swiper */
+.swiperSlide {
+    height: auto !important;
+    /* Permite que o Swiper calcule a altura */
+    display: flex;
+    /* Ajuda a alinhar o card */
+}
+
+.storyCard {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--branco);
+    box-shadow: 0 4px 15px var(--black10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ocupa toda a altura do slide */
+    width: 100%;
+    /* Ocupa toda a largura do slide */
+}
+
+.storyCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--black15);
+}
+
+.thumbnailContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #eee;
+}
+
+.thumbnailImage {
+    object-fit: cover;
+}
+
+.storyCard .card-body {
+    padding: 20px;
+    flex-grow: 1;
+    /* Corpo ocupa espaço restante */
+    display: flex;
+    flex-direction: column;
+    /* Organiza conteúdo verticalmente */
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--footer-color);
+}
+
+/* Estilo para descrição curta (se usada) */
+.cardShortDescription {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    /* Empurra badges e botão para baixo */
+    /* Limitar texto no card (opcional) */
+    /* display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis; */
+}
+
+
+.badgesContainer {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    /* Espaço antes do botão */
+    margin-top: auto;
+    /* Garante que fique acima do botão se a descrição for curta */
+}
+
+.badgesContainer .badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    font-weight: 500;
+}
+
+.badgePrimary {
+    background-color: var(--primary) !important;
+    color: var(--footer-color);
+}
+
+.badgeSecondary {
+    background-color: var(--secondary) !important;
+    color: var(--branco);
+}
+
+.detailsButton {
+    /* Estilo do botão "Ver Detalhes" */
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    /* Espaço acima do botão */
+    align-self: flex-start;
+    /* Alinha o botão à esquerda */
+}
+
+.detailsButton:hover,
+.detailsButton:focus {
+    background-color: var(--primary) !important;
+    color: var(--branco) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Estilização da Paginação (Pontos) do Swiper */
+.mySwiper .swiper-pagination-bullet {
+    background-color: var(--primary) !important;
+    /* Cor dos pontos inativos */
+    opacity: 0.5 !important;
+    width: 10px !important;
+    height: 10px !important;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+    background-color: var(--footer-color) !important;
+    /* Cor do ponto ativo */
+    opacity: 1 !important;
+}
+
+/* Estilização das Setas de Navegação do Swiper */
+.mySwiper .swiper-button-prev,
+.mySwiper .swiper-button-next {
+    color: var(--primary) !important;
+    /* Cor das setas */
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Fundo semi-transparente */
+    border-radius: 50%;
+    width: 40px !important;
+    /* Tamanho do container da seta */
+    height: 40px !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mySwiper .swiper-button-prev:hover,
+.mySwiper .swiper-button-next:hover {
+    background-color: var(--primary) !important;
+    color: var(--branco) !important;
+}
+
+/* Ajusta o tamanho do ícone da seta dentro do botão */
+.mySwiper .swiper-button-prev::after,
+.mySwiper .swiper-button-next::after {
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+/* Ajusta posição das setas se necessário */
+.mySwiper .swiper-button-prev {
+    left: 5px !important;
+    /* Move um pouco para dentro */
+}
+
+.mySwiper .swiper-button-next {
+    right: 5px !important;
+    /* Move um pouco para dentro */
+}
+
+
+/* Estilos do Modal de Detalhes */
+.modalHeader {
+    border-bottom: 1px solid #eee;
+}
+
+.modalTitle {
+    color: var(--footer-color);
+    font-weight: 600;
+}
+
+.modalBodyText {
+    padding: 20px 25px;
+    color: #333;
+    line-height: 1.7;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    /* Respeita quebras de linha e espaços no texto */
+    max-height: 60vh;
+    /* Limita altura do corpo do modal */
+    overflow-y: auto;
+    /* Adiciona scroll se necessário */
+}
+
+.modalFooter {
+    border-top: 1px solid #eee;
+}
+
+/* Responsividade adicional */
+@media (max-width: 768px) {
+    .carouselContainer {
+        padding: 0 10px;
+        /* Reduz padding lateral no mobile */
+    }
+
+    .mySwiper .swiper-button-prev,
+    .mySwiper .swiper-button-next {
+        display: none;
+        /* Esconde setas em telas muito pequenas (opcional) */
+    }
+
+    .mySwiper {
+        padding-bottom: 40px !important;
+        /* Ajusta espaço da paginação */
+    }
+
+    .cardTitle {
+        font-size: 1.1rem;
+    }
+}

@@ -1,0 +1,92 @@
+/* CTASectionDS.module.css */
+
+/* :root deve estar no seu arquivo CSS global (ex: styles/globals.css)
+:root {
+  --primary: #ff9e00;
+  --branco: #ffffff;
+  --theme-rgb: 0, 77, 205; /* Exemplo baseado em --theme */
+/* } */
+
+.ctaSection {
+    /* Substitui py-5 e bg-primary-custom */
+    padding: 4rem 0;
+    /* Equivalente ou ajustado de py-5 */
+    /* Use a cor primária do seu tema, ajuste a opacidade se desejar um overlay */
+    background-color: #ff9e00;
+    /* Exemplo usando a cor theme com opacidade */
+    /* Ou use diretamente: background-color: var(--primary); */
+    /* Se for laranja */
+    color: var(--branco);
+    /* Opcional: Adicionar imagem de fundo */
+    /* background-image: linear-gradient(rgba(var(--theme-rgb), 0.85), rgba(var(--theme-rgb), 0.85)), url('/images/cta-background.jpg'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+}
+
+.headline {
+    font-weight: 700;
+    /* Equivalente a fw-bold */
+    margin-bottom: 0.5rem;
+    /* Espaçamento abaixo do título */
+    display: flex;
+    /* Para alinhar ícone e texto */
+    align-items: center;
+    gap: 10px;
+    /* Espaço entre ícone e texto */
+}
+
+.headlineIcon {
+    /* Estilo para o ícone (ex: usando FontAwesome ou SVG) */
+    font-size: 1.5rem;
+    /* Ajuste o tamanho */
+    /* color: var(--secondary); */
+    /* Pode usar cor secundária para destaque */
+}
+
+.subtext {
+    font-size: 1.15rem;
+    /* Ajuste para o tamanho 'lead' ou desejado */
+    margin-bottom: 0;
+    /* Equivalente a mb-0 */
+    opacity: 0.9;
+    /* Leve transparência para diferenciar do título */
+}
+
+.buttonContainer {
+    /* Estilos específicos para o container do botão, se necessário */
+    /* text-lg-end é tratado pelo Bootstrap */
+}
+
+/* Sugestão de classe para botão com mais destaque */
+.ctaButton {
+    /* Baseado no Bootstrap mas com cores do tema */
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: var(--branco);
+    /* Fundo branco */
+    border: 1px solid transparent;
+    padding: 0.75rem 1.5rem;
+    /* Tamanho btn-lg */
+    font-size: 1.15rem;
+    /* Tamanho btn-lg */
+    border-radius: 0.3rem;
+    color: var(--primary);
+    /* Texto na cor primária */
+    transition: all 0.2s ease-in-out;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+    /* Sombra opcional */
+}
+
+.ctaButton:hover {
+    background-color: #f8f9fa;
+    /* Branco levemente mais escuro */
+    color: var(--primary);
+    transform: translateY(-2px);
+    /* box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); */
+}

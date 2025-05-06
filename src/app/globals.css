@@ -1,0 +1,93 @@
+/* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'); */
+/* @import '@/styles/tremor-tailwind.css'; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+	--theme: rgba(0, 77, 205, 1) 0%;
+	--primary: #ff9e00;
+	--secondary: #2ecc71;
+	--footer-color: #001f52;
+
+	/* --- AJUSTE AQUI --- */
+	--light: #F8F9FA !important;
+	/* #F8F9FA; */
+	/* Tornar --light um cinza mais perceptível */
+	/* Opção A: Usar um cinza padrão Tailwind/Bootstrap */
+	/* --light: #f1f5f9; /* Exemplo: slate-100 do Tailwind */
+	/* --light: #e9ecef; */
+	/* Exemplo: gray-200 Bootstrap
+  /* Opção B: Definir um cinza customizado */
+	/* --light: #f0f3f7; */
+	/* Exemplo: Um cinza azulado leve */
+	/* -------------------- */
+	/* Branco puro */
+	--branco: #FFFFFF;
+
+	/* Fundo principal do body (pode ser branco ou o novo --light) */
+	--body-bg: var(--light);
+	/* Ou var(--light) se preferir fundo geral cinza */
+
+	/* Cores com Transparência */
+	--background: rgba(0, 77, 205, 0);
+	--black10: rgba(0, 0, 0, 0.1);
+	--black15: rgba(0, 0, 0, 0.5);
+	--white10: rgba(255, 255, 255, 0.1);
+
+
+	--black-rgb: rgb(0, 0, 0);
+	--white-rgb: rgb(255, 255, 255);
+	--primary-rgb: rgb(255, 158, 0);
+
+	/* Outras */
+	--black10: rgba(var(--black-rgb), 0.1);
+	--black15: rgba(var(--black-rgb), 0.15);
+	/* Ajustado para ser sutil */
+	--white10: rgba(var(--white-rgb), 0.1);
+
+	--scroll-padding: 90px;
+}
+
+
+html {
+	scroll-behavior: smooth;
+	/* A variável --scroll-padding será definida pelo JavaScript */
+	/* scroll-padding-top: var(--scroll-padding, 90px); /* Define um fallback */
+	/* O JS agora define scrollPaddingTop diretamente também */
+	scroll-padding-top: var(--scroll-padding, 90px);
+}
+
+body {
+	/* Estilos base do body */
+	@apply font-sans text-base text-gray-700 bg-white dark:text-gray-300 dark:bg-gray-900;
+	/* Exemplo usando @apply ou classes Tailwind */
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	/* Pode manter ou usar fontes do Tailwind */
+	overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--footer-color);
+	/* Garante que títulos usem a cor mais escura */
+}
+
+/* Opcional: Definir cores padrão para elementos comuns */
+hr {
+	border-top-color: var(--light) !important;
+	/* rgba(var(--black-rgb), 0.08); */
+	/* Linha divisória sutil */
+}
+
+/* Classe utilitária Bootstrap (se ainda a usa em algum lugar) */
+.bg-light {
+	background-color: var(--light) !important;
+	/* Garante que use sua variável --light */
+}

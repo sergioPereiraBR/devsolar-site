@@ -1,0 +1,76 @@
+.card {
+    display: flex;
+    align-items: center;
+    /* Alinha logo e texto verticalmente */
+    gap: 15px;
+    /* Espaço entre logo e texto */
+    background-color: var(--branco);
+    /* Fundo branco para o card */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--black10);
+    /* Sombra sutil */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    width: 100%;
+    /* Ocupa a largura da coluna do grid pai */
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px var(--black-rgb);
+}
+
+.logoContainer {
+    flex-shrink: 0;
+    /* Impede que o container do logo encolha */
+    width: 65px;
+    /* Largura do container circular (um pouco maior que a imagem) */
+    height: 65px;
+    /* Altura do container circular */
+    border-radius: 50%;
+    /* Faz o container ficar redondo */
+    overflow: hidden;
+    /* Esconde partes da imagem que saem do círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Borda inspirada no WhatsApp Status (verde ou sua cor primária) */
+    border: 3px solid var(--secondary);
+    /* Usando sua cor secundária (verde) */
+    /* Ou use sua cor primária: border: 3px solid var(--primary); */
+    padding: 2px;
+    /* Espaço entre a borda e a imagem */
+    background-color: var(--branco);
+    /* Fundo caso a imagem não preencha */
+}
+
+.logoImage {
+    /* Garante que a imagem se ajuste dentro do container */
+    max-width: 100%;
+    max-height: 100%;
+    /* object-fit: contain; já está na prop do Image, mas pode reforçar aqui */
+    border-radius: 50%;
+    /* Garante que a própria imagem seja arredondada se 'contain' não preencher */
+}
+
+.textContainer {
+    flex-grow: 1;
+    /* Ocupa o espaço restante */
+}
+
+.partnerName {
+    margin: 0 0 5px 0;
+    /* Espaçamento abaixo do nome */
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--footer-color);
+    /* Cor escura para o nome */
+}
+
+.partnerDescription {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+    /* Cinza para a descrição */
+    line-height: 1.4;
+}

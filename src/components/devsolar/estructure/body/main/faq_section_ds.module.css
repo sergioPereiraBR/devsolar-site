@@ -1,0 +1,511 @@
+.sectionFaq {
+    padding: 60px 0;
+    background-color: var(--branco);
+}
+
+.sectionTitle {
+    color: var(--footer-color);
+    margin-bottom: 15px;
+}
+
+.sectionSubtitle {
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Remove estilos padrão do Accordion do Bootstrap */
+.faqAccordion {
+    /* Remove a borda externa do accordion se houver */
+    border: none;
+    background-color: transparent;
+    /* Garante fundo transparente */
+}
+
+.faqItem {
+    border: none !important;
+    /* Remove borda de cada item */
+    background-color: transparent !important;
+    margin-bottom: 20px !important;
+    /* Espaço entre Q&A */
+    overflow: visible !important;
+    /* Permite que as sombras dos balões apareçam */
+}
+
+/* Estiliza o cabeçalho (trigger) para não parecer um botão padrão */
+.messageHeader {
+    padding: 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    /* Para posicionar o ícone de toggle */
+}
+
+/* Remove o ícone padrão de toggle do Bootstrap */
+.messageHeader::after {
+    display: none !important;
+}
+
+/* Estilo da linha que contém avatar + balão */
+.messageRow {
+    display: flex;
+    align-items: flex-start;
+    /* Alinha avatar e balão na base */
+    gap: 12px;
+    /* Espaço entre avatar e balão */
+    width: 100%;
+}
+
+/* Estilo da linha que contém avatar + balão */
+.messageRowAns {
+    display: flex;
+    align-items: flex-end;
+    /* Alinha avatar e balão na base */
+    gap: 12px;
+    /* Espaço entre avatar e balão */
+    width: 100%;
+}
+
+/* Linha da Pergunta (avatar à esquerda) */
+.questionRow {
+    justify-content: flex-start;
+    /* Alinha à esquerda */
+}
+
+/* Linha da Resposta (avatar à direita) */
+.answerRow {
+    justify-content: flex-end;
+    /* Alinha à direita */
+    /* Inverte a ordem visual para o avatar vir depois do balão */
+    /* flex-direction: row-reverse; */
+    /* Descomente se preferir o logo antes do balão */
+}
+
+/* Container do Avatar/Logo */
+.avatarContainer {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    /* Impede que encolha */
+    background-color: #e0e0e0;
+    /* Cor de fundo caso a imagem não carregue */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.avatarImage {
+    border-radius: 50%;
+    background-color: #eee;
+    /* Garante que a imagem seja redonda */
+    /* object-fit: cover; */
+    /* Prop já está no componente Image */
+}
+
+/* Estilo base dos balões de mensagem */
+.messageBubble {
+    padding: 12px 18px;
+    border-radius: 18px;
+    /* Bordas arredondadas */
+    max-width: calc(100% - 60px);
+    /* Largura máxima (100% - avatar - gap) */
+    position: relative;
+    /* Para o 'rabicho' do balão */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    line-height: 1.5;
+}
+
+/* Balão da Pergunta (Estilo WhatsApp recebido) */
+.questionBubble {
+    background-color: var(--light);
+    color: #333;
+    border: 1px solid #eee;
+    border-top-left-radius: 5px;
+    /* Canto menos arredondado perto do avatar */
+    margin-right: auto;
+    /* Empurra para a esquerda */
+    /* Adiciona um "rabicho" (opcional, mas melhora o visual) */
+    /* Implementação simplificada sem rabicho por enquanto */
+}
+
+.questionRow .messageBubble {
+    /* Garante que o balão fique à direita do avatar */
+    order: 1;
+}
+
+.questionRow .avatarContainer {
+    order: 0;
+}
+
+
+/* Balão da Resposta (Estilo WhatsApp enviado) */
+.answerBubble {
+    background-color: #dcf8c6;
+    /* Verde claro do WhatsApp */
+    /* Ou use suas cores: background-color: var(--secondary); color: var(--branco); */
+    color: #333;
+    border-top-right-radius: 5px;
+    /* Canto menos arredondado perto do avatar */
+    margin-left: auto;
+    /* Empurra para a direita */
+}
+
+.answerRow .messageBubble {
+    /* Garante que o balão fique à esquerda do avatar */
+    order: 0;
+}
+
+.answerRow .avatarContainer {
+    order: 1;
+}
+
+
+/* Estilo do Corpo da Resposta */
+.messageBody {
+    padding: 10px 0 0 0 !important;
+    /* Espaço acima da resposta, sem padding lateral */
+    background-color: transparent !important;
+    border: none !important;
+    /* Remove borda do corpo do accordion */
+}
+
+/* Ícone de Toggle (Chevron) */
+.toggleIcon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid var(--primary);
+    /* Cor do ícone */
+    border-bottom: 2px solid var(--primary);
+    transform: translateY(-60%) rotate(-45deg);
+    /* Inclina para baixo (fechado) */
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+/* Estilo do ícone quando o accordion está aberto */
+/* O Bootstrap adiciona a classe 'collapsed' ao botão quando está FECHADO */
+/* Então, selecionamos o botão que NÃO tem a classe 'collapsed' */
+.messageHeader:not(.collapsed) .toggleIcon {
+    transform: translateY(-40%) rotate(135deg);
+    /* Vira para cima (aberto) */
+}
+
+
+/* Ajustes Responsivos */
+@media (max-width: 576px) {
+    .messageBubble {
+        max-width: calc(100% - 55px);
+        /* Ajusta max-width para telas menores */
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+
+    .avatarContainer {
+        width: 40px;
+        height: 40px;
+    }
+
+    .toggleIcon {
+        right: 10px;
+    }
+}
+
+/* ... (Seus estilos existentes para .sectionFaq, .faqAccordion, .faqItem, etc.) ... */
+.sectionFaq {
+    padding: 60px 0;
+}
+
+.sectionTitle {
+    color: var(--footer-color);
+    margin-bottom: 15px;
+}
+
+.sectionSubtitle {
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Remove estilos padrão do Accordion do Bootstrap */
+.faqAccordion {
+    border: none;
+    background-color: transparent;
+}
+
+.faqItem {
+    border: none !important;
+    background-color: transparent !important;
+    margin-bottom: 20px !important;
+    overflow: visible !important;
+}
+
+/* Estiliza o cabeçalho (trigger) para não parecer um botão padrão */
+.messageHeader {
+    padding: 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.messageHeader::after {
+    display: none !important;
+}
+
+/* Estilo da linha que contém avatar + balão */
+.messageRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+.messageRowAns {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    width: 100%;
+}
+
+.questionRow {
+    justify-content: flex-start;
+}
+
+.answerRow {
+    justify-content: flex-end;
+}
+
+.avatarContainer {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #e0e0e0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.avatarImage {
+    border-radius: 50%;
+}
+
+.messageBubble {
+    padding: 12px 18px;
+    border-radius: 18px;
+    max-width: calc(100% - 72px);
+    /* Ajustado para avatar + gap */
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    line-height: 1.5;
+    word-wrap: break-word;
+    /* Garante quebra de palavras longas */
+}
+
+.questionBubble {
+    background-color: var(--branco);
+    color: #333;
+    border: 1px solid #eee;
+    border-top-left-radius: 5px;
+    margin-right: auto;
+}
+
+.questionRow .messageBubble {
+    order: 1;
+}
+
+.questionRow .avatarContainer {
+    order: 0;
+}
+
+.answerBubble {
+    background-color: #dcf8c6;
+    color: #333;
+    border-top-right-radius: 5px;
+    margin-left: auto;
+}
+
+.answerRow .messageBubble {
+    order: 0;
+}
+
+.answerRow .avatarContainer {
+    order: 1;
+}
+
+.messageBody {
+    padding: 10px 0 0 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.toggleIcon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+    transform: translateY(-60%) rotate(-45deg);
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+.messageHeader:not(.collapsed) .toggleIcon {
+    transform: translateY(-40%) rotate(135deg);
+}
+
+
+/* --- NOVOS ESTILOS PARA INPUT AREA --- */
+
+.userInputSection {
+    margin-top: 40px;
+    /* Espaço acima da área de input */
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    /* Linha divisória opcional */
+}
+
+.userInputTitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--footer-color);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.inputAreaContainer {
+    display: flex;
+    align-items: flex-end;
+    /* Alinha itens na base (importante para textarea) */
+    gap: 10px;
+    background-color: #f0f0f0;
+    /* Cor de fundo similar ao WhatsApp */
+    padding: 8px 12px;
+    border-radius: 25px;
+    /* Bordas bem arredondadas */
+    position: relative;
+    /* Para posicionar o emoji picker */
+}
+
+.emojiButton,
+.sendButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    /* Padding para área de clique */
+    font-size: 1.4rem;
+    /* Tamanho dos ícones */
+    color: #555;
+    /* Cor dos ícones */
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+    /* Impede que encolham */
+    align-self: center;
+    /* Centraliza verticalmente */
+}
+
+.emojiButton:hover,
+.sendButton:hover:not(:disabled) {
+    /* Só aplica hover se não estiver desabilitado */
+    color: var(--primary);
+}
+
+.sendButton:disabled {
+    color: #aaa;
+    /* Cor do botão desabilitado */
+    cursor: not-allowed;
+}
+
+.userInput {
+    flex-grow: 1;
+    /* Ocupa o espaço restante */
+    border: none;
+    background-color: var(--branco);
+    /* Fundo branco para o input */
+    padding: 10px 15px;
+    border-radius: 18px;
+    /* Bordas arredondadas */
+    resize: none;
+    /* Impede redimensionamento manual */
+    overflow-y: auto;
+    /* Permite scroll se o texto ficar muito grande */
+    max-height: 100px;
+    /* Limita altura máxima (ajuste conforme necessário) */
+    min-height: 40px;
+    /* Altura mínima similar a input */
+    line-height: 1.4;
+    outline: none;
+    /* Remove outline de foco padrão */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* Sombra interna sutil */
+}
+
+/* Wrapper para posicionar o Emoji Picker */
+.emojiPickerWrapper {
+    position: absolute;
+    bottom: 65px;
+    /* Posiciona acima da caixa de input */
+    left: 10px;
+    /* Alinha com o botão de emoji */
+    z-index: 10;
+    /* Garante que fique acima de outros elementos */
+    /* A biblioteca emoji-picker-react pode aplicar seus próprios estilos base */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    /* Garante que o picker respeite o border-radius */
+}
+
+
+/* Ajustes Responsivos */
+@media (max-width: 576px) {
+    .messageBubble {
+        max-width: calc(100% - 55px);
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+
+    .avatarContainer {
+        width: 40px;
+        height: 40px;
+    }
+
+    .toggleIcon {
+        right: 10px;
+    }
+
+    .userInput {
+        max-height: 80px;
+        min-height: 38px;
+        padding: 8px 12px;
+    }
+
+    .emojiButton,
+    .sendButton {
+        font-size: 1.2rem;
+        padding: 6px;
+    }
+
+    .emojiPickerWrapper {
+        /* Ajuste a posição ou tamanho se necessário no mobile */
+        /* Exemplo: pode precisar de `right: 10px;` ou `width: calc(100% - 20px);` */
+        width: 90%;
+        /* Ocupa quase toda largura */
+        max-width: 320px;
+        /* Limita largura máxima */
+    }
+}

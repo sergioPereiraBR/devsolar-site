@@ -1,0 +1,66 @@
+/* src/components/WhatsAppSender/WhatsAppSender.module.css */
+
+.modalChoiceHeader {
+    border-bottom: none;
+    padding: 0.8rem 1rem;
+}
+
+.modalChoiceTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    /* color: var(--footer-color); Use uma cor padrão ou passe via prop se necessário */
+    color: #333;
+    /* Cor padrão */
+}
+
+.modalChoiceBody {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.modalChoiceBody p {
+    margin-bottom: 1.2rem;
+    color: #555;
+}
+
+.modalChoiceButton {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.modalChoiceButton i {
+    font-size: 1rem;
+}
+
+/* Estilo específico para o botão do app (verde WhatsApp) */
+.modalChoiceBody .btn-success {
+    background-color: #25D366 !important;
+    border-color: #25D366 !important;
+    color: white !important;
+}
+
+.modalChoiceBody .btn-success:hover {
+    background-color: #1ebe57 !important;
+    border-color: #1ebe57 !important;
+}
+
+/* --- NOVO Estilo para Checkbox --- */
+.rememberCheckbox label {
+    /* Estilo do texto do label */
+    font-size: 0.85rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.rememberCheckbox input[type="checkbox"] {
+    /* Estilo da caixa do checkbox */
+    cursor: pointer;
+    margin-right: 0.5rem;
+    /* Espaço entre caixa e texto */
+    vertical-align: middle;
+    /* Alinha verticalmente com o texto */
+    /* Pode adicionar mais estilos para customizar a aparência do checkbox */
+    accent-color: var(--primary);
+    /* Colore o check com a cor primária (navegadores modernos) */
+}

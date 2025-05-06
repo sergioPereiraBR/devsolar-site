@@ -1,0 +1,217 @@
+.sectionFaq {
+    padding: 60px 0;
+}
+
+.sectionTitle {
+    color: var(--footer-color);
+    margin-bottom: 15px;
+}
+
+.sectionSubtitle {
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Remove estilos padrão do Accordion do Bootstrap */
+.faqAccordion {
+    /* Remove a borda externa do accordion se houver */
+    border: none;
+    background-color: transparent;
+    /* Garante fundo transparente */
+}
+
+.faqItem {
+    border: none !important;
+    /* Remove borda de cada item */
+    background-color: transparent !important;
+    margin-bottom: 20px !important;
+    /* Espaço entre Q&A */
+    overflow: visible !important;
+    /* Permite que as sombras dos balões apareçam */
+}
+
+/* Estiliza o cabeçalho (trigger) para não parecer um botão padrão */
+.messageHeader {
+    padding: 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    /* Para posicionar o ícone de toggle */
+}
+
+/* Remove o ícone padrão de toggle do Bootstrap */
+.messageHeader::after {
+    display: none !important;
+}
+
+/* Estilo da linha que contém avatar + balão */
+.messageRow {
+    display: flex;
+    align-items: flex-start;
+    /* Alinha avatar e balão na base */
+    gap: 12px;
+    /* Espaço entre avatar e balão */
+    width: 100%;
+}
+
+/* Estilo da linha que contém avatar + balão */
+.messageRowAns {
+    display: flex;
+    align-items: flex-end;
+    /* Alinha avatar e balão na base */
+    gap: 12px;
+    /* Espaço entre avatar e balão */
+    width: 100%;
+}
+
+/* Linha da Pergunta (avatar à esquerda) */
+.questionRow {
+    justify-content: flex-start;
+    /* Alinha à esquerda */
+}
+
+/* Linha da Resposta (avatar à direita) */
+.answerRow {
+    justify-content: flex-end;
+    /* Alinha à direita */
+    /* Inverte a ordem visual para o avatar vir depois do balão */
+    /* flex-direction: row-reverse; */
+    /* Descomente se preferir o logo antes do balão */
+}
+
+/* Container do Avatar/Logo */
+.avatarContainer {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    /* Impede que encolha */
+    background-color: #e0e0e0;
+    /* Cor de fundo caso a imagem não carregue */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.avatarImage {
+    border-radius: 50%;
+    /* Garante que a imagem seja redonda */
+    /* object-fit: cover; */
+    /* Prop já está no componente Image */
+}
+
+/* Estilo base dos balões de mensagem */
+.messageBubble {
+    padding: 12px 18px;
+    border-radius: 18px;
+    /* Bordas arredondadas */
+    max-width: calc(100% - 60px);
+    /* Largura máxima (100% - avatar - gap) */
+    position: relative;
+    /* Para o 'rabicho' do balão */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    line-height: 1.5;
+}
+
+/* Balão da Pergunta (Estilo WhatsApp recebido) */
+.questionBubble {
+    background-color: var(--branco);
+    color: #333;
+    border: 1px solid #eee;
+    border-top-left-radius: 5px;
+    /* Canto menos arredondado perto do avatar */
+    margin-right: auto;
+    /* Empurra para a esquerda */
+    /* Adiciona um "rabicho" (opcional, mas melhora o visual) */
+    /* Implementação simplificada sem rabicho por enquanto */
+}
+
+.questionRow .messageBubble {
+    /* Garante que o balão fique à direita do avatar */
+    order: 1;
+}
+
+.questionRow .avatarContainer {
+    order: 0;
+}
+
+
+/* Balão da Resposta (Estilo WhatsApp enviado) */
+.answerBubble {
+    background-color: #dcf8c6;
+    /* Verde claro do WhatsApp */
+    /* Ou use suas cores: background-color: var(--secondary); color: var(--branco); */
+    color: #333;
+    border-top-right-radius: 5px;
+    /* Canto menos arredondado perto do avatar */
+    margin-left: auto;
+    /* Empurra para a direita */
+}
+
+.answerRow .messageBubble {
+    /* Garante que o balão fique à esquerda do avatar */
+    order: 0;
+}
+
+.answerRow .avatarContainer {
+    order: 1;
+}
+
+
+/* Estilo do Corpo da Resposta */
+.messageBody {
+    padding: 10px 0 0 0 !important;
+    /* Espaço acima da resposta, sem padding lateral */
+    background-color: transparent !important;
+    border: none !important;
+    /* Remove borda do corpo do accordion */
+}
+
+/* Ícone de Toggle (Chevron) */
+.toggleIcon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid var(--primary);
+    /* Cor do ícone */
+    border-bottom: 2px solid var(--primary);
+    transform: translateY(-60%) rotate(-45deg);
+    /* Inclina para baixo (fechado) */
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+/* Estilo do ícone quando o accordion está aberto */
+/* O Bootstrap adiciona a classe 'collapsed' ao botão quando está FECHADO */
+/* Então, selecionamos o botão que NÃO tem a classe 'collapsed' */
+.messageHeader:not(.collapsed) .toggleIcon {
+    transform: translateY(-40%) rotate(135deg);
+    /* Vira para cima (aberto) */
+}
+
+
+/* Ajustes Responsivos */
+@media (max-width: 576px) {
+    .messageBubble {
+        max-width: calc(100% - 55px);
+        /* Ajusta max-width para telas menores */
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
+
+    .avatarContainer {
+        width: 40px;
+        height: 40px;
+    }
+
+    .toggleIcon {
+        right: 10px;
+    }
+}

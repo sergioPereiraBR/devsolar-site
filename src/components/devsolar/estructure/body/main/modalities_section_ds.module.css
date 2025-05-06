@@ -1,0 +1,208 @@
+/* CalculatorSectionDS.module.css ou ModalitiesSectionDS.module.css */
+
+/* ... (estilos anteriores para .sectionModalities, .modalityCard, etc., permanecem os mesmos) ... */
+.sectionModalities {
+    padding: 60px 0;
+    background-color: var(--branco);
+    /* Fundo branco para a seção */
+}
+
+.sectionTitle {
+    color: var(--footer-color);
+    margin-bottom: 15px;
+}
+
+.sectionSubtitle {
+    color: #555;
+    max-width: 700px;
+    /* Ajuste a largura máxima */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modalityCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--light);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* Centraliza conteúdo do card */
+}
+
+.modalityCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 77, 205, 0.1);
+    /* Sombra com cor do tema */
+}
+
+.cardHeader {
+    padding: 25px 20px 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #f8f9fa;
+    /* Fundo leve para o header do card */
+    border-radius: 10px 10px 0 0;
+    /* Arredonda cantos superiores */
+}
+
+.cardIcon {
+    font-size: 2.5rem;
+    /* Tamanho do ícone */
+    margin-bottom: 15px;
+    color: var(--primary);
+    /* Cor primária para o ícone */
+    display: block;
+    /* Garante que o margin-bottom funcione */
+}
+
+.cardTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: var(--footer-color);
+}
+
+.cardBody {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Faz o corpo crescer */
+}
+
+.cardDescription {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    flex-grow: 1;
+    /* Empurra o botão para baixo */
+    margin-bottom: 20px;
+}
+
+.detailsButton {
+    /* Estilo customizado ou use classes Bootstrap via 'variant' */
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--branco) !important;
+    /* Cor do texto no botão */
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    /* Garante que fique no final */
+}
+
+.detailsButton:hover {
+    background-color: #e68a00 !important;
+    /* Tom mais escuro da cor primária */
+    border-color: #e68a00 !important;
+    transform: scale(1.03);
+}
+
+
+/* ----- ESTILOS DO MODAL ATUALIZADOS ----- */
+.modalDialog {
+    max-width: 750px;
+    /* Pode ajustar a largura */
+}
+
+.modalHeader {
+    border-bottom: 1px solid #eee;
+    background-color: #f8f9fa;
+}
+
+.modalTitle {
+    color: var(--footer-color);
+    font-weight: 600;
+}
+
+/* Nova classe para o layout empilhado */
+.modalBodyContentStacked {
+    padding: 20px 25px;
+    /* Ajuste o padding se necessário */
+    display: flex;
+    /* Usar flexbox para empilhar */
+    flex-direction: column;
+    /* Direção vertical */
+    align-items: center;
+    /* Centraliza itens horizontalmente */
+    gap: 25px;
+    /* Espaço entre imagem e texto */
+}
+
+.modalImageContainerStacked {
+    width: 100%;
+    /* Ocupa a largura */
+    max-width: 800px;
+    /* Limita o tamanho máximo da imagem */
+    text-align: center;
+    background-color: #f8f9fa;
+    /* Fundo sutil para o container da imagem */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    /* Adiciona espaço abaixo da imagem */
+}
+
+.modalImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.modalTextContent {
+    color: #333;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    max-height: 55vh;
+    /* Pode ajustar a altura máxima */
+    overflow-y: auto;
+    padding-right: 10px;
+    /* Espaço para scrollbar */
+    width: 100%;
+    /* Ocupa a largura */
+    /* white-space: pre-wrap; NÃO MAIS NECESSÁRIO com dangerouslySetInnerHTML */
+}
+
+/* Estiliza tags HTML dentro do texto renderizado */
+.modalTextContent strong,
+.modalTextContent b {
+    color: var(--footer-color);
+    font-weight: 600;
+}
+
+.modalTextContent ul {
+    list-style: disc;
+    /* Estilo padrão de lista */
+    margin-left: 20px;
+    /* Recuo da lista */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+}
+
+.modalTextContent ul li {
+    margin-bottom: 8px;
+    /* Espaço entre itens da lista */
+}
+
+.modalFooter {
+    border-top: 1px solid #eee;
+}
+
+/* Responsividade do Modal Empilhado */
+@media (max-width: 768px) {
+    .modalBodyContentStacked {
+        padding: 15px 20px;
+        gap: 20px;
+    }
+
+    .modalImageContainerStacked {
+        max-width: 300px;
+    }
+
+    .modalTextContent {
+        font-size: 0.9rem;
+    }
+}
