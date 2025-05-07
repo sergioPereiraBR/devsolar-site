@@ -38,7 +38,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4 # Use a versão mais recente ou uma específica
         with:
           server: "ftp.devsolar.com.br" #${{ secrets.FTP_SERVER }} # Servidor FTP/SFTP dos segredos
-          username: "sergio" # ${{ secrets.FTP_USERNAME }} # Usuário FTP dos segredos
+          username: "sergio@devsolar.com.br" # ${{ secrets.FTP_USERNAME }} # Usuário FTP dos segredos
           password: "Malato#01" # ${{ secrets.FTP_PASSWORD }} # Senha FTP dos segredos
           # protocol: ftps # Descomente se for FTPS (FTP sobre SSL/TLS explícito - porta 21 ou 990)
           port: 21 # Porta padrão FTP (ou 22 para SFTP, 990 para FTPS implícito - ajuste se necessário)
