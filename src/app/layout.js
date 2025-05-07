@@ -19,30 +19,35 @@ export const metadata = {
     alternates: {
         canonical: './', // Canonical padrão (será sobrescrito nas páginas)
     },
+    facebook: {
+        appId: '', // Use a string numérica que você copiou
+    },
     openGraph: {
-        title: 'DEV Solar - Energia Solar para Todos', // Título OG padrão
-        description: 'Economize até 95% na conta de luz com energia solar fotovoltaica.', // Descrição OG padrão
+        title: 'Calcule Agora Sua Economia: O Sol Paga Sua Conta! | DEV Solar', // Título OG padrão
+        description: 'Veja em segundos o potencial de economia na sua conta de luz com nosso simulador solar rápido, fácil e gratuito. Clique e descubra!', // Descrição OG padrão
         url: './', // URL OG padrão (será sobrescrita)
         siteName: 'DEV Solar',
         images: [ // Imagem OG padrão (pode ser sobrescrita)
             {
-                url: './images/logo_sm.png', // Caminho relativo à pasta PUBLIC (URL absoluta será gerada) og-image-devsolar.png
+                url: './images/og-image-calculator-cta.png', // Caminho relativo à pasta PUBLIC (URL absoluta será gerada) og-image-devsolar.png
                 width: 1200,
                 height: 630,
-                alt: 'Painéis solares instalados pela DEV Solar',
+                alt: 'Simulador de Economia de Energia com a DEV Solar',
             },
         ],
         locale: 'pt_BR',
         type: 'website',
+        'og:action': 'Calcule sua Economia', // Define uma ação customizada (namespace:action)
+        'og:action:url': 'https://www.devsolar.com.br/#', // URL da ação
     },
     twitter: { // Twitter Card padrão (pode ser sobrescrito)
         card: 'summary_large_image',
-        title: 'DEV Solar - Energia Solar para Todos',
-        description: 'Economize até 95% na conta de luz com energia solar fotovoltaica.',
+        title: 'Calcule Agora Sua Economia: O Sol Paga Sua Conta! | DEV Solar',
+        description: 'Simulador rápido, fácil e gratuito: veja quanto você pode economizar com painéis solares. Clique e descubra!',
         // siteId: 'YourTwitterSiteID', // Opcional
         // creator: '@devsolar', // Seu handle do Twitter
         // creatorId: 'YourTwitterCreatorID', // Opcional
-        images: ['./images/logo_sm.png'], // Caminho relativo à pasta PUBLIC twitter-image-devsolar.png
+        images: ['./images/og-image-calculator-cta.png'], // Caminho relativo à pasta PUBLIC twitter-image-devsolar.png
     },
     robots: { // Configuração padrão de robôs
         index: true,

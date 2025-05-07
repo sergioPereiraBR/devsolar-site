@@ -26,7 +26,7 @@ export const metadata = {
         //fb:app_id: '61562778810789',
         images: [ // Pode usar uma imagem OG específica para a home
             {
-                url: './images/devsolar-calc.png', // Caminho relativo à pasta PUBLIC
+                url: './images/og-image-calculator-cta.png', // Caminho relativo à pasta PUBLIC
                 width: 1200,
                 height: 630,
                 alt: 'A DEV Solar atua nas modalidades de produção de energia própria, compartilhada e para negócios',
@@ -36,7 +36,7 @@ export const metadata = {
     twitter: { // Pode sobrescrever twitter tags também se necessário
         title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro',
         description: 'Economia garantida e sustentabilidade com energia solar. Peça seu orçamento.',
-        images: ['./images/logo_sm.png'],
+        images: ['./images/og-image-calculator-cta.png'],
     },
 };
 
