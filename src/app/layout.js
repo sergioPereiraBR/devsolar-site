@@ -27,6 +27,7 @@ export const metadata = {
         description: 'Veja em segundos o potencial de economia na sua conta de luz com nosso simulador solar rápido, fácil e gratuito. Clique e descubra!', // Descrição OG padrão
         url: './', // URL OG padrão (será sobrescrita)
         siteName: 'DEV Solar',
+        'article:publisher': 'https://www.facebook.com/profile.php?id=61562778810789',
         images: [ // Imagem OG padrão (pode ser sobrescrita)
             {
                 url: './images/og-image-calculator-cta.png', // Caminho relativo à pasta PUBLIC (URL absoluta será gerada) og-image-devsolar.png
@@ -119,6 +120,7 @@ export default function RootLayout({ children }) {
             <head>
                 {/* Tags que DEVEM estar no <head> e não são cobertas pela Metadata API */}
                 {/* Ex: Fontes externas carregadas diretamente, scripts inline críticos (raro) */}
+                <meta name="facebook-domain-verification" content="nk6hini7dghzylggt85l67u1es1xwv" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
