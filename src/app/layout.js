@@ -20,7 +20,7 @@ export const metadata = {
         canonical: './', // Canonical padrão (será sobrescrito nas páginas)
     },
     facebook: {
-        appId: '', // Use a string numérica que você copiou
+        appId: '706537912532593', // Use a string numérica que você copiou
     },
     openGraph: {
         title: 'Calcule Agora Sua Economia: O Sol Paga Sua Conta! | DEV Solar', // Título OG padrão
