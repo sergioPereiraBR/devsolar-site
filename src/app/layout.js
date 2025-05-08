@@ -38,8 +38,9 @@ export const metadata = {
         ],
         locale: 'pt_BR',
         type: 'website',
+        'og:determiner': 'a', // Opcional
         'og:action': 'Calcule sua Economia', // Define uma ação customizada (namespace:action)
-        'og:action:url': 'https://www.devsolar.com.br/#', // URL da ação
+        'og:action:url': 'https://www.devsolar.com.br/', // URL da ação
     },
     twitter: { // Twitter Card padrão (pode ser sobrescrito)
         card: 'summary_large_image',
