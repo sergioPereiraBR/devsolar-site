@@ -1,0 +1,87 @@
+name: Deploy Static Site to HostGator
+
+# Gatilho: Executa quando houver push na branch 'main' (ajuste se usar 'master' ou outra)
+on:
+  push:
+    branches:
+      - main # ou master, ou sua branch de produção
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # Ambiente de execução
+
+    steps:
+      # 1. Checkout: Baixa o código do seu repositório
+      - name: Checkout code
+        uses: actions/checkout@v4 # Use a versão mais recente
+
+      # 2. Setup Node.js: Configura o ambiente Node.js necessário para o build
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22" # Use a versão do Node compatível com seu projeto (ex: 18, 20)
+          cache: "npm" # Ou 'yarn' - Habilita cache de dependências para acelerar builds futuros
+
+      # 3. Install Dependencies: Instala os pacotes do projeto
+      - name: Install dependencies
+        run: npm ci # 'ci' é geralmente mais rápido e seguro para CI/CD do que 'install'
+        # Ou: yarn install --frozen-lockfile
+
+      # 4. Build Static Site: Executa o script de build do package.json
+      - name: Build static site
+        run: npm run build
+        # Este comando deve gerar a pasta 'out/' devido à configuração no next.config.js
+
+      # 5. Deploy to HostGator via FTP: Envia o conteúdo da pasta 'out/'
+      #    Usando a action SamKirkland/FTP-Deploy-Action (muito popular)
+      - name: Deploy to HostGator via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4 # Use a versão mais recente ou uma específica
+        with:
+          server: ${{ secrets.FTP_SERVER }} # Servidor FTP/SFTP dos segredos
+          username: ${{ secrets.FTP_USERNAME }} # Usuário FTP dos segredos
+          password: ${{ secrets.FTP_PASSWORD }} # Senha FTP dos segredos
+          # protocol: ftps # Descomente se for FTPS (FTP sobre SSL/TLS explícito - porta 21 ou 990)
+          port: 21 # Porta padrão FTP (ou 22 para SFTP, 990 para FTPS implícito - ajuste se necessário)
+          # security: strict # Para FTPS, pode ser necessário. Verifique a doc da action.
+          # Obs: Para SFTP, a action pode requerer configuração diferente ou uma action específica de SFTP.
+          #      Verifique a documentação da action para SFTP se disponível na HostGator.
+
+          local-dir: ./out/ # Pasta local com os arquivos construídos (IMPORTANTE!)
+          server-dir: ${{ secrets.TARGET_DIRECTORY }}/ # Diretório no servidor (ex: ./public_html/) - Use o segredo ou coloque o caminho aqui
+          # state-name: .ftp-deploy-sync-state.json # Opcional: para deploys mais rápidos (sync)
+          # dry-run: false # Defina como true para testar sem enviar arquivos
+          exclude: | # Padrões para excluir do envio
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .next/cache/**
+            /.pnp
+            .pnp.js
+            .yarn/install-state.gz
+            /coverage
+            /.next/
+            /build
+            .DS_Store
+            *.pem
+            css-obfuscator
+            npm-debug.log*
+            yarn-debug.log*
+            yarn-error.log*
+            .pnpm-debug.log*
+            .env*.local
+            .vercel
+            *.tsbuildinfo
+            next-env.d.ts
+            .vscode/*
+            !.vscode/settings.json
+            !.vscode/tasks.json
+            !.vscode/launch.json
+            !.vscode/extensions.json
+            !.vscode/*.code-snippets
+            .history/
+            *.vsix
+            .history
+            .ionide
+            # Adicione outros arquivos/pastas que não precisam ir para produção
+          # dangerous-clean-slate: false # CUIDADO: true apaga TUDO no server-dir antes de enviar. Use com extrema cautela.
+          # timeout: 30000 # Timeout em ms (padrão)
