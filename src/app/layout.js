@@ -19,7 +19,7 @@ export const metadata = {
     alternates: {
         canonical: './', // Canonical padrão (será sobrescrito nas páginas)
     },
-    facebook: {
+    other: {
         appId: '706537912532593', // Use a string numérica que você copiou
     },
     openGraph: {
