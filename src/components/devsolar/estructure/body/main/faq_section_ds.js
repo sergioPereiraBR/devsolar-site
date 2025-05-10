@@ -28,6 +28,8 @@ function FAQSectionDS() {
     const inputRef = useRef(null);
     const emojiPickerRef = useRef(null);
 
+    const devSolarLogo = { width: "auto", height: "60px" }
+
     // --- ESTADO PARA ATIVAR O WHATSAPP SENDER ---
     const [showWhatsAppSender, setShowWhatsAppSender] = useState(false);
 
@@ -101,7 +103,7 @@ function FAQSectionDS() {
                                                         width={60}
                                                         height={60}
                                                         className={styles.avatarImage}
-                                                        style={{ objectFit: "contain", width: "100%", height: "auto" }}
+                                                        style={{ devSolarLogo }}
                                                     />
                                                 </div>
                                             </div>
