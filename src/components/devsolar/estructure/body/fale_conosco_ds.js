@@ -176,7 +176,7 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
 
     const modalStyles = {
         modalContent: {
-            backgroundImage: `url('images/module.jpg')`, //`url('/images/ps3.webp')`,
+            backgroundImage: `url('images/module.png')`, //`url('/images/ps3.webp')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
