@@ -73,7 +73,6 @@ export default function SuccessStoriesDS() {
                     <div className="text-center mb-5">
                         <h2 id="cases-title" className={`${styles.sectionTitle} fw-bold`}>Cases de Sucesso</h2>
                         <p className={`${styles.sectionSubtitle} lead`}>Conheça quem já está economizando com energia solar</p>
-                        <a href="#contato" style={{ display: 'block', margin: '50px' }}>Teste Scroll Contato</a>
                     </div>
 
                     {/* Container do Carrossel Swiper */}
