@@ -23,8 +23,12 @@ const successStories = [
     { id: 1, title: 'Condomínio Lilases', thumbnail: './images/cond_lilases.jpg', preview: './videos/depcon01.mp4', type: "Condominial", impact: "Economia imadiata", resume: "Investimento inteligente com a Dev Solar! Gasto de R$ 6.000 virou economia, pagando o financiamento e permitindo outras melhorias.", description: "Descrição detalhada: Investir em energia solar com a DEV Solar foi a decisão financeira mais inteligente que tomamos recentemente. Convertemos um gasto de mais de R$ 6.000,00/mês num financiamento de R$ 4.500,00 durante 3 ano e depois disso a geração própria de energia beneficiará ainda mais o condomínio. O sistema de energia solar já se tornou um investimento que se paga com a própria economia gerada, e ainda conseguimos direcionar recursos para outras melhorias! O retorno é mais rápido do que o previsto. A instalação foi ágil e a equipe demonstrou total profissionalismo." },
     { id: 2, title: 'Casa da Fernanda', thumbnail: './images/casa_fernanda.jpg', preview: './videos/depcon02.mp4', type: "Residencial", impact: "Bom Atendimento e Valor Ideal", resume: "Agora produzimos nossa própria energia e reduzimos custos com a conta de luz. Fomos bem atendidos e estamos satisfeitos com o serviço.", description: "Descrição detalhada: Devido o atendimento proativo e esclarecedor todas as dúvidas foram respondidas prontamente, juntamente com a flexibilidade na negociação chegamos a um valor ideal que viabilizou a instalação do sistema de energia solar, o qual se converte em benefícios para casa e toda família." },
     { id: 3, title: 'Casa do Osmar', thumbnail: './images/casa_osmar.jpg', preview: './videos/depcon03.mp4', type: "Residencial", impact: "Confiança e Exelente Qualidade", resume: "A instalação do nosso sistema solar foi feita com profissionais de exelente qualidade até a entrega com a ligação no rede pública de energia.", description: "A instalação do nosso sistema solar foi feita com profissionais de exelente qualidade, onde desde a negociação já se demostrou terem confiança e compromisso com o que fazem até a entrega final na integração com o serviço público de energia elétrica." },
+    { id: 4, title: 'Condomínio Lilases', thumbnail: './images/cond_lilases.jpg', preview: './videos/depcon01.mp4', type: "Condominial", impact: "Economia imadiata", resume: "Investimento inteligente com a Dev Solar! Gasto de R$ 6.000 virou economia, pagando o financiamento e permitindo outras melhorias.", description: "Descrição detalhada: Investir em energia solar com a DEV Solar foi a decisão financeira mais inteligente que tomamos recentemente. Convertemos um gasto de mais de R$ 6.000,00/mês num financiamento de R$ 4.500,00 durante 3 ano e depois disso a geração própria de energia beneficiará ainda mais o condomínio. O sistema de energia solar já se tornou um investimento que se paga com a própria economia gerada, e ainda conseguimos direcionar recursos para outras melhorias! O retorno é mais rápido do que o previsto. A instalação foi ágil e a equipe demonstrou total profissionalismo." },
+    { id: 5, title: 'Casa da Fernanda', thumbnail: './images/casa_fernanda.jpg', preview: './videos/depcon02.mp4', type: "Residencial", impact: "Bom Atendimento e Valor Ideal", resume: "Agora produzimos nossa própria energia e reduzimos custos com a conta de luz. Fomos bem atendidos e estamos satisfeitos com o serviço.", description: "Descrição detalhada: Devido o atendimento proativo e esclarecedor todas as dúvidas foram respondidas prontamente, juntamente com a flexibilidade na negociação chegamos a um valor ideal que viabilizou a instalação do sistema de energia solar, o qual se converte em benefícios para casa e toda família." },
+    { id: 6, title: 'Casa do Osmar', thumbnail: './images/casa_osmar.jpg', preview: './videos/depcon03.mp4', type: "Residencial", impact: "Confiança e Exelente Qualidade", resume: "A instalação do nosso sistema solar foi feita com profissionais de exelente qualidade até a entrega com a ligação no rede pública de energia.", description: "A instalação do nosso sistema solar foi feita com profissionais de exelente qualidade, onde desde a negociação já se demostrou terem confiança e compromisso com o que fazem até a entrega final na integração com o serviço público de energia elétrica." },
 ];
 
+const MIN_SLIDES_FOR_LOOP = 4; // Exemplo: Defina um mínimo razoável
 
 export default function SuccessStoriesDS() {
     const [showDetailModal, setShowDetailModal] = useState(false);
@@ -69,13 +73,14 @@ export default function SuccessStoriesDS() {
                     <div className="text-center mb-5">
                         <h2 id="cases-title" className={`${styles.sectionTitle} fw-bold`}>Cases de Sucesso</h2>
                         <p className={`${styles.sectionSubtitle} lead`}>Conheça quem já está economizando com energia solar</p>
+                        <a href="#contato" style={{ display: 'block', margin: '50px' }}>Teste Scroll Contato</a>
                     </div>
 
                     {/* Container do Carrossel Swiper */}
                     <div className={styles.carouselContainer}>
                         <Swiper
                             modules={[Pagination, Navigation, Autoplay]}
-                            loop={true} // Ativa o loop infinito
+                            loop={successStories.length >= MIN_SLIDES_FOR_LOOP} // Ativa o loop infinito | true
                             slidesPerView={1} // Slides visíveis no mobile
                             spaceBetween={20} // Espaço entre slides
                             pagination={{ // Configuração dos pontos de navegação
@@ -90,12 +95,12 @@ export default function SuccessStoriesDS() {
                             breakpoints={{ // Responsividade
                                 // >= 768px
                                 768: {
-                                    slidesPerView: 2,
+                                    slidesPerView: Math.min(2, successStories.length), //2,
                                     spaceBetween: 30,
                                 },
                                 // >= 992px
                                 992: {
-                                    slidesPerView: 3,
+                                    slidesPerView: Math.min(3, successStories.length), //3,
                                     spaceBetween: 30,
                                 },
                                 // >= 1200px

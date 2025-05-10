@@ -15,6 +15,8 @@ function NavDS() {
     const [expanded, setExpanded] = useState(false); // Estado do menu hamburger
     const navbarRef = useRef(null); // Ref para a Navbar
 
+    const devSolarLogo = { width: "auto", height: "38px" }
+
     // --- Lógica para Scroll Padding Dinâmico ---
     const updateScrollPadding = useCallback(() => {
         if (navbarRef.current) {
@@ -83,13 +85,13 @@ function NavDS() {
                         className={styles.navbarBrandCustom}
                     >
                         <Image
-                            className={styles.logo} // Classe do Module para estilização
+                            className={styles.logoImg}
                             src={LOGO_URL}
                             alt="Logo da DEV Solar"
-                            width={150} // Mantenha ou ajuste
+                            width={140} // Mantenha ou ajuste
                             height={38}  // Mantenha ou ajuste
-                            // style={{ objectfit: "contain", width: "auto", height: "38px" }}
-                            priority={true} // Boa prática para logo acima da dobra
+                            style={devSolarLogo}
+                            priority // Boa prática para logo acima da dobra
                         />
                     </Navbar.Brand>
 

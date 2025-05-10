@@ -29,6 +29,8 @@ function FooterDS() {
     const [newsletterStatus, setNewsletterStatus] = useState(null); // null | 'submitting' | 'success' | 'error'
     const [newsletterMessage, setNewsletterMessage] = useState('');
 
+    const devSolarLogo = { width: "auto", height: "48px" }
+
     // Handler para o envio da newsletter
     const handleNewsletterSubmit = async (e) => {
         e.preventDefault();
@@ -89,10 +91,10 @@ function FooterDS() {
                                     className={styles.logoImg} // Classe específica para o logo img
                                     src={LOGO_URL}
                                     alt={`${COMPANY_NAME} Logo`}
-                                    width={180} // Aumentado um pouco
+                                    width={177} // Aumentado um pouco
                                     height={48} // Ajustado proporcionalmente
-                                    // style={{ objectFit: "contain", width: "100%", height: "auto" }}
-                                    priority={true} // Logo no footer pode não ser prioridade
+                                    style={devSolarLogo}
+                                    priority={false} // Logo no footer pode não ser prioridade
                                 />
                             </Link>
                         </div>

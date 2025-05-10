@@ -18,11 +18,16 @@ export const metadata = {
     alternates: {
         canonical: '/', // Canonical para a homepage
     },
+    other: {
+        appId: '706537912532593', // Use a string numérica que você copiou
+    },
     openGraph: {
         title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título OG específico
         description: 'Economia garantida e sustentabilidade com energia solar. Peça seu orçamento.', // Descrição OG específica
         url: '/', // URL OG específica
         type: 'website',
+        siteName: 'DEV Solar',
+        'article:publisher': 'https://www.facebook.com/profile.php?id=61562778810789',
         //fb:app_id: '61562778810789',
         images: [ // Pode usar uma imagem OG específica para a home
             {
@@ -32,6 +37,11 @@ export const metadata = {
                 alt: 'A DEV Solar atua nas modalidades de produção de energia própria, compartilhada e para negócios',
             },
         ],
+        locale: 'pt_BR',
+        type: 'website',
+        'og:determiner': 'a', // Opcional
+        'og:action': 'Calcule sua Economia', // Define uma ação customizada (namespace:action)
+        'og:action:url': 'https://www.devsolar.com.br/', // URL da ação
     },
     twitter: { // Pode sobrescrever twitter tags também se necessário
         title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro',
@@ -68,8 +78,8 @@ export default function HomePage() {
                     {/* FAQ Section */}
                     <FAQSectionDS />
 
-                    {/* About Section */}
-                    <section id="sobre"></section>
+                    {/* About Section 
+                    <section id="sobre"></section>*/}
 
                     {/* Location Section */}
                     <LocationSectionDS />
@@ -77,11 +87,11 @@ export default function HomePage() {
                     {/* Partners Section */}
                     <ParceirosFinanceirasSectionDS />
 
-                    {/* Terms Section */}
+                    {/* Terms Section
                     <section id="termos-de-uso"></section>
 
-                    {/* Policy Section */}
-                    <section id="politica-de-privacidade"></section>
+                    {/* Policy Section */}{/*
+                    <section id="politica-de-privacidade"></section> */}
 
                     {/* CTA Section */}
                     <CTASectionDS />

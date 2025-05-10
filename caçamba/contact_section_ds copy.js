@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from 'react';
-import { contactInfoData, socialLinksData } from './contact_data_ds'; // Importar dados
+import { contactInfoData, socialLinksData } from '../src/components/devsolar/estructure/body/main/contact_data_ds'; // Importar dados
 import styles from './contact_section_ds.module.css'; // Importar CSS Module
 
 // Subcomponente para item de contato (opcional, mas limpa o JSX)

@@ -51,14 +51,14 @@
 	--scroll-padding: 90px;
 }
 
-
 html {
-	scroll-behavior: smooth;
+	scroll-behavior: smooth !important;
 	/* A variável --scroll-padding será definida pelo JavaScript */
-	/* scroll-padding-top: var(--scroll-padding, 90px); /* Define um fallback */
+	scroll-padding-top: var(--scroll-padding, 90px) !important;
+	/* Define um fallback */
 	/* O JS agora define scrollPaddingTop diretamente também */
-	scroll-padding-top: var(--scroll-padding, 90px);
 }
+
 
 body {
 	/* Estilos base do body */
