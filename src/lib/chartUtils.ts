@@ -15,6 +15,12 @@ export const chartColors = {
     fill: 'fill-[#ff9e00]',
     text: 'text-[#ff9e00]',
   },
+  footer: {
+    bg: 'bg-[#001f52]',
+    stroke: 'stroke-[#001f52]',
+    fill: 'fill-[#001f52]',
+    text: 'text-[#001f52]',
+  },
   blue: {
     bg: 'bg-blue-500',
     stroke: 'stroke-blue-500',
