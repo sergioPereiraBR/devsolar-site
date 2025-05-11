@@ -100,7 +100,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
     return (
         <>
             <div className="sm:mx-auto sm:max-w-7xl m-1">
-                <h1 className="font-medium text-gray-900 dark:text-gray-50">
+                <h1 className="font-medium text-footer-color dark:text-gray-50">
                     Economia Calculada | Garantia Standard
                 </h1>
                 <p className="text-sm/6 text-gray-500 dark:text-gray-500">
