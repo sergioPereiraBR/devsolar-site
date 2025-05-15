@@ -99,6 +99,7 @@ function ContactSectionDS() {
                 method: 'POST',
                 body: JSON.stringify(payload),
                 headers: {
+                    'accept-charset': 'UTF-8',
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
