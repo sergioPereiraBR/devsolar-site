@@ -63,7 +63,7 @@ export const metadata = {
         },
     },
     // --- Outros Metadados Globais ---
-    charset: 'utf-8', // Definido automaticamente pelo Next.js, mas pode ser explícito
+    charset: 'UTF-8', // Definido automaticamente pelo Next.js, mas pode ser explícito
     manifest: './manifest.json', // Caminho para o manifest (na pasta public)
     icons: { // Convenção Next.js para favicons e ícones
         icon: './images/favicon.ico', // Ou /icon.png
