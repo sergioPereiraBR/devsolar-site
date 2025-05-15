@@ -1,3 +1,5 @@
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .txt .json
 ErrorDocument 404 /index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On

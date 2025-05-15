@@ -4,7 +4,8 @@ function HeadDS() {
     return (
         <>
             <Script src="http://localhost:3000" />
-            <meta charset="utf-8" />
+            <meta charset="UTF-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="theme-color" content="#000000" />
             <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
