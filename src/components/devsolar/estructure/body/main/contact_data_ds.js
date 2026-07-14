@@ -3,7 +3,7 @@
 export const contactInfoData = [
     { id: 'cnpj', iconClass: 'fas fa-handshake', title: 'DEV Eficiência Energética Ltda.', text: 'CNPJ: 53.538.425/0001-15' },
     { id: 'address', iconClass: 'fas fa-map-marker-alt', title: 'Endereço', text: 'Av. Jambeiro, 474 Loja C - Vila Valqueire - Rio de Janeiro, RJ.' },
-    { id: 'phone', iconClass: 'fas fa-phone-alt', title: 'Telefone', text: '(21) 99899-0303', link: 'tel:+5521998990303' },
+    { id: 'phone', iconClass: 'fas fa-phone-alt', title: 'Telefone', text: '(21) 99967-7722', link: 'tel:+5521999677722' },
     { id: 'email', iconClass: 'fas fa-envelope', title: 'Email', text: 'comercial@devsolar.com.br', link: 'mailto:comercial@devsolar.com.br' },
 ];
 
