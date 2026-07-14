@@ -37,7 +37,8 @@ jobs:
       - name: Deploy to HostGator via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4 # Use a versão mais recente ou uma específica
         with:
-          server: ${{ secrets.FTP_SERVER }} # Servidor FTP/SFTP dos segredos
+          # server: ${{ secrets.FTP_SERVER }} # Servidor FTP/SFTP dos segredos
+          server: "108.167.132.40" # IP direto do servidor HostGator
           username: ${{ secrets.STAGING_FTP_USERNAME }} # Usuário FTP dos segredos
           password: ${{ secrets.FTP_PASSWORD }} # Senha FTP dos segredos
           protocol: ftp # Descomente se for FTPS (FTP sobre SSL/TLS explícito - porta 21 ou 990)
