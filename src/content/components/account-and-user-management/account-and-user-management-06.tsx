@@ -56,9 +56,9 @@ const data = [
 export default function Example() {
   return (
     <div className="obfuscate">
-      <h1 className="text-lg font-bold text-gray-900 dark:text-gray-50">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50">
         General
-      </h1>
+      </h2>
       <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
         Manage your personal details, workspace governance and notifications.
       </p>
@@ -71,9 +71,9 @@ export default function Example() {
         {/* Content below only for demo purpose placed outside of <Tab> component. Add <TabPanels>, <TabPanel> to make it functional and to add content for other tabs */}
         <div className="mt-6 sm:flex sm:items-start sm:justify-between sm:space-x-8">
           <div>
-            <h2 className="font-semibold text-gray-900 dark:text-gray-50">
+            <h3 className="font-semibold text-gray-900 dark:text-gray-50">
               Users
-            </h2>
+            </h3>
             <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
               Workspace administrators can add, manage, and remove members.
             </p>

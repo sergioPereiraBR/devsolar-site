@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // Simulação dos dados que seu script Python gerou e você subiu como JSON
 const leadsData = [
@@ -40,7 +40,7 @@ const AtendimentoApp = () => {
 
   return (
     <div style={{ padding: '20px', maxWidth: '600px', margin: 'auto', backgroundColor: '#f4f4f4', borderRadius: '15px' }}>
-      <h1 style={{ fontSize: '32px' }}>Foco no Atendimento</h1>
+      <h2 style={{ fontSize: '32px' }}>Foco no Atendimento</h2>
       <hr />
       <div style={{ background: 'white', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
         <p><strong>Nome:</strong> <span style={{ fontSize: '24px' }}>{leadAtual.nome}</span></p>
