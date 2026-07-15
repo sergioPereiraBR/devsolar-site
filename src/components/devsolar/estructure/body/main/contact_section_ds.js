@@ -14,13 +14,13 @@ const ContactInfoItem = ({ iconClass, title, text, link }) => (
             <i className={`${iconClass} ${styles.icon}`}></i>
         </div>
         <div className="flex-grow-1">
-            <h5 className={`${styles.contactTitle} mb-0`}>{title}</h5>
+            <p className={`${styles.contactTitle} mb-0`}>{title}</p>
             {link ? (
                 <a href={link} className={styles.contactLink}>
-                    <p className={`${styles.contactText} mb-0`}>{text}</p>
+                    <h4 className={`${styles.contactText} mb-0`}>{text}</h4>
                 </a>
             ) : (
-                <p className={`${styles.contactText} mb-0`}>{text}</p>
+                <h4 className={`${styles.contactText} mb-0`}>{text}</h4>
             )}
         </div>
     </div>
@@ -150,9 +150,9 @@ function ContactSectionDS() {
                     <div className="col-lg-6">
                         {/* ... (código da coluna de informações igual ao anterior) ... */}
                         <h2 id="contact-heading" className={`${styles.sectionTitle} fw-bold mb-4`}>Entre em Contato</h2>
-                        <p className={`${styles.sectionSubtitle} mb-4`}>
+                        <h3 className={`${styles.sectionSubtitle} mb-4`}>
                             Estamos prontos para esclarecer todas as suas dúvidas e ajudar você a economizar com energia solar.
-                        </p>
+                        </h3>
                         <div className="mb-4">
                             {contactInfoData.map(item => (
                                 <ContactInfoItem key={item.id} {...item} />
@@ -171,7 +171,7 @@ function ContactSectionDS() {
                     <div className="col-lg-6 mt-4 mt-lg-0">
                         <div className={`${styles.formCard} card shadow-sm`}>
                             <div className="card-body p-4">
-                                <h4 className={`${styles.formTitle} fw-bold mb-4`}>Envie sua Mensagem</h4>
+                                <h3 className={`${styles.formTitle} fw-bold mb-4`}>Envie sua Mensagem</h3>
                                 {/* ***** FORMULÁRIO AGORA USA onSubmit ***** */}
                                 <form id="contactForm" onSubmit={handleSubmitReact}>
                                     {/* Campos do Formulário */}

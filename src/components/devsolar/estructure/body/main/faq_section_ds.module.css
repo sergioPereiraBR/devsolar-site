@@ -400,8 +400,7 @@
     /* Para posicionar o emoji picker */
 }
 
-.emojiButton,
-.sendButton {
+.emojiButton {
     background: none;
     border: none;
     cursor: pointer;
@@ -409,7 +408,7 @@
     /* Padding para área de clique */
     font-size: 1.4rem;
     /* Tamanho dos ícones */
-    color: #555;
+    color: #555; /* #21C063 */
     /* Cor dos ícones */
     transition: color 0.2s ease;
     flex-shrink: 0;
@@ -418,17 +417,44 @@
     /* Centraliza verticalmente */
 }
 
-.emojiButton:hover,
-.sendButton:hover:not(:disabled) {
-    /* Só aplica hover se não estiver desabilitado */
-    color: var(--primary);
+.sendButton {
+    background-color: #25D366; /* Verde WhatsApp */
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%; /* Botão circular */
+    font-size: 1.4rem; /* Tamanho do ícone */
+    color: #fff; /* Ícone branco */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sendButton:hover:not(:disabled)  {
+    background-color: #20b858; /* Tom mais escuro no hover */
+    transform: scale(1.05); /* Leve aumento no hover */
+}
+
+.sendButton:active {
+    transform: scale(0.95); /* Feedback ao clicar */
 }
 
 .sendButton:disabled {
+    background: none;
     color: #aaa;
     /* Cor do botão desabilitado */
     cursor: not-allowed;
 }
+
+.emojiButton:hover:not(:disabled) {
+    /* Só aplica hover se não estiver desabilitado */
+    color: var(--primary);
+}
+
+
 
 .userInput {
     flex-grow: 1;

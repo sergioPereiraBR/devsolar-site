@@ -11,14 +11,14 @@ import styles from './faq_section_ds.module.css';
 // --- Dados ---
 const faqData = [
     // ... (seus dados faqData existentes) ...
-    { id: '0', question: 'Quanto tempo leva para instalar um sistema solar?', answer: 'Para sistemas residenciais, a instalação geralmente leva de 2 a 3 dias. Para sistemas comerciais ou industriais, o prazo varia de 1 a 3 semanas, dependendo da complexidade e tamanho do projeto.', personaImage: './images/persona-1.jpg' },
-    { id: '1', question: 'Os painéis funcionam em dias nublados?', answer: 'Sim, os painéis solares continuam gerando energia em dias nublados, embora com eficiência reduzida...', personaImage: './images/persona-2.jpg' },
-    { id: '2', question: 'Preciso de baterias para armazenar energia?', answer: 'Não necessariamente. A maioria dos sistemas utiliza o modelo "on-grid"...', personaImage: './images/persona-3.jpg' },
-    { id: '3', question: 'Qual a vida útil dos painéis solares?', answer: 'Os painéis solares modernos têm vida útil superior a 25 anos...', personaImage: './images/persona-4.jpg' },
-    { id: '4', question: 'Como funciona o financiamento dos sistemas?', answer: 'Oferecemos diversas opções de financiamento, incluindo linhas específicas...', personaImage: './images/persona-5.jpg' },
+    { id: '0', question: 'Quanto tempo leva para instalar um sistema solar?', answer: 'A instalação física é rápida, levando de 2 a 3 dias para residências e de 1 a 3 semanas para grandes projetos comerciais, industriais ou condomínios. No entanto, o processo completo inclui a homologação da concessionária para conectar o sistema à rede elétrica pública, etapa que leva de 1 a 4 semanas.', personaImage: './images/persona-1.jpg' },
+    { id: '1', question: 'Os painéis funcionam em dias nublados?', answer: 'Sim! Os painéis solares dependem da luminosidade e radiação, não do calor, por isso continuam gerando energia mesmo com o céu encoberto. Em dias totalmente nublados, a produção se mantém ativa, operando entre 10% e 25% da sua capacidade máxima em comparação a um dia de céu limpo.', personaImage: './images/persona-2.jpg' },
+    { id: '2', question: 'Preciso de baterias para armazenar energia?', answer: 'Não necessariamente. A maioria dos sistemas utiliza o modelo On-Grid, que funciona conectado à rede pública. Durante o dia, os painéis geram energia para consumo imediato e o excedente é enviado para a distribuidora, transformando-se em créditos. À noite ou em dias chuvosos, você consome a energia da rede e abate desses créditos acumulados. O uso de baterias é restrito aos modelos Off-Grid ou Híbridos, indicados apenas para situações específicas. São elas: locais isolados sem acesso à rede, proteção contra apagões, armazenamento estratégico para horários de tarifa alta e atendimento a sistemas críticos.', personaImage: './images/persona-3.jpg' },
+    { id: '3', question: 'Qual a vida útil dos painéis solares?', answer: 'Os painéis solares modernos têm vida útil superior a 25 anos. Os fabricantes garantem que eles manterão pelo menos 80% a 85% da sua capacidade de geração original ao final desse período. Na prática, muitos módulos continuam gerando energia por 30 ou 40 anos, operando apenas com uma eficiência ligeiramente reduzida.', personaImage: './images/persona-4.jpg' },
+    { id: '4', question: 'Como funciona o financiamento dos sistemas?', answer: 'O processo é estruturado para que a própria economia gerada pague o investimento. O objetivo principal é que o valor da parcela seja igual ou menor do que a redução obtida na sua conta de luz. Para isso, oferecemos opções de financiamento de até 100% do projeto, cobrindo tanto os equipamentos (painéis e inversor) quanto a mão de obra de instalação.', personaImage: './images/persona-5.jpg' },
 ];
 const COMPANY_LOGO_URL = './images/logo-devsolar-icon.png';
-const WHATSAPP_CONTACT_NUMBER = "5521998990303";
+const WHATSAPP_CONTACT_NUMBER = "5521999677722";
 const WHATSAPP_BASE_MESSAGE = "Olá! Tenho uma dúvida que não encontrei no FAQ do site:\n";
 // --- Fim dos Dados ---
 
@@ -85,7 +85,7 @@ function FAQSectionDS() {
                                                     <Image src={item.personaImage} alt={`Persona ${item.id + 1}`} width={60} height={60} className={styles.avatarImage} objectfit="cover" />
                                                 </div>
                                                 <div className={`${styles.messageBubble} ${styles.questionBubble}`}>
-                                                    {item.question}
+                                                    <h3>{item.question}</h3>
                                                 </div>
                                                 <span className={styles.toggleIcon}></span>
                                             </div>
@@ -94,7 +94,7 @@ function FAQSectionDS() {
                                         <Accordion.Body className={styles.messageBody}>
                                             <div className={`${styles.messageRowAns} ${styles.answerRow}`}>
                                                 <div className={`${styles.messageBubble} ${styles.answerBubble}`}>
-                                                    {item.answer}
+                                                    <h4>{item.answer}</h4>
                                                 </div>
                                                 <div className={styles.avatarContainer}>
                                                     <Image
@@ -114,7 +114,7 @@ function FAQSectionDS() {
 
                             {/* Área de Input do Usuário */}
                             <div className={styles.userInputSection}>
-                                <h5 className={styles.userInputTitle}>Não encontrou sua dúvida? Pergunte aqui!</h5>
+                                <h3 className={styles.userInputTitle}>Não encontrou sua dúvida? Pergunte aqui!</h3>
                                 <div className={styles.inputAreaContainer}>
                                     {/* Botão Emoji e Picker */}
                                     <button id="emoji-toggle-button" className={styles.emojiButton} onClick={() => setShowEmojiPicker(!showEmojiPicker)} aria-label="Selecionar emoji" type="button" >
@@ -138,7 +138,7 @@ function FAQSectionDS() {
                 </div>
             </section>
 
-            {/* --- Renderiza o Componente WhatsAppSender Condicionalmente --- */}
+            {/* --- Renderiza o Componente WhatsAppSender Condicionalmente ---  #21C063 */}
             <WhatsAppSender
                 show={showWhatsAppSender}
                 onHide={handleWhatsAppSenderClose} // Passa a função para fechar e limpar
