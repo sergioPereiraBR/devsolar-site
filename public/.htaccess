@@ -2,6 +2,10 @@ AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .css .js .txt .json
 ErrorDocument 404 /index.html
 
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "index, follow"
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
