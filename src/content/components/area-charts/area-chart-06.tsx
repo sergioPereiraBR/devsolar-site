@@ -92,9 +92,9 @@ export default function Example() {
     <div className="obfuscate">
       <Card className="sm:mx-auto sm:max-w-xl">
         <div className="flex items-center space-x-2">
-          <h1 className="text-sm font-medium text-gray-900 dark:text-gray-50">
+          <h2 className="text-sm font-medium text-gray-900 dark:text-gray-50">
             Revenue
-          </h1>
+          </h2>
           <span className="mt-0.5 inline-flex rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-400">
             +2.3%
           </span>

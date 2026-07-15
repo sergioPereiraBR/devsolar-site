@@ -9,9 +9,9 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/tremor/Tabs';
 export default function Example() {
   return (
     <div className="obfuscate">
-      <h1 className="text-lg font-bold text-gray-900 dark:text-gray-50">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50">
         Settings
-      </h1>
+      </h2>
       <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
         Manage your personal details, workspace governance and notifications.
       </p>
