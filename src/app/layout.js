@@ -119,6 +119,8 @@ export default function RootLayout({ children }) {
     return (
         <html lang="pt-BR">
             <head>
+                <meta name="keywords" content="energia solar rio de janeiro, energia solar rj, energia solar vila valqueire, painel solar rj, placa solar rio de janeiro, economia de energia rj, instalador solar rj, dev solar, dev solar eficiencia energetica, energia solar residencial rj, energia solar comercial rj, financiamento energia solar rj, reduzir conta de luz rj"></meta>
+                <meta name="description" content="DEV Solar - Especialistas em soluções de energia solar no Rio de Janeiro. Instalação, manutenção e financiamento de sistemas fotovoltaicos."></meta>
                 {/* Tags que DEVEM estar no <head> e não são cobertas pela Metadata API */}
                 {/* Ex: Fontes externas carregadas diretamente, scripts inline críticos (raro) */}
                 <meta name="facebook-domain-verification" content="nk6hini7dghzylggt85l67u1es1xwv" />

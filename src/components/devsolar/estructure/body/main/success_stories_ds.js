@@ -129,7 +129,7 @@ export default function SuccessStoriesDS() {
                                             />
                                         </div>
                                         <Card.Body style={{ backgroundColor: 'var(--branco)' }}>
-                                            <Card.Title className={styles.cardTitle}>{story.title}</Card.Title>
+                                            <Card.Title className={styles.cardTitle}><h2>{story.title}</h2></Card.Title>
                                             {/* Descrição curta pode ir aqui ou usar CSS para limitar a principal '#F8F9FA' */}
                                             <p className={styles.cardShortDescription}> {story.resume} </p>
                                             <div className={styles.badgesContainer}>
