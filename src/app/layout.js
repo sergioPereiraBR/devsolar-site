@@ -163,6 +163,7 @@ export default function RootLayout({ children }) {
                 {/* Script do reCAPTCHA (se usar no formulário) */}
                 {/* <Script src="https://www.google.com/recaptcha/api.js" strategy="lazyOnload" async defer></Script> */}
                 <script
+                
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify(
@@ -171,7 +172,7 @@ export default function RootLayout({ children }) {
                                     "@context": "https://schema.org",
                                     "@type": "LocalBusiness",
                                     "name": "DEV Solar",
-                                    "image": "https://www.devsolar.com.br/caminho-para-o-logo.jpg",
+                                    "image": "https://www.devsolar.com.br/images/logo-devsolar-icon.png",
                                     "@id": "https://www.devsolar.com.br",
                                     "url": "https://www.devsolar.com.br",
                                     "telephone": "+55-21-99967-7722",
@@ -184,6 +185,20 @@ export default function RootLayout({ children }) {
                                         "postalCode": "21330-300",
                                         "addressCountry": "BR"
                                     },
+                                    "openingHoursSpecification": [
+                                        {
+                                            "@type": "OpeningHoursSpecification",
+                                            "dayOfWeek": [
+                                                "Monday",
+                                                "Tuesday",
+                                                "Wednesday",
+                                                "Thursday",
+                                                "Friday"
+                                            ],
+                                            "opens": "09:00",
+                                            "closes": "18:00"
+                                        }
+                                    ],
                                     "geo": {
                                         "@type": "GeoCoordinates",
                                         "latitude": -22.8893,
