@@ -12,9 +12,9 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/tremor/Tabs';
 export default function Example() {
   return (
     <div className="obfuscate">
-      <h1 className="text-lg font-bold text-gray-900 dark:text-gray-50">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50">
         General
-      </h1>
+      </h2>
       <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
         Manage your personal details, workspace governance and notifications.
       </p>
@@ -26,9 +26,9 @@ export default function Example() {
         </TabsList>
         {/* Content below only for demo purpose placed outside of <Tab> component. Add <TabPanels>, <TabPanel> to make it functional and to add content for other tabs */}
         <div className="max-w-3xl">
-          <h2 className="mt-8 font-semibold text-gray-900 dark:text-gray-50">
+          <h3 className="mt-8 font-semibold text-gray-900 dark:text-gray-50">
             Upgrade options
-          </h2>
+          </h3>
           <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
             Do more with your data and unlock new insights with our advanced
             features and add-ons.

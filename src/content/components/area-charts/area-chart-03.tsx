@@ -1,7 +1,7 @@
 'use client';
 
-import { RiCloseLine } from '@remixicon/react';
 import React from 'react';
+import { RiCloseLine } from '@remixicon/react';
 
 import { cx } from '@/lib/utils';
 
@@ -111,9 +111,9 @@ export default function Example() {
   return (
     <div className="obfuscate">
       <Card className="sm:mx-auto sm:max-w-lg">
-        <h1 className="font-medium text-gray-900 dark:text-gray-50">
+        <h2 className="font-medium text-gray-900 dark:text-gray-50">
           Follower metrics
-        </h1>
+        </h2>
         <AreaChart
           data={data}
           index="date"
@@ -165,9 +165,9 @@ export default function Example() {
                 <RiCloseLine className="size-5 shrink-0" aria-hidden="true" />
               </Button>
             </div>
-            <h2 className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
               Free trial offer
-            </h2>
+            </h3>
             <p className="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">
               Try out our Ad performance program and gain better insights to
               steer your business.

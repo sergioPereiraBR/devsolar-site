@@ -97,7 +97,7 @@ function ModalitiesSectionDS() {
                                 <Card className={`${styles.modalityCard} h-100`}>
                                     <div className={styles.cardHeader}>
                                         <i className={`${modality.iconClass} ${styles.cardIcon}`}></i>
-                                        <h4 className={styles.cardTitle}>{modality.title}</h4>
+                                        <h3 className={styles.cardTitle}>{modality.title}</h3>
                                     </div>
                                     <Card.Body className={styles.cardBody}>
                                         <p className={styles.cardDescription}>{modality.shortDescription}</p>

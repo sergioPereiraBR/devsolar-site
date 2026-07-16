@@ -1,8 +1,8 @@
 'use client';
 
-import { AreaChart } from '@/components/tremor/AreaChart';
 import { cx } from '@/lib/utils';
 
+import { AreaChart } from '@/components/tremor/AreaChart';
 
 function currencyFormatter(number: number) {
   const formatter = new Intl.NumberFormat('pt-BR', {
@@ -43,13 +43,12 @@ interface ResumoDadosProps {
 }
 
 const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
-
   const dataLocal: Project = dataProject;
 
   const getMaxValue = () => {
     if (!dataLocal.data || dataLocal.data.length === 0) return 1000;
 
-    const max = Math.max(...dataLocal.data.map(item => item.Economia));
+    const max = Math.max(...dataLocal.data.map((item) => item.Economia));
     const roundedMax = Math.ceil(max / 100) * 100; // Arredonda para cima em múltiplos de 100
     return roundedMax;
   };
@@ -84,14 +83,20 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
 
   return (
     <>
-      <div className="sm:mx-auto sm:max-w-7xl m-1">
-        <h1 className="font-medium text-gray-900 dark:text-gray-50">
+      <div className="m-1 sm:mx-auto sm:max-w-7xl">
+        <h2 className="font-medium text-gray-900 dark:text-gray-50">
           Economia Calculada
-        </h1>
+        </h2>
         <p className="text-sm/6 text-gray-500 dark:text-gray-500">
-          Para maior precisão das informações fornecidas <strong>consulte nossos especialistas</strong>. Com o cálculo na mão, você já pode chamar a <strong>DEV Solar</strong> e pensar no que vai fazer com <strong>sua economia</strong>.
+          Para maior precisão das informações fornecidas{' '}
+          <strong>consulte nossos especialistas</strong>. Com o cálculo na mão,
+          você já pode chamar a <strong>DEV Solar</strong> e pensar no que vai
+          fazer com <strong>sua economia</strong>.
         </p>
-        <ul role="list" className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
+        <ul
+          role="list"
+          className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5"
+        >
           {summary.map((item, index) => (
             <li key={index}>
               <div className="flex space-x-1">
@@ -134,6 +139,6 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
       </div>
     </>
   );
-}
+};
 
 export default Example;

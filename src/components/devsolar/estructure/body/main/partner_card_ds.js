@@ -17,7 +17,7 @@ const PartnerCard = ({ logoUrl, name, description }) => {
                 />
             </div>
             <div className={styles.textContainer}>
-                <h5 className={styles.partnerName}>{name}</h5>
+                <h4 className={styles.partnerName}>{name}</h4>
                 <p className={styles.partnerDescription}>{description}</p>
             </div>
         </div>

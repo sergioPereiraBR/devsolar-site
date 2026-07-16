@@ -25,8 +25,8 @@ function LocationMap() {
             {/* É seguro neste caso porque o código vem diretamente do Google Maps */}
             <div dangerouslySetInnerHTML={{ __html: mapEmbedCode }} />
             <div className={styles.addressText}>
-                <p>Av. Jambeiro, 474 - Loja C - Vila Valqueire</p>
-                <p>Rio de Janeiro - RJ</p>
+                <h4>Av. Jambeiro, 474 - Loja C - Vila Valqueire</h4>
+                <h4>Rio de Janeiro - RJ</h4>
                 <a
                     href="https://www.google.com/maps/dir/?api=1&destination=Av.+Jambeiro,+474+-+C+-+Vila+Valqueire,+Rio+de+Janeiro+-+RJ,+21330-300"
                     target="_blank"

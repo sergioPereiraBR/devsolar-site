@@ -60,3 +60,8 @@ next-env.d.ts
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/nextjs,visualstudiocode
+
+## Custom additions
+# Ignore all files in the caçamba directory except for teste.html
+caçamba/*
+!caçamba/teste.html

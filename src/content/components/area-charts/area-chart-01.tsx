@@ -95,9 +95,9 @@ export default function Example() {
   return (
     <div className="obfuscate">
       <Card className="sm:mx-auto sm:max-w-lg">
-        <h1 className="font-medium text-gray-900 dark:text-gray-50">
+        <h2 className="font-medium text-gray-900 dark:text-gray-50">
           Follower metrics
-        </h1>
+        </h2>
         <AreaChart
           data={data}
           index="date"
