@@ -3,7 +3,7 @@
 export const COMPANY_NAME = "DEV Solar";
 export const COMPANY_SLOGAN_PA = "O FUTURO É SOLAR";
 export const COMPANY_SLOGAN_PB = "junte-se a essa mudança.";
-export const CONTACT_PHONE_RAW = "5521999677722"; // Número puro para links
+export const CONTACT_PHONE_RAW = "+5521999677722"; // Número puro para links
 export const CONTACT_PHONE_DISPLAY = "+55 (21) 99967-7722"; // Formato para exibição
 export const CONTACT_EMAIL = "comercial@devsolar.com.br";
 export const ADDRESS_INFO = {

@@ -12,7 +12,7 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
     const [userMessage, setUserMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [whatsAppStatus, setWhatsAppStatus] = useState("initial");
-    const phone = "5521999677722";
+    const phone = "+5521999677722";
     const firstNameRef = useRef(null);
     const [message, setMessage] = useState(textMessage || "");
     const [messageWebWhastsapp, setMessageWebWhastsapp] = useState("");
