@@ -19,9 +19,9 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/tremor/Tabs';
 export default function Example() {
   return (
     <div className="obfuscate">
-      <h1 className="text-lg font-bold text-gray-900 dark:text-gray-50">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50">
         General
-      </h1>
+      </h2>
       <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
         Manage your personal details, workspace governance and notifications.
       </p>
@@ -34,10 +34,10 @@ export default function Example() {
         {/* Content below only for demo purpose placed outside of <Tab> component. Add <TabPanels>, <TabPanel> to make it functional and to add content for other tabs */}
         <form action="#" method="POST">
           <div className="mt-8 rounded-md bg-gray-50 p-6 ring-1 ring-inset ring-gray-200 dark:bg-gray-900 dark:ring-gray-800 sm:max-w-7xl">
-            <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-50">
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-50">
               This workspace is currently on free plan
-            </h2>
-            <p className="mt-2 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+            </h3>
+            <p className="text-tremor-default dark:text-dark-tremor-content mt-2 text-tremor-content">
               Boost your analytics and unlock advanced features with our premium
               plans.
             </p>
@@ -129,9 +129,9 @@ export default function Example() {
               </Select>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-50">
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-50">
                 Workspace governance
-              </h3>
+              </h4>
               <div className="mt-6 space-y-6">
                 <div className="relative flex items-start">
                   <div className="flex h-6 items-center">

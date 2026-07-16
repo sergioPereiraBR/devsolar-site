@@ -7,6 +7,8 @@ import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import AuthModal from './AuthModal-03'; // VERIFICAR ESTE CAMINHO!
 import styles from './nav_ds.module.css'; // Importar CSS Module
 import { navLinksData } from './nav_links_ds'; // Importar dados dos links
+import LeadAccessModal from './LeadAccessModal';
+import LoginPage from './login';
 
 const LOGO_URL = './images/logo_sm.png'; // Manter como constante
 
@@ -120,7 +122,7 @@ function NavDS() {
                                 className={`${styles.loginButton} ms-lg-3 mt-2 mt-lg-0`} // Margem e espaçamento responsivo
                                 aria-label="Entrar ou acessar área do cliente"
                                 onClick={handleShowLoginModal}
-                                disabled={true}
+                                disabled={false}
                             >
                                 <i className="fas fa-user me-1 me-lg-2"></i> {/* Ícone */}
                                 <span className="d-inline-block">Entrar</span> {/* Span para controle */}
@@ -132,7 +134,11 @@ function NavDS() {
 
             {/* Modal de Autenticação */}
             {/* Garanta que o caminho de importação esteja correto! */}
-            <AuthModal show={modalShow} onHide={() => setModalShow(false)} />
+            {/*<AuthModal show={modalShow} onHide={() => setModalShow(false)} /> */}
+
+            {/* Componente de Atendimento via Local Storage */}
+            <LeadAccessModal show={modalShow} onHide={() => setModalShow(false)} />
+            {/*<LoginPage  show={modalShow} onHide={() => setModalShow(false)} /> */}
         </>
     );
 }

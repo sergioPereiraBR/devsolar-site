@@ -1,7 +1,7 @@
 'use client';
 
-import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/react';
 import React from 'react';
+import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/react';
 import {
   Bar,
   CartesianGrid,
@@ -151,7 +151,7 @@ const LegendItem = ({
           // text color
           'text-gray-700 dark:text-gray-300',
           hasOnValueChange &&
-          'group-hover:text-gray-900 dark:group-hover:text-gray-50',
+            'group-hover:text-gray-900 dark:group-hover:text-gray-50',
           activeLegend && activeLegend !== name ? 'opacity-40' : 'opacity-100',
         )}
       >
@@ -681,10 +681,10 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
             onClick={
               hasOnValueChange && (activeLegend || activeBar)
                 ? () => {
-                  setActiveBar(undefined);
-                  setActiveLegend(undefined);
-                  onValueChange?.(null);
-                }
+                    setActiveBar(undefined);
+                    setActiveLegend(undefined);
+                    onValueChange?.(null);
+                  }
                 : undefined
             }
             margin={{
@@ -791,15 +791,15 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
               content={({ active, payload, label }) => {
                 const cleanPayload: TooltipProps['payload'] = payload
                   ? payload.map((item: any) => ({
-                    category: item.dataKey,
-                    value: item.value,
-                    index: item.payload[index],
-                    color: categoryColors.get(
-                      item.dataKey,
-                    ) as AvailableChartColorsKeys,
-                    type: item.type,
-                    payload: item.payload,
-                  }))
+                      category: item.dataKey,
+                      value: item.value,
+                      index: item.payload[index],
+                      color: categoryColors.get(
+                        item.dataKey,
+                      ) as AvailableChartColorsKeys,
+                      type: item.type,
+                      payload: item.payload,
+                    }))
                   : [];
 
                 if (
@@ -842,7 +842,7 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
                     activeLegend,
                     hasOnValueChange
                       ? (clickedLegendItem: string) =>
-                        onCategoryClick(clickedLegendItem)
+                          onCategoryClick(clickedLegendItem)
                       : undefined,
                     enableLegendSlider,
                     legendPosition,
@@ -1003,7 +1003,7 @@ export default function Example() {
   return (
     <Card className="mx-auto flex max-w-4xl flex-col gap-6">
       <div>
-        <h1 className="text-sm text-gray-600 dark:text-gray-400">Page Views</h1>
+        <h2 className="text-sm text-gray-600 dark:text-gray-400">Page Views</h2>
         <p className="text-2xl font-semibold text-blue-500 dark:text-blue-500">
           433
         </p>
@@ -1021,9 +1021,9 @@ export default function Example() {
         />
       </div>
       <div>
-        <h1 className="text-sm text-gray-600 dark:text-gray-400">
+        <h2 className="text-sm text-gray-600 dark:text-gray-400">
           Unique Visitors
-        </h1>
+        </h2>
         <p className="text-2xl font-semibold text-violet-500 dark:text-violet-500">
           234
         </p>
@@ -1041,9 +1041,9 @@ export default function Example() {
         />
       </div>
       <div>
-        <h1 className="text-sm text-gray-600 dark:text-gray-400">
+        <h2 className="text-sm text-gray-600 dark:text-gray-400">
           Bounce Rate
-        </h1>
+        </h2>
         <p className="text-2xl font-semibold text-fuchsia-500 dark:text-fuchsia-500">
           584
         </p>

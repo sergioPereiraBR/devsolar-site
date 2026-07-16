@@ -17,7 +17,7 @@ const faqData = [
     { id: '4', question: 'Como funciona o financiamento dos sistemas?', answer: 'Oferecemos diversas opções de financiamento, incluindo linhas específicas...', personaImage: '/images/personas/persona-5.jpg' },
 ];
 const COMPANY_LOGO_URL = '/images/logo-devsolar-icon.png';
-const WHATSAPP_CONTACT_NUMBER = "5521998990303"; // Seu número de WhatsApp
+const WHATSAPP_CONTACT_NUMBER = "5521999677722"; // Seu número de WhatsApp
 // --- Fim dos Dados ---
 
 

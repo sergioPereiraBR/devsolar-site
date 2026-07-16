@@ -4,7 +4,12 @@ import { RiArrowRightSLine } from '@remixicon/react';
 
 import { AreaChart } from '@/components/tremor/AreaChart';
 import { Card } from '@/components/tremor/Card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/tremor/Tabs';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/tremor/Tabs';
 
 const dataEurope = [
   //array-start
@@ -234,9 +239,9 @@ export default function Example() {
     <div className="obfuscate">
       <Card className="overflow-hidden !p-0 sm:mx-auto sm:max-w-xl">
         <div className="rounded-t-md bg-gray-50 p-6 dark:bg-[#090E1A]">
-          <h1 className="font-semibold text-gray-900 dark:text-gray-50">
+          <h2 className="font-semibold text-gray-900 dark:text-gray-50">
             Sales alerts
-          </h1>
+          </h2>
           <p className="text-sm/6 text-gray-500 dark:text-gray-500">
             Check recent activities of won and lost deals in your regions
           </p>
@@ -286,7 +291,7 @@ export default function Example() {
                     className="relative rounded-md p-0 sm:p-4 sm:hover:bg-gray-50 sm:hover:dark:bg-gray-900"
                   >
                     <div className="flex items-center space-x-0.5">
-                      <h2 className="text-sm font-medium text-gray-900 dark:text-gray-50">
+                      <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
                         <a href={item.href} className="focus:outline-none">
                           {/* Extend link to entire card */}
                           <span
@@ -295,7 +300,7 @@ export default function Example() {
                           />
                           {item.title}
                         </a>
-                      </h2>
+                      </h3>
                       <RiArrowRightSLine
                         className="size-5 text-gray-500 dark:text-gray-500"
                         aria-hidden="true"
