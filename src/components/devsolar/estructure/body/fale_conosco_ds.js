@@ -12,14 +12,14 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
     const [userMessage, setUserMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [whatsAppStatus, setWhatsAppStatus] = useState("initial");
-    const phone = "5521998990303";
+    const phone = "5521999677722";
     const firstNameRef = useRef(null);
     const [message, setMessage] = useState(textMessage || "");
     const [messageWebWhastsapp, setMessageWebWhastsapp] = useState("");
 
     // --- Dados ---
     const COMPANY_LOGO_URL = '/images/logo-devsolar-icon.png';
-    const WHATSAPP_CONTACT_NUMBER = "5521998990303";
+    const WHATSAPP_CONTACT_NUMBER = "5521999677722";
     const WHATSAPP_BASE_MESSAGE = "Olá! Solicito falar com Especialista.\n\n";
     // --- Fim dos Dados ---
 

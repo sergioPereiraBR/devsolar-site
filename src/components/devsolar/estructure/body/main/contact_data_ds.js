@@ -13,5 +13,5 @@ export const socialLinksData = [
     { id: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica/about/', iconClass: 'fab fa-linkedin-in' },
     // { id: 'youtube', name: 'YouTube', url: '#', iconClass: 'fab fa-youtube' }, // Exemplo de link interno ou placeholder
     // { id: 'youtube', name: 'YouTube', url: 'https://youtube.com/', iconClass: 'fab fa-youtube' }, // Exemplo link externo
-    { id: 'whatsapp', name: 'WhatsApp', url: 'https://wa.me/5521998990303?text=Olá!%20Gostaria%20de%20mais%20informações', iconClass: 'fab fa-whatsapp' },
+    { id: 'whatsapp', name: 'WhatsApp', url: 'https://wa.me/5521999677722?text=Olá!%20Gostaria%20de%20mais%20informações', iconClass: 'fab fa-whatsapp' },
 ];
