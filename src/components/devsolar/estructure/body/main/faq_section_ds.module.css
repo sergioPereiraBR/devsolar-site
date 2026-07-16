@@ -11,8 +11,14 @@
 .sectionSubtitle {
     color: #555;
     max-width: 600px;
+    padding-top: 0px;
+    margin-top: 0px;
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.25rem;
+    font-weight: 300;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
 }
 
 /* Remove estilos padrão do Accordion do Bootstrap */
@@ -108,6 +114,7 @@
 
 /* Estilo base dos balões de mensagem */
 .messageBubble {
+    /* font-size removed here to allow overrides elsewhere */
     padding: 12px 18px;
     border-radius: 18px;
     /* Bordas arredondadas */
@@ -117,6 +124,13 @@
     /* Para o 'rabicho' do balão */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     line-height: 1.5;
+    font-size: 1.1rem;
+}
+
+.messageBubble h3,
+.messageBubble h4 {
+    font-size: inherit;
+    margin: 0;
 }
 
 /* Balão da Pergunta (Estilo WhatsApp recebido) */
@@ -379,9 +393,10 @@
 }
 
 .userInputTitle {
-    text-align: center;
+    text-align: justify;
     font-size: 1.1rem;
     color: var(--footer-color);
+    margin-top: 0;
     margin-bottom: 20px;
     font-weight: 500;
 }
@@ -400,8 +415,7 @@
     /* Para posicionar o emoji picker */
 }
 
-.emojiButton,
-.sendButton {
+.emojiButton {
     background: none;
     border: none;
     cursor: pointer;
@@ -409,7 +423,7 @@
     /* Padding para área de clique */
     font-size: 1.4rem;
     /* Tamanho dos ícones */
-    color: #555;
+    color: #555; /* #21C063 */
     /* Cor dos ícones */
     transition: color 0.2s ease;
     flex-shrink: 0;
@@ -418,17 +432,44 @@
     /* Centraliza verticalmente */
 }
 
-.emojiButton:hover,
-.sendButton:hover:not(:disabled) {
-    /* Só aplica hover se não estiver desabilitado */
-    color: var(--primary);
+.sendButton {
+    background-color: #25D366; /* Verde WhatsApp */
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%; /* Botão circular */
+    font-size: 1.4rem; /* Tamanho do ícone */
+    color: #fff; /* Ícone branco */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sendButton:hover:not(:disabled)  {
+    background-color: #20b858; /* Tom mais escuro no hover */
+    transform: scale(1.05); /* Leve aumento no hover */
+}
+
+.sendButton:active {
+    transform: scale(0.95); /* Feedback ao clicar */
 }
 
 .sendButton:disabled {
+    background: none;
     color: #aaa;
     /* Cor do botão desabilitado */
     cursor: not-allowed;
 }
+
+.emojiButton:hover:not(:disabled) {
+    /* Só aplica hover se não estiver desabilitado */
+    color: var(--primary);
+}
+
+
 
 .userInput {
     flex-grow: 1;
@@ -452,6 +493,7 @@
     /* Remove outline de foco padrão */
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     /* Sombra interna sutil */
+    font-size: 1.1rem;
 }
 
 /* Wrapper para posicionar o Emoji Picker */
@@ -494,7 +536,11 @@
         padding: 8px 12px;
     }
 
-    .emojiButton,
+    .emojiButton{
+        font-size: 1.2rem;
+        padding: 6px;
+    }
+
     .sendButton {
         font-size: 1.2rem;
         padding: 6px;

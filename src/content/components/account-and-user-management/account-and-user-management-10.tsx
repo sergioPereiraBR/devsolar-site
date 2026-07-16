@@ -31,9 +31,9 @@ export default function Example() {
   return (
     <div className="obfuscate">
       <div className="sm:mx-auto sm:max-w-2xl">
-        <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
           Create workspace
-        </h1>
+        </h2>
         <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
           Workspaces are shared environments where teams can connect to data
           sources, run queries and create reports.
@@ -69,9 +69,9 @@ export default function Example() {
             </div>
           </div>
           <div className="mt-10">
-            <h2 className="text-sm font-medium text-gray-900 dark:text-gray-50">
+            <h3 className="text-sm font-medium text-gray-900 dark:text-gray-50">
               People added to workspace
-            </h2>
+            </h3>
             <ul
               role="list"
               className="mt-2 divide-y divide-gray-200 dark:divide-gray-800"

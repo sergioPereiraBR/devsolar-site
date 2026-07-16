@@ -10,9 +10,9 @@ export default function Example() {
   return (
     <div className="obfuscate">
       <div className="sm:mx-auto sm:max-w-2xl">
-        <h1 className="mt-6 text-lg font-semibold text-gray-900 dark:text-gray-50">
+        <h2 className="mt-6 text-lg font-semibold text-gray-900 dark:text-gray-50">
           Account details
-        </h1>
+        </h2>
         <p className="mt-1 text-sm/6 text-gray-500 dark:text-gray-500">
           Update personal information used for account management and billing.
         </p>
@@ -111,9 +111,9 @@ export default function Example() {
           </div>
           <Divider className="!my-12" />
           <div>
-            <h2 className="mt-6 text-lg font-semibold text-gray-900 dark:text-gray-50">
+            <h3 className="mt-6 text-lg font-semibold text-gray-900 dark:text-gray-50">
               Notifications
-            </h2>
+            </h3>
             <p className="mt-1 text-sm/6 text-gray-500 dark:text-gray-500">
               Manage your personal notification settings for this workspace.
               Read the{' '}

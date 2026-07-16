@@ -21,7 +21,12 @@ import {
   TableRoot,
   TableRow,
 } from '@/components/tremor/Table';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/tremor/Tabs';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/tremor/Tabs';
 
 const existingUsers = [
   //array-start
@@ -96,9 +101,9 @@ export default function Example() {
   return (
     <div className="obfuscate">
       <div className="sm:mx-auto sm:max-w-2xl">
-        <h1 className="text-lg font-bold text-gray-900 dark:text-gray-50">
+        <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50">
           General
-        </h1>
+        </h2>
         <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
           Manage your workspace, team members and notifications.
         </p>
