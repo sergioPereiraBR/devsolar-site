@@ -55,9 +55,9 @@ function CTASectionDS() {
                             <i className={`fas fa-bolt ${styles.headlineIcon}`}></i> {/* Exemplo com FontAwesome */}
                             <span>Pronto para começar a economizar?</span>
                         </h2>
-                        <p className={styles.subtext}>
+                        <h3 className={styles.subtext}>
                             Solicite agora mesmo uma avaliação gratuita para seu imóvel.
-                        </p>
+                        </h3>
                     </div>
                     <div className={`col-lg-4 text-lg-end ${styles.buttonContainer}`}>
                         <FaleConoscoDS

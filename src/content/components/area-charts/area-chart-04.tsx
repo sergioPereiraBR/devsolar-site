@@ -1,7 +1,7 @@
 'use client';
 
-import { RiArrowRightUpLine, RiCloseLine } from '@remixicon/react';
 import React from 'react';
+import { RiArrowRightUpLine, RiCloseLine } from '@remixicon/react';
 
 import { AreaChart } from '@/components/tremor/AreaChart';
 import { Button } from '@/components/tremor/Button';
@@ -79,9 +79,9 @@ export default function Example() {
   return (
     <div className="obfuscate">
       <Card className="sm:mx-auto sm:max-w-lg">
-        <h1 className="text-sm text-gray-500 dark:text-gray-500">
+        <h2 className="text-sm text-gray-500 dark:text-gray-500">
           Active subscriptions (cumulative)
-        </h1>
+        </h2>
         <p className="text-2xl font-semibold text-gray-900 dark:text-gray-50">
           14,035
         </p>
@@ -113,9 +113,9 @@ export default function Example() {
                 className="size-5 shrink-0 text-blue-500 dark:text-blue-500"
                 aria-hidden="true"
               />
-              <h2 className="text-sm font-medium text-blue-500 dark:text-blue-500">
+              <h3 className="text-sm font-medium text-blue-500 dark:text-blue-500">
                 Significant increase since May
-              </h2>
+              </h3>
             </div>
             <div className="absolute right-1.5 top-1.5">
               <Button

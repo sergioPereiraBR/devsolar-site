@@ -76,9 +76,9 @@ const pendingUsers = [
 export default function Example() {
   return (
     <div className="obfuscate">
-      <h1 className="text-lg font-bold text-gray-900 dark:text-gray-50">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50">
         General
-      </h1>
+      </h2>
       <p className="mt-1 text-sm/6 text-gray-500 dark:text-gray-500">
         Manage your personal details, workspace governance and notifications.
       </p>
@@ -91,9 +91,9 @@ export default function Example() {
         {/* Content below only for demo purpose placed outside of <Tab> component. Add <TabPanels>, <TabPanel> to make it functional and to add content for other tabs */}
         <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-3">
           <div>
-            <h2 className="font-medium text-gray-900 dark:text-gray-50">
+            <h3 className="font-medium text-gray-900 dark:text-gray-50">
               Members
-            </h2>
+            </h3>
             <p className="mt-1 text-sm/6 text-gray-500 dark:text-gray-500">
               Manage roles of existing members. As an admin, you can add, edit
               or delete users.
@@ -159,9 +159,9 @@ export default function Example() {
         <Divider />
         <div className="grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-3">
           <div>
-            <h2 className="font-medium text-gray-900 dark:text-gray-50">
+            <h3 className="font-medium text-gray-900 dark:text-gray-50">
               Pending Invites
-            </h2>
+            </h3>
             <p className="mt-1 text-sm/6 text-gray-500 dark:text-gray-500">
               Invited users who haven't accepted their invitation yet.
             </p>

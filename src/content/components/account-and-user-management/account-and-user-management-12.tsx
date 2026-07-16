@@ -76,9 +76,9 @@ export default function Example() {
   return (
     <div className="obfuscate">
       <div className="sm:mx-auto sm:max-w-2xl">
-        <h1 className="font-semibold text-gray-900 dark:text-gray-50">
+        <h2 className="font-semibold text-gray-900 dark:text-gray-50">
           Invite members
-        </h1>
+        </h2>
         <p className="mt-2 text-sm/6 text-gray-500 dark:text-gray-500">
           Add new team members to your workspace. Please consider your
           organization's policies when adding external people.
@@ -101,9 +101,9 @@ export default function Example() {
             <Button className="text-base sm:text-sm">Invite</Button>
           </div>
         </form>
-        <h2 className="mt-6 text-sm font-medium text-gray-900 dark:text-gray-50">
+        <h3 className="mt-6 text-sm font-medium text-gray-900 dark:text-gray-50">
           People with existing access
-        </h2>
+        </h3>
         <ul
           role="list"
           className="mt-2 divide-y divide-gray-200 dark:divide-gray-800"
@@ -132,9 +132,9 @@ export default function Example() {
         </ul>
 
         {/* note to user: list that can be shown when users have been invited */}
-        <h2 className="mt-6 text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
+        <h3 className="text-tremor-default dark:text-dark-tremor-content-strong mt-6 font-medium text-tremor-content-strong">
           More people with access
-        </h2>
+        </h3>
         <ul
           role="list"
           className="mt-2 divide-y divide-gray-200 dark:divide-gray-800"

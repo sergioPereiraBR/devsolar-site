@@ -129,7 +129,7 @@ export default function DeviceDetector({ initialDeviceType }) {
 
     return (
         <div>
-            <h1>Dispositivo Detectado: {deviceType}</h1>
+            <h2>Dispositivo Detectado: {deviceType}</h2>
         </div>
     );
 }

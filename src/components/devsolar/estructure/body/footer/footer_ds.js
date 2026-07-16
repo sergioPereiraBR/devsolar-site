@@ -98,7 +98,7 @@ function FooterDS() {
                                 />
                             </Link>
                         </div>
-                        <p className={styles.slogan}>{COMPANY_SLOGAN_PA}<br></br>{COMPANY_SLOGAN_PB}</p>
+                        <h2 className={styles.slogan}>{COMPANY_SLOGAN_PA}<br></br> {COMPANY_SLOGAN_PB}</h2>
                         <div className={styles.contactInfo}>
                             {/* Telefone Clicável */}
                             <div className={`${styles.contactItem} d-flex align-items-center mb-2`}>
@@ -124,7 +124,7 @@ function FooterDS() {
 
                     {/* Coluna 2: Navegação Principal */}
                     <div className={`${styles.footerColumn} ${styles.footerLinks}`}>
-                        <h4 className={styles.footerTitle}>Navegação</h4>
+                        <p className={styles.footerTitle}>Navegação</p>
                         <ul>
                             {navLinksData.map(link => (
                                 <li key={link.id}><Link href={link.href}>{link.text}</Link></li>
@@ -134,7 +134,7 @@ function FooterDS() {
 
                     {/* Coluna 3: Links Úteis */}
                     <div className={`${styles.footerColumn} ${styles.footerLinks}`}>
-                        <h4 className={styles.footerTitle}>Links Úteis</h4>
+                        <p className={styles.footerTitle}>Links Úteis</p>
                         <ul>
                             {usefulLinksData.map(link => (
                                 <li key={link.id}><Link href={link.href}>{link.text}</Link></li>
@@ -144,7 +144,7 @@ function FooterDS() {
 
                     {/* Coluna 4: Redes Sociais e Newsletter */}
                     <div className={`${styles.footerColumn} ${styles.footerSocial}`}>
-                        <h4 className={styles.footerTitle}>Siga-nos</h4>
+                        <p className={styles.footerTitle}>Siga-nos</p>
                         <div className={`${styles.socialLinksContainer} d-flex mb-4`}> {/* Adicionado mb-4 */}
                             {socialLinksData.map(social => (
                                 <Link
@@ -161,7 +161,7 @@ function FooterDS() {
                         </div>
 
                         {/* Formulário de Newsletter com estado básico */}
-                        <h4 className={styles.footerTitleNewsletter}>Newsletter</h4>
+                        <p className={styles.footerTitleNewsletter}>Newsletter</p>
                         <form className={styles.newsletterForm} onSubmit={handleNewsletterSubmit}>
                             <input
                                 type="email"
