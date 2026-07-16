@@ -26,10 +26,6 @@
     margin-bottom: 40px;
 }
 
-.footerColumn {
-    /* Estilos para cada coluna */
-}
-
 /* Coluna Info */
 .footerInfo .footerLogo {
     margin-bottom: 20px;
@@ -44,6 +40,7 @@
 
 .footerInfo .slogan {
     font-style: italic;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 20px;
 }

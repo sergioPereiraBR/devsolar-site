@@ -19,7 +19,7 @@ const faqData = [
 ];
 const COMPANY_LOGO_URL = './images/logo-devsolar-icon.png';
 const WHATSAPP_CONTACT_NUMBER = "5521999677722";
-const WHATSAPP_BASE_MESSAGE = "Olá! Tenho uma dúvida que não encontrei no FAQ do site:\n";
+const WHATSAPP_BASE_MESSAGE = "FAQ do site:\n";
 // --- Fim dos Dados ---
 
 function FAQSectionDS() {
@@ -114,7 +114,7 @@ function FAQSectionDS() {
 
                             {/* Área de Input do Usuário */}
                             <div className={styles.userInputSection}>
-                                <h3 className={styles.userInputTitle}>Não encontrou sua dúvida? Pergunte aqui!</h3>
+                                <h3 className={styles.userInputTitle}>Tire suas dúvidas para gerar sua própria energia com a Dev Solar:</h3>
                                 <div className={styles.inputAreaContainer}>
                                     {/* Botão Emoji e Picker */}
                                     <button id="emoji-toggle-button" className={styles.emojiButton} onClick={() => setShowEmojiPicker(!showEmojiPicker)} aria-label="Selecionar emoji" type="button" >

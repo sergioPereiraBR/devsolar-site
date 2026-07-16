@@ -5,5 +5,5 @@ module.exports = {
     images: {
         unoptimized: true,
         domains: ["localhost", "https://devsolar.com.br"],
-    },
+    }
 };

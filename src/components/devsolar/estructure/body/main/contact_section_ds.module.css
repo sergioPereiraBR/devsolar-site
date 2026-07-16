@@ -10,6 +10,15 @@
 
 .sectionSubtitle {
     color: #555;
+    max-width: 600px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.25rem;
+    font-weight: 300;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
 }
 
 /* Estilos para Informações de Contato */

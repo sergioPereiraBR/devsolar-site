@@ -11,8 +11,14 @@
 .sectionSubtitle {
     color: #555;
     max-width: 600px;
+    padding-top: 0px;
+    margin-top: 0px;
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.25rem;
+    font-weight: 300;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
 }
 
 /* Remove estilos padrão do Accordion do Bootstrap */
@@ -108,6 +114,7 @@
 
 /* Estilo base dos balões de mensagem */
 .messageBubble {
+    /* font-size removed here to allow overrides elsewhere */
     padding: 12px 18px;
     border-radius: 18px;
     /* Bordas arredondadas */
@@ -117,6 +124,13 @@
     /* Para o 'rabicho' do balão */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     line-height: 1.5;
+    font-size: 1.1rem;
+}
+
+.messageBubble h3,
+.messageBubble h4 {
+    font-size: inherit;
+    margin: 0;
 }
 
 /* Balão da Pergunta (Estilo WhatsApp recebido) */
@@ -382,6 +396,7 @@
     text-align: center;
     font-size: 1.1rem;
     color: var(--footer-color);
+    margin-top: 0;
     margin-bottom: 20px;
     font-weight: 500;
 }
@@ -520,7 +535,11 @@
         padding: 8px 12px;
     }
 
-    .emojiButton,
+    .emojiButton{
+        font-size: 1.2rem;
+        padding: 6px;
+    }
+
     .sendButton {
         font-size: 1.2rem;
         padding: 6px;
