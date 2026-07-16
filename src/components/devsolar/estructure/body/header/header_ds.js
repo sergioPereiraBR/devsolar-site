@@ -127,7 +127,7 @@ function HeaderDS() {
         <>
             <header>
                 {/* Hero Section */}
-                <section id="hero" className={styles.hero}>
+                <section id="home" className={styles.hero}>
                     <div className="container position-relative">
                         <div className="row">
                             <div className={`col-lg-6 ${styles.textContainer}`}>

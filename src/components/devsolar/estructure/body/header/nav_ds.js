@@ -79,7 +79,7 @@ function NavDS() {
                 <Container className="py-0">
                     {/* Link da Logo (scroll para o topo) */}
                     <Navbar.Brand
-                        href="#home" // Link para o topo da página
+                        href="/#home" // Link para o topo da página
                         onClick={handleBrandClick} // Handler customizado para scroll JS
                         aria-label="Ir para o topo da página"
                         className={styles.navbarBrandCustom}
