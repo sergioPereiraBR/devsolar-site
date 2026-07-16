@@ -19,7 +19,7 @@ export const DEVELOPER_URL = "https://www.linkedin.com/in/sergiopereira-br/"; //
 
 // Links de Navegação Principal do Rodapé
 export const navLinksData = [
-    { id: 'home', href: '#hero', text: 'Início' },
+    { id: 'home', href: '#home', text: 'Início' },
     // { id: 'about', href: '/#sobre', text: 'Sobre Nós' }, // Exemplo de página interna
     { id: 'benefits', href: '#beneficios', text: 'Benefícios' }, // Link para seção na home
     { id: 'services', href: '#modalidades', text: 'Serviços' }, // Exemplo página interna
@@ -33,8 +33,8 @@ export const navLinksData = [
 // Links Úteis
 export const usefulLinksData = [
     { id: 'faq', href: '#faq', text: 'Perguntas Frequentes' },
-    { id: 'terms', href: '#hero', text: 'Termos de Uso' }, // Exemplo página interna
-    { id: 'privacy', href: '#hero', text: 'Política de Privacidade' }, // Exemplo página interna
+    { id: 'terms', href: '#home', text: 'Termos de Uso' }, // Exemplo página interna
+    { id: 'privacy', href: '#home', text: 'Política de Privacidade' }, // Exemplo página interna
     // { id: 'terms', href: '/termos-de-uso', text: 'Termos de Uso' }, // Exemplo página interna
     // { id: 'privacy', href: '/politica-de-privacidade', text: 'Política de Privacidade' }, // Exemplo página interna
 ];
