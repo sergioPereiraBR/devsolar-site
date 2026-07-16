@@ -14,7 +14,7 @@ ErrorDocument 404 /index.html
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # 2. Redirecionamento do WhatsApp (Antes de validar arquivos reais)
-  RewriteRule ^whatsapp/?$"https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,NE]
+  RewriteRule ^whatsapp/?$ "https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,NE]
 
   # 3. Regras padrão do site (SPA / Frontend)
   RewriteBase /
