@@ -86,7 +86,7 @@ function FooterDS() {
                     {/* Coluna 1: Info da Empresa */}
                     <div className={`${styles.footerColumn} ${styles.footerInfo}`}>
                         <div className={styles.footerLogo}>
-                            <Link href="/" aria-label={`Ir para a página inicial de ${COMPANY_NAME}`}>
+                            <Link href="#hero" aria-label={`Ir para a página inicial de ${COMPANY_NAME}`}>
                                 <Image
                                     className={styles.logoImg} // Classe específica para o logo img
                                     src={LOGO_URL}
