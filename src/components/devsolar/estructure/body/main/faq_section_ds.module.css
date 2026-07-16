@@ -393,7 +393,7 @@
 }
 
 .userInputTitle {
-    text-align: center;
+    text-align: justify;
     font-size: 1.1rem;
     color: var(--footer-color);
     margin-top: 0;
