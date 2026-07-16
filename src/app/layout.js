@@ -124,8 +124,8 @@ export default function RootLayout({ children }) {
                 <meta name="publisher" content="DEV Eficiência Energética Ltda."></meta>
                 {/* Tags que DEVEM estar no <head> e não são cobertas pela Metadata API */}
                 {/* Ex: Fontes externas carregadas diretamente, scripts inline críticos (raro) */}
-                <link rel="alternate" hreflang="pt-br" href="https://www.devsolar.com.br/" />
-                <link rel="alternate" hreflang="x-default" href="https://www.devsolar.com.br/" />
+                <link rel="alternate" hrefLang="pt-br" href="https://www.devsolar.com.br/" />
+                <link rel="alternate" hrefLang="x-default" href="https://www.devsolar.com.br/" />
                 <meta name="facebook-domain-verification" content="nk6hini7dghzylggt85l67u1es1xwv" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

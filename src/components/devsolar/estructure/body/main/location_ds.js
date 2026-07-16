@@ -28,7 +28,7 @@ function LocationSectionDS() {
                 <div className="container">
                     <div className="text-center mb-5">
                         <h2 id="location-title" className={`${styles.sectionTitle} fw-bold`}>Nossa Localização</h2>
-                        <p className={`${styles.sectionSubtitle} lead`}>Vamos marcar, encontre sua rota para vir falar com a gente!</p>
+                        <h3 className={`${styles.sectionSubtitle} lead`}>Vamos marcar, encontre sua rota para vir falar com a gente!</h3>
                     </div>
                     {/* Renderiza os cards de benefícios principais */}
                     <Row className="g-4 justify-content-center">
