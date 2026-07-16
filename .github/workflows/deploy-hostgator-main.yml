@@ -6,6 +6,9 @@ on:
     branches:
       - main # ou master, ou sua branch de produção
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # Ambiente de execução
