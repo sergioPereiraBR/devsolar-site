@@ -3,7 +3,7 @@
 export const COMPANY_NAME = "DEV Solar";
 export const COMPANY_SLOGAN_PA = "O FUTURO É SOLAR";
 export const COMPANY_SLOGAN_PB = "junte-se a essa mudança.";
-export const CONTACT_PHONE_RAW = "+5521999677722"; // Número puro para links
+export const CONTACT_PHONE_RAW = "5521999677722"; // Número puro para links
 export const CONTACT_PHONE_DISPLAY = "+55 (21) 99967-7722"; // Formato para exibição
 export const CONTACT_EMAIL = "comercial@devsolar.com.br";
 export const ADDRESS_INFO = {
@@ -41,11 +41,11 @@ export const usefulLinksData = [
 
 // Links Sociais (mantendo FontAwesome por enquanto)
 export const socialLinksData = [
-    { id: 'facebook', name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61562778810789', iconClass: 'fab fa-facebook-f' },
-    { id: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/devsolar_/', iconClass: 'fab fa-instagram' },
-    { id: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica/about/', iconClass: 'fab fa-linkedin-in' },
-    // { id: 'youtube', name: 'YouTube', url: 'https://youtube.com', iconClass: 'fab fa-youtube' }, // Exemplo de URL real
-    { id: 'whatsapp', name: 'WhatsApp', url: `https://wa.me/${CONTACT_PHONE_RAW}?text=Olá!%20Gostaria%20de%20mais%20informações`, iconClass: 'fab fa-whatsapp' },
+    { id: 'facebook', name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61562778810789', iconClass: 'fab fa-facebook-f', accessibility: 'Acesse nossa página no Facebook' },
+    { id: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/devsolar_/', iconClass: 'fab fa-instagram', accessibility: 'Acesse nosso perfil no Instagram' },
+    { id: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica/about/', iconClass: 'fab fa-linkedin-in', accessibility: 'Acesse nossa página no LinkedIn' },
+    // { id: 'youtube', name: 'YouTube', url: 'https://youtube.com', iconClass: 'fab fa-youtube', accessibility: 'Acesse nosso canal no YouTube' }, // Exemplo de URL real
+    { id: 'whatsapp', name: 'WhatsApp', url: `https://wa.me/${CONTACT_PHONE_RAW}?text=Olá!%20Gostaria%20de%20mais%20informações`, iconClass: 'fab fa-whatsapp', accessibility: 'Entre em contato conosco via WhatsApp' },
 ];
 
 // Dados específicos do botão flutuante do WhatsApp

@@ -44,7 +44,7 @@ export default function LoginModal({ show, onHide }) {
                     required
                 />
             </div>
-            <a href="#" onClick={() => onHide(() => openModal('forgot-password'))}>
+            <a href="/#home" onClick={() => onHide(() => openModal('forgot-password'))}>
                 Esqueci minha senha
             </a>
             <div className="mt-3">

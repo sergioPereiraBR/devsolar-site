@@ -162,6 +162,7 @@ function ContactSectionDS() {
                             {socialLinksData.map(link => (
                                 <Link key={link.id} href={link.url} target={link.url.startsWith('http') ? "_blank" : "_self"} rel={link.url.startsWith('http') ? "noopener noreferrer" : ""} className={styles.socialIconLink} aria-label={`Visite nosso ${link.name}`}>
                                     <i className={link.iconClass}></i>
+                                    <span className="sr-only">{link.accessibility}</span>
                                 </Link>
                             ))}
                         </div>
