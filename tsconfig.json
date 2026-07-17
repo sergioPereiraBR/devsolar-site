@@ -16,7 +16,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "allowUnusedLabels": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -52,10 +52,11 @@
     "src/components/*.{ts,tsx,mdx}",
     ".next/types/**/*.ts",
     "tailwind.config.js",
-    "src/content/*.{ts,tsx,mdx}"
+    "src/content/*.{ts,tsx,mdx}",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "src/components/devsolar/**/*.{js,jsx,ts,tsx,mdx}",
+    "src/components/devsolar/**/*.{js,jsx,ts,tsx,mdx}"
   ]
 }

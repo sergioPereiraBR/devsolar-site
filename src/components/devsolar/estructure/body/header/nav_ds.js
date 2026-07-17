@@ -4,11 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import global do Bootstrap CSS
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-import AuthModal from './AuthModal-03'; // VERIFICAR ESTE CAMINHO!
+import LeadAccessModal from './LeadAccessModal';
 import styles from './nav_ds.module.css'; // Importar CSS Module
 import { navLinksData } from './nav_links_ds'; // Importar dados dos links
-import LeadAccessModal from './LeadAccessModal';
-import LoginPage from './login';
 
 const LOGO_URL = './images/logo_sm.png'; // Manter como constante
 
@@ -17,7 +15,7 @@ function NavDS() {
     const [expanded, setExpanded] = useState(false); // Estado do menu hamburger
     const navbarRef = useRef(null); // Ref para a Navbar
 
-    const devSolarLogo = { width: "auto", height: "38px" }
+    const devSolarLogo = { width: 'auto', height: '38px' };
 
     // --- Lógica para Scroll Padding Dinâmico ---
     const updateScrollPadding = useCallback(() => {
@@ -81,7 +79,7 @@ function NavDS() {
                 <Container className="py-0">
                     {/* Link da Logo (scroll para o topo) */}
                     <Navbar.Brand
-                        href="#" // Link para o topo da página
+                        href="/#home" // Link para o topo da página
                         onClick={handleBrandClick} // Handler customizado para scroll JS
                         aria-label="Ir para o topo da página"
                         className={styles.navbarBrandCustom}
@@ -90,8 +88,8 @@ function NavDS() {
                             className={styles.logoImg}
                             src={LOGO_URL}
                             alt="Logo da DEV Solar"
-                            width={140} // Mantenha ou ajuste
-                            height={38}  // Mantenha ou ajuste
+                            width={140}
+                            height={38}
                             style={devSolarLogo}
                             priority // Boa prática para logo acima da dobra
                         />

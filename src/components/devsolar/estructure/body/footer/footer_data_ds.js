@@ -19,7 +19,7 @@ export const DEVELOPER_URL = "https://www.linkedin.com/in/sergiopereira-br/"; //
 
 // Links de Navegação Principal do Rodapé
 export const navLinksData = [
-    { id: 'home', href: '/', text: 'Início' },
+    { id: 'home', href: '/#home', text: 'Início' },
     // { id: 'about', href: '/#sobre', text: 'Sobre Nós' }, // Exemplo de página interna
     { id: 'benefits', href: '/#beneficios', text: 'Benefícios' }, // Link para seção na home
     { id: 'services', href: '/#modalidades', text: 'Serviços' }, // Exemplo página interna

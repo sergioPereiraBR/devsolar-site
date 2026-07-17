@@ -134,7 +134,7 @@ export default function RootLayout({ children }) {
                 {/* FontAwesome (se usar CDN) */}
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossOrigin="anonymous" referrerPolicy="no-referrer" />
             </head>
-            <body className={inter.className} cz-shortcut-listen={isEnabled.toString()}>
+            <body id="home" className={inter.className} cz-shortcut-listen={isEnabled.toString()}>
                 {children}
                 {/* Exemplo de Script de Terceiros (ex: Google Analytics) */}
                 {/* Usar next/script é crucial */}
