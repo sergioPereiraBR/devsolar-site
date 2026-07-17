@@ -131,8 +131,8 @@ function HeaderDS() {
                     <div className="container position-relative">
                         <div className="row">
                             <div className={`col-lg-6 ${styles.textContainer}`}>
-                                <h1 className="display-4 fw-bold mb-4">Transforme o Sol no Rio de Janeiro em Economia Real com Energia Solar</h1>
-                                <p className="lead mb-4">Descubra quanto você pode economizar com energia solar em sua casa, condomínio ou empresa. Nossos sistemas garantem até 95% de redução na sua conta de luz.</p>
+                                <h1 className="display-4 fw-bold mb-4">Transforme o Sol do Rio de Janeiro em Economia Real com Energia Solar</h1>
+                                <p className="lead mb-4">Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% e proteja-se dos aumentos de tarifa.</p>
                             </div>
                             <div className={`col-lg- ${styles.btnContainer}`}>
                                 <div>
