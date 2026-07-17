@@ -6,16 +6,11 @@ import { Button, Card, Container, Modal } from 'react-bootstrap'; // Import Butt
 import styles from './success_stories_ds.module.css'; // Usaremos CSS Modules
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-// import required modules
-//import { Autoplay, Loop, Navigation, Pagination } from 'swiper/modules';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // --- Dados (movidos para fora) ---
 const successStories = [
