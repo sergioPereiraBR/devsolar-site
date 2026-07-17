@@ -3,8 +3,8 @@
 export const COMPANY_NAME = "DEV Solar";
 export const COMPANY_SLOGAN_PA = "O FUTURO É SOLAR";
 export const COMPANY_SLOGAN_PB = "junte-se a essa mudança.";
-export const CONTACT_PHONE_RAW = "998990303"; // Número puro para links
-export const CONTACT_PHONE_DISPLAY = "+55 (21) 99899-0303"; // Formato para exibição
+export const CONTACT_PHONE_RAW = "+5521999677722"; // Número puro para links
+export const CONTACT_PHONE_DISPLAY = "+55 (21) 99967-7722"; // Formato para exibição
 export const CONTACT_EMAIL = "comercial@devsolar.com.br";
 export const ADDRESS_INFO = {
     line1: "Av. Jambeiro, 474 Loja C",
@@ -19,7 +19,7 @@ export const DEVELOPER_URL = "https://www.linkedin.com/in/sergiopereira-br/"; //
 
 // Links de Navegação Principal do Rodapé
 export const navLinksData = [
-    { id: 'home', href: '/', text: 'Início' },
+    { id: 'home', href: '/#home', text: 'Início' },
     // { id: 'about', href: '/#sobre', text: 'Sobre Nós' }, // Exemplo de página interna
     { id: 'benefits', href: '/#beneficios', text: 'Benefícios' }, // Link para seção na home
     { id: 'services', href: '/#modalidades', text: 'Serviços' }, // Exemplo página interna
@@ -33,8 +33,8 @@ export const navLinksData = [
 // Links Úteis
 export const usefulLinksData = [
     { id: 'faq', href: '/#faq', text: 'Perguntas Frequentes' },
-    { id: 'terms', href: '/#', text: 'Termos de Uso' }, // Exemplo página interna
-    { id: 'privacy', href: '/#', text: 'Política de Privacidade' }, // Exemplo página interna
+    { id: 'terms', href: '/#home', text: 'Termos de Uso' }, // Exemplo página interna
+    { id: 'privacy', href: '/#home', text: 'Política de Privacidade' }, // Exemplo página interna
     // { id: 'terms', href: '/termos-de-uso', text: 'Termos de Uso' }, // Exemplo página interna
     // { id: 'privacy', href: '/politica-de-privacidade', text: 'Política de Privacidade' }, // Exemplo página interna
 ];

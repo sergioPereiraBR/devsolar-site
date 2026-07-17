@@ -12,7 +12,7 @@ const BenefitCard = ({ benefit, onClick }) => (
         <Card className={`${styles.benefitCard} h-100`} onClick={() => onClick(benefit)} >
             <Card.Body className="text-center p-4">
                 <i className={`${benefit.iconClass} ${styles.benefitIcon}`}></i>
-                <Card.Title as="h5" className={`${styles.benefitTitle} fw-bold`}>{benefit.title}</Card.Title>
+                <Card.Title as="h3" className={`${styles.benefitTitle} fw-bold`}>{benefit.title}</Card.Title>
                 <Card.Text className={styles.benefitDescription}>{benefit.description}</Card.Text>
             </Card.Body>
         </Card>
@@ -25,7 +25,7 @@ const CategoryCard = ({ category, onClick }) => (
         <Card className={`${styles.categoryCard} h-100`} onClick={() => onClick(category.detail)}>
             <Card.Body className="d-flex flex-column text-center p-3">
                 <i className={`${category.iconClass} ${styles.categoryIcon} mb-3`}></i>
-                <Card.Title as="h6" className="fw-bold">{category.title}</Card.Title>
+                <Card.Title as="h4" className="fw-bold">{category.title}</Card.Title>
                 <Card.Text className={`${styles.categoryDescription} flex-grow-1`}>
                     {category.description}
                 </Card.Text>
@@ -107,7 +107,7 @@ function BenefitsSectionDS() {
 
                 {modalContent?.references?.length > 0 && (
                     <div className={styles.references}>
-                        <h5>Referências</h5>
+                        <h6>Referências</h6>
                         {modalContent.references.map(ref => (
                             <p key={ref.id}>[{ref.id.split('-').pop()}] {ref.text}</p>
                         ))}

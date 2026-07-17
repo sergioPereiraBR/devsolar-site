@@ -1,13 +1,32 @@
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .css .js .txt .json
 ErrorDocument 404 /index.html
+
+<IfModule mod_headers.c>
+    Header set X-Robots-Tag "index, follow"
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # 1. Forçar HTTPS (Sempre primeiro)
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2. Redirecionamento do WhatsApp (Antes de validar arquivos reais)
+  RewriteRule ^whatsapp/?$ "https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,NE]
+
+  # 3. Regras padrão do site (SPA / Frontend)
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
 </IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Defina o pacote “ea-php82” como a linguagem padrão de programação “PHP”.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
