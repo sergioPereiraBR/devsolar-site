@@ -50,7 +50,7 @@
     "irr": "^1.0.0",
     "next": "^16.1.5",
     "next-mdx-remote": "^4.4.1",
-    "npm": "^11.6.3",
+    "npm": "^11.18.0",
     "react": "18.3.1",
     "react-bootstrap": "^2.10.9",
     "react-countup": "^6.5.3",
