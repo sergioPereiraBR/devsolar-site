@@ -64,4 +64,3 @@ next-env.d.ts
 ## Custom additions
 # Ignore all files in the caçamba directory except for teste.html
 caçamba/*
-!caçamba/teste.html

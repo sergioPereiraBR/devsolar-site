@@ -156,6 +156,7 @@ function FooterDS() {
                                     aria-label={`Visitar ${COMPANY_NAME} no ${social.name}`}
                                 >
                                     <i className={social.iconClass}></i> {/* Renderiza FontAwesome */}
+                                    <span className="sr-only">{social.accessibility}</span>
                                 </Link>
                             ))}
                         </div>
@@ -212,7 +213,7 @@ function FooterDS() {
                 rel="noopener noreferrer"
                 className={styles.whatsappBtn} // Classe do CSS Module
                 aria-label="Entrar em contato pelo WhatsApp"
-            >
+            >   <span className="sr-only">Entre em contato conosco via WhatsApp</span>
                 <Image
                     src={WHATSAPP_FLOAT_ICON_URL} // Ícone local SVG branco
                     alt="WhatsApp Icon"
