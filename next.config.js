@@ -3,6 +3,7 @@ module.exports = {
     output: 'export',
     images: {
         unoptimized: true,
+        formats: ['image/avif', 'image/webp'], // Next vai gerar automaticamente
         remotePatterns: [
             {
                 protocol: 'http',
