@@ -13,7 +13,7 @@ const PartnerCard = ({ logoUrl, name, description }) => {
                     height={60}
                     className={styles.logoImage} // Para estilização adicional se precisar
                     // layout="responsive" // Pode ser útil dependendo do CSS
-                    objectfit="contain" // 'contain' geralmente funciona melhor para logos
+                    style={{ objectFit: 'contain' }} // 'contain' geralmente funciona melhor para logos
                 />
             </div>
             <div className={styles.textContainer}>

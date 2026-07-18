@@ -6,11 +6,15 @@ import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 import FaleConoscoDS from '../fale_conosco_ds';
 import styles from './modalities_section_ds.module.css'; // Importar CSS Module
 
+import ProducaoCompartilhada from '@/assets/producao-compartilhada.webp';
+import ProducaoParaNegocio from '@/assets/producao-negocio.webp';
+import ProducaoPropria from '@/assets/producao-propria.webp';
+
 // --- Dados (com HTML, definidos fora) ---
 const modalitiesData = [
     // ... (cole os dados ATUALIZADOS do modalitiesData com HTML aqui) ...
     {
-        id: 'propria', title: 'Produção Própria', iconClass: 'fas fa-bolt', shortDescription: 'Gere energia para consumo no próprio local...', buttonText: 'Saiba Mais: Produção Própria de Energia', modalTitle: 'Modalidade: Produção Própria', modalMessage: 'produção de energia para utilização no mesmo imóvel', modalImage: './images/producao-propria.webp',
+        id: 'propria', title: 'Produção Própria', iconClass: 'fas fa-bolt', shortDescription: 'Gere energia para consumo no próprio local...', buttonText: 'Saiba Mais: Produção Própria de Energia', modalTitle: 'Modalidade: Produção Própria', modalMessage: 'produção de energia para utilização no mesmo imóvel', modalImage: ProducaoPropria,
         modalText: `
 
 Esta modalidade permite que o consumidor gere energia para consumo no próprio local de instalação dos painéis fotovoltaicos.<br /><br />
@@ -30,7 +34,7 @@ Esta modalidade permite que o consumidor gere energia para consumo no próprio l
 <strong>Valorização imobiliária:</strong> Propriedades com sistemas solares tendem a valorizar no mercado.<br /><br />`
     },
     {
-        id: 'compartilhada', title: 'Produção Compartilhada', iconClass: 'fas fa-users', shortDescription: 'Múltiplos consumidores compartilham os benefícios...', buttonText: 'Saiba Mais: Produção Compartilhada', modalTitle: 'Modalidade: Produção Compartilhada', modalMessage: 'produção de energia com utilização também em outro imóvel', modalImage: './images/producao-compartilhada.png',
+        id: 'compartilhada', title: 'Produção Compartilhada', iconClass: 'fas fa-users', shortDescription: 'Múltiplos consumidores compartilham os benefícios...', buttonText: 'Saiba Mais: Produção Compartilhada', modalTitle: 'Modalidade: Produção Compartilhada', modalMessage: 'produção de energia com utilização também em outro imóvel', modalImage: ProducaoCompartilhada,
         modalText: `Esta modalidade permite que múltiplos consumidores compartilhem os benefícios de uma mesma usina solar, mesmo estando em locais diferentes.<br /><br />
 
 
@@ -46,7 +50,7 @@ Esta modalidade permite que o consumidor gere energia para consumo no próprio l
 <strong>Flexibilidade:</strong> Possibilidade de realocação de créditos entre unidades consumidoras de acordo com necessidades sazonais.<br /><br />`
     },
     {
-        id: 'negocio', title: 'Produção para Negócio', iconClass: 'fas fa-store-alt', shortDescription: 'Comercialização de créditos de energia solar...', buttonText: 'Saiba Mais: Produção para Negócio', modalTitle: 'Modalidade: Produção para Negócio', modalMessage: 'produção de energia e comercialização de créditos', modalImage: './images/producao-negocio.png',
+        id: 'negocio', title: 'Produção para Negócio', iconClass: 'fas fa-store-alt', shortDescription: 'Comercialização de créditos de energia solar...', buttonText: 'Saiba Mais: Produção para Negócio', modalTitle: 'Modalidade: Produção para Negócio', modalMessage: 'produção de energia e comercialização de créditos', modalImage: ProducaoParaNegocio,
         modalText: `Esta modalidade permite a comercialização de créditos de energia solar para terceiros, criando um modelo de negócio específico.<br /><br />
 
 <strong>Pontos-chave:</strong><br /><br />

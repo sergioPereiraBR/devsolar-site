@@ -29,8 +29,6 @@ function FooterDS() {
     const [newsletterStatus, setNewsletterStatus] = useState(null); // null | 'submitting' | 'success' | 'error'
     const [newsletterMessage, setNewsletterMessage] = useState('');
 
-    const devSolarLogo = { width: "auto", height: "48px" }
-
     // Handler para o envio da newsletter
     const handleNewsletterSubmit = async (e) => {
         e.preventDefault();
@@ -93,8 +91,6 @@ function FooterDS() {
                                     alt={`${COMPANY_NAME} Logo`}
                                     width={177} // Aumentado um pouco
                                     height={48} // Ajustado proporcionalmente
-                                    style={devSolarLogo}
-                                    priority={false} // Logo no footer pode não ser prioridade
                                 />
                             </Link>
                         </div>

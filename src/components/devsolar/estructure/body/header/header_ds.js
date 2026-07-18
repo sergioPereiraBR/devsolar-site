@@ -1,15 +1,17 @@
 'use client';
 
+import Photovoltaic from '@/assets/photovoltaic.webp';
 import Example from '@/components/tremor/area-chart-15'; // Confirme o caminho
 import { calcularEconomiaSolar } from '@/utils/solarCalculations';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import global
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { Button, Col, Image, Modal, Row, Spinner } from 'react-bootstrap'; // Adicionar Button, Spinner
+import { Button, Col, Modal, Row, Spinner } from 'react-bootstrap'; // Adicionar Button, Spinner
 import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
 import styles from './header_ds.module.css'; // Importar CSS Module
 
 // --- Constantes de Configuração (Mover para arquivo .config.js ou similar idealmente) ---
-const HERO_IMAGE_URL = '/images/photovoltaic.jpg';
+const HERO_IMAGE_URL = Photovoltaic;
 const FALE_CONOSCO_BTN_CLASS = "btn btn-outline-light btn-lg mb-3"; // Classe do botão "Falar com Especialista"
 const FALE_CONOSCO_MESSAGE = "Olá, quero falar com especialista.";
 const FALE_CONOSCO_TAG_HERO = "#solNaEconomia";
@@ -159,10 +161,9 @@ function HeaderDS() {
                         <Image
                             alt="Fazenda de painéis solares" // Alt text descritivo
                             src={HERO_IMAGE_URL}
-                            layout="fill" // Ocupa o container pai
-                            objectfit="cover" // Cobre a área
+                            fill // Ocupa o container pai
+                            style={{ objectFit: 'cover' }} // Cobre a área
                             quality={85} // Qualidade da imagem
-                        //priority  Carrega a imagem principal com prioridade
                         />
                         <div className={styles.heroOverlay}></div> {/* Overlay opcional */}
                     </div>

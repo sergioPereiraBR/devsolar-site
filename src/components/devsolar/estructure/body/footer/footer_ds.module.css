@@ -130,13 +130,6 @@
     font-weight: 900;
 }
 
-
-/* Coluna Social */
-.footerSocial .footerTitle {
-    /* Reutiliza estilo */
-    /* ... */
-}
-
 .footerSocial .socialLinksContainer {
     gap: 12px;
     /* Espaço entre ícones sociais */
@@ -343,12 +336,6 @@
     background-color: #1ebe57;
     /* Verde mais escuro */
 }
-
-.whatsappBtn img {
-    /* Estilo aplicado à tag Image do next/image */
-    /* O tamanho é controlado pelas props width/height no componente Image */
-}
-
 
 /* Responsividade (Exemplo - Ajuste conforme necessário) */
 @media (max-width: 991px) {
