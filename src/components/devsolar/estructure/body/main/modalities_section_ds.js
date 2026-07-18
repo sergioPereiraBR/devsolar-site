@@ -148,7 +148,6 @@ function ModalitiesSectionDS() {
                                     height={720}
                                     objectfit="contain"
                                     className={styles.modalImage}
-                                    priority={false}
                                 />
                             </div>
                             {/* 2. Texto renderizado depois, usando dangerouslySetInnerHTML */}

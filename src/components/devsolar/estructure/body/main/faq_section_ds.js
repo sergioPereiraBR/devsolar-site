@@ -96,7 +96,6 @@ function FAQSectionDS() {
                                                         height={60} 
                                                         className={styles.avatarImage} 
                                                         objectfit="cover"
-                                                        priority={false}
                                                     />
                                                 </div>
                                                 <div className={`${styles.messageBubble} ${styles.questionBubble}`}>
@@ -119,7 +118,6 @@ function FAQSectionDS() {
                                                         height={60}
                                                         className={styles.avatarImage}
                                                         style={{ devSolarLogo }}
-                                                        priority={false}
                                                     />
                                                 </div>
                                             </div>

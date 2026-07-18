@@ -91,7 +91,6 @@ function FooterDS() {
                                     alt={`${COMPANY_NAME} Logo`}
                                     width={177} // Aumentado um pouco
                                     height={48} // Ajustado proporcionalmente
-                                    priority={false} // Logo no footer pode não ser prioridade
                                 />
                             </Link>
                         </div>
@@ -216,7 +215,6 @@ function FooterDS() {
                     alt="WhatsApp Icon"
                     width={32} // Ajuste o tamanho do ícone dentro do botão
                     height={32}
-                    priority={false}
                 />
             </Link>
         </footer> // Fechamento correto do footer
