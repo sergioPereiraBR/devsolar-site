@@ -14,6 +14,7 @@ const PartnerCard = ({ logoUrl, name, description }) => {
                     className={styles.logoImage} // Para estilização adicional se precisar
                     // layout="responsive" // Pode ser útil dependendo do CSS
                     objectfit="contain" // 'contain' geralmente funciona melhor para logos
+                    priority={false}
                 />
             </div>
             <div className={styles.textContainer}>

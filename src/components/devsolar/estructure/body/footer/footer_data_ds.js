@@ -1,5 +1,7 @@
 'use client';
 
+import LogoDevBranco from '@/assets/logo-dev-branco.webp';
+
 export const COMPANY_NAME = "DEV Solar";
 export const COMPANY_SLOGAN_PA = "O FUTURO É SOLAR";
 export const COMPANY_SLOGAN_PB = "junte-se a essa mudança.";
@@ -12,7 +14,7 @@ export const ADDRESS_INFO = {
     cep: "21330-300" // Adicionado CEP aqui
 };
 export const CURRENT_YEAR = new Date().getFullYear();
-export const LOGO_URL = './images/logo-dev-branco.png'; // Logo para o rodapé
+export const LOGO_URL = LogoDevBranco; // Logo para o rodapé
 export const WHATSAPP_FLOAT_ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"; //'/icons/whatsapp-white.svg'; // Ícone branco para botão flutuante
 export const DEVELOPER_NAME = "Pereira Dev";
 export const DEVELOPER_URL = "https://www.linkedin.com/in/sergiopereira-br/"; // https://github.com/sergioPereiraBR

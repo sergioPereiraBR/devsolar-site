@@ -116,7 +116,7 @@ export default function SuccessStoriesDS() {
                                                 fill
                                                 className={styles.thumbnailImage}
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                priority={true}
+                                                priority={false}
                                                 onClick={(e) => {
                                                     e.stopPropagation();
                                                     handleCardClick(story)
@@ -191,6 +191,7 @@ export default function SuccessStoriesDS() {
                                 backgroundColor: 'var(--light)', // Fundo preto como fallback
                                 objectFit: 'contain' // Ajusta o vídeo mantendo proporção
                             }}
+                            priority={false}
                         >
                             <source src={selectedVideo?.preview} type="video/mp4" />
                         </video>

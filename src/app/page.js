@@ -31,7 +31,7 @@ export const metadata = {
         //fb:app_id: '61562778810789',
         images: [ // Pode usar uma imagem OG específica para a home
             {
-                url: './images/og-image-calculator-cta.png', // Caminho relativo à pasta PUBLIC
+                url: './assets/og-image-calculator-cta.webp', // Caminho relativo à pasta PUBLIC
                 width: 1200,
                 height: 630,
                 alt: 'A DEV Solar atua nas modalidades de produção de energia própria, compartilhada e para negócios',

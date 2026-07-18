@@ -1,5 +1,6 @@
 'use client'; // Necessário pelos hooks
 
+import LogoSm from '@/assets/logo_sm.webp';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import global do Bootstrap CSS
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -8,14 +9,12 @@ import LeadAccessModal from './LeadAccessModal';
 import styles from './nav_ds.module.css'; // Importar CSS Module
 import { navLinksData } from './nav_links_ds'; // Importar dados dos links
 
-const LOGO_URL = './images/logo_sm.png'; // Manter como constante
+const LOGO_URL = LogoSm; // Imagem importada do arquivo local
 
 function NavDS() {
     const [modalShow, setModalShow] = useState(false);
     const [expanded, setExpanded] = useState(false); // Estado do menu hamburger
     const navbarRef = useRef(null); // Ref para a Navbar
-
-    const devSolarLogo = { width: "auto", height: "38px" }
 
     // --- Lógica para Scroll Padding Dinâmico ---
     const updateScrollPadding = useCallback(() => {
@@ -88,10 +87,9 @@ function NavDS() {
                             className={styles.logoImg}
                             src={LOGO_URL}
                             alt="Logo da DEV Solar"
-                            width={140} // Mantenha ou ajuste
-                            height={38}  // Mantenha ou ajuste
-                            style={devSolarLogo}
-                            priority // Boa prática para logo acima da dobra
+                            width={140}
+                            height={38}
+                            priority={true}
                         />
                     </Navbar.Brand>
 
