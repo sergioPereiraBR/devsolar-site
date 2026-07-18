@@ -1,4 +1,4 @@
-name: Deploy Static Site to HostGator
+name: Deploy Static Site to HostGator - Production Environment
 
 # Gatilho: Executa quando houver push na branch 'main' (ajuste se usar 'master' ou outra)
 on:
