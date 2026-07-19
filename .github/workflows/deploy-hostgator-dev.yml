@@ -89,4 +89,4 @@ jobs:
             # Adicione outros arquivos/pastas que não precisam ir para produção
             /caçamba/*
           # dangerous-clean-slate: false # CUIDADO: true apaga TUDO no server-dir antes de enviar. Use com extrema cautela.
-          # timeout: 30000 # Timeout em ms (padrão)
+          timeout: 300000 # Timeout em ms (5 minutos) - aumentado para evitar timeout em uploads de arquivos grandes
