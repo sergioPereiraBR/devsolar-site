@@ -140,7 +140,8 @@
     /* Exemplo: */
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
-    color: var(--branco) !important;
+    /* color: var(--branco) !important; */
+    color: var(--text-btn) !important;
     padding: 12px 25px;
     font-size: 1.1rem;
     font-weight: 500;

@@ -1,5 +1,6 @@
 'use client';
 
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 {/*===================================================================== 2 - Modal Sustentabilidade */ }
 
 {/* Modal de  Sustentabilidade*/ }
@@ -16,7 +17,7 @@
         >
             {/* <Card className="col-md-4 feature-card card shadow-sm h-120 p-4"> */}
             <Card.Body className="text-center">
-                <i className="fa-solid fa-house feature-icon"></i>
+                <FaIcon iconClass="fa-solid fa-house feature-icon" />
                 <Card.Title className="fw-bold">Residência</Card.Title>
                 <Card.Text>
                     Contribua ativamente para um futuro mais verde, utilizando uma fonte de energia limpa e renovável, reduzindo sua pegada de carbono e o impacto ambiental.
@@ -30,7 +31,7 @@
             onClick={() => setShowCondominioSustainability(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-building feature-icon"></i>
+                <FaIcon iconClass="fas fa-building feature-icon" />
                 <Card.Title className="fw-bold">Condomínio</Card.Title>
                 <Card.Text>
                     Demonstre o compromisso do seu condomínio com a sustentabilidade em larga escala, tornando-se um exemplo de responsabilidade ambiental para toda a comunidade.
@@ -44,7 +45,7 @@
             onClick={() => setShowEmpresaSustainability(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-briefcase feature-icon"></i>
+                <FaIcon iconClass="fas fa-briefcase feature-icon" />
                 <Card.Title className="fw-bold">Empresa</Card.Title>
                 <Card.Text>
                     Fortaleça a imagem da sua marca como uma empresa ecologicamente responsável, atraindo clientes e investidores conscientes e alinhando-se com as práticas ESG.
@@ -54,7 +55,7 @@
     </Modal.Body>
     <Modal.Footer>
         <Button variant="secondary" onClick={handleCloseSustentabilidade}>
-            <i className="fas fa-headset me-2"></i><span>Falar com Especialista</span>
+            <FaIcon iconClass="fas fa-headset" className="me-2" /><span>Falar com Especialista</span>
         </Button>
     </Modal.Footer>
 </Modal>
@@ -76,7 +77,7 @@
             onClick={() => setShowResidenciaValorizacao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fa-solid fa-house feature-icon"></i>
+                <FaIcon iconClass="fa-solid fa-house feature-icon" />
                 <Card.Title className="fw-bold">Residência</Card.Title>
                 <Card.Text>
                     Aumente o valor de mercado do seu imóvel. Casas com sistemas de energia solar instalados são mais atrativas para compradores e podem ser vendidas por um preço mais alto.
@@ -90,7 +91,7 @@
             onClick={() => setShowCondominioValorizacao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-building feature-icon"></i>
+                <FaIcon iconClass="fas fa-building feature-icon" />
                 <Card.Title className="fw-bold">Condomínio</Card.Title>
                 <Card.Text>
                     Valorize todas as unidades do condomínio, tornando-o mais desejável para potenciais compradores e inquilinos, além de reduzir os custos para os moradores atuais.
@@ -104,7 +105,7 @@
             onClick={() => setShowEmpresaValorizacao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-briefcase feature-icon"></i>
+                <FaIcon iconClass="fas fa-briefcase feature-icon" />
                 <Card.Title className="fw-bold">Empresa</Card.Title>
                 <Card.Text>
                     Seu imóvel comercial com energia solar se torna um ativo mais valioso e competitivo no mercado imobiliário, além de reduzir seus custos operacionais.
@@ -115,7 +116,7 @@
     <Modal.Footer>
         <div className="mb-2 btn-consumo mt-2">
             <button type="button" className="btn btn-primary-custom btn-lg" onClick={() => handleCloseValorizacao(false)}>
-                <i className="fas fa-headset me-2"></i><span>Falar com Especialista</span>
+                <FaIcon iconClass="fas fa-headset" className="me-2" /><span>Falar com Especialista</span>
             </button>
         </div>
     </Modal.Footer>
@@ -138,7 +139,7 @@
             onClick={() => setShowResidenciaManutencao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fa-solid fa-house feature-icon"></i>
+                <FaIcon iconClass="fa-solid fa-house feature-icon" />
                 <Card.Title className="fw-bold">Residência</Card.Title>
                 <Card.Text>
                     Os sistemas solares requerem pouca manutenção, geralmente apenas limpezas periódicas dos painéis para garantir a máxima eficiência. Desfrute de energia limpa sem grandes preocupações.
@@ -152,7 +153,7 @@
             onClick={() => setShowCondominioManutencao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-building feature-icon"></i>
+                <FaIcon iconClass="fas fa-building feature-icon" />
                 <Card.Title className="fw-bold">Condomínio</Card.Title>
                 <Card.Text>
                     Com sistemas duráveis e de baixa manutenção, os custos e o trabalho de conservação são mínimos, otimizando os recursos do condomínio a longo prazo.
@@ -166,7 +167,7 @@
             onClick={() => setShowEmpresaManutencao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-briefcase feature-icon"></i>
+                <FaIcon iconClass="fas fa-briefcase feature-icon" />
                 <Card.Title className="fw-bold">Empresa</Card.Title>
                 <Card.Text>
                     Sistemas solares são projetados para durar e exigem pouca intervenção, permitindo que sua empresa foque no core business sem se preocupar com manutenções constantes.
@@ -176,7 +177,7 @@
     </Modal.Body>
     <Modal.Footer>
         <Button variant="secondary" onClick={handleCloseManutencao}>
-            <i className="fas fa-headset me-2"></i><span>Falar com Especialista</span>
+            <FaIcon iconClass="fas fa-headset" className="me-2" /><span>Falar com Especialista</span>
         </Button>
     </Modal.Footer>
 </Modal>
@@ -198,7 +199,7 @@
             onClick={() => setShowResidenciaProtecao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fa-solid fa-house feature-icon"></i>
+                <FaIcon iconClass="fa-solid fa-house feature-icon" aria-hidden="true" />
                 <Card.Title className="fw-bold">Residência</Card.Title>
                 <Card.Text>
                     Proteja seu orçamento familiar contra as constantes elevações nas tarifas de energia elétrica. Com a energia solar, você tem mais controle sobre seus gastos.
@@ -212,7 +213,7 @@
             onClick={() => setShowCondominioProtecao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-building feature-icon"></i>
+                <FaIcon iconClass="fas fa-building feature-icon" aria-hidden="true" />
                 <Card.Title className="fw-bold">Condomínio</Card.Title>
                 <Card.Text>
                     Reduza a vulnerabilidade do condomínio aos aumentos tarifários, garantindo uma despesa mais estável e previsível para todos os moradores.
@@ -226,7 +227,7 @@
             onClick={() => setShowEmpresaProtecao(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-briefcase feature-icon"></i>
+                <FaIcon iconClass="fas fa-briefcase feature-icon" aria-hidden="true" />
                 <Card.Title className="fw-bold">Empresa</Card.Title>
                 <Card.Text>
                     Minimize o impacto das flutuações e aumentos nos custos de energia, tornando seu planejamento financeiro mais seguro e competitivo a longo prazo.
@@ -236,7 +237,7 @@
     </Modal.Body>
     <Modal.Footer>
         <Button variant="secondary" onClick={handleCloseProtecao}>
-            <i className="fas fa-headset me-2"></i><span>Falar com Especialista</span>
+            <FaIcon iconClass="fas fa-headset" className="me-2" aria-hidden="true" /><span>Falar com Especialista</span>
         </Button>
     </Modal.Footer>
 </Modal>
@@ -257,7 +258,7 @@
             onClick={() => setShowResidenciaFinanciamento(true)}
         >
             <Card.Body className="text-center">
-                <i className="fa-solid fa-house feature-icon"></i>
+                <FaIcon iconClass="fa-solid fa-house" className="feature-icon" aria-hidden="true" />
                 <Card.Title className="fw-bold">Residência</Card.Title>
                 <Card.Text>
                     Aproveite diversas opções de financiamento com condições facilitadas e taxas atrativas para tornar a energia solar acessível para o seu lar.
@@ -271,7 +272,7 @@
             onClick={() => setShowCondominioFinanciamento(true)}
         >
             <Card.Body className="text-center">
-                <i className="fas fa-building feature-icon"></i>
+                <FaIcon iconClass='fas fa-building feature-icon aria-hidden="true"' />
                 <Card.Title className="fw-bold">Condomínio</Card.Title>
                 <Card.Text>
                     Explore linhas de crédito e financiamentos especiais para condomínios, tornando o investimento em energia solar viável e com retorno garantido para todos.
@@ -295,7 +296,7 @@
     </Modal.Body>
     <Modal.Footer>
         <Button variant="secondary" onClick={handleCloseFinanciamento}>
-            <i className="fas fa-headset me-2"></i><span>Falar com Especialista</span>
+            <FaIcon iconClass="fas fa-headset" className="me-2" aria-hidden="true" /><span>Falar com Especialista</span>
         </Button>
     </Modal.Footer>
 </Modal>

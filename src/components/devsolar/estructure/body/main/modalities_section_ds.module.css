@@ -57,8 +57,10 @@
     margin-bottom: 15px;
     color: var(--primary);
     /* Cor primária para o ícone */
-    display: block;
     /* Garante que o margin-bottom funcione */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cardTitle {
@@ -89,7 +91,8 @@
     /* Estilo customizado ou use classes Bootstrap via 'variant' */
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
-    color: var(--branco) !important;
+    /* color: var(--branco) !important; */
+    color: var(--text-btn) !important;
     /* Cor do texto no botão */
     font-weight: 500;
     padding: 10px 15px;

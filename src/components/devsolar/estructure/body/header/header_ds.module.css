@@ -129,6 +129,7 @@
     /* Estilos específicos se btn-primary-custom não for suficiente */
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
+    color: var(--text-btn) !important;
 
     /* color: var(--branco) !important; */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -145,6 +146,7 @@
     /* Estilos específicos se btn-outline-light não for suficiente */
     /* Ex: border-width: 2px; */
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    color: var(--text-btn) !important;
 }
 
 .heroButtonSecondary:hover {

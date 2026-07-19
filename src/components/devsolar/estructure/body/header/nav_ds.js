@@ -1,6 +1,7 @@
 'use client'; // Necessário pelos hooks
 
 import LogoSm from '@/assets/logo_sm.webp';
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import global do Bootstrap CSS
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -120,7 +121,7 @@ function NavDS() {
                                 onClick={handleShowLoginModal}
                                 disabled={false}
                             >
-                                <i className="fas fa-user me-1 me-lg-2"></i> {/* Ícone */}
+                                <FaIcon iconClass="fas fa-user" className="me-1 me-lg-2" aria-label="Entrar" aria-hidden="true" /> {/* Ícone */}
                                 <span className="d-inline-block">Entrar</span> {/* Span para controle */}
                             </Button>
                         </Nav>

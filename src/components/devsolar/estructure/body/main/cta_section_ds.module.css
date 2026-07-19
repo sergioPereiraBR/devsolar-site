@@ -16,7 +16,8 @@
     /* Exemplo usando a cor theme com opacidade */
     /* Ou use diretamente: background-color: var(--primary); */
     /* Se for laranja */
-    color: var(--branco);
+    /* color: var(--branco); */
+    color: var(--text-btn) !important;
     /* Opcional: Adicionar imagem de fundo */
     /* background-image: linear-gradient(rgba(var(--theme-rgb), 0.85), rgba(var(--theme-rgb), 0.85)), url('/images/cta-background.jpg'); */
     /* background-size: cover; */
@@ -76,7 +77,8 @@
     font-size: 1.15rem;
     /* Tamanho btn-lg */
     border-radius: 0.3rem;
-    color: var(--primary);
+    /* color: var(--primary); */
+    color: var(--text-btn) !important;
     /* Texto na cor primária */
     transition: all 0.2s ease-in-out;
     /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */

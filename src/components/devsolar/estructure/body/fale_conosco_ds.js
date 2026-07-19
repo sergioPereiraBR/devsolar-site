@@ -1,5 +1,6 @@
 'use client';
 
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import WhatsAppSender from '@/components/devsolar/utility/whatsapp/whatsapp_sender_ds.js';
 import { useEffect, useRef, useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
@@ -243,7 +244,7 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
                 className={textClassButton}
                 onClick={() => { setShowModal(true) }}
             >
-                <i className="fas fa-headset me-2"></i><span>Falar com Especialista</span>
+                <FaIcon iconClass="fas fa-headset" className="me-2" aria-label="Falar com Especialista"/><span>Falar com Especialista</span>
             </button>
 
             <Modal
