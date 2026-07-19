@@ -15,8 +15,5 @@ module.exports = {
                 hostname: 'devsolar.com.br',
             },
         ],
-    },
-    build: {
-        sourcemap: false,
     }
 };

@@ -29,7 +29,7 @@
 
 .subsectionTitle {
     text-align: center;
-    color: var(--primary);
+    /* color: var(--primary) !important;  */
     /* Cor de destaque para títulos das subseções */
     margin-bottom: 35px;
     font-weight: 600;
@@ -38,6 +38,8 @@
     /* Para a linha funcionar corretamente */
     left: 50%;
     transform: translateX(-50%);
+    color: #6D777E !important; 
+    font-weight: 700
 }
 
 /* Linha abaixo do título da subseção */
