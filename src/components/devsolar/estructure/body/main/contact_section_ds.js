@@ -1,5 +1,6 @@
 'use client';
 
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import Link from "next/link";
 import { useRef, useState } from 'react'; // Adicionado useRef
 import ReCAPTCHA from "react-google-recaptcha"; // Importar reCAPTCHA
@@ -11,7 +12,7 @@ const ContactInfoItem = ({ iconClass, title, text, link }) => (
     // ... (código inalterado) ...
     <div className={`${styles.contactItem} d-flex align-items-start mb-3`}>
         <div className={`${styles.iconWrapper} flex-shrink-0 me-3`}>
-            <i className={`${iconClass} ${styles.icon}`}></i>
+            <FaIcon iconClass={iconClass} className={styles.icon} />
         </div>
         <div className="flex-grow-1">
             <p className={`${styles.contactTitle} mb-0`}>{title}</p>
@@ -161,7 +162,7 @@ function ContactSectionDS() {
                         <div className={`${styles.socialLinksContainer} d-flex`}>
                             {socialLinksData.map(link => (
                                 <Link key={link.id} href={link.url} target={link.url.startsWith('http') ? "_blank" : "_self"} rel={link.url.startsWith('http') ? "noopener noreferrer" : ""} className={styles.socialIconLink} aria-label={`Visite nosso ${link.name}`}>
-                                    <i className={link.iconClass}></i>
+                                    <FaIcon iconClass={link.iconClass} />
                                     <span className="sr-only">{link.accessibility}</span>
                                 </Link>
                             ))}
@@ -198,7 +199,7 @@ function ContactSectionDS() {
                                     </div>
 
                                     {/* ***** COMPONENTE reCAPTCHA ***** */}
-                                    <div className="mb-3">
+                                    {/* <div className="mb-3">
                                         <label className="form-label d-block">Verificação*</label>
                                         <ReCAPTCHA
                                             ref={recaptchaRef}
@@ -207,7 +208,18 @@ function ContactSectionDS() {
                                             hl="pt-BR" // Define o idioma
                                         />
                                         {submitStatus === 'error_recaptcha' && <div className="text-danger small mt-1">Por favor, complete a verificação.</div>}
-                                    </div>
+                                    </div> */}
+                                    <fieldset className="mb-3 border-0 p-0 m-0">
+                                        <legend className="form-label d-block fs-6 m-0 pb-2">Verificação*</legend>
+                                        <ReCAPTCHA
+                                            ref={recaptchaRef}
+                                            sitekey={RECAPTCHA_SITE_KEY}
+                                            hl="pt-BR"
+                                        />
+                                        {submitStatus === 'error_recaptcha' && (
+                                            <div className="text-danger small mt-1">Por favor, complete a verificação.</div>
+                                        )}
+                                    </fieldset>
 
                                     {/* Mensagens de Feedback */}
                                     {submitStatus === 'success' && <div className="alert alert-success">Obrigado! Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.</div>}

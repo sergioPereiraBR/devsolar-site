@@ -14,6 +14,7 @@ import PersonaB from '@/assets/persona-2.webp';
 import PersonaC from '@/assets/persona-3.webp';
 import PersonaD from '@/assets/persona-4.webp';
 import PersonaE from '@/assets/persona-5.webp';
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 // --- Dados ---
 const faqData = [
@@ -131,8 +132,13 @@ function FAQSectionDS() {
                                 <h3 className={styles.userInputTitle}>Tire suas dúvidas para gerar sua própria energia com a Dev Solar:</h3>
                                 <div className={styles.inputAreaContainer}>
                                     {/* Botão Emoji e Picker */}
-                                    <button id="emoji-toggle-button" className={styles.emojiButton} onClick={() => setShowEmojiPicker(!showEmojiPicker)} aria-label="Selecionar emoji" type="button" >
-                                        <i className="far fa-smile"></i>
+                                    <button 
+                                        id="emoji-toggle-button" 
+                                        className={styles.emojiButton} 
+                                        onClick={() => setShowEmojiPicker(!showEmojiPicker)} 
+                                        aria-label="Selecionar emoji" 
+                                        type="button" >
+                                        <FaIcon iconClass="far fa-smile" />
                                     </button>
                                     {showEmojiPicker && (
                                         <div ref={emojiPickerRef} className={styles.emojiPickerWrapper}>
@@ -140,10 +146,26 @@ function FAQSectionDS() {
                                         </div>
                                     )}
                                     {/* Textarea */}
-                                    <textarea ref={inputRef} className={styles.userInput} rows="1" placeholder="Digite sua pergunta..." value={userMessage} onChange={handleUserInputChange} onInput={(e) => { e.target.style.height = 'auto'; e.target.style.height = (e.target.scrollHeight) + 'px'; }} />
+                                    <textarea 
+                                        id="pergunta-faq" 
+                                        name="pergunta_faq"
+                                        aria-label="Digite sua pergunta para o FAQ"
+                                        ref={inputRef} 
+                                        className={styles.userInput} 
+                                        rows="1" 
+                                        placeholder="Digite sua pergunta..." 
+                                        value={userMessage} 
+                                        onChange={handleUserInputChange} 
+                                        onInput={(e) => { e.target.style.height = 'auto'; e.target.style.height = (e.target.scrollHeight) + 'px'; }} 
+                                    />
                                     {/* Botão de Enviar (agora chama handleInitiateSend) */}
-                                    <button className={styles.sendButton} onClick={handleInitiateSend} disabled={userMessage.trim() === ''} aria-label="Enviar pergunta via WhatsApp" type="button">
-                                        <i className="fas fa-paper-plane"></i>
+                                    <button 
+                                        className={styles.sendButton} 
+                                        onClick={handleInitiateSend} 
+                                        disabled={userMessage.trim() === ''} 
+                                        aria-label="Enviar pergunta via WhatsApp" 
+                                        type="button">
+                                        <FaIcon iconClass="fas fa-paper-plane" />
                                     </button>
                                 </div>
                             </div>

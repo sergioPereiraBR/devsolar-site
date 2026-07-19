@@ -1,6 +1,7 @@
 'use client';
 
 import Photovoltaic from '@/assets/photovoltaic.webp';
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import Example from '@/components/tremor/area-chart-15'; // Confirme o caminho
 import { calcularEconomiaSolar } from '@/utils/solarCalculations';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import global
@@ -145,7 +146,7 @@ function HeaderDS() {
                                         className={`me-3 mb-3 ${styles.heroButtonPrimary}`} // Classe do Module
                                         onClick={handleShowInput}
                                     >
-                                        <i className="fas fa-calculator me-2"></i>Calcular Economia
+                                        <FaIcon iconClass="fas fa-calculator" className="me-2" aria-label="Calcular Economia" aria-hidden="true" />Calcular Economia
                                     </Button>
                                     {/* Botão Falar com Especialista */}
                                     <FaleConoscoDS

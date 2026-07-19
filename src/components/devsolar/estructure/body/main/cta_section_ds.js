@@ -33,6 +33,7 @@
 
 // export default CTASectionDS;
 
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
 import styles from './cta_section_ds.module.css'; // Importe o CSS Module
 
@@ -52,7 +53,7 @@ function CTASectionDS() {
                         <h2 id="cta-headline" className={styles.headline}>
                             {/* Opcional: Adicionar Ícone */}
                             {/* <FaBolt className={styles.headlineIcon} /> */}
-                            <i className={`fas fa-bolt ${styles.headlineIcon}`}></i> {/* Exemplo com FontAwesome */}
+                            <FaIcon iconClass="fas fa-bolt" className={styles.headlineIcon} /> {/* Exemplo com FontAwesome */}
                             <span>Pronto para começar a economizar?</span>
                         </h2>
                         <h3 className={styles.subtext}>

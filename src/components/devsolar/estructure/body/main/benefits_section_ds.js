@@ -1,5 +1,6 @@
 'use client';
 
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import { useState } from 'react';
 import { Card, Col, Modal, Row } from 'react-bootstrap';
 import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
@@ -11,7 +12,7 @@ const BenefitCard = ({ benefit, onClick }) => (
     <Col md={6} lg={4} className="mb-4"> {/* Ajusta colunas e adiciona margem */}
         <Card className={`${styles.benefitCard} h-100`} onClick={() => onClick(benefit)} >
             <Card.Body className="text-center p-4">
-                <i className={`${benefit.iconClass} ${styles.benefitIcon}`}></i>
+                <FaIcon iconClass={benefit.iconClass} className={styles.benefitIcon} aria-label={benefit.description}></FaIcon>
                 <Card.Title as="h3" className={`${styles.benefitTitle} fw-bold`}>{benefit.title}</Card.Title>
                 <Card.Text className={styles.benefitDescription}>{benefit.description}</Card.Text>
             </Card.Body>
@@ -24,7 +25,7 @@ const CategoryCard = ({ category, onClick }) => (
     <Col>
         <Card className={`${styles.categoryCard} h-100`} onClick={() => onClick(category.detail)}>
             <Card.Body className="d-flex flex-column text-center p-3">
-                <i className={`${category.iconClass} ${styles.categoryIcon} mb-3`}></i>
+                <FaIcon iconClass={category.iconClass} className={styles.categoryIcon} aria-label={category.description} />
                 <Card.Title as="h4" className="fw-bold">{category.title}</Card.Title>
                 <Card.Text className={`${styles.categoryDescription} flex-grow-1`}>
                     {category.description}

@@ -26,6 +26,7 @@
 	/* -------------------- */
 	/* Branco puro */
 	--branco: #FFFFFF;
+	--text-btn: #001f52;
 
 	/* Fundo principal do body (pode ser branco ou o novo --light) */
 	--body-bg: var(--light);

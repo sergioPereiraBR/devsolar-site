@@ -28,7 +28,7 @@ export const benefitsData = [
     {
         id: 'economia',
         title: 'Economia Imediata',
-        iconClass: 'fas fa-piggy-bank',
+        iconClass: 'fa-solid fa-piggy-bank',
         description: 'Reduza sua conta de luz em até 95% já no primeiro mês após a instalação.',
         modalTitle: 'Economia Imediata com Energia Solar',
         contactMessageBase: 'Olá, tenho interesse em reduzir custos com energia elétrica e quero falar com especialista.',
@@ -36,7 +36,7 @@ export const benefitsData = [
         categories: [
             {
                 id: 'economia-residencia',
-                iconClass: 'fas fa-house',
+                iconClass: 'fa-solid fa-house',
                 title: 'Residência',
                 description: 'Reduza drasticamente ou elimine sua conta de luz já no primeiro mês.',
                 detail: createCategoryDetail(
@@ -111,7 +111,7 @@ export const benefitsData = [
         categories: [
             {
                 id: 'sustentabilidade-residencia',
-                iconClass: 'fas fa-house',
+                iconClass: 'fa-solid fa-house',
                 title: 'Residência',
                 description: 'Contribua ativamente para um futuro mais verde, reduzindo sua pegada de carbono.',
                 detail: createCategoryDetail(
@@ -186,7 +186,7 @@ export const benefitsData = [
         categories: [
             {
                 id: 'valorizacao-residencia',
-                iconClass: 'fas fa-house',
+                iconClass: 'fa-solid fa-house',
                 title: 'Residência',
                 description: 'Aumente o valor de mercado do seu imóvel, tornando-o mais atrativo.',
                 detail: createCategoryDetail(
@@ -261,7 +261,7 @@ export const benefitsData = [
         categories: [
             {
                 id: 'manutencao-residencia',
-                iconClass: 'fas fa-house',
+                iconClass: 'fa-solid fa-house',
                 title: 'Residência',
                 description: 'Sistemas requerem pouca manutenção, geralmente apenas limpezas periódicas.',
                 detail: createCategoryDetail(
@@ -336,7 +336,7 @@ export const benefitsData = [
         categories: [
             {
                 id: 'protecao-residencia',
-                iconClass: 'fas fa-house',
+                iconClass: 'fa-solid fa-house',
                 title: 'Residência',
                 description: 'Proteja seu orçamento familiar contra elevações nas tarifas.',
                 detail: createCategoryDetail(
@@ -411,7 +411,7 @@ export const benefitsData = [
         categories: [
             {
                 id: 'financiamento-residencia',
-                iconClass: 'fas fa-house',
+                iconClass: 'fa-solid fa-house',
                 title: 'Residência',
                 description: 'Aproveite diversas opções com condições facilitadas e taxas atrativas.',
                 detail: createCategoryDetail(

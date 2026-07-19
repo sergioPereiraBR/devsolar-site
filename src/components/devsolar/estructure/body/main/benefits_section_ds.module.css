@@ -44,6 +44,9 @@
     color: var(--primary);
     display: block;
     /* Garante margem */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .benefitTitle {
@@ -92,9 +95,13 @@
 }
 
 .categoryIcon {
-    font-size: 2rem;
+    font-size: 2.8rem;
     color: rgba(0, 77, 205, 1);
     /* Cor diferente para ícones internos */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
 }
 
 .categoryDescription {

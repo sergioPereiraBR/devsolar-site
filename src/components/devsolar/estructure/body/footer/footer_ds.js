@@ -1,5 +1,6 @@
 'use client';
 
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react'; // Importar useState para Newsletter
@@ -10,7 +11,6 @@ import {
     CONTACT_PHONE_DISPLAY,
     CONTACT_PHONE_RAW,
     CURRENT_YEAR,
-    DEVELOPER_NAME, DEVELOPER_URL,
     LOGO_URL,
     navLinksData,
     socialLinksData,
@@ -98,17 +98,17 @@ function FooterDS() {
                         <div className={styles.contactInfo}>
                             {/* Telefone Clicável */}
                             <div className={`${styles.contactItem} d-flex align-items-center mb-2`}>
-                                <i className={`fas fa-phone-alt ${styles.contactIcon}`}></i>
+                                <FaIcon iconClass="fas fa-phone-alt" className={styles.contactIcon} aria-label="Telefone DEV Solar" />
                                 <a href={`tel:${CONTACT_PHONE_RAW}`} aria-label="Ligar para DEV Solar"> {CONTACT_PHONE_DISPLAY}</a>
                             </div>
                             {/* Email Clicável */}
                             <div className={`${styles.contactItem} d-flex align-items-center mb-2`}>
-                                <i className={`fas fa-envelope ${styles.contactIcon}`}></i>
+                                <FaIcon iconClass="fas fa-envelope" className={styles.contactIcon} aria-label="Email DEV Solar" />
                                 <a href={`mailto:${CONTACT_EMAIL}`} aria-label="Enviar email para DEV Solar"> {CONTACT_EMAIL}</a>
                             </div>
                             {/* Endereço Consolidado */}
                             <div className={`${styles.contactItem} d-flex align-items-start mb-2`}>
-                                <i className={`fas fa-map-marker-alt ${styles.contactIcon} mt-1`}></i>
+                                <FaIcon iconClass="fas fa-location-dot" className={`${styles.contactIcon} mt-1`} aria-label="Localização DEV Solar" />
                                 <div>
                                     {ADDRESS_INFO.line1}<br />
                                     {ADDRESS_INFO.line2}<br />
@@ -151,7 +151,7 @@ function FooterDS() {
                                     className={styles.socialIconLinkFooter} // Classe específica do footer
                                     aria-label={`Visitar ${COMPANY_NAME} no ${social.name}`}
                                 >
-                                    <i className={social.iconClass}></i> {/* Renderiza FontAwesome */}
+                                    <FaIcon iconClass={social.iconClass} aria-label={social.accessibility} />
                                     <span className="sr-only">{social.accessibility}</span>
                                 </Link>
                             ))}
@@ -162,8 +162,10 @@ function FooterDS() {
                         <form className={styles.newsletterForm} onSubmit={handleNewsletterSubmit}>
                             <input
                                 type="email"
-                                placeholder="Seu melhor e-mail"
+                                id="newsletter-email"
+                                name="newsletter_email"
                                 aria-label="Email para newsletter"
+                                placeholder="Seu melhor e-mail"
                                 value={newsletterEmail}
                                 onChange={(e) => setNewsletterEmail(e.target.value)}
                                 required
@@ -173,7 +175,7 @@ function FooterDS() {
                                 {newsletterStatus === 'submitting' ? (
                                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 ) : (
-                                    <i className="fas fa-paper-plane"></i>
+                                    <FaIcon iconClass="fas fa-paper-plane" aria-label="Enviar" />
                                 )}
                             </button>
                         </form>
@@ -196,9 +198,9 @@ function FooterDS() {
                         {/* | <Link href="/politica-de-privacidade">Política de Privacidade</Link> |
                         <Link href="/termos-de-uso">Termos de Uso</Link> | rev 0.0.350 */}
                     </p>
-                    <p className={styles.developerCredit}>
+                    {/* <p className={styles.developerCredit}>
                         Powered by <a href={DEVELOPER_URL} target="_blank" rel="noopener noreferrer">{DEVELOPER_NAME}</a>
-                    </p>
+                    </p> */}
                 </div>
             </div>
 
@@ -212,7 +214,7 @@ function FooterDS() {
             >   <span className="sr-only">Entre em contato conosco via WhatsApp</span>
                 <Image
                     src={WHATSAPP_FLOAT_ICON_URL} // Ícone local SVG branco
-                    alt="WhatsApp Icon"
+                    alt="WhatsApp"
                     width={32} // Ajuste o tamanho do ícone dentro do botão
                     height={32}
                 />
