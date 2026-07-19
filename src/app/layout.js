@@ -1,3 +1,4 @@
+import Photovoltaic from '@/assets/photovoltaic.webp';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Inter } from 'next/font/google'; // Exemplo de fonte
 import './globals.css';
@@ -130,6 +131,8 @@ export default function RootLayout({ children }) {
                 <meta name="facebook-domain-verification" content="nk6hini7dghzylggt85l67u1es1xwv" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                {/* Preload: prioriza o carregamento da imagem fotovoltaica crítica (reduz Resource Load Delay) */}
+                <link rel="preload" as="image" href={Photovoltaic.src} />
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
                 {/* FontAwesome (se usar CDN) */}
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossOrigin="anonymous" referrerPolicy="no-referrer" />
