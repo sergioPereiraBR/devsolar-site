@@ -267,7 +267,7 @@ export default function RootLayout({ children }) {
                         )
                     }}
                 />
-                <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeshiwrAAAAAPVbR8FTS_4l-80ea1G_UyBhZuFk" />
+                {/* <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeshiwrAAAAAPVbR8FTS_4l-80ea1G_UyBhZuFk" /> */}
             </body>
         </html>
     );
