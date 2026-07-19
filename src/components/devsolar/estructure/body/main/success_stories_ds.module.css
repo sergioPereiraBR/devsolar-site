@@ -137,27 +137,34 @@
 }
 
 .badgeSecondary {
-    background-color: var(--secondary) !important;
-    color: var(--branco);
+    /* background-color: var(--secondary) !important;
+    color: var(--branco); */
+    background-color: #f8f9fa; /* Fundo cinza bem claro */
+    color: #212529;            /* FORÇA o texto a ser cinza escuro/quase preto */
+    font-weight: 600;
 }
 
 .detailsButton {
     /* Estilo do botão "Ver Detalhes" */
-    border-color: var(--primary) !important;
-    color: var(--primary) !important;
+    /* border-color: var(--primary) !important;
+    color: var(--primary) !important; */
     font-weight: 500;
     transition: all 0.3s ease;
     margin-top: 10px;
     /* Espaço acima do botão */
     align-self: flex-start;
     /* Alinha o botão à esquerda */
+    color: #0056b3 !important; 
+    border-color: #0056b3 !important;
 }
 
 .detailsButton:hover,
 .detailsButton:focus {
-    background-color: var(--primary) !important;
-    color: var(--branco) !important;
+    /* background-color: var(--primary) !important;
+    color: var(--branco) !important; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #0056b3 !important;
+    color: #ffffff !important;
 }
 
 

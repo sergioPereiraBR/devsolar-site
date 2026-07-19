@@ -199,7 +199,7 @@ function ContactSectionDS() {
                                     </div>
 
                                     {/* ***** COMPONENTE reCAPTCHA ***** */}
-                                    {/* <div className="mb-3">
+                                    <div className="mb-3">
                                         <label className="form-label d-block">Verificação*</label>
                                         <ReCAPTCHA
                                             ref={recaptchaRef}
@@ -208,18 +208,7 @@ function ContactSectionDS() {
                                             hl="pt-BR" // Define o idioma
                                         />
                                         {submitStatus === 'error_recaptcha' && <div className="text-danger small mt-1">Por favor, complete a verificação.</div>}
-                                    </div> */}
-                                    <fieldset className="mb-3 border-0 p-0 m-0">
-                                        <legend className="form-label d-block fs-6 m-0 pb-2">Verificação*</legend>
-                                        <ReCAPTCHA
-                                            ref={recaptchaRef}
-                                            sitekey={RECAPTCHA_SITE_KEY}
-                                            hl="pt-BR"
-                                        />
-                                        {submitStatus === 'error_recaptcha' && (
-                                            <div className="text-danger small mt-1">Por favor, complete a verificação.</div>
-                                        )}
-                                    </fieldset>
+                                    </div>
 
                                     {/* Mensagens de Feedback */}
                                     {submitStatus === 'success' && <div className="alert alert-success">Obrigado! Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.</div>}
