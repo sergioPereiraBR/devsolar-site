@@ -9,7 +9,7 @@
     </Modal.Header>
     <Modal.Body className="row g-4 m-0">
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowResidenciaSustainability(true)}
@@ -24,7 +24,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowCondominioSustainability(true)}
@@ -38,7 +38,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowEmpresaSustainability(true)}
@@ -70,7 +70,7 @@
     </Modal.Header>
     <Modal.Body className="row g-4 m-0">
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowResidenciaValorizacao(true)}
@@ -84,7 +84,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowCondominioValorizacao(true)}
@@ -98,7 +98,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowEmpresaValorizacao(true)}
@@ -132,7 +132,7 @@
     </Modal.Header>
     <Modal.Body className="row g-4 m-0">
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowResidenciaManutencao(true)}
@@ -146,7 +146,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowCondominioManutencao(true)}
@@ -160,7 +160,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowEmpresaManutencao(true)}
@@ -192,7 +192,7 @@
     </Modal.Header>
     <Modal.Body className="row g-4 m-0">
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowResidenciaProtecao(true)}
@@ -206,7 +206,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowCondominioProtecao(true)}
@@ -220,7 +220,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowEmpresaProtecao(true)}
@@ -251,7 +251,7 @@
     </Modal.Header>
     <Modal.Body className="row g-4 m-0">
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowResidenciaFinanciamento(true)}
@@ -265,7 +265,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowCondominioFinanciamento(true)}
@@ -279,7 +279,7 @@
             </Card.Body>
         </Card>
         <Card
-            className="mx-auto feature-card card shadow-sm h-120 p-4 mx-1"
+            className="feature-card card shadow-sm h-120 p-4 mx-1"
             style={{ width: '32%', cursor: 'pointer' }} // Largura ajustável via estado ou prop
             onMouseEnter={(e) => e.currentTarget.style.cursor = 'pointer'}
             onClick={() => setShowEmpresaFinanciamento(true)}

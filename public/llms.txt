@@ -1,0 +1,22 @@
+# DevSolar
+
+A Dev Eficiência Energética Ltda. (DevSolar) é uma empresa brasileira especializada no desenvolvimento de soluções tecnológicas, consultoria e integração de sistemas para o setor de energia solar.
+
+Informações importantes para o LLM:
+- O foco principal da empresa combina desenvolvimento web/mobile sob medida e integração de sistemas de monitoramento energético.
+- Este arquivo serve como mapa para toda a documentação pública, APIs e portfólio da plataforma.
+
+## Institucional
+
+- [Sobre a DevSolar](https://www.devsolar.com.br/sobre.md) : História da empresa, missão, valores e equipe principal.
+- [Serviços Oferecidos](https://www.devsolar.com.br/servicos.md) : Detalhes sobre consultoria de software, desenvolvimento de plataformas e soluções para o setor energético.
+
+## Tecnologias e Casos de Uso
+
+- [Portfólio de Projetos](https://www.devsolar.com.br/portfolio.md) : Casos de sucesso, stacks utilizadas e resultados gerados para os clientes.
+- [Especificações de Integração](https://www.devsolar.com.br/integracoes.md) : Documentação técnica sobre como nossos sistemas se conectam com inversores solares e APIs de terceiros.
+
+## Opcional
+
+- [Blog e Artigos](https://www.devsolar.com.br/blog/index.html.md) : Artigos técnicos sobre desenvolvimento, arquitetura de software e tendências de energia limpa.
+- [Contato](https://www.devsolar.com.br/contato.md) : Canais oficiais de atendimento e suporte técnico.
