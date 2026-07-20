@@ -204,7 +204,7 @@ function ContactSectionDS() {
                                     </div>
 
                                     {/* ***** COMPONENTE reCAPTCHA ***** */}
-                                    <label htmlFor="recaptcha" className="form-label d-block">Verificação*</label>
+                                    <div htmlFor="recaptcha" className="form-label d-block">Verificação*</div>
                                     <fieldset id="recaptcha" className={`${styles.recaptchaContainer} mb-3 border-0 p-0 m-0`}>
                                         <div className="mb-3">
                                             <ReCAPTCHA
