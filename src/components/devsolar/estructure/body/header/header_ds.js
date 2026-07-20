@@ -105,7 +105,7 @@ function HeaderDS() {
             setShowResultModal(true);
         } else {
             // Poderia mostrar um alerta de erro aqui
-            console.error("Erro no cálculo:", result.error);
+            //console.error("Erro no cálculo:", result.error);
             alert(`Erro ao calcular: ${result.error}. Verifique o valor inserido.`); // Feedback simples
         }
     };
@@ -165,6 +165,7 @@ function HeaderDS() {
                             fill // Ocupa o container pai
                             style={{ objectFit: 'cover' }} // Cobre a área
                             quality={75} // Qualidade da imagem
+                            priority
                             loading="eager" // LCP: carregar eager para melhorar LCP
                         />
                         <div className={styles.heroOverlay}></div> {/* Overlay opcional */}

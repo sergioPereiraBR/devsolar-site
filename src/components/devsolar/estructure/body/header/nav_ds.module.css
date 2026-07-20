@@ -1,6 +1,7 @@
 .navbarCustom {
     /* Estilos específicos ou overrides para a navbar */
     transition: height 0.3s ease;
+    color: #001f52;
     /* Transição suave se a altura mudar */
 }
 
@@ -9,14 +10,14 @@
 }
 
 .navLinkCustom {
-    font-weight: 350;
+    font-weight: 500;
     margin: 0 0.5rem;
     /* Espaçamento entre links */
     padding: 0.5rem 0.25rem !important;
     /* Ajuste padding padrão do Nav.Link */
     position: relative;
     transition: color 0.3s ease;
-    color: #001f52;
+    color: #001f52 !important;
     /* Cor padrão do link */
 }
 
@@ -36,8 +37,13 @@
 
 .navLinkCustom:hover,
 .navLinkCustom:focus {
-    color: var(--primary) !important;
+    color: #0b2f75 !important;
     /* Cor no hover */
+}
+
+.navLinkCustom:focus-visible {
+    outline: 2px solid #0b2f75;
+    outline-offset: 3px;
 }
 
 .navLinkCustom:hover::after,
@@ -50,6 +56,9 @@
 .loginButton {
     /* Estilos específicos para o botão de login */
     font-weight: 500;
+    color: #001f52 !important;
+    border: 1px solid #001f52 !important;
+    background-color: #ffffff !important;
     /* Ex: border-width: 2px; */
 }
 
@@ -57,7 +66,13 @@
     /* Estilos específicos para o botão de login */
     font-weight: 500;
     /* Ex: border-width: 2px; */
-    background-color: #001F52;
+    background-color: #001F52 !important;
+    color: #ffffff !important;
+}
+
+.loginButton:focus-visible {
+    outline: 2px solid #0b2f75;
+    outline-offset: 3px;
 }
 
 

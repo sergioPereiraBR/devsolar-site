@@ -9,7 +9,7 @@ export default function ProfileModal({ show, onHide }) {
 
     const handleUpdate = async () => {
         // Chame a API de atualização de perfil (implementada no backend)
-        console.log({ name, password });
+        //console.log({ name, password });
         onHide();
     };
 

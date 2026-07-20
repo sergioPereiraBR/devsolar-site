@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Button, Form, Modal, Card, Badge } from 'react-bootstrap';
+import { Badge, Button, Card, Form, Modal } from 'react-bootstrap';
 import { leads } from './leads_data.js';
 
 export default function LeadAccessModal({ show, onHide}) {
@@ -15,7 +15,7 @@ export default function LeadAccessModal({ show, onHide}) {
     //     { nome: "Cesar Antônio", telefone: "2198885346", consumo: "500 a 700", data: "11/01/2026", notas: "Mora em Magalhães Bastos." }
     // ];
 
-    console.log(leads);
+    //console.log(leads);
 
     const handleAuth = () => {
         // Defina sua senha de acesso aqui

@@ -70,7 +70,7 @@ function FooterDS() {
                 throw new Error(result.error || result.message || 'Erro desconhecido do serviço.');
             }
         } catch (error) {
-            console.error("Newsletter Submit Error:", error);
+            //console.error("Newsletter Submit Error:", error);
             setNewsletterStatus('error');
             setNewsletterMessage('Erro ao inscrever. Tente novamente.');
             setTimeout(() => setNewsletterStatus(null), 5000); // Limpa msg após 5s

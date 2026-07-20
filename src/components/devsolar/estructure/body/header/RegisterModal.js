@@ -10,7 +10,7 @@ export default function RegisterModal({ show, onHide }) {
 
     const handleRegister = async () => {
         // Chame a API de registro (implementada no backend)
-        console.log({ name, email, password });
+        //console.log({ name, email, password });
         onHide();
     };
 
