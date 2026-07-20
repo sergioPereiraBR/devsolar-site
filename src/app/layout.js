@@ -1,6 +1,11 @@
 import Photovoltaic from '@/assets/photovoltaic.webp';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import { Inter } from 'next/font/google'; // Exemplo de fonte
 import './globals.css';
+
+// Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.
+config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'] });
 const isEnabled = true;
