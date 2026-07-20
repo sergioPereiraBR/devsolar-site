@@ -1,13 +1,10 @@
 'use client';
 
 // Necessário pelos hooks
-import dynamic from 'next/dynamic';
-import LogoSm from '@/assets/logo_sm.webp';
-
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import global do Bootstrap CSS
-
 import { useCallback, useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import LogoSm from '@/assets/logo_sm.webp';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';

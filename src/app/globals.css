@@ -85,11 +85,12 @@ h4,
 h5,
 h6 {
 	margin: 0;
-	font-family: inherit; /* Herda a fonte do elemento pai em vez de forçar uma fonte específica */
-	font-size: inherit; /* Herda o tamanho da fonte do elemento pai em vez de forçar um tamanho específico */
-    font-weight: inherit; /* Herda o peso do elemento pai em vez de forçar o bold do navegador */
-	color: var(--footer-color);
-	/* Garante que títulos usem a cor mais escura */
+	font-family: inherit;
+}
+
+h2 {
+	font-size: 2rem;
+	line-height: 1.2;
 }
 
 /* Opcional: Definir cores padrão para elementos comuns */
