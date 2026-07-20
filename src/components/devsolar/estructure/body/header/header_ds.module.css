@@ -221,7 +221,8 @@
 .resultLabel {
     display: block;
     font-size: 0.85rem;
-    color: #6c757d;
+    /* color: #6c757d; */
+    color: #495057;
     /* Cinza */
     margin-bottom: 5px;
     text-transform: uppercase;

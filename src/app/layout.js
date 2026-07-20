@@ -153,11 +153,8 @@ export default function RootLayout({ children }) {
                 <link rel="alternate" hrefLang="pt-br" href="https://www.devsolar.com.br/" />
                 <link rel="alternate" hrefLang="x-default" href="https://www.devsolar.com.br/" />
                 <meta name="facebook-domain-verification" content="nk6hini7dghzylggt85l67u1es1xwv" />
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 {/* Preload: prioriza o carregamento da imagem fotovoltaica crítica (reduz Resource Load Delay) */}
                 <link rel="preload" as="image" href={Photovoltaic.src} />
-                <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" font-display="swap" />
             </head>
             <body className={inter.className} cz-shortcut-listen={isEnabled.toString()}>
                 {children}

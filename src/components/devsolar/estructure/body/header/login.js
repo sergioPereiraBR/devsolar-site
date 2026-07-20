@@ -1,7 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { Button, Form, Modal, Card, Badge } from 'react-bootstrap';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
 export default function LoginPage({ show, onHide}) {
 	const [mode, setMode] = useState('auth'); // Modos: auth (senha) ou view (atendimento)
@@ -32,7 +31,7 @@ export default function LoginPage({ show, onHide}) {
 
   const handleConfirmLogin = () => {
     // Iniciar o fluxo de login com o provedor sugerido
-    console.log(`Logando com ${suggestedProvider}...`);
+    //console.log(`Logando com ${suggestedProvider}...`);
     // Chamar a função de login apropriada para o provedor (Google, Facebook, etc.)
   };
 

@@ -83,19 +83,19 @@ function ContactSectionDS() {
             return;
         }
 
-        console.log("event: ", e); // Debug
+        //console.log("event: ", e); // Debug
 
         // 1. Obter token do reCAPTCHA
         const recaptchaToken = recaptchaRef.current?.getValue(); // Usa optional chaining
 
-        console.log("recaptchaToken: ", recaptchaToken); // Debug
+        //console.log("recaptchaToken: ", recaptchaToken); // Debug
 
         // 2. Validar token
         if (!recaptchaToken) {
             setSubmitStatus('error_recaptcha');
             setIsSubmitting(false);
             recaptchaRef.current?.reset(); // Reseta para o usuário tentar de novo
-            console.error("reCAPTCHA não preenchido.");
+            //console.error("reCAPTCHA não preenchido.");
             return;
         }
 
@@ -127,7 +127,7 @@ function ContactSectionDS() {
             // O campo 'honeypot' NÃO deve ser enviado no JSON
         };
 
-        console.log("Enviando payload:", payload); // Debug 
+        //console.log("Enviando payload:", payload); // Debug 
 
         // 4. Enviar via Fetch
         try {
@@ -140,18 +140,18 @@ function ContactSectionDS() {
                     'Accept': 'application/json'
                 }
             });
-            console.log("response status:", response.status); // Debug status
-            console.log("response ok:", response.ok); // Debug ok flag
+            //console.log("response status:", response.status); // Debug status
+            //console.log("response ok:", response.ok); // Debug ok flag
 
             // Tenta ler o JSON mesmo se não for ok, para pegar a msg de erro
             const result = await response.json();
-            console.log("result:", result);
+            //console.log("result:", result);
 
             // --- CORREÇÃO AQUI: Verificar response.ok ou result específico ---
             if (response.ok && result.success !== false) { // Verifica se a requisição foi OK (status 2xx) E se o JSON não indica falha explicitamente
                 // OU, se StaticForms SEMPRE retorna 'message' no sucesso:
                 // if (response.ok && result.message === 'Form submitted successfully') {
-                console.log("StaticForms Success:", result);
+                //console.log("StaticForms Success:", result);
                 setSubmitStatus('success'); // <<< Define SUCESSO
                 // Limpar formulário após sucesso
                 setFormData({ firstName: "", lastName: "", phone: "", email: "", message: "" });
@@ -163,13 +163,13 @@ function ContactSectionDS() {
 
             } else {
                 // Erro HTTP ou erro reportado pelo StaticForms
-                console.error("StaticForms Error Response:", result.error || result.message || 'Erro desconhecido');
+                //console.error("StaticForms Error Response:", result.error || result.message || 'Erro desconhecido');
                 setSubmitStatus('error'); // <<< Define ERRO
                 recaptchaRef.current?.reset();
             }
         } catch (error) {
             // Erro na requisição fetch (rede, CORS local, etc.)
-            console.error("Submit Fetch Error:", error);
+            //console.error("Submit Fetch Error:", error);
             setSubmitStatus('error'); // <<< Define ERRO
             // Não precisa resetar o recaptcha aqui necessariamente, pois a submissão falhou antes da validação dele
             // recaptchaRef.current?.reset();

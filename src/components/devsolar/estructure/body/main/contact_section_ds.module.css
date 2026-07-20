@@ -130,6 +130,11 @@
     background-color: var(--light);
 }
 
+.formCard.shadow-sm label, 
+.formCard.shadow-sm p {
+    color: #212529 !important; /* Um tom quase preto garante contraste total no fundo branco */
+}
+
 .formTitle {
     color: var(--footer-color);
 }

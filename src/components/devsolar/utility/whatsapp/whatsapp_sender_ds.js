@@ -67,12 +67,12 @@ function WhatsAppSender({ show, onHide, phoneNumber, baseMessage, userMessage })
         // Só processa quando 'show' é true e não está processando
         if (show && !isProcessing && userMessage && deviceType !== 'Unknown') {
             setIsProcessing(true); // Marca como processando
-            console.log("Device Type: ", deviceType);
+            //console.log("Device Type: ", deviceType);
 
             const messages = prepareMessages(baseMessage, userMessage);
 
             if (!messages) {
-                console.warn("Pergunta do usuário está vazia após sanitização.");
+                //console.warn("Pergunta do usuário está vazia após sanitização.");
                 onHide(); // Fecha se a pergunta for inválida
                 setIsProcessing(false);
                 return;
@@ -96,25 +96,25 @@ function WhatsAppSender({ show, onHide, phoneNumber, baseMessage, userMessage })
             } else if (deviceType === 'Desktop') {
                 // --- LÓGICA DESKTOP COM PREFERÊNCIA ---
                 const savedPreference = localStorage.getItem(WHATSAPP_PREFERENCE_KEY);
-                console.log("Preferência salva:", savedPreference);
+                //console.log("Preferência salva:", savedPreference);
 
                 if (savedPreference === 'app') {
-                    console.log("Desktop: Usando preferência salva 'app'.");
+                    //console.log("Desktop: Usando preferência salva 'app'.");
                     window.location.href = urls.app; // Tenta abrir app
                     setTimeout(onHide, 300); // Delay para dar tempo
                 } else if (savedPreference === 'web') {
-                    console.log("Desktop: Usando preferência salva 'web'.");
+                    //console.log("Desktop: Usando preferência salva 'web'.");
                     window.open(urls.web, '_blank', 'noopener,noreferrer'); // Abre web
                     onHide();
                 } else {
                     // Nenhuma preferência salva, mostra o modal
-                    console.log("Desktop: Nenhuma preferência salva. Exibindo modal.");
+                    //console.log("Desktop: Nenhuma preferência salva. Exibindo modal.");
                     setShowChoiceModal(true);
                     // onHide será chamado após a escolha do usuário
                 }
             } else {
                 // Caso desconhecido ou TV/Console - talvez fallback para web?
-                console.log(`Tipo de dispositivo ${deviceType} não tratado ou desconhecido, usando fallback web.`);
+                //console.log(`Tipo de dispositivo ${deviceType} não tratado ou desconhecido, usando fallback web.`);
                 window.open(urls.web, '_blank', 'noopener,noreferrer');
                 onHide();
             }
@@ -138,19 +138,19 @@ function WhatsAppSender({ show, onHide, phoneNumber, baseMessage, userMessage })
             const preferenceToSave = useApp ? 'app' : 'web';
             try {
                 localStorage.setItem(WHATSAPP_PREFERENCE_KEY, preferenceToSave);
-                console.log("Preferência salva:", preferenceToSave);
+                //console.log("Preferência salva:", preferenceToSave);
             } catch (error) {
-                console.error("Erro ao salvar preferência no localStorage:", error);
+                //console.error("Erro ao salvar preferência no localStorage:", error);
                 // Informar usuário? Ou apenas falhar silenciosamente?
             }
         }
 
         // Abre o link escolhido
         if (useApp) {
-            console.log("Usuário escolheu App (Desktop). Tentando URL:", preparedUrls.app);
+            //console.log("Usuário escolheu App (Desktop). Tentando URL:", preparedUrls.app);
             window.location.href = preparedUrls.app; // Tenta protocolo
         } else {
-            console.log("Usuário escolheu Navegador (Desktop). Abrindo URL:", preparedUrls.web);
+            //console.log("Usuário escolheu Navegador (Desktop). Abrindo URL:", preparedUrls.web);
             window.open(preparedUrls.web, '_blank', 'noopener,noreferrer'); // Abre wa.me
         }
         onHide(); // Chama onHide após a escolha e tentativa
@@ -229,7 +229,7 @@ export default WhatsAppSender;
 /*
 
         if (deviceType == 'Mobile' || deviceType == 'Tablet' || deviceType == 'TV') {
-            console.log("Mobile: Tentando abrir app:", urls.app);
+            //console.log("Mobile: Tentando abrir app:", urls.app);
             window.open(`${urls.pho}`, '_blank', 'noopener,noreferrer');
             onHide(); // Fecha e indica que a ação foi tentada
             // Resetar estado interno? Não precisa aqui, será resetado quando show=false
@@ -237,7 +237,7 @@ export default WhatsAppSender;
 
         if (deviceType == 'Desktop') {
             // Desktop: Mostra o modal de escolha
-            console.log("Desktop: Exibindo modal de escolha.");
+            //console.log("Desktop: Exibindo modal de escolha.");
             setShowChoiceModal(true);
             // Não chama onHide ainda, espera a escolha do usuário
         }

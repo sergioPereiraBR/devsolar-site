@@ -27,17 +27,17 @@ export default function AuthModal({ show, onHide }) {
             alert('As senhas não coincidem');
             return;
         }
-        console.log('Dados de cadastro:', formData);
+        //console.log('Dados de cadastro:', formData);
         onHide();
     };
 
     const handleForgotPassword = async () => {
-        console.log('Recuperar senha para:', formData.email);
+        //console.log('Recuperar senha para:', formData.email);
         onHide();
     };
 
     const handleUpdateProfile = async () => {
-        console.log('Atualizar perfil:', formData);
+        //console.log('Atualizar perfil:', formData);
         onHide();
     };
 

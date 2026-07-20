@@ -8,7 +8,7 @@ export default function ForgotPasswordModal({ show, onHide }) {
 
     const handleForgotPassword = async () => {
         // Chame a API de recuperação de senha (implementada no backend)
-        console.log({ email });
+        //console.log({ email });
         onHide();
     };
 

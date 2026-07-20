@@ -105,7 +105,7 @@ function HeaderDS() {
             setShowResultModal(true);
         } else {
             // Poderia mostrar um alerta de erro aqui
-            console.error("Erro no cálculo:", result.error);
+            //console.error("Erro no cálculo:", result.error);
             alert(`Erro ao calcular: ${result.error}. Verifique o valor inserido.`); // Feedback simples
         }
     };
