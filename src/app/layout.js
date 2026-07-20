@@ -70,7 +70,6 @@ export const metadata = {
     },
     // --- Outros Metadados Globais ---
     charset: 'UTF-8', // Definido automaticamente pelo Next.js, mas pode ser explícito
-    manifest: './manifest.json', // Caminho para o manifest (na pasta public)
     icons: { // Convenção Next.js para favicons e ícones
         icon: './images/favicon.ico', // Ou /icon.png
         shortcut: './images/favicon.png', // Favicon legado (opcional)
@@ -158,6 +157,18 @@ export default function RootLayout({ children }) {
             </head>
             <body className={inter.className} cz-shortcut-listen={isEnabled.toString()}>
                 {children}
+                                <Script id="defer-manifest" strategy="lazyOnload">
+                                        {`(function() {
+    if (document.head.querySelector('link[rel="manifest"]')) {
+        return;
+    }
+    var manifestLink = document.createElement('link');
+    manifestLink.rel = 'manifest';
+    manifestLink.href = '/manifest.json';
+    manifestLink.crossOrigin = 'use-credentials';
+    document.head.appendChild(manifestLink);
+})();`}
+                                </Script>
                 {/* Exemplo de Script de Terceiros (ex: Google Analytics) */}
                 {/* Usar next/script é crucial */}
                 {/* <Script
