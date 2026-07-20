@@ -58,6 +58,11 @@
     opacity: 0.8;
 }
 
+.benefitIconContainer {
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-block;
+}
 
 .partnerGrid {
     display: grid;
@@ -72,11 +77,6 @@
 
 /* Ajustes finos para responsividade (opcional) */
 @media (max-width: 768px) {
-    .partnerGrid {
-        /* Em telas médias, pode forçar 2 colunas se preferir */
-        /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
-    }
-
     .sectionTitle {
         font-size: 1.8rem;
         /* Reduz um pouco o título principal */
