@@ -210,7 +210,7 @@ function ContactSectionDS() {
                                             <ReCAPTCHA
                                                 ref={recaptchaRef}
                                                 sitekey={RECAPTCHA_SITE_KEY}
-                                                // onChange={(token) => console.log("Captcha token:", token)} // Opcional: para debug ou lógica extra
+                                                onChange={(token) => console.log("Captcha token:", token)} // Opcional: para debug ou lógica extra
                                                 hl="pt-BR" // Define o idioma
                                             />
                                             {submitStatus === 'error_recaptcha' && <div className="text-danger small mt-1">Por favor, complete a verificação.</div>}

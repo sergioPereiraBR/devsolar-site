@@ -44,14 +44,23 @@
 .navLinkCustom:focus::after {
     width: 100%;
     /* Expande a linha no hover */
+    
 }
-
 
 .loginButton {
     /* Estilos específicos para o botão de login */
     font-weight: 500;
     /* Ex: border-width: 2px; */
 }
+
+.loginButton:hover {
+    /* Estilos específicos para o botão de login */
+    font-weight: 500;
+    /* Ex: border-width: 2px; */
+    background-color: #001F52;
+}
+
+
 
 .align-items-center .navLinkCustom {
     font-weight: 900 !important;
