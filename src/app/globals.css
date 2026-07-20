@@ -63,11 +63,19 @@ html {
 
 body {
 	/* Estilos base do body */
-	@apply font-sans text-base text-gray-700 bg-white dark:text-gray-300 dark:bg-gray-900;
-	/* Exemplo usando @apply ou classes Tailwind */
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	/* Pode manter ou usar fontes do Tailwind */
+	font-size: 1rem;
+	color: rgb(55, 65, 81);
+	background-color: white;
 	overflow-x: hidden;
+	/* Pode manter ou usar fontes do Tailwind */
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		color: rgb(209, 213, 219);
+		background-color: rgb(17, 24, 39);
+	}
 }
 
 h1,
