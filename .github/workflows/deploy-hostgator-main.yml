@@ -16,13 +16,13 @@ jobs:
     steps:
       # 1. Checkout: Baixa o código do seu repositório
       - name: Checkout code
-        uses: actions/checkout@v4 # Use a versão mais recente
+        uses: actions/checkout@v5 # Use a versão mais recente
 
       # 2. Setup Node.js: Configura o ambiente Node.js necessário para o build
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "22" # Use a versão do Node compatível com seu projeto (ex: 18, 20)
+          node-version: "24" # Use a versão do Node compatível com seu projeto (ex: 18, 20)
           cache: "npm" # Ou 'yarn' - Habilita cache de dependências para acelerar builds futuros
 
       # 3. Install Dependencies: Instala os pacotes do projeto
