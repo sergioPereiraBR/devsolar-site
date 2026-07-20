@@ -158,6 +158,11 @@
     opacity: 0.65;
 }
 
+/* Reserva espaço para o widget e evita deslocar o botão ao carregar reCAPTCHA */
+.recaptchaContainer {
+    min-height: 78px;
+}
+
 /* Responsividade */
 @media (max-width: 991px) {
     .socialLinksContainer {

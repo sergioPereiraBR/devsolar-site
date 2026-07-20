@@ -2,6 +2,7 @@
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import Link from "next/link";
+import Script from 'next/script';
 import { useRef, useState } from 'react'; // Adicionado useRef
 import ReCAPTCHA from "react-google-recaptcha"; // Importar reCAPTCHA
 import { contactInfoData, socialLinksData } from './contact_data_ds';
@@ -145,6 +146,10 @@ function ContactSectionDS() {
 
     return (
         <section id="contato" className={`${styles.contactSection}`} aria-labelledby="contact-heading">
+            <Script
+                src="https://www.google.com/recaptcha/api.js"
+                strategy="lazyOnload"
+            />
             <div className="container">
                 <div className="row">
                     {/* Coluna de Informações (inalterada) */}
@@ -199,7 +204,7 @@ function ContactSectionDS() {
                                     </div>
 
                                     {/* ***** COMPONENTE reCAPTCHA ***** */}
-                                    <fieldset className="mb-3 border-0 p-0 m-0" style={{ minHeight: '78px' }}>
+                                    <fieldset className={`${styles.recaptchaContainer} mb-3 border-0 p-0 m-0`}>
                                         <div className="mb-3">
                                             <label className="form-label d-block">Verificação*</label>
                                             <ReCAPTCHA
