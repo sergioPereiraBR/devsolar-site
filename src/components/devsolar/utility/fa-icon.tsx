@@ -177,6 +177,10 @@ const iconMap: Record<string, IconDefinition> = {
   'fab fa-linkedin-in': faLinkedinIn,
   'fa fa-linkedin-in': faLinkedinIn,
   'fab fa-whatsapp': faWhatsapp,
+  'fa fab-whatsapp': faWhatsapp,
+  'fas fa-whatsapp': faWhatsapp, // Caso o banco envie o prefixo de solid por engano
+  'fa-brands fa-whatsapp': faWhatsapp,
+  whatsapp: faWhatsapp,
   'fa fa-google': faGoogle,
   'fa fa-twitter': faTwitter,
   'fab fa-twitter': faTwitter,

@@ -15,7 +15,7 @@ export const ADDRESS_INFO = {
 };
 export const CURRENT_YEAR = new Date().getFullYear();
 export const LOGO_URL = LogoDevBranco.src; // Logo para o rodapé
-export const WHATSAPP_FLOAT_ICON_URL = "/images/whatsapp.svg" //"https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"; //'/icons/whatsapp-white.svg'; // Ícone branco para botão flutuante
+export const WHATSAPP_FLOAT_ICON_URL = "/images/WhatsApp.svg" //"https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"; //'/icons/whatsapp-white.svg'; // Ícone branco para botão flutuante
 export const DEVELOPER_NAME = "Pereira Dev";
 export const DEVELOPER_URL = "https://www.linkedin.com/in/sergiopereira-br/"; // https://github.com/sergioPereiraBR
 
