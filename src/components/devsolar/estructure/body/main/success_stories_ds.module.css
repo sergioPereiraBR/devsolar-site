@@ -143,7 +143,7 @@
 .badgeSecondary {
     /* background-color: var(--secondary) !important;
     color: var(--branco); */
-    background-color: #f8f9fa; /* Fundo cinza bem claro */
+    background-color: #20CB5C; /*#f8f9fa;  Fundo cinza bem claro */
     color: #212529;            /* FORÇA o texto a ser cinza escuro/quase preto */
     font-weight: 600;
 }

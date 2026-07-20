@@ -1,13 +1,10 @@
 'use client';
 
 // Necessário pelos hooks
-import dynamic from 'next/dynamic';
-import LogoSm from '@/assets/logo_sm.webp';
-
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import global do Bootstrap CSS
-
 import { useCallback, useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import LogoSm from '@/assets/logo_sm.webp';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
@@ -25,6 +22,34 @@ function NavDS() {
   const [modalShow, setModalShow] = useState(false);
   const [expanded, setExpanded] = useState(false); // Estado do menu hamburger
   const navbarRef = useRef(null); // Ref para a Navbar
+
+  const smoothScrollTo = useCallback((targetY) => {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+
+    if (Math.abs(distance) < 2) {
+      return;
+    }
+
+    const duration = Math.min(900, Math.max(350, Math.abs(distance) * 0.35));
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo(0, Math.round(startY + distance * eased));
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }, []);
 
   // --- Lógica para Scroll Padding Dinâmico ---
   const updateScrollPadding = useCallback(() => {
@@ -77,7 +102,7 @@ function NavDS() {
         targetElement.getBoundingClientRect().top +
         window.scrollY -
         (navbarHeight + 20);
-      window.scrollTo({ top, behavior: 'smooth' });
+      smoothScrollTo(top);
     }
 
     setExpanded(false); // Fecha o menu mobile ao clicar em um link
@@ -86,7 +111,7 @@ function NavDS() {
   const handleBrandClick = (e) => {
     e.preventDefault(); // Previne a navegação padrão para '#'
     setExpanded(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll suave para o topo via JS
+    smoothScrollTo(0); // Scroll suave para o topo
   };
 
   const handleShowLoginModal = () => {

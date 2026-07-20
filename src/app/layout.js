@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { Inter } from 'next/font/google'; // Exemplo de fonte
 import Script from 'next/script';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './globals.css';
 
 // Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.

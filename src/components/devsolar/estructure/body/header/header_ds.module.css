@@ -69,6 +69,10 @@
     /* Opcional: ajusta a cor do texto para contraste */
 }
 
+.textContainer h1 {
+    color: var(--branco);
+}
+
 .btnContainer {
     padding: 0;
     position: relative;

@@ -1,13 +1,10 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Photovoltaic from '@/assets/photovoltaic.webp';
 import { calcularEconomiaSolar } from '@/utils/solarCalculations';
-
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import global
-
-import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { Button, Col, Modal, Row, Spinner } from 'react-bootstrap'; // Adicionar Button, Spinner
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';

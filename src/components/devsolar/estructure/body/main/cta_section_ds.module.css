@@ -25,6 +25,7 @@
 }
 
 .headline {
+    font-size: clamp(2rem, 3vw, 2.75rem);
     font-weight: 700;
     /* Equivalente a fw-bold */
     margin-bottom: 0.5rem;
