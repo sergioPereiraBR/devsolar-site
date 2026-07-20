@@ -198,9 +198,9 @@ function FooterDS() {
                         {/* | <Link href="/politica-de-privacidade">Política de Privacidade</Link> |
                         <Link href="/termos-de-uso">Termos de Uso</Link> | rev 0.0.350 */}
                     </p>
-                    {/* <p className={styles.developerCredit}>
+                    <p className={styles.developerCredit}>
                         Powered by <a href={DEVELOPER_URL} target="_blank" rel="noopener noreferrer">{DEVELOPER_NAME}</a>
-                    </p> */}
+                    </p>
                 </div>
             </div>
 
