@@ -3,7 +3,7 @@
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import Link from "next/link";
 import Script from 'next/script';
-import { useRef, useState } from 'react'; // Adicionado useRef
+import { useEffect, useRef, useState } from 'react'; // Adicionado useRef
 import ReCAPTCHA from "react-google-recaptcha"; // Importar reCAPTCHA
 import { contactInfoData, socialLinksData } from './contact_data_ds';
 import styles from './contact_section_ds.module.css';
@@ -38,6 +38,33 @@ function ContactSectionDS() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', 'error_recaptcha'
     const recaptchaRef = useRef(null); // Ref para o componente reCAPTCHA
+    const sectionRef = useRef(null);
+    const [shouldLoadRecaptcha, setShouldLoadRecaptcha] = useState(false);
+
+    const ensureRecaptchaLoaded = () => {
+        setShouldLoadRecaptcha(true);
+    };
+
+    useEffect(() => {
+        if (shouldLoadRecaptcha || !sectionRef.current || typeof IntersectionObserver === 'undefined') {
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const isVisible = entries.some((entry) => entry.isIntersecting);
+                if (isVisible) {
+                    setShouldLoadRecaptcha(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: '300px 0px' }
+        );
+
+        observer.observe(sectionRef.current);
+
+        return () => observer.disconnect();
+    }, [shouldLoadRecaptcha]);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -48,6 +75,13 @@ function ContactSectionDS() {
         e.preventDefault(); // Previne envio nativo
         setIsSubmitting(true);
         setSubmitStatus(null);
+
+        if (!shouldLoadRecaptcha) {
+            setShouldLoadRecaptcha(true);
+            setSubmitStatus('error_recaptcha');
+            setIsSubmitting(false);
+            return;
+        }
 
         console.log("event: ", e); // Debug
 
@@ -145,11 +179,22 @@ function ContactSectionDS() {
     };
 
     return (
-        <section id="contato" className={`${styles.contactSection}`} aria-labelledby="contact-heading">
-            <Script
-                src="https://www.google.com/recaptcha/api.js"
-                strategy="lazyOnload"
-            />
+        <section
+            ref={sectionRef}
+            id="contato"
+            className={`${styles.contactSection}`}
+            aria-labelledby="contact-heading"
+            onMouseEnter={ensureRecaptchaLoaded}
+            onTouchStart={ensureRecaptchaLoaded}
+        >
+            {shouldLoadRecaptcha && (
+                <Script
+                    src="https://www.google.com/recaptcha/api.js"
+                    strategy="lazyOnload"
+                    async
+                    defer
+                />
+            )}
             <div className="container">
                 <div className="row">
                     {/* Coluna de Informações (inalterada) */}
@@ -180,7 +225,7 @@ function ContactSectionDS() {
                             <div className="card-body p-4">
                                 <h3 className={`${styles.formTitle} fw-bold mb-4`}>Envie sua Mensagem</h3>
                                 {/* ***** FORMULÁRIO AGORA USA onSubmit ***** */}
-                                <form id="contactForm" onSubmit={handleSubmitReact}>
+                                <form id="contactForm" onSubmit={handleSubmitReact} onFocusCapture={ensureRecaptchaLoaded}>
                                     {/* Campos do Formulário */}
                                     <div className="mb-3">
                                         <label htmlFor="firstName" className="form-label">Nome</label>
@@ -207,12 +252,16 @@ function ContactSectionDS() {
                                     <div htmlFor="recaptcha" className="form-label d-block">Verificação*</div>
                                     <fieldset id="recaptcha" className={`${styles.recaptchaContainer} mb-3 border-0 p-0 m-0`}>
                                         <div className="mb-3">
-                                            <ReCAPTCHA
-                                                ref={recaptchaRef}
-                                                sitekey={RECAPTCHA_SITE_KEY}
-                                                onChange={(token) => console.log("Captcha token:", token)} // Opcional: para debug ou lógica extra
-                                                hl="pt-BR" // Define o idioma
-                                            />
+                                            {shouldLoadRecaptcha ? (
+                                                <ReCAPTCHA
+                                                    ref={recaptchaRef}
+                                                    sitekey={RECAPTCHA_SITE_KEY}
+                                                    onChange={(token) => console.log("Captcha token:", token)} // Opcional: para debug ou lógica extra
+                                                    hl="pt-BR" // Define o idioma
+                                                />
+                                            ) : (
+                                                <p className="small text-secondary mb-0">A verificação será carregada quando você começar a preencher o formulário.</p>
+                                            )}
                                             {submitStatus === 'error_recaptcha' && <div className="text-danger small mt-1">Por favor, complete a verificação.</div>}
                                         </div>
                                     </fieldset>
