@@ -10,7 +10,7 @@ import LeadAccessModal from './LeadAccessModal';
 import styles from './nav_ds.module.css'; // Importar CSS Module
 import { navLinksData } from './nav_links_ds'; // Importar dados dos links
 
-const LOGO_URL = LogoSm.src; // String de caminho para o logo
+const LOGO_URL = LogoSm.src;
 
 function NavDS() {
     const [modalShow, setModalShow] = useState(false);
