@@ -11,6 +11,8 @@ import {
     CONTACT_PHONE_DISPLAY,
     CONTACT_PHONE_RAW,
     CURRENT_YEAR,
+    DEVELOPER_NAME,
+    DEVELOPER_URL,
     LOGO_URL,
     navLinksData,
     socialLinksData,
