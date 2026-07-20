@@ -206,12 +206,13 @@ function ContactSectionDS() {
                                     {/* ***** COMPONENTE reCAPTCHA ***** */}
                                     <fieldset className={`${styles.recaptchaContainer} mb-3 border-0 p-0 m-0`}>
                                         <div className="mb-3">
-                                            <label className="form-label d-block">Verificação*</label>
+                                            <label htmlFor="recaptcha" className="form-label d-block">Verificação*</label>
                                             <ReCAPTCHA
                                                 ref={recaptchaRef}
                                                 sitekey={RECAPTCHA_SITE_KEY}
                                                 onChange={(token) => console.log("Captcha token:", token)} // Opcional: para debug ou lógica extra
                                                 hl="pt-BR" // Define o idioma
+                                                id="recaptcha"
                                             />
                                             {submitStatus === 'error_recaptcha' && <div className="text-danger small mt-1">Por favor, complete a verificação.</div>}
                                         </div>
