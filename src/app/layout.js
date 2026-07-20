@@ -1,4 +1,3 @@
-import Photovoltaic from '@/assets/photovoltaic.webp';
 import { config } from '@fortawesome/fontawesome-svg-core';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -139,12 +138,7 @@ export default function RootLayout({ children }) {
           name="keywords"
           content="energia solar rio de janeiro, energia solar rj, energia solar vila valqueire, painel solar rj, placa solar rio de janeiro, economia de energia rj, instalador solar rj, dev solar, dev solar eficiencia energetica, energia solar residencial rj, energia solar comercial rj, financiamento energia solar rj, reduzir conta de luz rj"
         ></meta>
-        <meta
-          name="description"
-          content="DEV Solar - Especialistas em soluções de energia solar no Rio de Janeiro. Instalação, manutenção e financiamento de sistemas fotovoltaicos."
-        ></meta>
         <meta name="publisher" content="DEV Eficiência Energética Ltda."></meta>
-        <link rel="canonical" href="https://www.devsolar.com.br/" />
         <Script id="force-passive-touch-listeners" strategy="beforeInteractive">
           {`(function() {
     var originalAddEventListener = EventTarget.prototype.addEventListener;
@@ -180,8 +174,6 @@ export default function RootLayout({ children }) {
           name="facebook-domain-verification"
           content="nk6hini7dghzylggt85l67u1es1xwv"
         />
-        {/* Preload: prioriza o carregamento da imagem fotovoltaica crítica (reduz Resource Load Delay) */}
-        <link rel="preload" as="image" href={Photovoltaic.src} />
       </head>
       <body
         className={inter.className}
@@ -295,7 +287,7 @@ export default function RootLayout({ children }) {
                       name: 'Preciso de baterias para armazenar energia?',
                       acceptedAnswer: {
                         '@type': 'Answer',
-                        text: "Preciso de baterias para armazenar energia?', answer: 'Não necessariamente. A maioria dos sistemas utiliza o modelo On-Grid, que funciona conectado à rede pública. Durante o dia, os painéis geram energia para consumo imediato e o excedente é enviado para a distribuidora, transformando-se em créditos. À noite ou em dias chuvosos, você consome a energia da rede e abate desses créditos acumulados. O uso de baterias é restrito aos modelos Off-Grid ou Híbridos, indicados apenas para situações específicas. São elas: locais isolados sem acesso à rede, proteção contra apagões, armazenamento estratégico para horários de tarifa alta e atendimento a sistemas críticos.",
+                        text: 'Não necessariamente. A maioria dos sistemas utiliza o modelo On-Grid, que funciona conectado à rede pública. Durante o dia, os painéis geram energia para consumo imediato e o excedente é enviado para a distribuidora, transformando-se em créditos. À noite ou em dias chuvosos, você consome a energia da rede e abate desses créditos acumulados. O uso de baterias é restrito aos modelos Off-Grid ou Híbridos, indicados apenas para situações específicas. São elas: locais isolados sem acesso à rede, proteção contra apagões, armazenamento estratégico para horários de tarifa alta e atendimento a sistemas críticos.',
                       },
                     },
                     {

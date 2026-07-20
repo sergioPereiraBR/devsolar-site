@@ -2,13 +2,13 @@ import FooterDS from '../components/devsolar/estructure/body/footer/footer_ds';
 import HeaderDS from '../components/devsolar/estructure/body/header/header_ds';
 import NavDS from '../components/devsolar/estructure/body/header/nav_ds';
 import BenefitsSectionDS from '../components/devsolar/estructure/body/main/benefits_section_ds';
+import ContactSectionDS from '../components/devsolar/estructure/body/main/contact_section_ds';
 import CTASectionDS from '../components/devsolar/estructure/body/main/cta_section_ds';
-import DeferredContactSectionDS from '../components/devsolar/estructure/body/main/deferred_contact_section_client';
-import DeferredFaqSectionDS from '../components/devsolar/estructure/body/main/deferred_faq_section_client';
-import DeferredLocationSectionDS from '../components/devsolar/estructure/body/main/deferred_location_section_client';
-import DeferredPartnersSectionDS from '../components/devsolar/estructure/body/main/deferred_partners_section_client';
-import DeferredSuccessStoriesDS from '../components/devsolar/estructure/body/main/deferred_success_stories_client';
+import FAQSectionDS from '../components/devsolar/estructure/body/main/faq_section_ds';
+import LocationSectionDS from '../components/devsolar/estructure/body/main/location_ds';
 import CalculatorSectionDS from '../components/devsolar/estructure/body/main/modalities_section_ds';
+import ParceirosFinanceirasSectionDS from '../components/devsolar/estructure/body/main/parceiros_financeiras_ds';
+import SuccessStoriesDS from '../components/devsolar/estructure/body/main/success_stories_ds';
 
 // Metadados ESPECÍFICOS para esta página (sobrescrevem ou complementam o layout.js)
 export const metadata = {
@@ -77,19 +77,19 @@ export default function HomePage() {
           <CalculatorSectionDS />
 
           {/* Success Stories */}
-          <DeferredSuccessStoriesDS />
+          <SuccessStoriesDS />
 
           {/* FAQ Section */}
-          <DeferredFaqSectionDS />
+          <FAQSectionDS />
 
           {/* About Section 
                     <section id="sobre"></section>*/}
 
           {/* Location Section */}
-          <DeferredLocationSectionDS />
+          <LocationSectionDS />
 
           {/* Partners Section */}
-          <DeferredPartnersSectionDS />
+          <ParceirosFinanceirasSectionDS />
 
           {/* Terms Section
                     <section id="termos-de-uso"></section>
@@ -102,7 +102,7 @@ export default function HomePage() {
           <CTASectionDS />
 
           {/* Contact Section */}
-          <DeferredContactSectionDS />
+          <ContactSectionDS />
         </article>
       </main>
 

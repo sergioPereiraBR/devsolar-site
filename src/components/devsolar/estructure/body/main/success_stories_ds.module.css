@@ -38,6 +38,10 @@
     /* Necessário para posicionar setas customizadas se precisar */
 }
 
+.carouselPlaceholder {
+    min-height: 520px;
+}
+
 .mySwiper {
     padding-bottom: 45px !important;
     /* Espaço para a paginação (pontos) */
