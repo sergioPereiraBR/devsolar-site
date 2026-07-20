@@ -260,7 +260,7 @@ function ContactSectionDS() {
                                                     hl="pt-BR" // Define o idioma
                                                 />
                                             ) : (
-                                                <p className="small text-secondary mb-0">A verificação será carregada quando você começar a preencher o formulário.</p>
+                                                <p className={`${styles.recaptchaHint} small mb-0`}>A verificação será carregada quando você começar a preencher o formulário.</p>
                                             )}
                                             {submitStatus === 'error_recaptcha' && <div className="text-danger small mt-1">Por favor, complete a verificação.</div>}
                                         </div>

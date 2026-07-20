@@ -165,6 +165,7 @@ function HeaderDS() {
                             fill // Ocupa o container pai
                             style={{ objectFit: 'cover' }} // Cobre a área
                             quality={75} // Qualidade da imagem
+                            priority
                             loading="eager" // LCP: carregar eager para melhorar LCP
                         />
                         <div className={styles.heroOverlay}></div> {/* Overlay opcional */}

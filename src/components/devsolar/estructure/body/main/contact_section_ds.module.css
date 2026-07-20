@@ -168,6 +168,10 @@
     min-height: 78px;
 }
 
+.recaptchaHint {
+    color: #5f6368;
+}
+
 /* Responsividade */
 @media (max-width: 991px) {
     .socialLinksContainer {
