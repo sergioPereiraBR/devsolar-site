@@ -2,6 +2,7 @@ import Photovoltaic from '@/assets/photovoltaic.webp';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { Inter } from 'next/font/google'; // Exemplo de fonte
+import Script from 'next/script';
 import './globals.css';
 
 // Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.
@@ -128,6 +129,24 @@ export default function RootLayout({ children }) {
                 <meta name="description" content="DEV Solar - Especialistas em soluções de energia solar no Rio de Janeiro. Instalação, manutenção e financiamento de sistemas fotovoltaicos."></meta>
                 <meta name="publisher" content="DEV Eficiência Energética Ltda."></meta>
                 <link rel="canonical" href="https://www.devsolar.com.br/" />
+                                <Script id="force-passive-touch-listeners" strategy="beforeInteractive">
+                                        {`(function() {
+    var originalAddEventListener = EventTarget.prototype.addEventListener;
+    EventTarget.prototype.addEventListener = function(type, listener, options) {
+        if (type === 'touchstart' || type === 'touchmove') {
+            var typeofOptions = typeof options;
+            if (typeofOptions === 'undefined') {
+                options = { passive: true, capture: false };
+            } else if (typeofOptions === 'boolean') {
+                options = { passive: true, capture: options };
+            } else if (options && typeofOptions === 'object') {
+                options = Object.assign({}, options, { passive: true });
+            }
+        }
+        originalAddEventListener.call(this, type, listener, options);
+    };
+})();`}
+                                </Script>
                 {/* Tags que DEVEM estar no <head> e não são cobertas pela Metadata API */}
                 {/* Ex: Fontes externas carregadas diretamente, scripts inline críticos (raro) */}
                 <link rel="alternate" hrefLang="pt-br" href="https://www.devsolar.com.br/" />
