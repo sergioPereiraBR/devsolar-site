@@ -134,13 +134,14 @@ export default function RootLayout({ children }) {
     var originalAddEventListener = EventTarget.prototype.addEventListener;
     EventTarget.prototype.addEventListener = function(type, listener, options) {
         if (type === 'touchstart' || type === 'touchmove') {
-            var typeofOptions = typeof options;
-            if (typeofOptions === 'undefined') {
+            if (options == null) {
                 options = { passive: true, capture: false };
-            } else if (typeofOptions === 'boolean') {
+            } else if (typeof options === 'boolean') {
                 options = { passive: true, capture: options };
-            } else if (options && typeofOptions === 'object') {
+            } else if (typeof options === 'object') {
                 options = Object.assign({}, options, { passive: true });
+            } else {
+                options = { passive: true, capture: false };
             }
         }
         originalAddEventListener.call(this, type, listener, options);
