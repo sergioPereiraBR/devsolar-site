@@ -48,10 +48,24 @@ function NavDS() {
 
     // --- Handlers ---
     const handleNavLinkClick = (e) => {
-        // Prevenção não é mais necessária se usarmos CSS para smooth scroll
-        // e.preventDefault();
+        const href = e.currentTarget?.getAttribute('href') || '';
+        if (!href.includes('#')) {
+            setExpanded(false);
+            return;
+        }
+
+        e.preventDefault();
+        const hash = href.slice(href.indexOf('#'));
+        const targetId = hash.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            const navbarHeight = navbarRef.current?.offsetHeight || 70;
+            const top = targetElement.getBoundingClientRect().top + window.scrollY - (navbarHeight + 20);
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+
         setExpanded(false); // Fecha o menu mobile ao clicar em um link
-        // O scroll suave agora é tratado pelo CSS (`scroll-behavior: smooth`)
     };
 
     const handleBrandClick = (e) => {
