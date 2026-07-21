@@ -179,7 +179,7 @@ function HeaderDS() {
               src={HERO_IMAGE_URL}
               fill // Ocupa o container pai
               style={{ objectFit: 'cover' }} // Cobre a área
-              quality={75} // Qualidade da imagem
+              quality={70} // Qualidade da imagem
               fetchPriority="high"
               priority
               loading="eager" // LCP: carregar eager para melhorar LCP
