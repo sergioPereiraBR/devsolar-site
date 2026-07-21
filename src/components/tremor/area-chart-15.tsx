@@ -2,10 +2,17 @@
 
 // import '@/styles/tremor-tailwind.css';
 import React from 'react'; // Import React se não estiver
+import {
+  Area,
+  CartesianGrid,
+  AreaChart as RechartsAreaChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 import { cx } from '@/lib/utils'; // Supondo que esta é a importação correta
-
-import { AreaChart } from '@/components/tremor/AreaChart'; // Supondo que esta é a importação correta
 
 interface Dado {
   ['Ano']: number;
@@ -71,6 +78,32 @@ const percentFormatter = (number: number): string => {
 // return formatter.format(number);
 
 const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
+  const chartContainerRef = React.useRef<HTMLDivElement | null>(null);
+  const [isChartContainerReady, setIsChartContainerReady] =
+    React.useState(false);
+
+  React.useEffect(() => {
+    const element = chartContainerRef.current;
+    if (!element) return;
+
+    const updateSize = () => {
+      const rect = element.getBoundingClientRect();
+      setIsChartContainerReady(rect.width > 0 && rect.height > 0);
+    };
+
+    updateSize();
+
+    if (typeof ResizeObserver === 'undefined') {
+      const timeoutId = window.setTimeout(updateSize, 0);
+      return () => window.clearTimeout(timeoutId);
+    }
+
+    const observer = new ResizeObserver(() => updateSize());
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   // Adiciona uma verificação inicial para dataProject null ou com erro
   if (!dataProject) {
     // Você pode retornar null ou uma mensagem indicando que não há dados
@@ -84,6 +117,15 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
 
   // Usa os dados passados diretamente
   const dataLocal: Project = dataProject;
+
+  const chartData: Dado[] = (dataLocal.dataResume ?? []).map((item) => ({
+    Ano: Number(item.Ano),
+    Economia: Number(item.Economia),
+    Custo: Number(item.Custo),
+    Payback: Number(item.Payback),
+  }));
+
+  // console.log('Dados do gráfico:', chartData); // Log para depuração
 
   const getMaxValue = () => {
     // Usa data (dados completos) para calcular o máximo
@@ -171,20 +213,47 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
           ))}
         </ul>
 
-        {/* Gráfico AreaChart */}
-        <AreaChart
-          data={dataProject.dataResume} // Usa os dados resumidos
-          index={'Ano'} // Eixo X
-          categories={['Economia']}
-          minValue={0} // Define mínimo do eixo Y
-          maxValue={getMaxValue()} // Define máximo do eixo Y (opcional, auto geralmente funciona)
-          colors={['primary']} // Cores Tremor (ajuste) - use primary/secondary se definido no tema
-          showLegend={false}
-          yAxisWidth={80} // Ajuste a largura do eixo Y se necessário
-          valueFormatter={currencyFormatter} // Formata valores do eixo Y e tooltips
-          fill={'solid'} // Estilo de preenchimento do gradiente
-          className={'mt-8 h-80'} // Margem acima e altura fixa - REMOVIDO 'hidden' e 'sm:block'
-        />
+        {/* Gráfico de Economia */}
+        <div
+          ref={chartContainerRef}
+          className="mt-8 h-80 min-h-[20rem] w-full min-w-0"
+        >
+          {isChartContainerReady ? (
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
+              minWidth={280}
+              minHeight={320}
+            >
+              <RechartsAreaChart
+                data={chartData}
+                margin={{ top: 12, right: 12, left: 8, bottom: 12 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="Ano" tick={{ fontSize: 12 }} />
+                <YAxis
+                  width={80}
+                  domain={[0, getMaxValue()]}
+                  tickFormatter={(value) => currencyFormatter(value)}
+                  tick={{ fontSize: 12 }}
+                />
+                <Tooltip
+                  formatter={(value: number) => currencyFormatter(value)}
+                  labelFormatter={(label) => `Ano ${label}`}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="Economia"
+                  stroke="#ff9e00"
+                  fill="#ff9e00"
+                  fillOpacity={0.2}
+                  strokeWidth={2}
+                  isAnimationActive={false}
+                />
+              </RechartsAreaChart>
+            </ResponsiveContainer>
+          ) : null}
+        </div>
       </div>
     </>
   );
