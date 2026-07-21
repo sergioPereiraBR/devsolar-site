@@ -78,6 +78,32 @@ const percentFormatter = (number: number): string => {
 // return formatter.format(number);
 
 const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
+  const chartContainerRef = React.useRef<HTMLDivElement | null>(null);
+  const [isChartContainerReady, setIsChartContainerReady] =
+    React.useState(false);
+
+  React.useEffect(() => {
+    const element = chartContainerRef.current;
+    if (!element) return;
+
+    const updateSize = () => {
+      const rect = element.getBoundingClientRect();
+      setIsChartContainerReady(rect.width > 0 && rect.height > 0);
+    };
+
+    updateSize();
+
+    if (typeof ResizeObserver === 'undefined') {
+      const timeoutId = window.setTimeout(updateSize, 0);
+      return () => window.clearTimeout(timeoutId);
+    }
+
+    const observer = new ResizeObserver(() => updateSize());
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   // Adiciona uma verificação inicial para dataProject null ou com erro
   if (!dataProject) {
     // Você pode retornar null ou uma mensagem indicando que não há dados
@@ -188,35 +214,45 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
         </ul>
 
         {/* Gráfico de Economia */}
-        <div className="mt-8 h-80 w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <RechartsAreaChart
-              data={chartData}
-              margin={{ top: 12, right: 12, left: 8, bottom: 12 }}
+        <div
+          ref={chartContainerRef}
+          className="mt-8 h-80 min-h-[20rem] w-full min-w-0"
+        >
+          {isChartContainerReady ? (
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
+              minWidth={280}
+              minHeight={320}
             >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="Ano" tick={{ fontSize: 12 }} />
-              <YAxis
-                width={80}
-                domain={[0, getMaxValue()]}
-                tickFormatter={(value) => currencyFormatter(value)}
-                tick={{ fontSize: 12 }}
-              />
-              <Tooltip
-                formatter={(value: number) => currencyFormatter(value)}
-                labelFormatter={(label) => `Ano ${label}`}
-              />
-              <Area
-                type="monotone"
-                dataKey="Economia"
-                stroke="#ff9e00"
-                fill="#ff9e00"
-                fillOpacity={0.2}
-                strokeWidth={2}
-                isAnimationActive={false}
-              />
-            </RechartsAreaChart>
-          </ResponsiveContainer>
+              <RechartsAreaChart
+                data={chartData}
+                margin={{ top: 12, right: 12, left: 8, bottom: 12 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="Ano" tick={{ fontSize: 12 }} />
+                <YAxis
+                  width={80}
+                  domain={[0, getMaxValue()]}
+                  tickFormatter={(value) => currencyFormatter(value)}
+                  tick={{ fontSize: 12 }}
+                />
+                <Tooltip
+                  formatter={(value: number) => currencyFormatter(value)}
+                  labelFormatter={(label) => `Ano ${label}`}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="Economia"
+                  stroke="#ff9e00"
+                  fill="#ff9e00"
+                  fillOpacity={0.2}
+                  strokeWidth={2}
+                  isAnimationActive={false}
+                />
+              </RechartsAreaChart>
+            </ResponsiveContainer>
+          ) : null}
         </div>
       </div>
     </>
