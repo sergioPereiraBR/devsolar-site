@@ -116,9 +116,11 @@ import {
   faInfoCircle,
   faLeaf,
   faLocationDot,
+  faMinus,
   faPaperPlane,
   faPhone, // Atualizado de faPhoneAlt (v6+)
   faPiggyBank,
+  faPlus,
   faShieldHalved, // Atualizado de faShieldAlt (v6+)
   faStore, // Atualizado de faStoreAlt (v6+)
   faTools,
@@ -155,6 +157,10 @@ const iconMap: Record<string, IconDefinition> = {
   'fa-solid fa-leaf': faLeaf,
   'fas fa-paper-plane': faPaperPlane,
   'fa-solid fa-paper-plane': faPaperPlane,
+  'fas fa-plus': faPlus,
+  'fa-solid fa-plus': faPlus,
+  'fas fa-minus': faMinus,
+  'fa-solid fa-minus': faMinus,
   'fas fa-phone-alt': faPhone,
   'fa-solid fa-phone': faPhone,
   'fas fa-piggy-bank': faPiggyBank,

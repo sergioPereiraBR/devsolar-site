@@ -10,6 +10,8 @@ import PersonaB from '@/assets/persona-2.webp';
 import PersonaC from '@/assets/persona-3.webp';
 import PersonaD from '@/assets/persona-4.webp';
 import PersonaE from '@/assets/persona-5.webp';
+import { faAnglesDown, faComments } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Accordion from 'react-bootstrap/Accordion';
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
@@ -172,7 +174,16 @@ function FAQSectionDS() {
                         >
                           <h3>{item.question}</h3>
                         </div>
-                        <span className={styles.toggleIcon}></span>
+                        <span className={styles.toggleIcon} aria-hidden="true">
+                          <FontAwesomeIcon
+                            icon={faAnglesDown}
+                            className={styles.toggleIconClosed}
+                          />
+                          <FontAwesomeIcon
+                            icon={faComments}
+                            className={styles.toggleIconOpen}
+                          />
+                        </span>
                       </div>
                     </Accordion.Header>
                     {/* Corpo customizado (simula a resposta da empresa) */}
