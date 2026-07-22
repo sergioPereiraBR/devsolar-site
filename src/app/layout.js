@@ -27,10 +27,10 @@ export const metadata = {
     'Transforme o Sol em Economia Real com a DEV Solar. Sistemas fotovoltaicos para residências, condomínios e empresas com até 95% de redução na conta de luz.', // Descrição padrão/base
   metadataBase: new URL('https://www.devsolar.com.br'), // URL Base para metadados relativos
   alternates: {
-    canonical: './', // Canonical padrão (será sobrescrito nas páginas)
+    canonical: 'https://www.devsolar.com.br/', // Canonical padrão (será sobrescrito nas páginas)
   },
-  other: {
-    appId: '706537912532593', // Use a string numérica que você copiou
+  facebook: {
+    appId: '706537912532593',
   },
   openGraph: {
     title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título OG padrão
@@ -38,8 +38,6 @@ export const metadata = {
       'Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar.', // Descrição OG padrão
     url: 'https://www.devsolar.com.br/', // URL OG padrão (será sobrescrita)
     siteName: 'DEV Solar',
-    'article:publisher':
-      'https://www.facebook.com/profile.php?id=61562778810789',
     images: [
       // Imagem OG padrão (pode ser sobrescrita)
       {
@@ -52,9 +50,6 @@ export const metadata = {
     ],
     locale: 'pt_BR',
     type: 'website',
-    'og:determiner': 'a', // Opcional
-    'og:action': 'Calcule sua Economia', // Define uma ação customizada (namespace:action)
-    'og:action:url': 'https://www.devsolar.com.br/', // URL da ação
   },
   twitter: {
     // Twitter Card padrão (pode ser sobrescrito)
@@ -143,41 +138,6 @@ export default function RootLayout({ children }) {
           content="energia solar rio de janeiro, energia solar rj, energia solar vila valqueire, painel solar rj, placa solar rio de janeiro, economia de energia rj, instalador solar rj, dev solar, dev solar eficiencia energetica, energia solar residencial rj, energia solar comercial rj, financiamento energia solar rj, reduzir conta de luz rj"
         ></meta>
         <meta name="publisher" content="DEV Eficiência Energética Ltda."></meta>
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.devsolar.com.br/" />
-        <meta
-          property="og:title"
-          content="DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro"
-        />
-        <meta
-          property="og:description"
-          content="Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar."
-        />
-        <meta
-          property="og:image"
-          content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
-        />
-        <meta
-          property="og:image:secure_url"
-          content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
-        />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://www.devsolar.com.br/" />
-        <meta
-          name="twitter:title"
-          content="DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro"
-        />
-        <meta
-          name="twitter:description"
-          content="Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
-        />
         <Script id="force-passive-touch-listeners" strategy="beforeInteractive">
           {`(function() {
     var originalAddEventListener = EventTarget.prototype.addEventListener;
