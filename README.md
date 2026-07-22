@@ -48,3 +48,8 @@ from the creators of Next.js.
 Check out our
 [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more
 details.
+
+## Documentacao Interna
+
+- [Manual de alteracao da ordem de foco TAB e manutencao dos testes](./MANUAL_FOCO_TAB_E_TESTES.md)
+- [MANUAL_FAQ_ICONE_SETA_BAIXO.md](./MANUAL_FAQ_ICONE_SETA_BAIXO.md)
