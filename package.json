@@ -5,7 +5,10 @@
     "start": "next start",
     "markdown": "node ./utils/generate-markdown.js ./src/content/components/",
     "build": "next build",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:focus": "playwright test tests/e2e/focus-order.spec.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -83,6 +86,7 @@
     "sucrase": "^3.35.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/react": "^16.3.0",

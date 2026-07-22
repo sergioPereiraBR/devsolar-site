@@ -4,12 +4,12 @@
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import LogoDevSolar from '@/assets/logo-devsolar-icon.webp';
-import PersonaA from '@/assets/persona-1.webp';
-import PersonaB from '@/assets/persona-2.webp';
-import PersonaC from '@/assets/persona-3.webp';
-import PersonaD from '@/assets/persona-4.webp';
-import PersonaE from '@/assets/persona-5.webp';
+import PersonaA from '@/assets/Camila_Albuquerque-Proprietária_Residencial.webp';
+import PersonaE from '@/assets/Eng_Ricardo_Alves-Gerente_de_Operações.webp';
+import LogoDevSolar from '@/assets/Especialista-DEV-Solar.webp';
+import PersonaD from '@/assets/Fernando_Souza-Produtor_Rural.webp';
+import PersonaC from '@/assets/Mariana_Freitas-Síndica_Profissional.webp';
+import PersonaB from '@/assets/Roberto_Mendes-Diretor_Comercial.webp';
 import { faAnglesDown, faComments } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Accordion from 'react-bootstrap/Accordion';
