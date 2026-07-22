@@ -16,20 +16,17 @@ export const metadata = {
   description:
     'Instalação de painéis solares para residências, condomínios e empresas no RJ. Reduza sua conta de luz em até 95%. Orçamento gratuito!', // Descrição específica
   alternates: {
-    canonical: '/', // Canonical para a homepage
+    canonical: 'https://www.devsolar.com.br/', // Canonical para a homepage
   },
-  other: {
-    appId: '706537912532593', // Use a string numérica que você copiou
+  facebook: {
+    appId: '706537912532593',
   },
   openGraph: {
     title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título OG específico
     description:
       'Economia garantida e sustentabilidade com energia solar. Peça seu orçamento.', // Descrição OG específica
-    url: '/', // URL OG específica
+    url: 'https://www.devsolar.com.br/', // URL OG específica
     siteName: 'DEV Solar',
-    'article:publisher':
-      'https://www.facebook.com/profile.php?id=61562778810789',
-    //fb:app_id: '61562778810789',
     images: [
       // Pode usar uma imagem OG específica para a home
       {
@@ -42,16 +39,15 @@ export const metadata = {
     ],
     locale: 'pt_BR',
     type: 'website',
-    'og:determiner': 'a', // Opcional
-    'og:action': 'Calcule sua Economia', // Define uma ação customizada (namespace:action)
-    'og:action:url': 'https://www.devsolar.com.br/', // URL da ação
   },
   twitter: {
     // Pode sobrescrever twitter tags também se necessário
     title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro',
     description:
       'Economia garantida e sustentabilidade com energia solar. Peça seu orçamento.',
-    images: ['https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png'],
+    images: [
+      'https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png',
+    ],
   },
 };
 
