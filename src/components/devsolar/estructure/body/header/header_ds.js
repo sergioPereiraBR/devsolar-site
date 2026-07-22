@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Logo from '@/assets/logo_sm.webp'; // Importa a imagem do logo pequeno
 import Photovoltaic from '@/assets/photovoltaic.webp';
 import { calcularEconomiaSolar } from '@/utils/solarCalculations';
 import { Button, Col, Modal, Row, Spinner } from 'react-bootstrap'; // Adicionar Button, Spinner
@@ -262,7 +263,17 @@ function HeaderDS() {
         {' '}
         {/* Tamanho maior para o gráfico */}
         <Modal.Header closeButton className={styles.modalHeader}>
-          <Modal.Title>Resultado da Simulação</Modal.Title>
+          <Modal.Title className="w-100">
+            <div className="position-relative d-flex align-items-center w-100">
+              <Image src={Logo} alt="Logo DEV Solar" width={140} height={38} />
+              <span
+                className="position-absolute start-50 translate-middle-x text-center"
+                style={{ fontSize: '2rem', fontWeight: '500' }}
+              >
+                Resultado da Simulação
+              </span>
+            </div>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className={styles.modalBodyResult}>
           {calculando ? ( // Mostra spinner se estiver recalculando por algum motivo (pouco provável aqui)

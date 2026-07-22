@@ -26,7 +26,6 @@ export const metadata = {
     description:
       'Economia garantida e sustentabilidade com energia solar. Peça seu orçamento.', // Descrição OG específica
     url: '/', // URL OG específica
-    type: 'website',
     siteName: 'DEV Solar',
     'article:publisher':
       'https://www.facebook.com/profile.php?id=61562778810789',
@@ -34,7 +33,8 @@ export const metadata = {
     images: [
       // Pode usar uma imagem OG específica para a home
       {
-        url: './assets/og-image-calculator-cta.webp', // Caminho relativo à pasta PUBLIC
+        url: 'https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png', // Caminho absoluto da imagem OG
+        type: 'image/png',
         width: 1200,
         height: 630,
         alt: 'A DEV Solar atua nas modalidades de produção de energia própria, compartilhada e para negócios',
@@ -51,7 +51,7 @@ export const metadata = {
     title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro',
     description:
       'Economia garantida e sustentabilidade com energia solar. Peça seu orçamento.',
-    images: ['./images/og-image-calculator-cta.png'],
+    images: ['https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png'],
   },
 };
 
