@@ -33,20 +33,21 @@ export const metadata = {
     appId: '706537912532593', // Use a string numérica que você copiou
   },
   openGraph: {
-    title: 'Calcule Agora Sua Economia: O Sol Paga Sua Conta! | DEV Solar', // Título OG padrão
+    title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título OG padrão
     description:
-      'Veja em segundos o potencial de economia na sua conta de luz com nosso simulador solar rápido, fácil e gratuito. Clique e descubra!', // Descrição OG padrão
-    url: './', // URL OG padrão (será sobrescrita)
+      'Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar.', // Descrição OG padrão
+    url: 'https://www.devsolar.com.br/', // URL OG padrão (será sobrescrita)
     siteName: 'DEV Solar',
     'article:publisher':
       'https://www.facebook.com/profile.php?id=61562778810789',
     images: [
       // Imagem OG padrão (pode ser sobrescrita)
       {
-        url: './images/og-image-calculator-cta.png', // Caminho relativo à pasta PUBLIC (URL absoluta será gerada) og-image-devsolar.png
+        url: 'https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png', // Caminho da imagem OG
+        type: 'image/png',
         width: 1200,
         height: 630,
-        alt: 'Simulador de Economia de Energia com a DEV Solar',
+        alt: 'DEV Solar - Energia Solar Fotovoltaica',
       },
     ],
     locale: 'pt_BR',
@@ -58,13 +59,15 @@ export const metadata = {
   twitter: {
     // Twitter Card padrão (pode ser sobrescrito)
     card: 'summary_large_image',
-    title: 'Calcule Agora Sua Economia: O Sol Paga Sua Conta! | DEV Solar',
+    title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro',
     description:
-      'Simulador rápido, fácil e gratuito: veja quanto você pode economizar com painéis solares. Clique e descubra!',
+      'Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar.',
     // siteId: 'YourTwitterSiteID', // Opcional
     // creator: '@devsolar', // Seu handle do Twitter
     // creatorId: 'YourTwitterCreatorID', // Opcional
-    images: ['./images/og-image-calculator-cta.png'], // Caminho relativo à pasta PUBLIC twitter-image-devsolar.png
+    images: [
+      'https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png',
+    ], // Caminho da imagem Twitter
   },
   robots: {
     // Configuração padrão de robôs
@@ -140,6 +143,41 @@ export default function RootLayout({ children }) {
           content="energia solar rio de janeiro, energia solar rj, energia solar vila valqueire, painel solar rj, placa solar rio de janeiro, economia de energia rj, instalador solar rj, dev solar, dev solar eficiencia energetica, energia solar residencial rj, energia solar comercial rj, financiamento energia solar rj, reduzir conta de luz rj"
         ></meta>
         <meta name="publisher" content="DEV Eficiência Energética Ltda."></meta>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.devsolar.com.br/" />
+        <meta
+          property="og:title"
+          content="DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro"
+        />
+        <meta
+          property="og:description"
+          content="Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar."
+        />
+        <meta
+          property="og:image"
+          content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
+        />
+        <meta
+          property="og:image:secure_url"
+          content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
+        />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.devsolar.com.br/" />
+        <meta
+          name="twitter:title"
+          content="DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro"
+        />
+        <meta
+          name="twitter:description"
+          content="Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
+        />
         <Script id="force-passive-touch-listeners" strategy="beforeInteractive">
           {`(function() {
     var originalAddEventListener = EventTarget.prototype.addEventListener;
