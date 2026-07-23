@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Container } from 'react-bootstrap'; // Import Button
 
+import { seoStories } from './success_stories_data';
 import styles from './success_stories_ds.module.css'; // Usaremos CSS Modules
 
 const SuccessStoriesCarousel = dynamic(
@@ -14,6 +15,20 @@ const SuccessStoriesCarousel = dynamic(
 export default function SuccessStoriesDS() {
   const sectionRef = useRef(null);
   const [shouldRenderCarousel, setShouldRenderCarousel] = useState(false);
+  const reviewSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'DEV Solar',
+    review: seoStories.map((story) => ({
+      '@type': 'Review',
+      name: `Case de Sucesso: ${story.title}`,
+      reviewBody: `${story.resume} ${story.description}`,
+      author: {
+        '@type': 'Person',
+        name: `Cliente ${story.title}`,
+      },
+    })),
+  };
 
   useEffect(() => {
     if (
@@ -58,11 +73,42 @@ export default function SuccessStoriesDS() {
             </p>
           </div>
 
+          <div
+            className={styles.seoOnlyContent}
+            aria-label="Depoimentos de clientes para indexacao"
+          >
+            {seoStories.map((story) => (
+              <article
+                key={`seo-story-${story.id}`}
+                className={styles.seoProofCard}
+              >
+                <h3 className={styles.seoProofTitle}>{story.title}</h3>
+                <p className={styles.seoProofResume}>{story.resume}</p>
+                <p className={styles.seoProofDescription}>
+                  {story.description}
+                </p>
+                <div className={styles.seoProofMeta}>
+                  <span className={`badge ${styles.badgePrimary}`}>
+                    {story.type}
+                  </span>
+                  <span className={`badge ${styles.badgeSecondary}`}>
+                    {story.impact}
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+
           {shouldRenderCarousel ? (
             <SuccessStoriesCarousel />
           ) : (
             <div className={styles.carouselPlaceholder} aria-hidden="true" />
           )}
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+          />
         </Container>
       </section>
     </>

@@ -13,6 +13,7 @@ config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'] });
 const isEnabled = true;
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID; // Substitua pelo seu ID do GA4
 
 // --- Metadados Base ---
 // Estes serão aplicados a todas as páginas, mas podem ser sobrescritos
@@ -323,6 +324,41 @@ export default function RootLayout({ children }) {
           }}
         />
         {/* <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeshiwrAAAAAPVbR8FTS_4l-80ea1G_UyBhZuFk" /> */}
+        {/* Google tag (gtag.js) */}
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        ></Script>
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}');
+          `}
+        </Script>
+        {/* <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-E75XCKFW2J');
+        </script> */}
+        {/* Carrega o script do Google Analytics de forma assíncrona */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          strategy="afterInteractive"
+        />
+
+        {/* Inicializa a tag gtag com seu ID */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}');
+          `}
+        </Script>
       </body>
     </html>
   );

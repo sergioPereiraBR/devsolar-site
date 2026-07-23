@@ -133,7 +133,7 @@ test.describe('Keyboard focus order', () => {
         (meta) => /#parceiros/.test(meta.href),
         (meta) => /#contato/.test(meta.href),
         (meta) => meta.tag === 'button' && /acessar [aá]rea do cliente/i.test(meta.aria),
-        (meta) => meta.tag === 'button' && /Calcular Economia/i.test(meta.text),
+        (meta) => meta.tag === 'input' && meta.id === 'valor-consumo',
         (meta) => meta.tag === 'button' && /Falar com um Especialista/i.test(meta.text),
       ];
 
@@ -143,20 +143,21 @@ test.describe('Keyboard focus order', () => {
       }
     });
 
-    test('calculation modal opens with initial focus and closes with Escape', async ({ page }) => {
+    test('inline calculator accepts value and opens results modal', async ({ page }) => {
       await page.goto('/');
+
+      const input = page.locator('#valor-consumo');
+      await input.fill('45000');
+
+      await expect(input).toHaveValue('450,00');
 
       await page.getByRole('button', { name: 'Calcular Economia' }).click();
 
-      const input = page.locator('#valor-consumo');
-      await expect(input).toBeFocused();
+      await expect(page.locator('.modal.show')).toHaveCount(1);
+      await expect(page.getByText('Resultado da Simulação')).toBeVisible();
 
       await page.keyboard.press('Escape');
       await expect(page.locator('.modal.show')).toHaveCount(0);
-
-      await expect(
-        page.locator('#home').getByRole('button', { name: 'Calcular Economia' }),
-      ).toBeVisible();
     });
 
     test('TAB flow covers FAQ, contact form and footer sequence', async ({ page }) => {
@@ -238,7 +239,7 @@ test.describe('Keyboard focus order', () => {
           (meta) => /#parceiros/.test(meta.href),
           (meta) => /#contato/.test(meta.href),
           (meta) => meta.tag === 'button' && /acessar [aá]rea do cliente/i.test(meta.aria),
-          (meta) => meta.tag === 'button' && /Calcular Economia/i.test(meta.text),
+          (meta) => meta.tag === 'input' && meta.id === 'valor-consumo',
           (meta) => meta.tag === 'button' && /Falar com um Especialista/i.test(meta.text),
         ],
         'Unexpected desktop TAB order',
@@ -260,8 +261,8 @@ test.describe('Keyboard focus order', () => {
 
       const collapsedNext = await pressTabAndReadActive(page);
       expect(
-        collapsedNext.tag === 'button' && /Calcular Economia/i.test(collapsedNext.text),
-        'Collapsed mobile menu should skip hidden nav links and move to hero CTA',
+        collapsedNext.tag === 'input' && collapsedNext.id === 'valor-consumo',
+        'Collapsed mobile menu should skip hidden nav links and move to hero input',
       ).toBe(true);
 
       await page.keyboard.press('Shift+Tab');
@@ -298,6 +299,7 @@ test.describe('Keyboard focus order', () => {
           (meta) => /#parceiros/.test(meta.href),
           (meta) => /#contato/.test(meta.href),
           (meta) => meta.tag === 'button' && /acessar [aá]rea do cliente/i.test(meta.aria),
+          (meta) => meta.tag === 'input' && meta.id === 'valor-consumo',
         ],
         'Unexpected mobile TAB order with expanded menu',
       );

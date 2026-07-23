@@ -88,6 +88,32 @@ function ContactSectionDS() {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  const handleRequiredInvalid = (e) => {
+    // console.log(
+    //   `Campo inválido: ${e.target.id}, valor atual: "${e.target.value}"`,
+    // );
+    // console.log('Validade do campo:', e.target.validity);
+    // console.log('Mensagem de validação atual:', e.target.validationMessage);
+    // console.log('Tipo de input:', e.target.type);
+    // console.log('Valor do campo:', e.target.value);
+
+    if (e.target.validity.valueMissing) {
+      e.target.setCustomValidity('Por favor, preencha este campo.');
+      return;
+    }
+
+    if (e.target.id === 'email' && e.target.validity.typeMismatch) {
+      e.target.setCustomValidity('Por favor, insira um e-mail válido.');
+      return;
+    }
+
+    e.target.setCustomValidity('');
+  };
+
+  const clearValidationMessage = (e) => {
+    e.target.setCustomValidity('');
+  };
+
   const handleSubmitReact = async (e) => {
     e.preventDefault(); // Previne envio nativo
     setIsSubmitting(true);
@@ -281,6 +307,8 @@ function ContactSectionDS() {
                       required
                       value={formData.firstName}
                       onChange={handleChange}
+                      onInvalid={handleRequiredInvalid}
+                      onInput={clearValidationMessage}
                       autoComplete="given-name"
                     />
                   </div>
@@ -296,6 +324,8 @@ function ContactSectionDS() {
                       required
                       value={formData.lastName}
                       onChange={handleChange}
+                      onInvalid={handleRequiredInvalid}
+                      onInput={clearValidationMessage}
                       autoComplete="family-name"
                     />
                   </div>
@@ -311,6 +341,8 @@ function ContactSectionDS() {
                       required
                       value={formData.email}
                       onChange={handleChange}
+                      onInvalid={handleRequiredInvalid}
+                      onInput={clearValidationMessage}
                       autoComplete="email"
                     />
                   </div>
@@ -326,6 +358,8 @@ function ContactSectionDS() {
                       required
                       value={formData.phone}
                       onChange={handleChange}
+                      onInvalid={handleRequiredInvalid}
+                      onInput={clearValidationMessage}
                       autoComplete="tel"
                     />
                   </div>
