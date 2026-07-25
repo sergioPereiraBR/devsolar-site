@@ -7,7 +7,7 @@ export const successStories = [
     id: 1,
     title: 'Condomínio Lilases',
     thumbnail: CondLilases,
-    preview: './videos/depcon01.mp4',
+    preview: '/videos/depcon01.mp4',
     type: 'Condominial',
     impact: 'Economia imediata',
     resume:
@@ -19,7 +19,7 @@ export const successStories = [
     id: 2,
     title: 'Casa da Fernanda',
     thumbnail: CasaFernanda,
-    preview: './videos/depcon02.mp4',
+    preview: '/videos/depcon02.mp4',
     type: 'Residencial',
     impact: 'Bom atendimento e valor ideal',
     resume:
@@ -31,7 +31,7 @@ export const successStories = [
     id: 3,
     title: 'Casa do Osmar',
     thumbnail: CasaOsmar,
-    preview: './videos/depcon03.mp4',
+    preview: '/videos/depcon03.mp4',
     type: 'Residencial',
     impact: 'Confiança e excelente qualidade',
     resume:
@@ -43,7 +43,7 @@ export const successStories = [
     id: 4,
     title: 'Condomínio Lilases',
     thumbnail: CondLilases,
-    preview: './videos/depcon01.mp4',
+    preview: '/videos/depcon01.mp4',
     type: 'Condominial',
     impact: 'Economia imediata',
     resume:
@@ -55,7 +55,7 @@ export const successStories = [
     id: 5,
     title: 'Casa da Fernanda',
     thumbnail: CasaFernanda,
-    preview: './videos/depcon02.mp4',
+    preview: '/videos/depcon02.mp4',
     type: 'Residencial',
     impact: 'Bom atendimento e valor ideal',
     resume:
@@ -67,7 +67,7 @@ export const successStories = [
     id: 6,
     title: 'Casa do Osmar',
     thumbnail: CasaOsmar,
-    preview: './videos/depcon03.mp4',
+    preview: '/videos/depcon03.mp4',
     type: 'Residencial',
     impact: 'Confiança e excelente qualidade',
     resume:

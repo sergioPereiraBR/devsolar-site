@@ -91,7 +91,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
           Para maior precisão das informações fornecidas{' '}
           <strong>consulte nossos especialistas</strong>. Com o cálculo na mão,
           você já pode chamar a <strong>DEV Solar</strong> e pensar no que vai
-          fazer com <strong>sua economia</strong>.
+          fazer com o resultado do <strong>seu investimento</strong>.
         </p>
         <ul
           role="list"

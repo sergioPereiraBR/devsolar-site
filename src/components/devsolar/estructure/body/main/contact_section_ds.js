@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Script from 'next/script';
 
+import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
+
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 import { contactInfoData, socialLinksData } from './contact_data_ds';
@@ -15,7 +17,7 @@ const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), {
 });
 
 // Subcomponente para item de contato
-const ContactInfoItem = ({ iconClass, title, text, link }) => (
+const ContactInfoItem = ({ iconClass, title, text, link, onClick }) => (
   // ... (código inalterado) ...
   <div className={`${styles.contactItem} d-flex align-items-start mb-3`}>
     <div className={`${styles.iconWrapper} me-3 flex-shrink-0`}>
@@ -24,7 +26,7 @@ const ContactInfoItem = ({ iconClass, title, text, link }) => (
     <div className="flex-grow-1">
       <p className={`${styles.contactTitle} mb-0`}>{title}</p>
       {link ? (
-        <a href={link} className={styles.contactLink}>
+        <a href={link} className={styles.contactLink} onClick={onClick}>
           <h4 className={`${styles.contactText} mb-0`}>{text}</h4>
         </a>
       ) : (
@@ -98,12 +100,12 @@ function ContactSectionDS() {
     // console.log('Valor do campo:', e.target.value);
 
     if (e.target.validity.valueMissing) {
-      e.target.setCustomValidity('Por favor, preencha este campo.');
+      e.target.setCustomValidity('Preencha este campo.');
       return;
     }
 
     if (e.target.id === 'email' && e.target.validity.typeMismatch) {
-      e.target.setCustomValidity('Por favor, insira um e-mail válido.');
+      e.target.setCustomValidity('Informe um e-mail válido.');
       return;
     }
 
@@ -116,10 +118,17 @@ function ContactSectionDS() {
 
   const handleSubmitReact = async (e) => {
     e.preventDefault(); // Previne envio nativo
+    trackEvent('contact_form_submit_attempt', {
+      location: 'contact_section',
+    });
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     if (!shouldLoadRecaptcha) {
+      trackEvent('contact_form_validation_error', {
+        location: 'contact_section',
+        reason: 'recaptcha_not_loaded',
+      });
       setShouldLoadRecaptcha(true);
       setSubmitStatus('error_recaptcha');
       setIsSubmitting(false);
@@ -135,6 +144,10 @@ function ContactSectionDS() {
 
     // 2. Validar token
     if (!recaptchaToken) {
+      trackEvent('contact_form_validation_error', {
+        location: 'contact_section',
+        reason: 'recaptcha_missing',
+      });
       setSubmitStatus('error_recaptcha');
       setIsSubmitting(false);
       recaptchaRef.current?.reset(); // Reseta para o usuário tentar de novo
@@ -197,6 +210,9 @@ function ContactSectionDS() {
         // if (response.ok && result.message === 'Form submitted successfully') {
         //console.log("StaticForms Success:", result);
         setSubmitStatus('success'); // <<< Define SUCESSO
+        trackEvent('contact_form_submit_success', {
+          location: 'contact_section',
+        });
         // Limpar formulário após sucesso
         setFormData({
           firstName: '',
@@ -213,12 +229,20 @@ function ContactSectionDS() {
       } else {
         // Erro HTTP ou erro reportado pelo StaticForms
         //console.error("StaticForms Error Response:", result.error || result.message || 'Erro desconhecido');
+        trackEvent('contact_form_submit_error', {
+          location: 'contact_section',
+          reason: result.error || result.message || 'service_error',
+        });
         setSubmitStatus('error'); // <<< Define ERRO
         recaptchaRef.current?.reset();
       }
     } catch (error) {
       // Erro na requisição fetch (rede, CORS local, etc.)
       //console.error("Submit Fetch Error:", error);
+      trackEvent('contact_form_submit_error', {
+        location: 'contact_section',
+        reason: error?.message || 'network_error',
+      });
       setSubmitStatus('error'); // <<< Define ERRO
       // Não precisa resetar o recaptcha aqui necessariamente, pois a submissão falhou antes da validação dele
       // recaptchaRef.current?.reset();
@@ -261,7 +285,28 @@ function ContactSectionDS() {
             </h3>
             <div className="mb-4">
               {contactInfoData.map((item) => (
-                <ContactInfoItem key={item.id} {...item} />
+                <ContactInfoItem
+                  key={item.id}
+                  {...item}
+                  onClick={() => {
+                    if (!item.link) return;
+
+                    if (item.link.startsWith('tel:')) {
+                      trackEvent('contact_click', {
+                        contact_channel: 'phone',
+                        location: 'contact_section',
+                      });
+                      return;
+                    }
+
+                    if (item.link.startsWith('mailto:')) {
+                      trackEvent('contact_click', {
+                        contact_channel: 'email',
+                        location: 'contact_section',
+                      });
+                    }
+                  }}
+                />
               ))}
             </div>
             <div className={`${styles.socialLinksContainer} d-flex`}>
@@ -273,6 +318,21 @@ function ContactSectionDS() {
                   rel={link.url.startsWith('http') ? 'noopener noreferrer' : ''}
                   className={styles.socialIconLink}
                   aria-label={`Visite nosso ${link.name}`}
+                  onClick={() => {
+                    if (link.url.includes('wa.me')) {
+                      trackWhatsAppClick(
+                        'contact_section',
+                        'contact_social_whatsapp',
+                      );
+                      return;
+                    }
+
+                    trackEvent('social_click', {
+                      location: 'contact_section',
+                      network: link.name,
+                      destination: link.url,
+                    });
+                  }}
                 >
                   <FaIcon iconClass={link.iconClass} />
                   <span className="sr-only">{link.accessibility}</span>

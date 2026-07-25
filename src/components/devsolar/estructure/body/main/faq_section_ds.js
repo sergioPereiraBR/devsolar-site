@@ -14,6 +14,8 @@ import { faAnglesDown, faComments } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Accordion from 'react-bootstrap/Accordion';
 
+import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
+
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 import styles from './faq_section_ds.module.css';
@@ -91,7 +93,7 @@ function FAQSectionDS() {
   const inputRef = useRef(null);
   const emojiPickerRef = useRef(null);
 
-  const devSolarLogo = { width: 'auto', height: '60px' };
+  const devSolarLogo = { width: '60px', height: 'auto' };
 
   // --- ESTADO PARA ATIVAR O WHATSAPP SENDER ---
   const [showWhatsAppSender, setShowWhatsAppSender] = useState(false);
@@ -125,6 +127,13 @@ function FAQSectionDS() {
   // Função que ATIVA o processo de envio
   const handleInitiateSend = () => {
     if (userMessage.trim() === '') return;
+
+    trackWhatsAppClick('faq_section', 'faq_question_send');
+    trackEvent('faq_question_submit', {
+      location: 'faq_section',
+      message_length: userMessage.trim().length,
+    });
+
     setShowWhatsAppSender(true); // Ativa o componente WhatsAppSender
   };
 
@@ -151,7 +160,20 @@ function FAQSectionDS() {
           <div className="row justify-content-center">
             <div className="col-lg-9 col-md-10">
               {/* Acordeão Existente */}
-              <Accordion defaultActiveKey="0" className={styles.faqAccordion}>
+              <Accordion
+                defaultActiveKey="0"
+                className={styles.faqAccordion}
+                onSelect={(eventKey) => {
+                  const selectedFaq = faqData.find(
+                    (item) => item.id === eventKey,
+                  );
+                  trackEvent('faq_item_open', {
+                    location: 'faq_section',
+                    faq_id: eventKey,
+                    faq_question: selectedFaq?.question,
+                  });
+                }}
+              >
                 {faqData.map((item) => (
                   <Accordion.Item
                     key={item.id}
@@ -171,7 +193,7 @@ function FAQSectionDS() {
                             width={60}
                             height={60}
                             className={styles.avatarImage}
-                            objectfit="cover"
+                            style={{ objectFit: 'cover' }}
                             title={item.personaImageAlt}
                           />
                         </div>
@@ -205,11 +227,10 @@ function FAQSectionDS() {
                         <div className={styles.avatarContainer}>
                           <Image
                             src={COMPANY_LOGO_URL}
-                            alt="Logo da Empresa"
                             width={60}
                             height={60}
                             alt="Especialista DEV Solar"
-                            objectFit="cover"
+                            style={{ objectFit: 'cover' }}
                             className={styles.avatarImage}
                             style={devSolarLogo}
                             title="Especialista DEV Solar"
@@ -232,7 +253,13 @@ function FAQSectionDS() {
                   <button
                     id="emoji-toggle-button"
                     className={styles.emojiButton}
-                    onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                    onClick={() => {
+                      setShowEmojiPicker(!showEmojiPicker);
+                      trackEvent('faq_emoji_picker_toggle', {
+                        location: 'faq_section',
+                        opened: !showEmojiPicker,
+                      });
+                    }}
                     aria-label="Selecionar emoji"
                     type="button"
                   >

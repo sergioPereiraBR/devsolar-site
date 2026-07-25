@@ -175,13 +175,14 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
     <>
       <div className="m-1 sm:mx-auto sm:max-w-7xl">
         <h2 className="font-medium text-footer-color dark:text-gray-50">
-          Economia Calculada | Garantia Standard
+          Economia Calculada - Custo Evitado (25 Anos)
         </h2>
         <p className="text-sm/6 text-gray-500 dark:text-gray-500">
           Para maior precisão das informações fornecidas{' '}
-          <strong>consulte nossos especialistas</strong>. Com o cálculo na mão,
-          você já pode chamar a <strong>DEV Solar</strong> e pensar no que vai
-          fazer com <strong>sua economia</strong>.
+          <strong>consulte nossos especialistas</strong>. Com o cálculo da
+          economia na mão, você já pode chamar a <strong>DEV Solar</strong> e
+          pensar no que vai fazer com o resultado do seu{' '}
+          <strong>investimento</strong>.
         </p>
         <ul
           role="list"
@@ -212,7 +213,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
             </li>
           ))}
         </ul>
-
+        {/* {calculationResult.projecao} */}
         {/* Gráfico de Economia */}
         <div
           ref={chartContainerRef}

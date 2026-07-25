@@ -27,6 +27,7 @@
 	/* Branco puro */
 	--branco: #FFFFFF;
 	--text-btn: #001f52;
+	--text-calc: #001f52;
 
 	/* Fundo principal do body (pode ser branco ou o novo --light) */
 	--body-bg: var(--light);
@@ -50,6 +51,38 @@
 	--white10: rgba(var(--white-rgb), 0.1);
 
 	--scroll-padding: 90px;
+}
+
+/* Banner discreto no topo apenas quando JS estiver desativado */
+.noscript-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999;
+  background-color: #fff3cd; /* Amarelo suave de aviso */
+  color: #856404; /* Texto contrastante */
+  border-bottom: 1px solid #ffeeba;
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.noscript-warning a {
+  color: #533f03;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.noscript-warning a:hover {
+  color: #000;
+}
+
+/* Empurra o conteúdo principal ligeiramente para não cobrir o topo caso o banner apareça */
+body:has(.noscript-warning) {
+  margin-top: 42px;
 }
 
 html {

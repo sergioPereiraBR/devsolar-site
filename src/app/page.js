@@ -54,10 +54,6 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      <noscript>
-        <p>Habilite o JavaScript para este site funcionar corretamente.</p>
-        <p>You need to enable JavaScript to run this app.</p>
-      </noscript>
       {/* Navegator */}
       <NavDS />
 

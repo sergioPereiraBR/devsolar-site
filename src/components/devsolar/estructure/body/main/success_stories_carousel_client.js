@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Button, Card, Modal } from 'react-bootstrap';
 
+import { trackEvent } from '@/lib/analytics';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -33,11 +35,23 @@ export default function SuccessStoriesCarouselClient() {
   }, [showModal, selectedVideo]);
 
   const handleCardClick = (video) => {
+    trackEvent('modal_open', {
+      location: 'success_stories',
+      modal_name: 'video_preview',
+      story_id: video.id,
+      story_title: video.title,
+    });
     setSelectedVideo(video);
     setShowModal(true);
   };
 
   const handleShowDetails = (story) => {
+    trackEvent('modal_open', {
+      location: 'success_stories',
+      modal_name: 'story_detail',
+      story_id: story.id,
+      story_title: story.title,
+    });
     setSelectedStoryDetail(story);
     setShowDetailModal(true);
   };
@@ -187,10 +201,7 @@ export default function SuccessStoriesCarouselClient() {
           {selectedStoryDetail?.description ? (
             <div
               dangerouslySetInnerHTML={{
-                __html: selectedStoryDetail.description.replace(
-                  /\n/g,
-                  '<br />',
-                ),
+                __html: selectedStoryDetail.description.replace(/\n/g, '<br>'),
               }}
             />
           ) : (
