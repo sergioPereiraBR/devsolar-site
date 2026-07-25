@@ -317,7 +317,7 @@ function ContactSectionDS() {
                   target={link.url.startsWith('http') ? '_blank' : '_self'}
                   rel={link.url.startsWith('http') ? 'noopener noreferrer' : ''}
                   className={styles.socialIconLink}
-                  aria-label={`Visite nosso ${link.name}`}
+                  aria-label={`Visite nosso ${link.name}: ${link.url}`}
                   onClick={() => {
                     if (link.url.includes('wa.me')) {
                       trackWhatsAppClick(
