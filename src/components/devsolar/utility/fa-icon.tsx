@@ -94,10 +94,8 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
   faFacebookF,
-  faGoogle,
   faInstagram,
   faLinkedinIn,
-  faTwitter,
   faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons';
 import { faSmile } from '@fortawesome/free-regular-svg-icons';
@@ -109,18 +107,15 @@ import {
   faChartLine,
   faEnvelope,
   faFileInvoiceDollar,
-  faGlobe,
   faHandshake,
   faHeadset,
   faHouse,
   faInfoCircle,
   faLeaf,
   faLocationDot,
-  faMinus,
   faPaperPlane,
   faPhone, // Atualizado de faPhoneAlt (v6+)
   faPiggyBank,
-  faPlus,
   faShieldHalved, // Atualizado de faShieldAlt (v6+)
   faStore, // Atualizado de faStoreAlt (v6+)
   faTools,
@@ -143,8 +138,6 @@ const iconMap: Record<string, IconDefinition> = {
   'fa-solid fa-chart-line': faChartLine,
   'fas fa-envelope': faEnvelope,
   'fa-solid fa-envelope': faEnvelope,
-  'fas fa-globe': faGlobe,
-  'fa-solid fa-globe': faGlobe,
   'fas fa-handshake': faHandshake,
   'fa-solid fa-handshake': faHandshake,
   'fas fa-headset': faHeadset,
@@ -157,10 +150,6 @@ const iconMap: Record<string, IconDefinition> = {
   'fa-solid fa-leaf': faLeaf,
   'fas fa-paper-plane': faPaperPlane,
   'fa-solid fa-paper-plane': faPaperPlane,
-  'fas fa-plus': faPlus,
-  'fa-solid fa-plus': faPlus,
-  'fas fa-minus': faMinus,
-  'fa-solid fa-minus': faMinus,
   'fas fa-phone-alt': faPhone,
   'fa-solid fa-phone': faPhone,
   'fas fa-piggy-bank': faPiggyBank,
@@ -187,9 +176,6 @@ const iconMap: Record<string, IconDefinition> = {
   'fas fa-whatsapp': faWhatsapp, // Caso o banco envie o prefixo de solid por engano
   'fa-brands fa-whatsapp': faWhatsapp,
   whatsapp: faWhatsapp,
-  'fa fa-google': faGoogle,
-  'fa fa-twitter': faTwitter,
-  'fab fa-twitter': faTwitter,
   'far fa-smile': faSmile,
   'fas fa-location-dot': faLocationDot,
   'fa-solid fa-location-dot': faLocationDot,
@@ -201,6 +187,17 @@ export interface FaIconProps {
   title?: string;
   'aria-label'?: string;
   [key: string]: any;
+}
+
+function normalizeAriaHidden(value: unknown): boolean | undefined {
+  if (value === undefined || value === null) return undefined;
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') {
+    const normalized = value.trim().toLowerCase();
+    if (normalized === 'true') return true;
+    if (normalized === 'false') return false;
+  }
+  return undefined;
 }
 
 export function FaIcon({ iconClass, className = '', ...props }: FaIconProps) {
@@ -222,5 +219,36 @@ export function FaIcon({ iconClass, className = '', ...props }: FaIconProps) {
   // 4. Junta as propriedades de classe originais com as classes extras trazidas do banco
   const classeFinal = `${classesCssDoBanco} ${className}`.trim();
 
-  return <FontAwesomeIcon icon={icon} className={classeFinal} {...props} />;
+  // Acessibilidade padrão:
+  // - Decorativo: escondido do leitor de tela
+  // - Informativo: role=img e aria-label/título
+  const explicitAriaHidden = normalizeAriaHidden(props['aria-hidden']);
+  const ariaLabel =
+    typeof props['aria-label'] === 'string' ? props['aria-label'].trim() : '';
+  const hasAccessibleName = ariaLabel.length > 0 || Boolean(props.title);
+
+  const shouldHideFromAT =
+    explicitAriaHidden !== undefined ? explicitAriaHidden : !hasAccessibleName;
+
+  const a11yProps = shouldHideFromAT
+    ? {
+        'aria-hidden': true,
+        role: 'presentation',
+      }
+    : {
+        'aria-hidden': false,
+        role: 'img',
+      };
+
+  return (
+    <FontAwesomeIcon
+      icon={icon}
+      className={classeFinal}
+      {...a11yProps}
+      {...props}
+      aria-hidden={a11yProps['aria-hidden']}
+      role={a11yProps.role}
+      focusable={shouldHideFromAT ? false : undefined}
+    />
+  );
 }

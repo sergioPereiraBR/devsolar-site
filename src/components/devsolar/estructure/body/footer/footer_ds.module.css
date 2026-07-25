@@ -34,8 +34,9 @@
 
 .footerInfo .logoImg {
     /* Estilo específico para a tag Image do logo */
-    height: 48px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 177px;
+    height: auto;
 }
 
 .footerInfo .slogan {

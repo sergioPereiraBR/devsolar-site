@@ -42,6 +42,59 @@
     min-height: 520px;
 }
 
+.seoOnlyContent {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    border: 0;
+    white-space: nowrap;
+}
+
+.seoProofGrid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.seoProofCard {
+    background: var(--branco);
+    border-radius: 10px;
+    border: 1px solid var(--black10);
+    padding: 18px;
+    box-shadow: 0 4px 12px var(--black10);
+}
+
+.seoProofTitle {
+    color: var(--footer-color);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.seoProofResume {
+    color: #454545;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.seoProofDescription {
+    color: #5f5f5f;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.seoProofMeta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
 .mySwiper {
     padding-bottom: 45px !important;
     /* Espaço para a paginação (pontos) */
@@ -275,5 +328,11 @@
 
     .cardTitle {
         font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .seoProofGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }

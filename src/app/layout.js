@@ -1,11 +1,11 @@
 import { config } from '@fortawesome/fontawesome-svg-core';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Inter } from 'next/font/google'; // Exemplo de fonte
 import Script from 'next/script';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './globals.css';
 
 // Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.
@@ -13,6 +13,8 @@ config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'] });
 const isEnabled = true;
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID; // Substitua pelo seu ID do GA4
+const hasGaTrackingId = Boolean(GA_TRACKING_ID);
 
 // --- Metadados Base ---
 // Estes serão aplicados a todas as páginas, mas podem ser sobrescritos
@@ -77,12 +79,11 @@ export const metadata = {
     },
   },
   // --- Outros Metadados Globais ---
-  charset: 'UTF-8', // Definido automaticamente pelo Next.js, mas pode ser explícito
   icons: {
     // Convenção Next.js para favicons e ícones
-    icon: './images/favicon.ico', // Ou /icon.png
-    shortcut: './images/favicon.png', // Favicon legado (opcional)
-    apple: './images/apple-touch-icon.png', // Ícone Apple
+    icon: '/images/favicon.ico', // Ou /icon.png
+    shortcut: '/images/favicon.png', // Favicon legado (opcional)
+    apple: '/images/apple-touch-icon.png', // Ícone Apple
     // outros: { ... }
   },
   // msApplication: { // Para Windows Tiles
@@ -323,6 +324,39 @@ export default function RootLayout({ children }) {
           }}
         />
         {/* <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeshiwrAAAAAPVbR8FTS_4l-80ea1G_UyBhZuFk" /> */}
+        {hasGaTrackingId ? (
+          <>
+            <Script
+              id="google-analytics-loader"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}');
+              `}
+            </Script>
+          </>
+        ) : null}
+        <noscript>
+          <div class="noscript-warning">
+            <span>
+              Para uma melhor experiência e navegação no site da{' '}
+              <strong>DEV Solar</strong>, por favor
+              <a
+                href="https://www.enable-javascript.com/pt/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                habilite o JavaScript
+              </a>{' '}
+              no seu navegador.
+            </span>
+          </div>
+        </noscript>
       </body>
     </html>
   );

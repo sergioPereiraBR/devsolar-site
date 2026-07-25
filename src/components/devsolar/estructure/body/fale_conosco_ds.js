@@ -4,12 +4,19 @@ import { useEffect, useRef, useState } from 'react';
 import moduleBackgroundImage from '@/assets/module.webp';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
+import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
+
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import WhatsAppSender from '@/components/devsolar/utility/whatsapp/whatsapp_sender_ds.js';
 
 import CustomCepInput from './cep';
 
-const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
+const ContactSectionDS = ({
+  textClassButton,
+  textMessage,
+  textTag,
+  trackingContext = 'fale_conosco',
+}) => {
   const [userMessage, setUserMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [whatsAppStatus, setWhatsAppStatus] = useState('initial');
@@ -91,9 +98,26 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
     });
   };
 
+  const handleRequiredInvalid = (event) => {
+    if (event.target.validity.valueMissing) {
+      event.target.setCustomValidity('Preencha este campo.');
+      return;
+    }
+
+    event.target.setCustomValidity('');
+  };
+
+  const clearValidationMessage = (event) => {
+    event.target.setCustomValidity('');
+  };
+
   // Dentro de ContactSectionDS
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    trackEvent('specialist_form_submit_attempt', {
+      location: trackingContext,
+    });
 
     // Campos obrigatórios
     if (
@@ -102,6 +126,10 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
       !formData.roofType ||
       (formData.roofType === 'Outro' && !formData.otherRoof)
     ) {
+      trackEvent('specialist_form_validation_error', {
+        location: trackingContext,
+        reason: 'required_fields_missing',
+      });
       // Idealmente, mostre um erro mais específico ou destaque os campos
       alert('Preencha todos os campos obrigatórios.');
       setWhatsAppStatus('initial'); // Resetar status se falhar aqui
@@ -122,6 +150,7 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
     const encodedMessage = encodeURIComponent(messageBody);
 
     setUserMessage(messageBody);
+    trackWhatsAppClick(trackingContext, 'specialist_form_submit');
     handleInitiateSend();
     closeForm();
     //handleWhatsAppSenderClose()
@@ -253,6 +282,10 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
       <button
         className={textClassButton}
         onClick={() => {
+          trackEvent('modal_open', {
+            location: trackingContext,
+            modal_name: 'specialist_contact',
+          });
           setShowModal(true);
         }}
       >
@@ -299,6 +332,8 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
+                  onInvalid={handleRequiredInvalid}
+                  onInput={clearValidationMessage}
                   required
                   id="firstName"
                   style={modalStyles.formControl}
@@ -329,11 +364,13 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
                       name="roofType"
                       value={formData.roofType}
                       onChange={handleInputChange}
+                      onInvalid={handleRequiredInvalid}
+                      onInput={clearValidationMessage}
                       required
                       id="roofType"
                       style={modalStyles.formControl}
                     >
-                      <option value="">Selecione...</option>
+                        <option value="">Selecione uma opção</option>
                       <option value="Metálico">Metálico</option>
                       <option value="Cerâmico">Cerâmico</option>
                       <option value="Fibrocimento">Fibrocimento</option>
@@ -355,6 +392,8 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
                     name="otherRoof"
                     value={formData.otherRoof}
                     onChange={handleInputChange}
+                    onInvalid={handleRequiredInvalid}
+                    onInput={clearValidationMessage}
                     required
                     id="otherRoof"
                     style={modalStyles.formControl}
@@ -368,7 +407,7 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
                   id="message"
                   as="textarea"
                   rows={3}
-                  placeholder="Digite seu texto aqui..."
+                  placeholder="Descreva sua necessidade ou dúvida"
                   spellCheck="true"
                   name="message"
                   value={formData.message}
@@ -401,6 +440,10 @@ const ContactSectionDS = ({ textClassButton, textMessage, textTag }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => {
+                          trackWhatsAppClick(
+                            trackingContext,
+                            'specialist_fallback_web',
+                          );
                           // Opcional: Fechar o modal após clicar no link web
                           // closeForm();
                           setWhatsAppStatus('initial'); // Reseta o status

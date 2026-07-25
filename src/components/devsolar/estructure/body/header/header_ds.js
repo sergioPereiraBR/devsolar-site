@@ -8,6 +8,8 @@ import Photovoltaic from '@/assets/photovoltaic.webp';
 import { calcularEconomiaSolar } from '@/utils/solarCalculations';
 import { Button, Col, Modal, Row, Spinner } from 'react-bootstrap'; // Adicionar Button, Spinner
 
+import { trackEvent } from '@/lib/analytics';
+
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
@@ -26,12 +28,8 @@ const FALE_CONOSCO_TAG_RESULT = '#calculaEconomia'; // Tag base para resultado
 
 // --- Componente Principal ---
 function HeaderDS() {
-  // Estados do Modal
-  const [showInputModal, setShowInputModal] = useState(false);
   const [showResultModal, setShowResultModal] = useState(false);
   const [calculando, setCalculando] = useState(false);
-  const [inputValueToMsg, setInputValueToMsg] = useState(0); // Valor como string para o input
-
   // Estado do Input (Controlado)
   const [inputValue, setInputValue] = useState(''); // Valor como string para o input
   const inputCustoMesRef = useRef(null);
@@ -47,20 +45,13 @@ function HeaderDS() {
     maximumFractionDigits: 2,
   });
 
-  // Foco no input ao abrir modal
-  useEffect(() => {
-    if (showInputModal && inputCustoMesRef.current) {
-      inputCustoMesRef.current.focus();
-    }
-  }, [showInputModal]);
-
   // Limpa input ao fechar modal
   useEffect(() => {
-    if (!showInputModal && !showResultModal) {
+    if (!showResultModal) {
       setInputValue('');
       setCalculationResult(null); // Limpa resultado também
     }
-  }, [showInputModal, showResultModal]);
+  }, [showResultModal]);
 
   // Handler do Input de Custo
   const handleInputChange = (e) => {
@@ -83,17 +74,23 @@ function HeaderDS() {
     return currencyFormatter.format(num / 100);
   };
 
-  // Abre o modal de input
-  const handleShowInput = () => {
-    setShowInputModal(true);
-  };
-
   // Fecha o modal de input, calcula e abre o modal de resultado
   const handleCalculateAndShowResult = async () => {
     const numericCost = getNumericCost();
-    if (numericCost < 300 || numericCost > 999999999.99) return; // Não calcula se o valor for inválido
+    trackEvent('calculator_submit_attempt', {
+      location: 'hero_section',
+      monthly_cost: numericCost,
+    });
 
-    setShowInputModal(false);
+    if (numericCost < 300 || numericCost > 999999999.99) {
+      trackEvent('calculator_validation_error', {
+        location: 'hero_section',
+        reason: 'out_of_range',
+        monthly_cost: numericCost,
+      });
+      return;
+    } // Não calcula se o valor for inválido
+
     setCalculando(true);
     setCalculationResult(null); // Limpa resultado anterior
 
@@ -106,8 +103,17 @@ function HeaderDS() {
 
     setCalculando(false);
     if (!result.error) {
+      trackEvent('calculator_result_generated', {
+        location: 'hero_section',
+        monthly_cost: numericCost,
+        payback_years: result.payback,
+      });
       setShowResultModal(true);
     } else {
+      trackEvent('calculator_result_error', {
+        location: 'hero_section',
+        reason: result.error,
+      });
       // Poderia mostrar um alerta de erro aqui
       //console.error("Erro no cálculo:", result.error);
       alert(`Erro ao calcular: ${result.error}. Verifique o valor inserido.`); // Feedback simples
@@ -142,45 +148,119 @@ function HeaderDS() {
                   Transforme o Sol do Rio de Janeiro em Economia Real com
                   Energia Solar
                 </h1>
-                <p className="lead mb-4">
+                <h2 className="lead mb-4">
                   Reduza a conta de luz da sua casa, empresa ou condomínio em
                   até 95% e proteja-se dos aumentos de tarifa.
-                </p>
+                </h2>
               </div>
-              <div className={`col-lg- ${styles.btnContainer}`}>
-                <div>
-                  {/* Botão Calcular Economia */}
-                  <Button
-                    variant="primary" // Use a variante customizada ou padrão do Bootstrap
-                    size="lg"
-                    className={`mb-3 me-3 ${styles.heroButtonPrimary}`} // Classe do Module
-                    onClick={handleShowInput}
-                  >
-                    <FaIcon
-                      iconClass="fas fa-calculator"
-                      className="me-2"
-                      aria-label="Calcular Economia"
-                      aria-hidden="true"
+              <div className={`col-lg-6 ${styles.calculatorContainer}`}>
+                <div className={styles.calculatorInline}>
+                  <h3 className={styles.calculatorCopy}>
+                    Informe o valor médio mensal da sua conta de luz para
+                    simular sua economia - valor mínimo de R$ 400,00:
+                  </h3>
+
+                  <div className="input-group mb-3">
+                    <span
+                      className={`input-group-text ${styles.inputGroupText}`}
+                    >
+                      R$
+                    </span>
+                    <input
+                      ref={inputCustoMesRef}
+                      type="text"
+                      inputMode="numeric"
+                      className={`form-control form-control-lg ${styles.currencyInput}`}
+                      id="valor-consumo"
+                      name="valor-consumo"
+                      value={formatValueForInput(inputValue)}
+                      onChange={handleInputChange}
+                      onKeyDown={handleInputKeyDown}
+                      placeholder="0,00"
+                      autoComplete="off"
                     />
-                    Calcular Economia
-                  </Button>
-                  {/* Botão Falar com Especialista */}
-                  <FaleConoscoDS
-                    textClassButton={`${FALE_CONOSCO_BTN_CLASS} ${styles.heroButtonSecondary}`} // Pode adicionar classe do module
-                    textMessage={FALE_CONOSCO_MESSAGE}
-                    textTag={FALE_CONOSCO_TAG_HERO}
-                  />
+                  </div>
+
+                  <Row className={`g-2 ${styles.btnRow}`}>
+                    {/* Botão Calcular Economia */}
+                    <Col xs={12} sm="auto" className={styles.btnCol}>
+                      <Button
+                        variant="warning"
+                        className={`btn ${styles.heroButtonPrimary}`}
+                        onClick={handleCalculateAndShowResult}
+                        disabled={calculando || getNumericCost() < 400}
+                      >
+                        {calculando ? (
+                          <>
+                            <Spinner
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                              className="me-2"
+                            />
+                            Calculando...
+                          </>
+                        ) : (
+                          <>
+                            <FaIcon
+                              iconClass="fas fa-calculator"
+                              className="me-2"
+                              aria-label="Calcular Economia"
+                              aria-hidden="true"
+                            />
+                            Calcular Economia
+                          </>
+                        )}
+                      </Button>
+                    </Col>
+                    {/* Botão Falar com um Especialista */}
+                    <Col xs={12} sm="auto" className={styles.btnCol}>
+                      <Button
+                        variant="light"
+                        as="a"
+                        href="https://wa.me/5521999677722"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`btn ${styles.heroButtonSecondary}`}
+                        onClick={() => trackWhatsAppClick('hero_section')}
+                      >
+                        <FaIcon
+                          iconClass="fas fa-headset"
+                          className="me-2"
+                          aria-label="Falar com um Especialista"
+                          aria-hidden="true"
+                        />
+                        Falar com um Especialista
+                      </Button>
+                      {/* <div
+                      // className={`col-lg-4 text-lg-end ${styles.buttonContainer}`}
+                      // className={`btn ${styles.heroButtonSecondary}`}
+                      >
+                        <FaleConoscoDS
+                          // Passando as classes CSS (incluindo a customizada do module)
+                          //   textClassButton={buttonClasses}
+                          textClassButton={`${FALE_CONOSCO_BTN_CLASS} ${styles.heroButtonSecondary}`}
+                          // Mantém as outras props
+                          textMessage="Olá, quero falar com especialista sobre avaliação gratuita." // Mensagem pode ser mais específica
+                          textTag="#avaliacaoGratuitaCTA" // Tag pode ser mais específica
+                          trackingContext="cta_section"
+                        />
+                      </div> */}
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </div>
           </div>
+          ''
           <div className={styles.heroBackground}>
             <Image
               alt="Fazenda de painéis solares" // Alt text descritivo
               src={HERO_IMAGE_URL}
               fill // Ocupa o container pai
               style={{ objectFit: 'cover' }} // Cobre a área
-              quality={70} // Qualidade da imagem
+              quality={65} // Qualidade da imagem
               fetchPriority="high"
               priority
               loading="eager" // LCP: carregar eager para melhorar LCP
@@ -189,70 +269,6 @@ function HeaderDS() {
           </div>
         </section>
       </header>{' '}
-      {/* Tag header pode envolver apenas o hero ou ser removida se houver outro header global */}
-      {/* --- Modal Input Custo Mensal --- */}
-      <Modal
-        show={showInputModal}
-        onHide={() => setShowInputModal(false)}
-        centered
-        size="md"
-      >
-        <Modal.Header closeButton className={styles.modalHeader}>
-          <Modal.Title>Quanto Posso Economizar?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className={styles.modalBodyInput}>
-          <p>
-            Informe o valor médio mensal da sua conta de luz para simular sua
-            economia - valor minímo de R$ 300,00:
-          </p>
-          <div className="input-group mb-3">
-            <span className={`input-group-text ${styles.inputGroupText}`}>
-              R$
-            </span>
-            <input
-              ref={inputCustoMesRef}
-              type="text" // Mantém texto para permitir formatação/máscara fácil
-              inputMode="numeric" // Melhora UX mobile
-              className={`form-control form-control-lg ${styles.currencyInput}`}
-              id="valor-consumo"
-              name="valor-consumo"
-              value={formatValueForInput(inputValue)} // Formata para exibição
-              onChange={handleInputChange}
-              onKeyDown={handleInputKeyDown}
-              placeholder="0,00"
-              autoComplete="off"
-            />
-          </div>
-        </Modal.Body>
-        <Modal.Footer className={styles.modalFooter}>
-          <Button variant="secondary" onClick={() => setShowInputModal(false)}>
-            Cancelar
-          </Button>
-          <Button
-            variant="primary"
-            className={styles.calculateButton}
-            onClick={handleCalculateAndShowResult}
-            disabled={calculando || getNumericCost() < 300} // Desabilita se calculando ou valor <= 0
-          >
-            {calculando ? (
-              <>
-                <Spinner
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                  className="me-2"
-                />
-                Calculando...
-              </>
-            ) : (
-              <>
-                <i className="fas fa-calculator me-2"></i>Calcular Economia
-              </>
-            )}
-          </Button>
-        </Modal.Footer>
-      </Modal>
       {/* --- Modal Resultado --- */}
       <Modal
         show={showResultModal}
@@ -322,14 +338,15 @@ function HeaderDS() {
               </Row>
               {/* Passa os dados corretos (dataResume) para o gráfico */}
               <div className={styles.chartContainer}>
-                <h5 className={styles.chartTitle}>
+                {/* <h5 className={styles.chartTitle}>
                   Projeção de Economia Acumulada vs Custo Evitado (
                   {calculationResult.projecao} Anos)
-                </h5>
+                </h5> */}
                 <Example dataProject={calculationResult} />
               </div>
               <p className={styles.chartDisclaimer}>
-                *Valores e projeções são estimativas e podem variar, fale com
+                *Valores simulados e projeções são estimativas e podem variar
+                conforme o caso, para um valor mais preciso fale com
                 especialista.
               </p>
             </>
@@ -344,7 +361,7 @@ function HeaderDS() {
             Fechar
           </Button>
           <FaleConoscoDS
-            textClassButton={`btn btn-primary ${styles.heroButtonPrimary}`} // Botão primário no resultado
+            textClassButton={`btn ${styles.heroButtonPrimaryFC}`}
             textMessage={`Olá, vi minha simulação de economia, meu custo médio mensal é de R$ ${currencyFormatter.format(calculationResult && calculationResult.custoMensalInformado)} e quero falar com especialista.`}
             textTag={`${FALE_CONOSCO_TAG_RESULT}`} // Tag com o valor
           />

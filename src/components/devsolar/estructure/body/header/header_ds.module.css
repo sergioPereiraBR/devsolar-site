@@ -71,6 +71,50 @@
 
 .textContainer h1 {
     color: var(--branco);
+    margin-left: 0.25rem;
+}
+
+.textContainer h2 {
+    color: var(--branco);
+    margin-left: 0.3rem;
+}
+
+.calculatorInline {
+    max-width: 520px;
+    margin-top: 5rem;
+}
+
+.calculatorCopy {
+    color: var(--branco);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+/* Garante que as colunas cresçam por igual */
+.btnRow {
+  display: flex;
+}
+
+.btnCol {
+  flex: 1 1 0px; /* Garante que ambas as colunas ocupem tamanhos exatamente iguais */
+}
+
+/* Garante que os botões ocupem toda a largura da coluna */
+.heroButtonPrimary,
+.heroButtonSecondary {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroActionRow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
 }
 
 .btnContainer {
@@ -83,6 +127,28 @@
     /* Garante que o texto fique acima da imagem */
     color: var(--branco);
     /* Opcional: ajusta a cor do texto para contraste */
+}
+
+.calculatorContainer {
+    /* position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-center;
+    justify-content: flex-end; * /
+    /* Garante que o texto fique acima da imagem * /
+    color: var(--branco);
+    /* Opcional: ajusta a cor do texto para contraste */
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end; /* Alinha à DIREITA */
+    align-items: flex-end;     /* Alinha abaixo (no RODAPÉ do container) */
+    color: var(--branco);
+    
+    /* IMPORTANTE: Para o alinhamento vertical (abaixo) ter efeito, */
+    /* o container precisa ter uma altura definida (ex: height ou min-height) */
+    min-height: 100%;
+    padding-bottom: 2rem;
 }
 
 .heroBackground {
@@ -133,16 +199,40 @@
     /* Estilos específicos se btn-primary-custom não for suficiente */
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
-    color: var(--text-btn) !important;
+    color: var(--text-btn) !important; 
 
     /* color: var(--branco) !important; */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; */
+
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    color: var(--text-btn) !important;
 }
 
-.heroButtonPrimary:hover {
+.heroButtonPrimaryFC {
+    /* Estilos específicos se btn-primary-custom não for suficiente */
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--text-btn) !important; 
+
+    /* color: var(--branco) !important; */
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; */
+
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    color: var(--text-btn) !important;
+}
+
+.heroButtonPrimaryFC:hover {
+    /* transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); */
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+} 
+
+.heroButtonPrimary:hover {
+    /* transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); */
+    transform: translateY(-2px);
 }
 
 
@@ -151,11 +241,12 @@
     /* Ex: border-width: 2px; */
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
     color: var(--text-btn) !important;
+    /* color: var(--branco) !important;  */
 }
 
 .heroButtonSecondary:hover {
-    /* background-color: var(--branco) !important; */
-    /* color: var(--primary) !important; */
+    background-color: var(--branco) !important;
+    /* color: var(--branco) !important;  */
     transform: translateY(-2px);
 }
 
@@ -206,6 +297,7 @@
     /* Estilos para o botão de calcular */
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
+    flex: 0 0 auto;
 }
 
 /* Modal Resultado */
@@ -268,11 +360,27 @@
         text-align: center;
     }
 
+    .heroActionRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .textContainer .btnContainer {
         background-color: rgba(0, 0, 0, 0.3);
         /* Adiciona fundo no mobile para garantir leitura */
         padding: 20px;
         border-radius: 8px;
+    }
+
+    .calculatorInline {
+        margin-top: 5rem;
+    }
+
+    .calculatorContainer {
+        display: flex;
+        flex-direction: column; /* Organiza os itens em coluna (opcional, dependendo do layout) */
+        justify-content: center; /* Alinha no eixo principal */
+        align-items: center; /* Alinha no eixo cruzado */
     }
 }
 
@@ -344,6 +452,11 @@
         padding: 0.6rem 1.2rem;
     }
 
+    .calculateButton,
+    .heroButtonSecondary {
+        width: 100%;
+    }
+
     .modalDialog {
         /* Garante que o modal não fique muito largo */
         max-width: 95vw;
@@ -359,5 +472,9 @@
 
     .chartTitle {
         font-size: 1rem;
+    }
+
+    .calculatorInline {
+        margin-top: 2.5rem;
     }
 }

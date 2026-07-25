@@ -14,6 +14,8 @@ import { faAnglesDown, faComments } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Accordion from 'react-bootstrap/Accordion';
 
+import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
+
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 import styles from './faq_section_ds.module.css';
@@ -36,6 +38,7 @@ const faqData = [
     answer:
       'A instalação física é rápida, levando de 2 a 3 dias para residências e de 1 a 3 semanas para grandes projetos comerciais, industriais ou condomínios. No entanto, o processo completo inclui a homologação da concessionária para conectar o sistema à rede elétrica pública, etapa que leva de 1 a 4 semanas.',
     personaImage: PersonaA,
+    personaImageAlt: 'Camila Albuquerque - Proprietária Residencial',
   },
   {
     id: '1',
@@ -43,6 +46,7 @@ const faqData = [
     answer:
       'Sim!<br><br>Os painéis solares dependem da luminosidade e radiação, não do calor, por isso continuam gerando energia mesmo com o céu encoberto. Em dias totalmente nublados, a produção se mantém ativa, operando entre 10% e 25% da sua capacidade máxima em comparação a um dia de céu limpo.',
     personaImage: PersonaB,
+    personaImageAlt: 'Roberto Mendes - Diretor Comercial',
   },
   {
     id: '2',
@@ -50,6 +54,7 @@ const faqData = [
     answer:
       'Não necessariamente.<br><br>A maioria dos sistemas utiliza o modelo On-Grid, que funciona conectado à rede pública. Durante o dia, os painéis geram energia para consumo imediato e o excedente é enviado para a distribuidora, transformando-se em créditos. À noite ou em dias chuvosos, você consome a energia da rede e abate desses créditos acumulados.<br><br>O uso de baterias é restrito aos modelos Off-Grid ou Híbridos, indicados apenas para situações específicas. São elas: locais isolados sem acesso à rede, proteção contra apagões, armazenamento estratégico para horários de tarifa alta e atendimento a sistemas críticos.',
     personaImage: PersonaC,
+    personaImageAlt: 'Mariana Freitas - Síndica Profissional',
   },
   {
     id: '3',
@@ -57,6 +62,7 @@ const faqData = [
     answer:
       'Os painéis solares modernos têm vida útil superior a 25 anos. Os fabricantes garantem que eles manterão pelo menos 80% a 85% da sua capacidade de geração original ao final desse período. Na prática, muitos módulos continuam gerando energia por 30 ou 40 anos, operando apenas com uma eficiência ligeiramente reduzida.',
     personaImage: PersonaD,
+    personaImageAlt: 'Fernando Souza - Produtor Rural',
   },
   {
     id: '4',
@@ -64,6 +70,7 @@ const faqData = [
     answer:
       'O processo é estruturado para que a própria economia gerada pague o investimento. O objetivo principal é que o valor da parcela seja igual ou menor do que a redução obtida na sua conta de luz. Para isso, oferecemos opções de financiamento de até 100% do projeto, cobrindo tanto os equipamentos (painéis e inversor) quanto a mão de obra de instalação.',
     personaImage: PersonaE,
+    personaImageAlt: 'Eng. Ricardo Alves - Gerente de Operações',
   },
 ];
 const COMPANY_LOGO_URL = LogoDevSolar;
@@ -86,7 +93,7 @@ function FAQSectionDS() {
   const inputRef = useRef(null);
   const emojiPickerRef = useRef(null);
 
-  const devSolarLogo = { width: 'auto', height: '60px' };
+  const devSolarLogo = { width: '60px', height: 'auto' };
 
   // --- ESTADO PARA ATIVAR O WHATSAPP SENDER ---
   const [showWhatsAppSender, setShowWhatsAppSender] = useState(false);
@@ -120,6 +127,13 @@ function FAQSectionDS() {
   // Função que ATIVA o processo de envio
   const handleInitiateSend = () => {
     if (userMessage.trim() === '') return;
+
+    trackWhatsAppClick('faq_section', 'faq_question_send');
+    trackEvent('faq_question_submit', {
+      location: 'faq_section',
+      message_length: userMessage.trim().length,
+    });
+
     setShowWhatsAppSender(true); // Ativa o componente WhatsAppSender
   };
 
@@ -146,7 +160,20 @@ function FAQSectionDS() {
           <div className="row justify-content-center">
             <div className="col-lg-9 col-md-10">
               {/* Acordeão Existente */}
-              <Accordion defaultActiveKey="0" className={styles.faqAccordion}>
+              <Accordion
+                defaultActiveKey="0"
+                className={styles.faqAccordion}
+                onSelect={(eventKey) => {
+                  const selectedFaq = faqData.find(
+                    (item) => item.id === eventKey,
+                  );
+                  trackEvent('faq_item_open', {
+                    location: 'faq_section',
+                    faq_id: eventKey,
+                    faq_question: selectedFaq?.question,
+                  });
+                }}
+              >
                 {faqData.map((item) => (
                   <Accordion.Item
                     key={item.id}
@@ -162,11 +189,12 @@ function FAQSectionDS() {
                         <div className={styles.avatarContainer}>
                           <Image
                             src={item.personaImage}
-                            alt={`Persona ${item.id + 1}`}
+                            alt={item.personaImageAlt}
                             width={60}
                             height={60}
                             className={styles.avatarImage}
-                            objectfit="cover"
+                            style={{ objectFit: 'cover' }}
+                            title={item.personaImageAlt}
                           />
                         </div>
                         <div
@@ -199,11 +227,13 @@ function FAQSectionDS() {
                         <div className={styles.avatarContainer}>
                           <Image
                             src={COMPANY_LOGO_URL}
-                            alt="Logo da Empresa"
                             width={60}
                             height={60}
+                            alt="Especialista DEV Solar"
+                            style={{ objectFit: 'cover' }}
                             className={styles.avatarImage}
-                            style={{ devSolarLogo }}
+                            style={devSolarLogo}
+                            title="Especialista DEV Solar"
                           />
                         </div>
                       </div>
@@ -223,7 +253,13 @@ function FAQSectionDS() {
                   <button
                     id="emoji-toggle-button"
                     className={styles.emojiButton}
-                    onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                    onClick={() => {
+                      setShowEmojiPicker(!showEmojiPicker);
+                      trackEvent('faq_emoji_picker_toggle', {
+                        location: 'faq_section',
+                        opened: !showEmojiPicker,
+                      });
+                    }}
                     aria-label="Selecionar emoji"
                     type="button"
                   >

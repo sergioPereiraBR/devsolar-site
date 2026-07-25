@@ -7,6 +7,8 @@ import Image from 'next/image';
 import LogoSm from '@/assets/logo_sm.webp';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
+import { trackEvent } from '@/lib/analytics';
+
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 import styles from './nav_ds.module.css'; // Importar CSS Module
@@ -86,6 +88,11 @@ function NavDS() {
   // --- Handlers ---
   const handleNavLinkClick = (e) => {
     const href = e.currentTarget?.getAttribute('href') || '';
+    trackEvent('navigation_click', {
+      location: 'navbar',
+      target: href,
+    });
+
     if (!href.includes('#')) {
       setExpanded(false);
       return;
@@ -110,11 +117,19 @@ function NavDS() {
 
   const handleBrandClick = (e) => {
     e.preventDefault(); // Previne a navegação padrão para '#'
+    trackEvent('navigation_click', {
+      location: 'navbar_brand',
+      target: '#home',
+    });
     setExpanded(false);
     smoothScrollTo(0); // Scroll suave para o topo
   };
 
   const handleShowLoginModal = () => {
+    trackEvent('modal_open', {
+      location: 'navbar',
+      modal_name: 'lead_access',
+    });
     setModalShow(true);
     setExpanded(false); // Fecha o menu mobile ao abrir o modal
   };
@@ -144,6 +159,7 @@ function NavDS() {
               alt="Logo da DEV Solar"
               width={140}
               height={38}
+              loading="eager"
             />
           </Navbar.Brand>
 

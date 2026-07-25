@@ -2,7 +2,6 @@
 
 // import FaleConoscoDS from '../fale_conosco_ds';
 
-
 // function CTASectionDS() {
 //     return (
 //         <>
@@ -32,8 +31,8 @@
 // }
 
 // export default CTASectionDS;
-
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
+
 import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
 import styles from './cta_section_ds.module.css'; // Importe o CSS Module
 
@@ -41,38 +40,45 @@ import styles from './cta_section_ds.module.css'; // Importe o CSS Module
 // import { FaBolt } from 'react-icons/fa'; // Exemplo com react-icons
 
 function CTASectionDS() {
-    // Defina a classe do botão aqui ou use diretamente na prop
-    const buttonClasses = `${styles.ctaButton} mb-3`; // Combina estilo do module com margem do Bootstrap
+  // Defina a classe do botão aqui ou use diretamente na prop
+  const buttonClasses = `${styles.ctaButton} mb-3`; // Combina estilo do module com margem do Bootstrap
 
-    return (
-        // Removido o Fragmento desnecessário
-        <section className={styles.ctaSection} aria-labelledby="cta-headline"> {/* Usando classe do module */}
-            <div className="container">
-                <div className="row align-items-center">
-                    <div className="col-lg-8 mb-4 mb-lg-0">
-                        <h2 id="cta-headline" className={styles.headline}>
-                            {/* Opcional: Adicionar Ícone */}
-                            {/* <FaBolt className={styles.headlineIcon} /> */}
-                            <FaIcon iconClass="fas fa-bolt" className={styles.headlineIcon} /> {/* Exemplo com FontAwesome */}
-                            <span>Pronto para começar a economizar?</span>
-                        </h2>
-                        <h3 className={styles.subtext}>
-                            Solicite agora mesmo uma avaliação gratuita para seu imóvel.
-                        </h3>
-                    </div>
-                    <div className={`col-lg-4 text-lg-end ${styles.buttonContainer}`}>
-                        <FaleConoscoDS
-                            // Passando as classes CSS (incluindo a customizada do module)
-                            textClassButton={buttonClasses}
-                            // Mantém as outras props
-                            textMessage="Olá, quero falar com especialista sobre avaliação gratuita." // Mensagem pode ser mais específica
-                            textTag="#avaliacaoGratuitaCTA" // Tag pode ser mais específica
-                        />
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    // Removido o Fragmento desnecessário
+    <section className={styles.ctaSection} aria-labelledby="cta-headline">
+      {' '}
+      {/* Usando classe do module */}
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-lg-8 mb-lg-0 mb-4">
+            <h2 id="cta-headline" className={styles.headline}>
+              {/* Opcional: Adicionar Ícone */}
+              {/* <FaBolt className={styles.headlineIcon} /> */}
+              <FaIcon
+                iconClass="fas fa-bolt"
+                className={styles.headlineIcon}
+              />{' '}
+              {/* Exemplo com FontAwesome */}
+              <span>Pronto para começar a economizar?</span>
+            </h2>
+            <h3 className={styles.subtext}>
+              Solicite agora mesmo uma avaliação gratuita para seu imóvel.
+            </h3>
+          </div>
+          <div className={`col-lg-4 text-lg-end ${styles.buttonContainer}`}>
+            <FaleConoscoDS
+              // Passando as classes CSS (incluindo a customizada do module)
+              textClassButton={buttonClasses}
+              // Mantém as outras props
+              textMessage="Olá, quero falar com especialista sobre avaliação gratuita." // Mensagem pode ser mais específica
+              textTag="#avaliacaoGratuitaCTA" // Tag pode ser mais específica
+              trackingContext="cta_section"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default CTASectionDS;
