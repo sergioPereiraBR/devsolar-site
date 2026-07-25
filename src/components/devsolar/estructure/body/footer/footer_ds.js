@@ -136,7 +136,7 @@ function FooterDS() {
                 />
                 <a
                   href={`tel:${CONTACT_PHONE_RAW}`}
-                  aria-label="Ligar para DEV Solar"
+                  aria-label={`Ligar para DEV Solar: ${CONTACT_PHONE_DISPLAY}`}
                   onClick={() =>
                     trackEvent('contact_click', {
                       contact_channel: 'phone',
@@ -155,11 +155,11 @@ function FooterDS() {
                 <FaIcon
                   iconClass="fas fa-envelope"
                   className={styles.contactIcon}
-                  aria-label="Email DEV Solar"
+                  aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
                 />
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  aria-label="Enviar email para DEV Solar"
+                  aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
                   onClick={() =>
                     trackEvent('contact_click', {
                       contact_channel: 'email',
@@ -221,6 +221,7 @@ function FooterDS() {
                 <li key={link.id}>
                   <Link
                     href={link.href}
+                    aria-label={`Visitar ${COMPANY_NAME} no ${link.text}: ${link.href}`}
                     onClick={() =>
                       trackEvent('navigation_click', {
                         location: 'footer_useful_links',
@@ -248,7 +249,7 @@ function FooterDS() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIconLinkFooter} // Classe específica do footer
-                  aria-label={`Visitar ${COMPANY_NAME} no ${social.name}`}
+                  aria-label={`Visitar ${COMPANY_NAME} no ${social.name}: ${social.url}`}
                   onClick={() => {
                     if (social.url.includes('wa.me')) {
                       trackWhatsAppClick('footer_social');
