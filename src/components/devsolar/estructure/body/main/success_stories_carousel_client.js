@@ -92,7 +92,7 @@ export default function SuccessStoriesCarouselClient() {
           }}
           className={styles.mySwiper}
         >
-          {successStories.map((story) => (
+          {successStories.map((story, index) => (
             <SwiperSlide key={story.id} className={styles.swiperSlide}>
               <Card className={styles.storyCard}>
                 <div className={styles.thumbnailContainer}>
@@ -124,12 +124,25 @@ export default function SuccessStoriesCarouselClient() {
                     </span>
                   </div>
                   <Button
+                    variant="outline-success"
+                    className={styles.watchVideoButton}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCardClick(story);
+                    }}
+                    aria-label={`Assistir vídeo do depoimento de ${story.title}`}
+                    data-tab-entry={index === 0 ? 'true' : undefined}
+                  >
+                    Assistir Vídeo do Depoimento
+                  </Button>
+                  <Button
                     variant="outline-primary"
                     className={styles.detailsButton}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleShowDetails(story);
                     }}
+                    aria-label={`Ver detalhes do case ${story.title}`}
                   >
                     Ver Detalhes
                   </Button>

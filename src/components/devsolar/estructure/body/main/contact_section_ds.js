@@ -17,7 +17,14 @@ const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), {
 });
 
 // Subcomponente para item de contato
-const ContactInfoItem = ({ iconClass, title, text, link, onClick }) => (
+const ContactInfoItem = ({
+  iconClass,
+  title,
+  text,
+  link,
+  onClick,
+  tabEntry,
+}) => (
   // ... (código inalterado) ...
   <div className={`${styles.contactItem} d-flex align-items-start mb-3`}>
     <div className={`${styles.iconWrapper} me-3 flex-shrink-0`}>
@@ -26,7 +33,12 @@ const ContactInfoItem = ({ iconClass, title, text, link, onClick }) => (
     <div className="flex-grow-1">
       <p className={`${styles.contactTitle} mb-0`}>{title}</p>
       {link ? (
-        <a href={link} className={styles.contactLink} onClick={onClick}>
+        <a
+          href={link}
+          className={styles.contactLink}
+          onClick={onClick}
+          data-tab-entry={tabEntry ? 'true' : undefined}
+        >
           <h4 className={`${styles.contactText} mb-0`}>{text}</h4>
         </a>
       ) : (
@@ -216,7 +228,7 @@ function ContactSectionDS() {
         // Limpar formulário após sucesso
         setFormData({
           firstName: '',
-          lastName: '',
+          // lastName: '',
           phone: '',
           email: '',
           message: '',
@@ -288,6 +300,7 @@ function ContactSectionDS() {
                 <ContactInfoItem
                   key={item.id}
                   {...item}
+                  tabEntry={item.id === 'phone'}
                   onClick={() => {
                     if (!item.link) return;
 
@@ -372,7 +385,7 @@ function ContactSectionDS() {
                       autoComplete="given-name"
                     />
                   </div>
-                  <div className="mb-3">
+                  {/* <div className="mb-3">
                     <label htmlFor="lastName" className="form-label">
                       Sobrenome
                     </label>
@@ -388,7 +401,7 @@ function ContactSectionDS() {
                       onInput={clearValidationMessage}
                       autoComplete="family-name"
                     />
-                  </div>
+                  </div> */}
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">
                       E-mail

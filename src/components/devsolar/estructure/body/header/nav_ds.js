@@ -19,6 +19,28 @@ const LeadAccessModal = dynamic(() => import('./LeadAccessModal'), {
 });
 
 const LOGO_URL = LogoSm.src;
+const FOCUSABLE_SELECTOR = [
+  '[data-tab-entry="true"]',
+  'a[href]:not([tabindex="-1"])',
+  'button:not([disabled]):not([tabindex="-1"])',
+  'input:not([disabled]):not([type="hidden"]):not([tabindex="-1"])',
+  'select:not([disabled]):not([tabindex="-1"])',
+  'textarea:not([disabled]):not([tabindex="-1"])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ');
+
+function isVisibleFocusable(element) {
+  if (!(element instanceof HTMLElement)) {
+    return false;
+  }
+
+  if (element.getClientRects().length === 0) {
+    return false;
+  }
+
+  const style = window.getComputedStyle(element);
+  return style.visibility !== 'hidden' && style.display !== 'none';
+}
 
 function NavDS() {
   const [modalShow, setModalShow] = useState(false);
@@ -85,6 +107,37 @@ function NavDS() {
     };
   }, [updateScrollPadding]); // Depende da função memoizada
 
+  const focusFirstSectionControl = useCallback((sectionElement) => {
+    if (!sectionElement) {
+      return false;
+    }
+
+    const focusableElements = Array.from(
+      sectionElement.querySelectorAll(FOCUSABLE_SELECTOR),
+    );
+
+    const firstVisibleFocusable = focusableElements.find(isVisibleFocusable);
+    if (!firstVisibleFocusable) {
+      return false;
+    }
+
+    firstVisibleFocusable.focus({ preventScroll: true });
+    return true;
+  }, []);
+
+  const focusFirstSectionControlWithRetry = useCallback(
+    (sectionElement, retriesLeft = 8) => {
+      if (focusFirstSectionControl(sectionElement) || retriesLeft <= 0) {
+        return;
+      }
+
+      window.setTimeout(() => {
+        focusFirstSectionControlWithRetry(sectionElement, retriesLeft - 1);
+      }, 120);
+    },
+    [focusFirstSectionControl],
+  );
+
   // --- Handlers ---
   const handleNavLinkClick = (e) => {
     const href = e.currentTarget?.getAttribute('href') || '';
@@ -110,6 +163,11 @@ function NavDS() {
         window.scrollY -
         (navbarHeight + 20);
       smoothScrollTo(top);
+
+      window.history.replaceState(null, '', hash);
+      window.setTimeout(() => {
+        focusFirstSectionControlWithRetry(targetElement);
+      }, 420);
     }
 
     setExpanded(false); // Fecha o menu mobile ao clicar em um link
@@ -159,6 +217,7 @@ function NavDS() {
               alt="Logo da DEV Solar"
               width={140}
               height={38}
+              quality={85} // Qualidade da imagem
               loading="eager"
             />
           </Navbar.Brand>

@@ -17,8 +17,6 @@ import {
   CONTACT_PHONE_DISPLAY,
   CONTACT_PHONE_RAW,
   CURRENT_YEAR,
-  DEVELOPER_NAME,
-  DEVELOPER_URL,
   LOGO_URL,
   navLinksData,
   socialLinksData,
@@ -320,7 +318,7 @@ function FooterDS() {
         {/* Seção de Copyright */}
         <div className={styles.footerCopyright}>
           <p>
-            © {CURRENT_YEAR} {COMPANY_NAME} - Todos os direitos reservados.
+            © {CURRENT_YEAR} {COMPANY_NAME} - Todos os direitos reservados.{' '}
             {/* Links legais agora apenas aqui (removidos da coluna 3 ou vice-versa) */}
             <Link
               href="/#"
@@ -333,7 +331,7 @@ function FooterDS() {
             >
               Política de Privacidade
             </Link>{' '}
-            |
+            |{' '}
             <Link
               href="/#"
               onClick={() =>
@@ -348,7 +346,7 @@ function FooterDS() {
             {/* | <Link href="/politica-de-privacidade">Política de Privacidade</Link> |
                         <Link href="/termos-de-uso">Termos de Uso</Link> | rev 0.0.350 */}
           </p>
-          <p className={styles.developerCredit}>
+          {/* <p className={styles.developerCredit}>
             Powered by{' '}
             <a
               href={DEVELOPER_URL}
@@ -364,7 +362,7 @@ function FooterDS() {
             >
               {DEVELOPER_NAME}
             </a>
-          </p>
+          </p> */}
         </div>
       </div>
 

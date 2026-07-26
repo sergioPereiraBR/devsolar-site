@@ -66,7 +66,7 @@ export default function SuccessStoriesDS() {
         <Container>
           <div className="mb-5 text-center">
             <h2 id="cases-title" className={`${styles.sectionTitle} fw-bold`}>
-              Cases de Sucesso
+              Cases de sucesso das nossas instalações
             </h2>
             <p className={`${styles.sectionSubtitle} lead`}>
               Conheça quem já está economizando com energia solar

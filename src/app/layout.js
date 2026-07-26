@@ -31,6 +31,26 @@ export const metadata = {
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical padrão (será sobrescrito nas páginas)
   },
+  keywords: [
+    'energia solar rio de janeiro',
+    'energia solar rj',
+    'energia solar vila valqueire',
+    'painel solar rj',
+    'placa solar rio de janeiro',
+    'economia de energia rj',
+    'instalador solar rj',
+    'dev solar',
+    'dev solar eficiencia energetica',
+    'energia solar residencial rj',
+    'energia solar comercial rj',
+    'financiamento energia solar rj',
+    'reduzir conta de luz rj',
+  ],
+  authors: [{ name: 'DEV Eficiência Energética Ltda.' }],
+  other: {
+    publisher: 'DEV Eficiência Energética Ltda.',
+    copyright: '© 2026 Dev Solar - Todos os direitos reservados.',
+  },
   facebook: {
     appId: '706537912532593',
   },
@@ -134,11 +154,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
-        <meta
-          name="keywords"
-          content="energia solar rio de janeiro, energia solar rj, energia solar vila valqueire, painel solar rj, placa solar rio de janeiro, economia de energia rj, instalador solar rj, dev solar, dev solar eficiencia energetica, energia solar residencial rj, energia solar comercial rj, financiamento energia solar rj, reduzir conta de luz rj"
-        ></meta>
-        <meta name="publisher" content="DEV Eficiência Energética Ltda."></meta>
         <Script id="force-passive-touch-listeners" strategy="beforeInteractive">
           {`(function() {
     var originalAddEventListener = EventTarget.prototype.addEventListener;
@@ -160,16 +175,6 @@ export default function RootLayout({ children }) {
         </Script>
         {/* Tags que DEVEM estar no <head> e não são cobertas pela Metadata API */}
         {/* Ex: Fontes externas carregadas diretamente, scripts inline críticos (raro) */}
-        <link
-          rel="alternate"
-          hrefLang="pt-br"
-          href="https://www.devsolar.com.br/"
-        />
-        <link
-          rel="alternate"
-          hrefLang="x-default"
-          href="https://www.devsolar.com.br/"
-        />
         <meta
           name="facebook-domain-verification"
           content="nk6hini7dghzylggt85l67u1es1xwv"
@@ -179,6 +184,9 @@ export default function RootLayout({ children }) {
         className={inter.className}
         cz-shortcut-listen={isEnabled.toString()}
       >
+        <a href="#main-content" className="skip-link">
+          Ir para o conteúdo principal
+        </a>
         {children}
         <Script id="defer-manifest" strategy="lazyOnload">
           {`(function() {
@@ -192,33 +200,6 @@ export default function RootLayout({ children }) {
                 document.head.appendChild(manifestLink);
             })();`}
         </Script>
-        {/* Exemplo de Script de Terceiros (ex: Google Analytics) */}
-        {/* Usar next/script é crucial */}
-        {/* <Script
-                    async src={`https://www.googletagmanager.com/gtag/js?id=G-T8P0CVS70V`}
-                    strategy="afterInteractive" // Carrega após a página ficar interativa
-                />
-                <Script id="google-analytics" strategy="afterInteractive">
-                    {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'G-T8P0CVS70V');
-                    `}
-                </Script>
-                <script>
-                    {`
-                        (function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({
-                            'gtm.start': new Date().getTime(),event:'gtm.js'
-                        });
-                            var f=d.getElementsByTagName(s)[0],
-                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                        })(window,document,'script','dataLayer','G-T8P0CVS70V');
-                    `}
-                </script> */}
-        {/* Script do reCAPTCHA (se usar no formulário) */}
-        {/* <Script src="https://www.google.com/recaptcha/api.js" strategy="lazyOnload" async defer></Script> */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -314,7 +295,7 @@ export default function RootLayout({ children }) {
                   name: 'DEV Eficiência Energética Ltda.',
                   alternateName: 'DEV Solar',
                   url: 'https://www.devsolar.com.br',
-                  logo: 'https://www.devsolar.com.br/caminho-para-o-logo.jpg',
+                  logo: 'https://www.devsolar.com.br/logo-devsolar-icon.png',
                   leiCode: '53.538.425/0001-15',
                 },
               ],
@@ -323,7 +304,6 @@ export default function RootLayout({ children }) {
             ),
           }}
         />
-        {/* <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeshiwrAAAAAPVbR8FTS_4l-80ea1G_UyBhZuFk" /> */}
         {hasGaTrackingId ? (
           <>
             <Script
@@ -342,7 +322,7 @@ export default function RootLayout({ children }) {
           </>
         ) : null}
         <noscript>
-          <div class="noscript-warning">
+          <div className="noscript-warning">
             <span>
               Para uma melhor experiência e navegação no site da{' '}
               <strong>DEV Solar</strong>, por favor

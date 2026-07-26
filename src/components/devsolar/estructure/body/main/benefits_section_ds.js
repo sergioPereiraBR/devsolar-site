@@ -12,52 +12,59 @@ import { benefitsData } from './benefits_data_ds'; // Importa os dados estrutura
 import styles from './benefits_section_ds.module.css'; // Importar CSS Module
 
 // Componente para o Card de Benefício Principal
-const BenefitCard = ({ benefit, onClick }) => (
+const BenefitCard = ({ benefit, onClick, isTabEntry = false }) => (
   <Col md={6} lg={4} className="mb-4">
-    {' '}
-    {/* Ajusta colunas e adiciona margem */}
-    <Card
-      className={`${styles.benefitCard} h-100`}
+    <button
+      type="button"
+      className={styles.benefitCardButton}
       onClick={() => onClick(benefit)}
+      aria-label={`Abrir detalhes do benefício: ${benefit.title}`}
+      data-tab-entry={isTabEntry ? 'true' : undefined}
     >
-      <Card.Body className="p-4 text-center">
-        <FaIcon
-          iconClass={benefit.iconClass}
-          className={styles.benefitIcon}
-          aria-label={benefit.description}
-        ></FaIcon>
-        <Card.Title as="h3" className={`${styles.benefitTitle} fw-bold`}>
-          {benefit.title}
-        </Card.Title>
-        <Card.Text className={styles.benefitDescription}>
-          {benefit.description}
-        </Card.Text>
-      </Card.Body>
-    </Card>
+      <Card className={`${styles.benefitCard} h-100`}>
+        <Card.Body className="p-4 text-center">
+          <FaIcon
+            iconClass={benefit.iconClass}
+            className={styles.benefitIcon}
+            aria-label={benefit.description}
+          ></FaIcon>
+          <Card.Title as="h3" className={`${styles.benefitTitle} fw-bold`}>
+            {benefit.title}
+          </Card.Title>
+          <Card.Text className={styles.benefitDescription}>
+            {benefit.description}
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </button>
   </Col>
 );
 
 // Componente para o Card de Categoria dentro do Modal
 const CategoryCard = ({ category, onClick }) => (
   <Col>
-    <Card
-      className={`${styles.categoryCard} h-100`}
+    <button
+      type="button"
+      className={styles.categoryCardButton}
       onClick={() => onClick(category.detail)}
+      aria-label={`Abrir detalhe de categoria: ${category.title}`}
     >
-      <Card.Body className="d-flex flex-column p-3 text-center">
-        <FaIcon
-          iconClass={category.iconClass}
-          className={styles.categoryIcon}
-          aria-label={category.description}
-        />
-        <Card.Title as="h4" className="fw-bold">
-          {category.title}
-        </Card.Title>
-        <Card.Text className={`${styles.categoryDescription} flex-grow-1`}>
-          {category.description}
-        </Card.Text>
-      </Card.Body>
-    </Card>
+      <Card className={`${styles.categoryCard} h-100`}>
+        <Card.Body className="d-flex flex-column p-3 text-center">
+          <FaIcon
+            iconClass={category.iconClass}
+            className={styles.categoryIcon}
+            aria-label={category.description}
+          />
+          <Card.Title as="h4" className="fw-bold">
+            {category.title}
+          </Card.Title>
+          <Card.Text className={`${styles.categoryDescription} flex-grow-1`}>
+            {category.description}
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </button>
   </Col>
 );
 
@@ -211,11 +218,12 @@ function BenefitsSectionDS() {
           </div>
           {/* Renderiza os cards de benefícios principais */}
           <Row className="g-4 justify-content-center">
-            {benefitsData.map((benefit) => (
+            {benefitsData.map((benefit, index) => (
               <BenefitCard
                 key={benefit.id}
                 benefit={benefit}
                 onClick={handleShowBenefitModal}
+                isTabEntry={index === 0}
               />
             ))}
           </Row>
