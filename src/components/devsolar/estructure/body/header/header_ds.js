@@ -286,7 +286,7 @@ function HeaderDS() {
                 className="position-absolute start-50 translate-middle-x text-center"
                 style={{ fontSize: '2rem', fontWeight: '500' }}
               >
-                Resultado da Simulação
+                CÁLCULO DE INVESTIMENTO
               </span>
             </div>
           </Modal.Title>

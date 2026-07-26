@@ -336,3 +336,15 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
+
+.watchVideoButton {
+    font-weight: 600;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.watchVideoButton:focus-visible,
+.detailsButton:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}

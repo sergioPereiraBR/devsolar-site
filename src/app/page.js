@@ -6,7 +6,7 @@ import ContactSectionDS from '../components/devsolar/estructure/body/main/contac
 import CTASectionDS from '../components/devsolar/estructure/body/main/cta_section_ds';
 import FAQSectionDS from '../components/devsolar/estructure/body/main/faq_section_ds';
 import LocationSectionDS from '../components/devsolar/estructure/body/main/location_ds';
-import CalculatorSectionDS from '../components/devsolar/estructure/body/main/modalities_section_ds';
+import ModalitiesSectionDS from '../components/devsolar/estructure/body/main/modalities_section_ds';
 import ParceirosFinanceirasSectionDS from '../components/devsolar/estructure/body/main/parceiros_financeiras_ds';
 import SuccessStoriesDS from '../components/devsolar/estructure/body/main/success_stories_ds';
 
@@ -17,6 +17,10 @@ export const metadata = {
     'Instalação de painéis solares para residências, condomínios e empresas no RJ. Reduza sua conta de luz em até 95%. Orçamento gratuito!', // Descrição específica
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical para a homepage
+    languages: {
+      'pt-BR': 'https://www.devsolar.com.br/',
+      'x-default': 'https://www.devsolar.com.br/',
+    },
   },
   facebook: {
     appId: '706537912532593',
@@ -53,53 +57,28 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <>
-      {/* Navegator */}
-      <NavDS />
-
-      {/* Hero Section */}
-      <HeaderDS />
-
-      <main>
-        <article>
-          {/* Benefits Section */}
-          <BenefitsSectionDS />
-
-          {/* Calculator Section */}
-          <CalculatorSectionDS />
-
-          {/* Success Stories */}
-          <SuccessStoriesDS />
-
-          {/* FAQ Section */}
-          <FAQSectionDS />
-
-          {/* About Section 
+    <main id="main-content" tabIndex={-1}>
+      <NavDS /> {/* Navegator */}
+      <HeaderDS /> {/* Hero Section */}
+      <article>
+        <BenefitsSectionDS /> {/* Benefits Section */}
+        <ModalitiesSectionDS /> {/* Service Modalities Section */}
+        <SuccessStoriesDS /> {/* Success Stories */}
+        <FAQSectionDS /> {/* FAQ Section */}
+        {/* About Section 
                     <section id="sobre"></section>*/}
-
-          {/* Location Section */}
-          <LocationSectionDS />
-
-          {/* Partners Section */}
-          <ParceirosFinanceirasSectionDS />
-
-          {/* Terms Section
+        <LocationSectionDS /> {/* Location Section */}
+        <ParceirosFinanceirasSectionDS /> {/* Partners Section */}
+        {/* Terms Section
                     <section id="termos-de-uso"></section>
 
                     {/* Policy Section */}
-          {/*
+        {/*
                     <section id="politica-de-privacidade"></section> */}
-
-          {/* CTA Section */}
-          <CTASectionDS />
-
-          {/* Contact Section */}
-          <ContactSectionDS />
-        </article>
-      </main>
-
-      {/* Footer Section */}
-      <FooterDS />
-    </>
+        <CTASectionDS /> {/* CTA Section */}
+        <ContactSectionDS /> {/* Contact Section */}
+      </article>
+      <FooterDS /> {/* Footer Section */}
+    </main>
   );
 }

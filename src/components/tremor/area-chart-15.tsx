@@ -175,7 +175,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
     <>
       <div className="m-1 sm:mx-auto sm:max-w-7xl">
         <h2 className="font-medium text-footer-color dark:text-gray-50">
-          Economia Calculada - Custo Evitado (25 Anos)
+          Economia Calculada -{'>'} Custo Evitado (25 Anos) + Rentabilidade
         </h2>
         <p className="text-sm/6 text-gray-500 dark:text-gray-500">
           Para maior precisão das informações fornecidas{' '}

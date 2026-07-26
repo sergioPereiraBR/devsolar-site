@@ -111,23 +111,23 @@ function ModalitiesSectionDS() {
       <section
         id="modalidades"
         className={styles.sectionModalities}
-        aria-labelledby="modalities-title"
+        aria-labelledby="modalities-service-title"
       >
         <div className="container">
           {/* ... (cabeçalho da seção inalterado) ... */}
           <div className="mb-5 text-center">
             <h2
-              id="modalities-title"
+              id="modalities-service-title"
               className={`${styles.sectionTitle} fw-bold`}
             >
-              O que Fazer com Seu Potencial Solar
+              Qual o objetivo do seu potencial solar?
             </h2>
             <p className={`${styles.sectionSubtitle} lead`}>
               Descubra a modalidade dos nossos serviços ideal para você
             </p>
           </div>
           <Row className="g-4 justify-content-center">
-            {modalitiesData.map((modality) => (
+            {modalitiesData.map((modality, index) => (
               // ... (Estrutura do Card inalterada) ...
               <Col key={modality.id} md={6} lg={4}>
                 <Card className={`${styles.modalityCard} h-100`}>
@@ -146,6 +146,7 @@ function ModalitiesSectionDS() {
                       variant="primary"
                       className={`${styles.detailsButton} w-100`}
                       onClick={() => handleShowModal(modality)}
+                      data-tab-entry={index === 0 ? 'true' : undefined}
                     >
                       <FaIcon iconClass="fas fa-info-circle" className="me-2" />
                       <span>{modality.buttonText}</span>
@@ -220,4 +221,3 @@ function ModalitiesSectionDS() {
 }
 
 export default ModalitiesSectionDS;
-

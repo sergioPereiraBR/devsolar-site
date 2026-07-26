@@ -26,6 +26,7 @@ function LocationMap() {
           target="_blank"
           rel="noopener noreferrer"
           className={styles.directionsButton}
+          data-tab-entry="true"
           onClick={() =>
             trackEvent('outbound_click', {
               location: 'location_section',

@@ -40,54 +40,34 @@ function LocationSectionDS() {
   }, [shouldRenderMap]);
 
   return (
-    <>
+    <section
+      ref={sectionRef}
+      id="location"
+      className={`${styles.sectionLocation}`}
+      aria-labelledby="location-title"
+    >
       {/* Location Section */}
-      {/* <section id="location" className={`${styles.sectionTitle} fw-bold`}>
-                <div className="container">
-                    <div className="text-center mb-5">
-                        <h2 className="fw-bold">Nossa Localização</h2>
-                        <p className="lead">Vamos marcar, encontre um rota mais fácil para falar com a gente!</p>
-                    </div>
-                    <div className="row justify-content-center">
-                        <div className="col-lg-12">
-                            <LocationMap />
-                        </div>
-                    </div>
-                </div>
-            </section> */}
-
-      {/* Location Section */}
-      <section
-        ref={sectionRef}
-        id="location"
-        className={`${styles.sectionLocation}`}
-        aria-labelledby="benefits-title"
-      >
-        <div className="container">
-          <div className="mb-5 text-center">
-            <h2
-              id="location-title"
-              className={`${styles.sectionTitle} fw-bold`}
-            >
-              Nossa Localização
-            </h2>
-            <h3 className={`${styles.sectionSubtitle} lead`}>
-              Vamos marcar, encontre sua rota para vir falar com a gente!
-            </h3>
-          </div>
-          {/* Renderiza os cards de benefícios principais */}
-          <Row className="g-4 justify-content-center">
-            <div className="col-lg-9">
-              {shouldRenderMap ? (
-                <LocationMap />
-              ) : (
-                <div className={styles.mapPlaceholder} aria-hidden="true" />
-              )}
-            </div>
-          </Row>
+      <div className="container">
+        <div className="mb-5 text-center">
+          <h2 id="location-title" className={`${styles.sectionTitle} fw-bold`}>
+            Nossa localização
+          </h2>
+          <h3 className={`${styles.sectionSubtitle} lead`}>
+            Vamos marcar, encontre sua rota para vir falar com a gente!
+          </h3>
         </div>
-      </section>
-    </>
+        {/* Renderiza os cards de benefícios principais */}
+        <Row className="g-4 justify-content-center">
+          <div className="col-lg-9">
+            {shouldRenderMap ? (
+              <LocationMap />
+            ) : (
+              <div className={styles.mapPlaceholder} aria-hidden="true" />
+            )}
+          </div>
+        </Row>
+      </div>
+    </section>
   );
 }
 

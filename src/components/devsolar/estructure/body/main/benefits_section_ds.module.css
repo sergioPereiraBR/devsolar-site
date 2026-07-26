@@ -24,6 +24,22 @@
     font-style: italic;
 }
 
+.benefitCardButton,
+.categoryCardButton {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: left;
+}
+
+.benefitCardButton:focus-visible .benefitCard,
+.categoryCardButton:focus-visible .categoryCard {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
 /* Card de Benefício Principal */
 .benefitCard {
     cursor: pointer;

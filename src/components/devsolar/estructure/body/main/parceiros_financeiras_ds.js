@@ -69,7 +69,7 @@ function ParceirosFinanceirasSectionDS() {
         <div className="container">
           <div className="mb-5 text-center">
             <h2 className={`${styles.sectionTitle} fw-bold`}>
-              Conheça Nossos Parceiros e Financeiras
+              Conheça nossos parceiros e financeiras
             </h2>
             <p className={`${styles.sectionSubtitle} lead`}>
               Somos uma rede que colabora para o benefício dos nossos clientes.
@@ -78,7 +78,7 @@ function ParceirosFinanceirasSectionDS() {
 
           {/* Subseção Fornecedores */}
           <div className={styles.subsection}>
-            <h3 className={styles.subsectionTitle}>Nossos Fornecedores</h3>
+            <h3 className={styles.subsectionTitle}>Nossos fornecedores</h3>
             <div className={styles.partnerGrid}>
               {fornecedoresData.map((partner) => (
                 <PartnerCard
@@ -93,7 +93,7 @@ function ParceirosFinanceirasSectionDS() {
 
           {/* Subseção Financeiras */}
           <div className={styles.subsection}>
-            <h3 className={styles.subsectionTitle}>Nossas Financeiras</h3>
+            <h3 className={styles.subsectionTitle}>Nossas financeiras</h3>
             <div className={styles.partnerGrid}>
               {financeirasData.map((partner) => (
                 <PartnerCard

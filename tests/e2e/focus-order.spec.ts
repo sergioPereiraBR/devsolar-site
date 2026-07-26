@@ -124,6 +124,9 @@ test.describe('Keyboard focus order', () => {
       await page.goto('/');
 
       const expectedSequence: Array<(meta: FocusMeta) => boolean> = [
+        (meta) =>
+          /^#main-content$/.test(meta.href) &&
+          /conte[úu]do principal/i.test(meta.text),
         (meta) => /#home/.test(meta.href) && /topo da p[aá]gina/i.test(meta.aria),
         (meta) => /#beneficios/.test(meta.href),
         (meta) => /#modalidades/.test(meta.href),
@@ -183,7 +186,6 @@ test.describe('Keyboard focus order', () => {
         (meta) => meta.tag === 'a' && /linkedin\.com/i.test(meta.href),
         (meta) => meta.tag === 'a' && /wa\.me\/5521999677722/i.test(meta.href),
         (meta) => meta.tag === 'input' && meta.id === 'firstName',
-        (meta) => meta.tag === 'input' && meta.id === 'lastName',
         (meta) => meta.tag === 'input' && meta.id === 'email',
         (meta) => meta.tag === 'input' && meta.id === 'phone',
         (meta) => meta.tag === 'textarea' && meta.id === 'message',
@@ -230,6 +232,9 @@ test.describe('Keyboard focus order', () => {
       await expectTabSequence(
         page,
         [
+          (meta) =>
+            /^#main-content$/.test(meta.href) &&
+            /conte[úu]do principal/i.test(meta.text),
           (meta) => /#home/.test(meta.href) && /topo da p[aá]gina/i.test(meta.aria),
           (meta) => /#beneficios/.test(meta.href),
           (meta) => /#modalidades/.test(meta.href),
@@ -253,6 +258,9 @@ test.describe('Keyboard focus order', () => {
       await expectTabSequence(
         page,
         [
+          (meta) =>
+            /^#main-content$/.test(meta.href) &&
+            /conte[úu]do principal/i.test(meta.text),
           (meta) => /#home/.test(meta.href) && /topo da p[aá]gina/i.test(meta.aria),
           (meta) => meta.tag === 'button' && /Toggle navigation/i.test(meta.aria),
         ],
@@ -291,6 +299,7 @@ test.describe('Keyboard focus order', () => {
       await expectTabSequence(
         page,
         [
+          (meta) => /#home/.test(meta.href) && /topo da p[aá]gina/i.test(meta.aria),
           (meta) => /#beneficios/.test(meta.href),
           (meta) => /#modalidades/.test(meta.href),
           (meta) => /#cases/.test(meta.href),
@@ -303,6 +312,32 @@ test.describe('Keyboard focus order', () => {
         ],
         'Unexpected mobile TAB order with expanded menu',
       );
+    });
+
+    test('navbar anchor click moves focus to first control in target section', async ({ page }) => {
+      await page.goto('/');
+
+      await page.locator('a[href="#faq"]').first().click();
+
+      await expect
+        .poll(async () => {
+          return page.evaluate(() => {
+            const el = document.activeElement as HTMLElement | null;
+            if (!el) {
+              return { tag: '', text: '', sectionId: '' };
+            }
+
+            return {
+              tag: el.tagName.toLowerCase(),
+              text: (el.innerText || el.textContent || '').trim(),
+              sectionId: el.closest('section')?.id || '',
+            };
+          });
+        })
+        .toMatchObject({
+          tag: 'button',
+          sectionId: 'faq',
+        });
     });
   });
 
@@ -331,7 +366,6 @@ test.describe('Keyboard focus order', () => {
         (meta) => meta.tag === 'textarea' && meta.id === 'message',
         (meta) => meta.tag === 'input' && meta.id === 'phone',
         (meta) => meta.tag === 'input' && meta.id === 'email',
-        (meta) => meta.tag === 'input' && meta.id === 'lastName',
         (meta) => meta.tag === 'input' && meta.id === 'firstName',
       ];
 

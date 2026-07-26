@@ -151,7 +151,7 @@ function FAQSectionDS() {
           {/* ... Cabeçalho e Acordeão ... */}
           <div className="mb-5 text-center">
             <h2 className={`${styles.sectionTitle} fw-bold`}>
-              Perguntas Frequentes (FAQ)
+              Perguntas frequentes (FAQ)
             </h2>
             <p className={`${styles.sectionSubtitle} lead`}>
               Tire suas dúvidas sobre energia solar
