@@ -13,10 +13,10 @@ function LocationMap() {
         width="100%"
         height="450"
         style={{ border: 0, display: 'block' }}
-        allowFullScreen=""
+        allowFullScreen={true}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        sandbox="allow-popups-to-escape-sandbox allow-popups allow-same-origin allow-scripts"
+        // sandbox="allow-popups-to-escape-sandbox allow-popups allow-same-origin allow-scripts"
       />
       <div className={styles.addressText}>
         <h4>Av. Jambeiro, 474 - Loja C - Vila Valqueire</h4>
