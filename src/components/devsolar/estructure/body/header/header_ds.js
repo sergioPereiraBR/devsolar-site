@@ -178,10 +178,13 @@ function HeaderDS() {
               </div>
               <div className={`col-lg-6 ${styles.calculatorContainer}`}>
                 <div className={styles.calculatorInline}>
-                  <h3 className={styles.calculatorCopy}>
+                  <label
+                    htmlFor="valor-consumo"
+                    className={styles.calculatorCopy}
+                  >
                     Informe o valor médio mensal da sua conta de energia
                     elétrica:
-                  </h3>
+                  </label>
 
                   <div className="input-group mb-3">
                     <span
