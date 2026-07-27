@@ -96,6 +96,11 @@ function renderAnswerWithLineBreaks(answerText) {
   ));
 }
 
+function limparTags(texto) {
+  if (typeof texto !== 'string') return '';
+  return texto.replace(/<[^>]*>/g, '');
+}
+
 function FAQSectionDS() {
   const [userMessage, setUserMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -204,6 +209,7 @@ function FAQSectionDS() {
                             className={styles.avatarImage}
                             style={{ objectFit: 'cover' }}
                             title={item.personaImageAlt}
+                            aria-label="pergunta:"
                           />
                         </div>
                         <div
@@ -211,14 +217,16 @@ function FAQSectionDS() {
                         >
                           <h3>{item.question}</h3>
                         </div>
-                        <span className={styles.toggleIcon} aria-hidden="true">
+                        <span className={styles.toggleIcon} aria-hidden="false">
                           <FontAwesomeIcon
                             icon={faAnglesDown}
                             className={styles.toggleIconClosed}
+                            aria-label={`Especialista DEV Solar responde: ${limparTags(item.answer)} - Clique para expandir e exibir a resposta`}
                           />
                           <FontAwesomeIcon
                             icon={faComments}
                             className={styles.toggleIconOpen}
+                            aria-label={`Especialista DEV Solar responde: ${limparTags(item.answer)} - Clique para expandir e exibir a resposta`}
                           />
                         </span>
                       </div>

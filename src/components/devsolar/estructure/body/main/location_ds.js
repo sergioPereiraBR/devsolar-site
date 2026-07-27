@@ -14,10 +14,17 @@ const LocationMap = dynamic(() => import('./location_map_ds'), {
 function LocationSectionDS() {
   const sectionRef = useRef(null);
   const [shouldRenderMap, setShouldRenderMap] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Garante hidratação correta na produção
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
     if (
       shouldRenderMap ||
+      !isHydrated ||
       !sectionRef.current ||
       typeof IntersectionObserver === 'undefined'
     ) {
@@ -38,7 +45,7 @@ function LocationSectionDS() {
     observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
-  }, [shouldRenderMap]);
+  }, [shouldRenderMap, isHydrated]);
 
   return (
     <section
