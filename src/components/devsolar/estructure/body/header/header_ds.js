@@ -8,7 +8,7 @@ import Photovoltaic from '@/assets/photovoltaic.webp';
 import { calcularEconomiaSolar } from '@/utils/solarCalculations';
 import { Button, Col, Modal, Row, Spinner } from 'react-bootstrap'; // Adicionar Button, Spinner
 
-import { trackEvent } from '@/lib/analytics';
+import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
@@ -25,11 +25,13 @@ const FALE_CONOSCO_BTN_CLASS = 'btn btn-outline-light btn-lg mb-3'; // Classe do
 const FALE_CONOSCO_MESSAGE = 'Olá, quero falar com especialista.';
 const FALE_CONOSCO_TAG_HERO = '#solNaEconomia';
 const FALE_CONOSCO_TAG_RESULT = '#calculaEconomia'; // Tag base para resultado
+const MIN_MONTHLY_COST = 400;
 
 // --- Componente Principal ---
 function HeaderDS() {
   const [showResultModal, setShowResultModal] = useState(false);
   const [calculando, setCalculando] = useState(false);
+  const [showMinimumHint, setShowMinimumHint] = useState(false);
   // Estado do Input (Controlado)
   const [inputValue, setInputValue] = useState(''); // Valor como string para o input
   const inputCustoMesRef = useRef(null);
@@ -50,13 +52,25 @@ function HeaderDS() {
     if (!showResultModal) {
       setInputValue('');
       setCalculationResult(null); // Limpa resultado também
+      setShowMinimumHint(false);
     }
   }, [showResultModal]);
 
   // Handler do Input de Custo
   const handleInputChange = (e) => {
     const rawValue = e.target.value.replace(/[^0-9]/g, '').substring(0, 11); // Permite apenas dígitos
+
+    if (!rawValue || Number(rawValue) === 0) {
+      setInputValue('');
+      setShowMinimumHint(false);
+      return;
+    }
+
     setInputValue(rawValue); // Atualiza o estado da string do input
+
+    if (parseInt(rawValue, 10) / 100 >= MIN_MONTHLY_COST) {
+      setShowMinimumHint(false);
+    }
   };
 
   // Função para obter o valor numérico do input
@@ -66,11 +80,15 @@ function HeaderDS() {
     return num / 100; // Divide por 100 para obter o valor em Reais (ex: 12345 -> 123.45)
   };
 
+  const numericCost = getNumericCost();
+  const hasTypedValue = inputValue.length > 0;
+  const isBelowMinimumCost = numericCost > 0 && numericCost < MIN_MONTHLY_COST;
+
   // Formata o valor numérico para exibição no input
   const formatValueForInput = (rawStringValue) => {
     if (!rawStringValue) return '';
     const num = parseInt(rawStringValue, 10);
-    if (isNaN(num)) return '';
+    if (isNaN(num) || num === 0) return '';
     return currencyFormatter.format(num / 100);
   };
 
@@ -82,10 +100,15 @@ function HeaderDS() {
       monthly_cost: numericCost,
     });
 
-    if (numericCost < 300 || numericCost > 999999999.99) {
+    if (numericCost < MIN_MONTHLY_COST || numericCost > 999999999.99) {
+      if (numericCost < MIN_MONTHLY_COST) {
+        setShowMinimumHint(true);
+      }
+
       trackEvent('calculator_validation_error', {
         location: 'hero_section',
-        reason: 'out_of_range',
+        reason:
+          numericCost < MIN_MONTHLY_COST ? 'below_minimum' : 'out_of_range',
         monthly_cost: numericCost,
       });
       return;
@@ -156,8 +179,8 @@ function HeaderDS() {
               <div className={`col-lg-6 ${styles.calculatorContainer}`}>
                 <div className={styles.calculatorInline}>
                   <h3 className={styles.calculatorCopy}>
-                    Informe o valor médio mensal da sua conta de luz para
-                    simular sua economia - valor mínimo de R$ 400,00:
+                    Informe o valor médio mensal da sua conta de energia
+                    elétrica:
                   </h3>
 
                   <div className="input-group mb-3">
@@ -170,16 +193,40 @@ function HeaderDS() {
                       ref={inputCustoMesRef}
                       type="text"
                       inputMode="numeric"
-                      className={`form-control form-control-lg ${styles.currencyInput}`}
+                      className={`form-control form-control-lg ${styles.currencyInput} ${
+                        isBelowMinimumCost ? styles.inputWarning : ''
+                      }`}
                       id="valor-consumo"
                       name="valor-consumo"
                       value={formatValueForInput(inputValue)}
                       onChange={handleInputChange}
                       onKeyDown={handleInputKeyDown}
-                      placeholder="0,00"
+                      placeholder="Digite o valor (mínimo R$ 400,00)"
                       autoComplete="off"
+                      aria-describedby="valor-consumo-feedback"
                     />
                   </div>
+
+                  {showMinimumHint && hasTypedValue && isBelowMinimumCost && (
+                    <div
+                      id="valor-consumo-feedback"
+                      className={styles.validationHint}
+                      role="status"
+                      aria-live="polite"
+                    >
+                      Para contas abaixo de R$ 400,00, nosso time comercial pode
+                      indicar a melhor solução para o seu perfil.
+                      <a
+                        href="https://wa.me/5521999677722"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.validationHintLink}
+                        onClick={() => trackWhatsAppClick('hero_minimum_hint')}
+                      >
+                        Falar com o atendimento
+                      </a>
+                    </div>
+                  )}
 
                   <Row className={`g-2 ${styles.btnRow}`}>
                     {/* Botão Calcular Economia */}
@@ -188,7 +235,7 @@ function HeaderDS() {
                         variant="warning"
                         className={`btn ${styles.heroButtonPrimary}`}
                         onClick={handleCalculateAndShowResult}
-                        disabled={calculando || getNumericCost() < 400}
+                        disabled={calculando || numericCost < MIN_MONTHLY_COST}
                       >
                         {calculando ? (
                           <>
