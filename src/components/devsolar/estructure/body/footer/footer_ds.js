@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react'; // Importar useState para Newsletter
+import { useCallback, useState } from 'react'; // Importar useState para Newsletter
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
+import { smoothScrollTo } from '@/lib/smoothScroll';
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
@@ -37,6 +38,60 @@ function FooterDS() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState(null); // null | 'submitting' | 'success' | 'error'
   const [newsletterMessage, setNewsletterMessage] = useState('');
+
+  const getScrollOffset = useCallback(() => {
+    const rootStyles = window.getComputedStyle(document.documentElement);
+    const raw = rootStyles.getPropertyValue('--scroll-padding').trim();
+    const parsed = Number.parseInt(raw, 10);
+
+    if (!Number.isNaN(parsed) && parsed > 0) {
+      return parsed;
+    }
+
+    return 90;
+  }, []);
+
+  const handleInPageLinkClick = useCallback(
+    (event, href, trackingLocation) => {
+      trackEvent('navigation_click', {
+        location: trackingLocation,
+        target: href,
+      });
+
+      const rawHref = href || event.currentTarget?.getAttribute('href') || '';
+      if (!rawHref.includes('#')) {
+        return;
+      }
+
+      event.preventDefault();
+
+      let hash = '';
+      try {
+        hash = new URL(rawHref, window.location.href).hash;
+      } catch {
+        hash = rawHref.slice(rawHref.indexOf('#'));
+      }
+
+      if (!hash) {
+        return;
+      }
+
+      const targetId = hash.replace('#', '');
+      const targetElement = document.getElementById(targetId);
+      if (!targetElement) {
+        return;
+      }
+
+      const top =
+        targetElement.getBoundingClientRect().top +
+        window.scrollY -
+        getScrollOffset();
+      smoothScrollTo(Math.max(0, top));
+
+      window.history.replaceState(null, '', hash);
+    },
+    [getScrollOffset],
+  );
 
   // Handler para o envio da newsletter
   const handleNewsletterSubmit = async (e) => {
@@ -195,17 +250,14 @@ function FooterDS() {
             <ul>
               {navLinksData.map((link) => (
                 <li key={link.id}>
-                  <Link
+                  <a
                     href={link.href}
-                    onClick={() =>
-                      trackEvent('navigation_click', {
-                        location: 'footer_nav',
-                        target: link.href,
-                      })
+                    onClick={(event) =>
+                      handleInPageLinkClick(event, link.href, 'footer_nav')
                     }
                   >
                     {link.text}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -217,18 +269,19 @@ function FooterDS() {
             <ul>
               {usefulLinksData.map((link) => (
                 <li key={link.id}>
-                  <Link
+                  <a
                     href={link.href}
                     aria-label={`Visitar ${COMPANY_NAME} no ${link.text}: ${link.href}`}
-                    onClick={() =>
-                      trackEvent('navigation_click', {
-                        location: 'footer_useful_links',
-                        target: link.href,
-                      })
+                    onClick={(event) =>
+                      handleInPageLinkClick(
+                        event,
+                        link.href,
+                        'footer_useful_links',
+                      )
                     }
                   >
                     {link.text}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
