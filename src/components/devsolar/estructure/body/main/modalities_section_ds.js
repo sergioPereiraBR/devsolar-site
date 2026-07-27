@@ -20,7 +20,8 @@ const modalitiesData = [
   {
     id: 'propria',
     title: 'Produção Própria',
-    idealFor: '🏠 Ideal para Residências, Comércio e Telhados Próprios',
+    iconIdealFor: '🏠',
+    idealFor: 'Ideal para Residências, Comércio e Telhados Próprios',
     iconClass: 'fa-solid fa-bolt',
     shortDescription: 'Gere energia para consumo no próprio local...',
     buttonText: 'Saiba Mais: Produção Própria de Energia',
@@ -40,7 +41,8 @@ const modalitiesData = [
   {
     id: 'compartilhada',
     title: 'Produção Compartilhada',
-    idealFor: '🏢 Ideal para Apartamentos, Aluguel e Múltiplas Filiais',
+    iconIdealFor: '🏢',
+    idealFor: 'Ideal para Apartamentos, Aluguel e Múltiplas Filiais',
     iconClass: 'fas fa-users',
     shortDescription: 'Múltiplos consumidores compartilham os benefícios...',
     buttonText: 'Saiba Mais: Produção Compartilhada',
@@ -60,7 +62,8 @@ const modalitiesData = [
   {
     id: 'negocio',
     title: 'Produção para Negócio',
-    idealFor: '📈 Ideal para Investidores e Fazendas Solares',
+    iconIdealFor: '📈',
+    idealFor: 'Ideal para Investidores e Fazendas Solares',
     iconClass: 'fas fa-store-alt',
     shortDescription: 'Comercialização de créditos de energia solar...',
     buttonText: 'Saiba Mais: Produção para Negócio',
@@ -140,7 +143,9 @@ function ModalitiesSectionDS() {
                       className={styles.cardIcon}
                     />
                     <h3 className={styles.cardTitle}>{modality.title}</h3>
-                    <p className={styles.cardIdealFor}>{modality.idealFor}</p>
+                    <p className={styles.cardIdealFor}>
+                      {modality.iconIdealFor} {modality.idealFor}
+                    </p>
                   </div>
                   <Card.Body className={styles.cardBody}>
                     <p className={styles.cardDescription}>
@@ -151,6 +156,7 @@ function ModalitiesSectionDS() {
                       className={`${styles.detailsButton} w-100`}
                       onClick={() => handleShowModal(modality)}
                       data-tab-entry={index === 0 ? 'true' : undefined}
+                      aria-label={`Saiba Mais: ${modality.title}. ${modality.idealFor}, ${modality.modalMessage} - Clique para mais detalhes.`}
                     >
                       <FaIcon iconClass="fas fa-info-circle" className="me-2" />
                       <span>{modality.buttonText}</span>
