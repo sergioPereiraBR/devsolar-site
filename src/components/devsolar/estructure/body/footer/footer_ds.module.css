@@ -46,6 +46,12 @@
     margin-bottom: 20px;
 }
 
+.atendimentoInfo {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 10px;
+}
+
 .footerInfo .contactInfo {
     font-size: 0.9rem;
     /* Tamanho menor para info de contato */

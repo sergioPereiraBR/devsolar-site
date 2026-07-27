@@ -177,7 +177,9 @@ function FooterDS() {
               {COMPANY_SLOGAN_PA}
               <br></br> {COMPANY_SLOGAN_PB}
             </h2>
-            <p>Atendimento de Segunda a Sexta, das 09h às 18h:</p>
+            <p className={styles.atendimentoInfo}>
+              Atendimento de Segunda a Sexta, das 09h às 18h:
+            </p>
             <div className={styles.contactInfo}>
               {/* Telefone Clicável */}
               <div
