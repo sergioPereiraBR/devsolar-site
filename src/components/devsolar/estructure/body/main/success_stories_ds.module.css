@@ -42,6 +42,102 @@
     min-height: 520px;
 }
 
+/* ========== SKELETON LOADING STYLES ========== */
+.skeletonContainer {
+    padding: 0 40px;
+    position: relative;
+}
+
+.skeletonGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 45px;
+}
+
+@media (min-width: 768px) {
+    .skeletonGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .skeletonGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.skeletonCard {
+    background-color: var(--branco);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--black10);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.skeletonThumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+.skeletonCardBody {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.skeletonTitle {
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    width: 80%;
+}
+
+.skeletonText {
+    height: 12px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.skeletonBadges {
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 4px;
+    margin: 15px 0;
+    width: 150px;
+}
+
+.skeletonButton {
+    height: 36px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 4px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
 .seoOnlyContent {
     position: absolute;
     width: 1px;
@@ -118,9 +214,9 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* Ocupa toda a altura do slide */
     width: 100%;
-    /* Ocupa toda a largura do slide */
+    min-height: 520px;
+    /* Evita frames vazios */
 }
 
 .storyCard:hover {
@@ -132,11 +228,16 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    background-color: #eee;
+    background: linear-gradient(90deg, #e8e8e8 25%, #f0f0f0 50%, #e8e8e8 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    /* Melhor visual enquanto imagem carrega */
 }
 
 .thumbnailImage {
     object-fit: cover;
+    /* Transição suave quando imagem aparece */
+    transition: opacity 0.3s ease;
 }
 
 .storyCard .card-body {

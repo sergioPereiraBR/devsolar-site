@@ -20,11 +20,11 @@ const cspValue = [
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false, // Desabilitar em production para reduzir bundle
   images: {
-    unoptimized: true,
+    unoptimized: true, // NECESSÁRIO para 'output: export' (static generation)
     qualities: [65, 85],
-    formats: ['image/avif', 'image/webp'], // Next vai gerar automaticamente
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'http',
@@ -36,6 +36,7 @@ const nextConfig = {
       },
     ],
   },
+  poweredByHeader: false,
 };
 
 if (nextConfig.output !== 'export') {
