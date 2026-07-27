@@ -83,7 +83,8 @@
   },
   "overrides": {
     "minimatch": "^10.2.5",
-    "sucrase": "^3.35.1"
+    "sucrase": "^3.35.1",
+    "postcss": "^postcss@8.4.31"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
