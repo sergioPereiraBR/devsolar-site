@@ -21,6 +21,20 @@ function LocationSectionDS() {
     setIsHydrated(true);
   }, []);
 
+  // Fallback: renderiza mapa após 2 segundos se IntersectionObserver não disparar
+  useEffect(() => {
+    if (shouldRenderMap || !isHydrated) {
+      return;
+    }
+
+    const fallbackTimer = setTimeout(() => {
+      setShouldRenderMap(true);
+    }, 2000);
+
+    return () => clearTimeout(fallbackTimer);
+  }, [shouldRenderMap, isHydrated]);
+
+  // IntersectionObserver para lazy-load otimizado
   useEffect(() => {
     if (
       shouldRenderMap ||
