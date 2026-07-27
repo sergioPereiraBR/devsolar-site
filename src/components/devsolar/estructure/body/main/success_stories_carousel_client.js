@@ -23,6 +23,7 @@ export default function SuccessStoriesCarouselClient() {
   const [selectedStoryDetail, setSelectedStoryDetail] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [imageStates, setImageStates] = useState({});
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -59,6 +60,20 @@ export default function SuccessStoriesCarouselClient() {
   const handleCloseDetailModal = () => {
     setShowDetailModal(false);
     setSelectedStoryDetail(null);
+  };
+
+  const handleImageLoad = (storyId) => {
+    setImageStates((prev) => ({
+      ...prev,
+      [storyId]: 'loaded',
+    }));
+  };
+
+  const handleImageError = (storyId) => {
+    setImageStates((prev) => ({
+      ...prev,
+      [storyId]: 'error',
+    }));
   };
 
   return (
@@ -102,6 +117,11 @@ export default function SuccessStoriesCarouselClient() {
                     fill
                     className={styles.thumbnailImage}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    onLoad={() => handleImageLoad(story.id)}
+                    onError={() => handleImageError(story.id)}
+                    style={{
+                      opacity: imageStates[story.id] === 'loaded' ? 1 : 0.5,
+                    }}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleCardClick(story);
@@ -165,7 +185,7 @@ export default function SuccessStoriesCarouselClient() {
             id="video-modal"
             style={{ color: 'var(--footer-color)' }}
           >
-            <strong>{selectedVideo?.title}</strong>
+            <strong>{selectedVideo?.title} - Depoimento</strong>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body

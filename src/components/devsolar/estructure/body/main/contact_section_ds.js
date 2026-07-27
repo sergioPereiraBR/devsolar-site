@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react'; // Adicionado useRef
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Script from 'next/script';
+import { Spinner } from 'react-bootstrap';
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
 
@@ -14,6 +15,11 @@ import styles from './contact_section_ds.module.css';
 
 const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), {
   ssr: false,
+  loading: () => (
+    <div className="d-flex justify-content-center">
+      <Spinner animation="border" size="sm" />
+    </div>
+  ),
 });
 
 // Subcomponente para item de contato

@@ -2,14 +2,18 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Container } from 'react-bootstrap'; // Import Button
+import { Container } from 'react-bootstrap';
 
 import { seoStories } from './success_stories_data';
-import styles from './success_stories_ds.module.css'; // Usaremos CSS Modules
+import styles from './success_stories_ds.module.css';
+import SuccessStoriesSkeleton from './success_stories_skeleton';
 
 const SuccessStoriesCarousel = dynamic(
   () => import('./success_stories_carousel_client'),
-  { ssr: false },
+  {
+    ssr: false,
+    loading: () => <SuccessStoriesSkeleton />,
+  },
 );
 
 export default function SuccessStoriesDS() {
@@ -102,7 +106,7 @@ export default function SuccessStoriesDS() {
           {shouldRenderCarousel ? (
             <SuccessStoriesCarousel />
           ) : (
-            <div className={styles.carouselPlaceholder} aria-hidden="true" />
+            <SuccessStoriesSkeleton />
           )}
 
           <script

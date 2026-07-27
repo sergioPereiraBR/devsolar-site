@@ -1,9 +1,10 @@
 import { config } from '@fortawesome/fontawesome-svg-core';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
+// Defer Bootstrap para não bloquear renderização inicial
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Inter } from 'next/font/google'; // Exemplo de fonte
+import { Inter } from 'next/font/google';
 import Script from 'next/script';
 
 import './globals.css';
@@ -154,6 +155,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
+        {/* DNS Prefetch para recursos críticos */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
         <Script id="polyfill-array-at" strategy="beforeInteractive">
           {`(function () {
     var defineAt = function (proto) {

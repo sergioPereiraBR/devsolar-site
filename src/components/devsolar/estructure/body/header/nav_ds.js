@@ -17,6 +17,7 @@ import { navLinksData } from './nav_links_ds'; // Importar dados dos links
 
 const LeadAccessModal = dynamic(() => import('./LeadAccessModal'), {
   ssr: false,
+  loading: () => null, // LeadAccessModal é renderizado via state, não precisa de placeholder
 });
 
 const LOGO_URL = LogoSm.src;
@@ -45,40 +46,55 @@ function isVisibleFocusable(element) {
 
 function NavDS() {
   const [modalShow, setModalShow] = useState(false);
-  const [expanded, setExpanded] = useState(false); // Estado do menu hamburger
-  const navbarRef = useRef(null); // Ref para a Navbar
+  const [expanded, setExpanded] = useState(false);
+  const navbarRef = useRef(null);
+  const resizeTimeoutRef = useRef(null); // Ref para armazenar timeout de resize
 
-  // --- Lógica para Scroll Padding Dinâmico ---
+  // --- Lógica para Scroll Padding Dinâmico (otimizado para evitar reflow) ---
   const updateScrollPadding = useCallback(() => {
-    if (navbarRef.current) {
-      const navbarHeight = navbarRef.current.offsetHeight;
-      document.documentElement.style.setProperty(
-        '--scroll-padding',
-        `${navbarHeight + 20}px`,
-      );
-      // Aplica diretamente também para garantir compatibilidade
-      document.documentElement.style.scrollPaddingTop = `${navbarHeight + 20}px`;
-    } else {
-      // Fallback se a navbar não for encontrada imediatamente
-      document.documentElement.style.setProperty('--scroll-padding', `90px`);
-      document.documentElement.style.scrollPaddingTop = `90px`;
+    // Usar requestAnimationFrame para agrupar leituras geométricas
+    requestAnimationFrame(() => {
+      if (navbarRef.current) {
+        const navbarHeight = navbarRef.current.offsetHeight;
+        document.documentElement.style.setProperty(
+          '--scroll-padding',
+          `${navbarHeight + 20}px`,
+        );
+        document.documentElement.style.scrollPaddingTop = `${navbarHeight + 20}px`;
+      } else {
+        document.documentElement.style.setProperty('--scroll-padding', `90px`);
+        document.documentElement.style.scrollPaddingTop = `90px`;
+      }
+    });
+  }, []);
+
+  // Debounced resize handler para evitar múltiplos reflows
+  const handleResize = useCallback(() => {
+    if (resizeTimeoutRef.current) {
+      clearTimeout(resizeTimeoutRef.current);
     }
-  }, []); // useCallback sem dependências, pois navbarRef.current não deve ser dependência
+    resizeTimeoutRef.current = setTimeout(() => {
+      updateScrollPadding();
+    }, 150); // Debounce de 150ms
+  }, [updateScrollPadding]);
 
   useEffect(() => {
     // Define o padding inicial
     updateScrollPadding();
 
-    // Adiciona listener para redimensionamento
-    window.addEventListener('resize', updateScrollPadding);
+    // Adiciona listener para redimensionamento (com debounce)
+    window.addEventListener('resize', handleResize);
 
-    // Função de limpeza para remover o listener e o estilo
+    // Função de limpeza
     return () => {
-      window.removeEventListener('resize', updateScrollPadding);
+      window.removeEventListener('resize', handleResize);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
       document.documentElement.style.removeProperty('--scroll-padding');
       document.documentElement.style.scrollPaddingTop = '';
     };
-  }, [updateScrollPadding]); // Depende da função memoizada
+  }, [handleResize, updateScrollPadding]);
 
   const focusFirstSectionControl = useCallback((sectionElement) => {
     if (!sectionElement) {
@@ -130,20 +146,21 @@ function NavDS() {
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
-      const navbarHeight = navbarRef.current?.offsetHeight || 70;
-      const top =
-        targetElement.getBoundingClientRect().top +
-        window.scrollY -
-        (navbarHeight + 20);
-      smoothScrollTo(top);
+      // Agrupar leituras geométricas em um requestAnimationFrame para evitar forced reflow
+      requestAnimationFrame(() => {
+        const navbarHeight = navbarRef.current?.offsetHeight || 70;
+        const targetTop = targetElement.getBoundingClientRect().top;
+        const top = targetTop + window.scrollY - (navbarHeight + 20);
+        smoothScrollTo(top);
 
-      window.history.replaceState(null, '', hash);
-      window.setTimeout(() => {
-        focusFirstSectionControlWithRetry(targetElement);
-      }, 420);
+        window.history.replaceState(null, '', hash);
+        window.setTimeout(() => {
+          focusFirstSectionControlWithRetry(targetElement);
+        }, 420);
+      });
     }
 
-    setExpanded(false); // Fecha o menu mobile ao clicar em um link
+    setExpanded(false);
   };
 
   const handleBrandClick = (e) => {

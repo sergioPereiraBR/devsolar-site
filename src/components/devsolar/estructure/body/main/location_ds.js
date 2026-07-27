@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Row } from 'react-bootstrap';
 
-import styles from './location_map_ds.module.css'; // Importar CSS Module
+import styles from './location_map_ds.module.css';
 
 const LocationMap = dynamic(() => import('./location_map_ds'), {
   ssr: false,
+  loading: () => <div className={styles.mapPlaceholder} aria-hidden="true" />,
 });
 
 function LocationSectionDS() {

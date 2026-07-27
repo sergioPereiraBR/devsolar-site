@@ -17,6 +17,9 @@ import styles from './header_ds.module.css'; // Importar CSS Module
 
 const Example = dynamic(() => import('@/components/tremor/area-chart-15'), {
   ssr: false,
+  loading: () => (
+    <Spinner animation="border" role="status" className="d-block mx-auto" />
+  ),
 });
 
 // --- Constantes de Configuração (Mover para arquivo .config.js ou similar idealmente) ---
@@ -182,7 +185,8 @@ function HeaderDS() {
                     htmlFor="valor-consumo"
                     className={styles.calculatorCopy}
                   >
-                    Informe o valor médio mensal da sua conta de energia
+                    Para calcular sua economia e o retorno do seu investimento,
+                    informe o valor médio mensal da sua conta de energia
                     elétrica:
                   </label>
 

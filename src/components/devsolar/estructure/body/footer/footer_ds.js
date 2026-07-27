@@ -82,13 +82,15 @@ function FooterDS() {
         return;
       }
 
-      const top =
-        targetElement.getBoundingClientRect().top +
-        window.scrollY -
-        getScrollOffset();
-      smoothScrollTo(Math.max(0, top));
+      // Agrupar leituras geométricas em requestAnimationFrame para evitar forced reflow
+      requestAnimationFrame(() => {
+        const elementTop = targetElement.getBoundingClientRect().top;
+        const offset = getScrollOffset();
+        const top = elementTop + window.scrollY - offset;
+        smoothScrollTo(Math.max(0, top));
 
-      window.history.replaceState(null, '', hash);
+        window.history.replaceState(null, '', hash);
+      });
     },
     [getScrollOffset],
   );
@@ -177,9 +179,9 @@ function FooterDS() {
               {COMPANY_SLOGAN_PA}
               <br></br> {COMPANY_SLOGAN_PB}
             </h2>
-            <p className={styles.atendimentoInfo}>
-              Atendimento de Segunda a Sexta, das 09h às 18h:
-            </p>
+            <h3 className={styles.atendimentoInfo}>
+              Atendimento de Segunda a Sexta, das 9h às 18h
+            </h3>
             <div className={styles.contactInfo}>
               {/* Telefone Clicável */}
               <div

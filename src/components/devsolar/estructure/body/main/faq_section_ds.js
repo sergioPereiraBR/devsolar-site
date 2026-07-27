@@ -12,6 +12,7 @@ import PersonaC from '@/assets/Mariana_Freitas-Síndica_Profissional.webp';
 import PersonaB from '@/assets/Roberto_Mendes-Diretor_Comercial.webp';
 import { faAnglesDown, faComments } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Spinner } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
@@ -22,11 +23,19 @@ import styles from './faq_section_ds.module.css';
 
 const EmojiPicker = dynamic(() => import('emoji-picker-react'), {
   ssr: false,
+  loading: () => (
+    <div className="d-flex justify-content-center">
+      <Spinner animation="border" size="sm" />
+    </div>
+  ),
 });
 
 const WhatsAppSender = dynamic(
   () => import('@/components/devsolar/utility/whatsapp/whatsapp_sender_ds.js'),
-  { ssr: false },
+  {
+    ssr: false,
+    loading: () => null, // Componente é renderizado no formulário, não precisa de placeholder visível
+  },
 );
 
 // --- Dados ---

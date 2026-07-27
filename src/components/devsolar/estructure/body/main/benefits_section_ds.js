@@ -18,7 +18,8 @@ const BenefitCard = ({ benefit, onClick, isTabEntry = false }) => (
       type="button"
       className={styles.benefitCardButton}
       onClick={() => onClick(benefit)}
-      aria-label={`Abrir detalhes do benefício: ${benefit.title}`}
+      // aria-label={`Abrir detalhes do benefício: ${benefit.title}`}
+      aria-label={`${benefit.title}: ${benefit.description} - Clique para mais detalhes.`}
       data-tab-entry={isTabEntry ? 'true' : undefined}
     >
       <Card className={`${styles.benefitCard} h-100`}>
@@ -26,7 +27,6 @@ const BenefitCard = ({ benefit, onClick, isTabEntry = false }) => (
           <FaIcon
             iconClass={benefit.iconClass}
             className={styles.benefitIcon}
-            aria-label={benefit.description}
           ></FaIcon>
           <Card.Title as="h3" className={`${styles.benefitTitle} fw-bold`}>
             {benefit.title}
