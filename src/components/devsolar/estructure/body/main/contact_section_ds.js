@@ -485,7 +485,9 @@ function ContactSectionDS() {
                   {submitStatus === 'success' && (
                     <div className="alert alert-success">
                       Obrigado! Sua mensagem foi enviada com sucesso! Entraremos
-                      em contato em breve.
+                      em contato em breve. Respondemos em até 2 horas dentro do
+                      horário comercial. Caso não receba resposta, verifique sua
+                      caixa de spam ou entre em contato por outro canal.
                     </div>
                   )}
                   {submitStatus === 'error' && (

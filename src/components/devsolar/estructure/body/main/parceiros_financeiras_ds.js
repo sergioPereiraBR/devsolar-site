@@ -41,20 +41,22 @@ const financeirasData = [
     id: 'fin1',
     name: 'Santander (Financiamentos)',
     logoUrl: Santander,
-    description: 'Linhas de crédito especiais para projetos de energia solar.',
+    description:
+      'Linhas de crédito especiais para projetos de energia solar. Até 100% financiado.',
   },
   {
     id: 'fin2',
     name: 'BV Financeira',
     logoUrl: Bv,
     description:
-      'Facilidade e agilidade no financiamento do seu sistema solar.',
+      'Facilidade e agilidade no financiamento do seu sistema solar. Até 120 dias para a 1ª parcela',
   },
   {
     id: 'fin3',
     name: 'Sol Agora (Creditas)',
     logoUrl: Solagora,
-    description: 'Financiamento solar rápido, digital e sem burocracia.',
+    description:
+      'Financiamento solar rápido. Aprovação 100% digital e sem burocracia',
   },
   // Adicione mais financeiras...
 ];
