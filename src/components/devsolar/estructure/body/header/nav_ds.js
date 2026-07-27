@@ -8,6 +8,7 @@ import LogoSm from '@/assets/logo_sm.webp';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
 import { trackEvent } from '@/lib/analytics';
+import { smoothScrollTo } from '@/lib/smoothScroll';
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
@@ -46,34 +47,6 @@ function NavDS() {
   const [modalShow, setModalShow] = useState(false);
   const [expanded, setExpanded] = useState(false); // Estado do menu hamburger
   const navbarRef = useRef(null); // Ref para a Navbar
-
-  const smoothScrollTo = useCallback((targetY) => {
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-
-    if (Math.abs(distance) < 2) {
-      return;
-    }
-
-    const duration = Math.min(900, Math.max(350, Math.abs(distance) * 0.35));
-    const startTime = performance.now();
-
-    const easeInOutCubic = (t) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const step = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(1, elapsed / duration);
-      const eased = easeInOutCubic(progress);
-      window.scrollTo(0, Math.round(startY + distance * eased));
-
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-
-    window.requestAnimationFrame(step);
-  }, []);
 
   // --- Lógica para Scroll Padding Dinâmico ---
   const updateScrollPadding = useCallback(() => {
