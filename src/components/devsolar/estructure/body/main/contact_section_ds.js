@@ -73,6 +73,25 @@ function ContactSectionDS() {
   const recaptchaRef = useRef(null); // Ref para o componente reCAPTCHA
   const sectionRef = useRef(null);
   const [shouldLoadRecaptcha, setShouldLoadRecaptcha] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Garante hidratação correta na produção
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  // Fallback: carrega reCAPTCHA após 3 segundos se não houver interação
+  useEffect(() => {
+    if (shouldLoadRecaptcha || !isHydrated) {
+      return;
+    }
+
+    const fallbackTimer = setTimeout(() => {
+      setShouldLoadRecaptcha(true);
+    }, 3000);
+
+    return () => clearTimeout(fallbackTimer);
+  }, [shouldLoadRecaptcha, isHydrated]);
 
   const ensureRecaptchaLoaded = () => {
     setShouldLoadRecaptcha(true);

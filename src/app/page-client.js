@@ -17,7 +17,16 @@ import SuccessStoriesDS from '../components/devsolar/estructure/body/main/succes
 export default function HomePageClient() {
   // Scroll para o topo ao carregar ou recarregar a página
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Adiciona delay para garantir renderização completa
+    const scrollTimer = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto',
+      });
+    }, 100);
+
+    return () => clearTimeout(scrollTimer);
   }, []);
 
   return (
