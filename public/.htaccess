@@ -16,7 +16,7 @@ ErrorDocument 404 /404.html
 
   # 1. Forçar HTTPS (Sempre primeiro)
   RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteRule (.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # 2. Redirecionamento do WhatsApp (Antes de validar arquivos reais)
   RewriteRule ^whatsapp/?$ "https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,NE]
