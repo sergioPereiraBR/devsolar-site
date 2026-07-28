@@ -10,8 +10,8 @@ export const devSolarSchema = {
       legalName: 'DEV Eficiência Energética Ltda.',
       alternateName: 'DEV Solar',
       url: 'https://www.devsolar.com.br',
-      logo: 'https://www.devsolar.com.br/images/logo-devsolar-icon.webp',
-      image: 'https://www.devsolar.com.br/images/logo-devsolar-icon.webp',
+      logo: 'https://www.devsolar.com.br/images/logo-devsolar-icon.png',
+      image: 'https://www.devsolar.com.br/images/og-calculator-devsolar.png',
       telephone: '+55-21-99967-7722',
       priceRange: '$$$',
       taxID: '53.538.425/0001-15',
@@ -142,4 +142,4 @@ export const devSolarSchema = {
       ],
     },
   ],
-};
+} as const;
