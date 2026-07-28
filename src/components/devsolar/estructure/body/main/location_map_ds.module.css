@@ -87,11 +87,12 @@
     /* Fundo branco para a seção de texto */
     border-top: 1px solid #eee;
     /* Linha sutil de separação */
+    color: #767676;
 }
 
 .addressText p {
     margin: 5px 0;
-    color: #555;
+    color: #767676;
     line-height: 1.5;
 }
 
