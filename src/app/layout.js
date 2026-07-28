@@ -9,7 +9,7 @@ import Script from 'next/script';
 
 import './globals.css';
 
-import { devSolarSchema } from './schemas/devSolarSchema';
+import { devSolarSchema } from '@/data/devSolarSchema';
 
 // Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.
 config.autoAddCss = false;
