@@ -6,8 +6,7 @@ const cspValue = [
   "object-src 'none'",
   "frame-ancestors 'self'",
   "form-action 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://www.google.com https://www.gstatic.com",
-  "frame-src 'self' https://www.google.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data: https:",
@@ -21,7 +20,7 @@ const cspValue = [
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  productionBrowserSourceMaps: false, // Desabilitar em production para reduzir bundle
+  productionBrowserSourceMaps: true, // Desabilitar em production para reduzir bundle
   images: {
     unoptimized: true, // NECESSÁRIO para 'output: export' (static generation)
     qualities: [65, 85],
