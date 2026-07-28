@@ -19,20 +19,20 @@ const SuccessStoriesCarousel = dynamic(
 export default function SuccessStoriesDS() {
   const sectionRef = useRef(null);
   const [shouldRenderCarousel, setShouldRenderCarousel] = useState(false);
-  const reviewSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'success stories',
-    name: 'DEV Solar',
-    review: seoStories.map((story) => ({
-      '@type': 'Review',
-      name: `Caso de Sucesso: ${story.title}`,
-      reviewBody: `${story.resume} ${story.description}`,
-      author: {
-        '@type': 'Person',
-        name: `Cliente ${story.title}`,
-      },
-    })),
-  };
+  // const reviewSchema = {
+  //   '@context': 'https://schema.org',
+  //   '@type': 'success stories',
+  //   name: 'DEV Solar',
+  //   review: seoStories.map((story) => ({
+  //     '@type': 'Review',
+  //     name: `Caso de Sucesso: ${story.title}`,
+  //     reviewBody: `${story.resume} ${story.description}`,
+  //     author: {
+  //       '@type': 'Person',
+  //       name: `Cliente ${story.title}`,
+  //     },
+  //   })),
+  // };
 
   useEffect(() => {
     if (
@@ -109,10 +109,10 @@ export default function SuccessStoriesDS() {
             <SuccessStoriesSkeleton />
           )}
 
-          <script
+          {/* <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
-          />
+          /> */}
         </Container>
       </section>
     </>
