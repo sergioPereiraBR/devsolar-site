@@ -21,11 +21,11 @@ export default function SuccessStoriesDS() {
   const [shouldRenderCarousel, setShouldRenderCarousel] = useState(false);
   const reviewSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'success stories',
     name: 'DEV Solar',
     review: seoStories.map((story) => ({
       '@type': 'Review',
-      name: `Case de Sucesso: ${story.title}`,
+      name: `Caso de Sucesso: ${story.title}`,
       reviewBody: `${story.resume} ${story.description}`,
       author: {
         '@type': 'Person',
