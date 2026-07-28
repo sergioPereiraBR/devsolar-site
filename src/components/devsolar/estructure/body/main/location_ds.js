@@ -78,7 +78,7 @@ function LocationSectionDS() {
             Vamos marcar, encontre sua rota para vir falar com a gente!
           </h3>
         </div>
-        {/* Renderiza os cards de benefícios principais */}
+        {/* Map Section */}
         <Row className="g-4 justify-content-center">
           <div className="col-lg-9">
             {shouldRenderMap ? (
