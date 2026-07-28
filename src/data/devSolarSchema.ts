@@ -1,4 +1,4 @@
-// src/data/schema.ts
+// src/data/devSolarSchema.ts
 
 export const devSolarSchema = {
   '@context': 'https://schema.org',
