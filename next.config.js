@@ -6,7 +6,7 @@ const cspValue = [
   "object-src 'none'",
   "frame-ancestors 'self'",
   "form-action 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data: https:",
@@ -20,10 +20,10 @@ const cspValue = [
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  productionBrowserSourceMaps: true, // Desabilitar em production para reduzir bundle
+  productionBrowserSourceMaps: false,
   images: {
-    unoptimized: true, // NECESSÁRIO para 'output: export' (static generation)
-    qualities: [65, 85],
+    unoptimized: true, // Necessário para 'output: export'
+    qualities: [65, 75, 85], // Corrigido para incluir a qualidade 75 (padrão) + 65 e 85
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
@@ -49,26 +49,19 @@ if (nextConfig.output !== 'export') {
       {
         source: '/(.*)',
         headers: [
+          { key: cspHeaderKey, value: cspValue },
           {
-            key: cspHeaderKey,
-            value: cspValue,
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
           },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
         ],
       },
     ];
