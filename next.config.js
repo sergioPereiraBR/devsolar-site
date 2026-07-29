@@ -24,7 +24,7 @@ const nextConfig = {
   images: {
     unoptimized: true, // Necessário para 'output: export'
     qualities: [65, 75, 85], // Corrigido para incluir a qualidade 75 (padrão) + 65 e 85
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/avif', 'image/webp'], // Adicionado suporte a PNG, JPEG e SVG
     remotePatterns: [
       {
         protocol: 'http',
