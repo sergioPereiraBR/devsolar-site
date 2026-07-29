@@ -48,11 +48,11 @@ function HeadDS() {
       />
       <meta
         property="og:image"
-        content="https://www.devsolar.com.br/images/og-calculator-devsolar.png"
+        content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
       />
       <meta
         property="og:image:secure_url"
-        content="https://www.devsolar.com.br/images/og-calculator-devsolar.png"
+        content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
       />
       <meta property="og:image:alt" content="Eficiência Energética" />
       <meta
@@ -78,7 +78,7 @@ function HeadDS() {
       />
       <meta
         name="twitter:image"
-        content="https://www.devsolar.com.br/images/og-calculator-devsolar.png"
+        content="https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png"
       />
       <meta name="twitter:image:alt" content="Eficiência Energética" />
     </>
