@@ -57,9 +57,10 @@ jobs:
           # Habilite a limpeza se a action suportar na v4 ou garanta que o state-name esteja ativo para rastrear remoções:
           state-name: .ftp-deploy-sync-state.json # Opcional: para deploys mais rápidos (sync)
           # timeout: 30000 # Timeout em ms (padrão)
-          timeout: 300000 # Timeout em ms (5 minutos) - aumentado para evitar timeout em uploads de arquivos grandes
           dry-run: false # Defina como true para testar sem enviar arquivos
           exclude: | # Padrões para excluir do envio
             **/.git*
             **/.git*/**
             /caçamba/*
+          # dangerous-clean-slate: false # CUIDADO: true apaga TUDO no server-dir antes de enviar. Use com extrema cautela.
+          timeout: 300000 # Timeout em ms (5 minutos) - aumentado para evitar timeout em uploads de arquivos grandes
