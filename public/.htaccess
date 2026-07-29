@@ -1,3 +1,8 @@
+<IfModule mod_headers.c>
+  Header unset Content-Type
+  Header set Content-Type "text/html; charset=UTF-8"
+</IfModule>
+
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .css .js .txt .json
 ErrorDocument 404 /404.html
@@ -28,8 +33,8 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTPS} off
   RewriteRule (.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # 2. Redirecionamento do WhatsApp (Antes de validar arquivos reais)
-  RewriteRule ^whatsapp/?$ "https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,NE]
+  # 2. Redirecionamento do WhatsApp (Totalmente codificado em UTF-8 Percent-Encoding)
+  RewriteRule ^whatsapp/?$ "https://wa.me/5521999677722?text=Ol%C3%A1%21%20Visitei%20seu%20Instagram%20e%20quero%20saber%20como%20economizar%20com%20Energia%20Solar" [R=301,L]
 
   # 3. Nunca reescrever assets estáticos (chunks, css, imagens, mapas)
   RewriteRule ^_next/ - [L]
