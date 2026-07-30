@@ -223,30 +223,6 @@ function HeaderDS() {
                     />
                   </div>
 
-                  {showMinimumHint &&
-                    (!hasTypedValue || isBelowMinimumCost) && (
-                      <div
-                        id="valor-consumo-feedback"
-                        className={styles.validationHint}
-                        role="status"
-                        aria-live="polite"
-                      >
-                        Para contas abaixo de R$ 400,00, nosso time comercial
-                        pode indicar a melhor solução para o seu perfil.
-                        <a
-                          href="https://wa.me/5521999677722"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.validationHintLink}
-                          onClick={() =>
-                            trackWhatsAppClick('hero_minimum_hint')
-                          }
-                        >
-                          Falar com o atendimento
-                        </a>
-                      </div>
-                    )}
-
                   <Row className={styles.btnRow} style={{ gap: '6px' }}>
                     {/* Botão Calcular Economia */}
                     <Col
@@ -317,6 +293,7 @@ function HeaderDS() {
                         />
                         Falar com um Especialista
                       </Button>
+
                       {/* <div
                       // className={`col-lg-4 text-lg-end ${styles.buttonContainer}`}
                       // className={`btn ${styles.heroButtonSecondary}`}
@@ -333,6 +310,32 @@ function HeaderDS() {
                       </div> */}
                     </Col>
                   </Row>
+
+                  <div className={styles.validationHintWrapper}>
+                    {showMinimumHint &&
+                      (!hasTypedValue || isBelowMinimumCost) && (
+                        <div
+                          id="valor-consumo-feedback"
+                          className={styles.validationHint}
+                          role="status"
+                          aria-live="polite"
+                        >
+                          Para contas abaixo de R$ 400,00, nosso time comercial
+                          pode indicar a melhor solução para o seu perfil.
+                          <a
+                            href="https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.validationHintLink}
+                            onClick={() =>
+                              trackWhatsAppClick('hero_minimum_hint')
+                            }
+                          >
+                            Falar com o atendimento
+                          </a>
+                        </div>
+                      )}
+                  </div>
                 </div>
               </div>
             </div>

@@ -321,9 +321,16 @@
     background-color: #fff8e1;
 }
 
+.validationHintWrapper {
+    min-height: 4.25rem;
+    display: flex;
+    align-items: flex-start;
+}
+
 .validationHint {
-    margin-top: -0.25rem;
-    margin-bottom: 0.75rem;
+    width: 100%;
+    margin-top: 0.35rem;
+    margin-bottom: 0;
     padding: 0.6rem 0.75rem;
     border-radius: 0.5rem;
     background-color: rgba(255, 248, 225, 0.95);
