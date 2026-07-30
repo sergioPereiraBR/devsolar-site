@@ -82,13 +82,13 @@ function FooterDS() {
         return;
       }
 
-      // Agrupar leituras geométricas em requestAnimationFrame para evitar forced reflow
-      requestAnimationFrame(() => {
-        const elementTop = targetElement.getBoundingClientRect().top;
-        const offset = getScrollOffset();
-        const top = elementTop + window.scrollY - offset;
-        smoothScrollTo(Math.max(0, top));
+      // Lê geometria antes de escrever; requestAnimationFrame apenas para o scroll
+      const elementTop = targetElement.getBoundingClientRect().top;
+      const offset = getScrollOffset();
+      const top = elementTop + window.scrollY - offset;
 
+      requestAnimationFrame(() => {
+        smoothScrollTo(Math.max(0, top));
         window.history.replaceState(null, '', hash);
       });
     },

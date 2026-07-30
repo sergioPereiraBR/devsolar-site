@@ -156,7 +156,8 @@ function ModalitiesSectionDS() {
                       className={`${styles.detailsButton} w-100`}
                       onClick={() => handleShowModal(modality)}
                       data-tab-entry={index === 0 ? 'true' : undefined}
-                      aria-label={`Saiba Mais: ${modality.title}. ${modality.idealFor}, ${modality.modalMessage} - Clique para mais detalhes.`}
+                      aria-label={`Saiba Mais: ${modality.title} de Energia.`}
+                      aria-describedby={`${modality.idealFor}. ${modality.modalMessage} - Clique para mais detalhes.`}
                     >
                       <FaIcon iconClass="fas fa-info-circle" className="me-2" />
                       <span>{modality.buttonText}</span>

@@ -1,24 +1,36 @@
 .navbarCustom {
-    /* Estilos específicos ou overrides para a navbar */
     transition: height 0.3s ease;
     color: #001f52;
-    /* Transição suave se a altura mudar */
+    min-height: 72px;
 }
 
 .navbarBrandCustom {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    min-height: 38px;
+}
+
+.logoImg {
+    width: 140px;
+    height: 38px;
+    max-width: 140px;
+    max-height: 38px;
+    aspect-ratio: 140 / 38;
+    display: block;
 }
 
 .navLinkCustom {
     font-weight: 500;
     margin: 0 0.5rem;
-    /* Espaçamento entre links */
     padding: 0.5rem 0.25rem !important;
-    /* Ajuste padding padrão do Nav.Link */
     position: relative;
     transition: color 0.3s ease;
     color: #001f52 !important;
-    /* Cor padrão do link */
+    line-height: 1.2;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .navLinkCustom::after {
@@ -50,7 +62,7 @@
 .navLinkCustom:focus::after {
     width: 100%;
     /* Expande a linha no hover */
-    
+
 }
 
 .loginButton {

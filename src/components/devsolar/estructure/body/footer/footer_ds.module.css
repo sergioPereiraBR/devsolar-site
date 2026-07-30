@@ -34,9 +34,11 @@
 
 .footerInfo .logoImg {
     /* Estilo específico para a tag Image do logo */
-    width: 100%;
-    max-width: 177px;
+    width: auto;
     height: auto;
+    max-width: 177px;
+    max-height: 48px;
+    aspect-ratio: 177 / 48;
 }
 
 .footerInfo .slogan {
@@ -127,8 +129,9 @@
 .footerLinks a {
     color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
     display: inline-block;
+    will-change: transform;
 }
 
 .footerLinks a:hover {
@@ -333,8 +336,16 @@
     align-items: center;
     box-shadow: 0 5px 15px var(--black15);
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: 2px solid var(--branco);
+    aspect-ratio: 1 / 1;
+    will-change: transform;
+}
+
+.whatsappBtn img {
+    width: 32px;
+    height: 32px;
+    aspect-ratio: 1 / 1;
 }
 
 .whatsappBtn:hover {

@@ -105,7 +105,8 @@
     /* Cor do texto no botão */
     font-weight: 500;
     padding: 10px 15px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
     margin-top: auto;
     /* Garante que fique no final */
 }
@@ -160,12 +161,17 @@
     border-radius: 8px;
     margin-bottom: 15px;
     /* Adiciona espaço abaixo da imagem */
+    aspect-ratio: 5 / 4;
+    min-height: 240px;
 }
 
 .modalImage {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    max-width: 100%;
+    aspect-ratio: 5 / 4;
     border-radius: 4px;
+    object-fit: contain;
 }
 
 .modalTextContent {

@@ -52,19 +52,14 @@ function NavDS() {
 
   // --- Lógica para Scroll Padding Dinâmico (otimizado para evitar reflow) ---
   const updateScrollPadding = useCallback(() => {
-    // Usar requestAnimationFrame para agrupar leituras geométricas
+    // Lê a geometria em um frame e aplica a escrita no próximo, evitando forced reflow
+    const navbar = navbarRef.current;
+    const nextHeight = navbar ? navbar.offsetHeight : 90;
+
     requestAnimationFrame(() => {
-      if (navbarRef.current) {
-        const navbarHeight = navbarRef.current.offsetHeight;
-        document.documentElement.style.setProperty(
-          '--scroll-padding',
-          `${navbarHeight + 20}px`,
-        );
-        document.documentElement.style.scrollPaddingTop = `${navbarHeight + 20}px`;
-      } else {
-        document.documentElement.style.setProperty('--scroll-padding', `90px`);
-        document.documentElement.style.scrollPaddingTop = `90px`;
-      }
+      const value = `${nextHeight + 20}px`;
+      document.documentElement.style.setProperty('--scroll-padding', value);
+      document.documentElement.style.scrollPaddingTop = value;
     });
   }, []);
 
@@ -146,10 +141,11 @@ function NavDS() {
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
-      // Agrupar leituras geométricas em um requestAnimationFrame para evitar forced reflow
+      // Lê geometria primeiro, depois agenda a escrita/scroll no próximo frame
+      const navbarHeight = navbarRef.current?.offsetHeight || 70;
+      const targetTop = targetElement.getBoundingClientRect().top;
+
       requestAnimationFrame(() => {
-        const navbarHeight = navbarRef.current?.offsetHeight || 70;
-        const targetTop = targetElement.getBoundingClientRect().top;
         const top = targetTop + window.scrollY - (navbarHeight + 20);
         smoothScrollTo(top);
 
@@ -207,8 +203,10 @@ function NavDS() {
               alt="Logo da DEV Solar"
               width={140}
               height={38}
-              quality={85} // Qualidade da imagem
+              quality={85}
               loading="eager"
+              priority
+              sizes="(max-width: 991px) 120px, 140px"
             />
           </Navbar.Brand>
 

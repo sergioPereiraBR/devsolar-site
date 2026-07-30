@@ -1,94 +1,3 @@
-// 'use client';
-
-// import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-// import {
-//   faFacebookF,
-//   faGoogle,
-//   faInstagram,
-//   faLinkedinIn,
-//   faTwitter,
-//   faWhatsapp,
-// } from '@fortawesome/free-brands-svg-icons';
-// import { faSmile } from '@fortawesome/free-regular-svg-icons';
-// import {
-//   faBolt,
-//   faBriefcase,
-//   faBuilding,
-//   faCalculator,
-//   faChartLine,
-//   faEnvelope,
-//   faFileInvoiceDollar,
-//   faGlobe,
-//   faHandshake,
-//   faHeadset,
-//   faHouse,
-//   faInfoCircle,
-//   faLeaf,
-//   faLocationDot,
-//   faPaperPlane,
-//   faPhoneAlt,
-//   faPiggyBank,
-//   faShieldAlt,
-//   faStoreAlt,
-//   faTools,
-//   faUser,
-//   faUsers,
-// } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-// const iconMap: Record<string, IconDefinition> = {
-//   'fas fa-bolt': faBolt,
-//   'fas fa-building': faBuilding,
-//   'fas fa-briefcase': faBriefcase,
-//   'fas fa-calculator': faCalculator,
-//   'fas fa-chart-line': faChartLine,
-//   'fas fa-envelope': faEnvelope,
-//   'fas fa-globe': faGlobe,
-//   'fas fa-handshake': faHandshake,
-//   'fas fa-headset': faHeadset,
-//   'fa-solid fa-house': faHouse,
-//   'fas fa-info-circle': faInfoCircle,
-//   'fas fa-leaf': faLeaf,
-//   'fas fa-paper-plane': faPaperPlane,
-//   'fas fa-phone-alt': faPhoneAlt,
-//   'fas fa-piggy-bank': faPiggyBank,
-//   'fas fa-shield-alt': faShieldAlt,
-//   'fas fa-tools': faTools,
-//   'fas fa-users': faUsers,
-//   'fas fa-store-alt': faStoreAlt,
-//   'fas fa-file-invoice-dollar': faFileInvoiceDollar,
-//   'fas fa-user': faUser,
-//   'fab fa-facebook-f': faFacebookF,
-//   'fa fa-facebook-f': faFacebookF,
-//   'fab fa-instagram': faInstagram,
-//   'fab fa-linkedin-in': faLinkedinIn,
-//   'fa fa-linkedin-in': faLinkedinIn,
-//   'fab fa-whatsapp': faWhatsapp,
-//   'fa fa-google': faGoogle,
-//   'fa fa-twitter': faTwitter,
-//   'fab fa-twitter': faTwitter,
-//   'far fa-smile': faSmile,
-//   'fas fa-location-dot': faLocationDot,
-// };
-
-// export interface FaIconProps {
-//   iconClass: string;
-//   className?: string;
-//   title?: string;
-//   'aria-label'?: string;
-//   [key: string]: any;
-// }
-
-// export function FaIcon({ iconClass, className, ...props }: FaIconProps) {
-//   const icon = iconMap[iconClass];
-
-//   if (!icon) {
-//     console.warn(`FaIcon: ícone não mapeado para '${iconClass}'`);
-//     return null;
-//   }
-
-//   return <FontAwesomeIcon icon={icon} className={className} {...props} />;
-// }
 'use client';
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -114,17 +23,18 @@ import {
   faLeaf,
   faLocationDot,
   faPaperPlane,
-  faPhone, // Atualizado de faPhoneAlt (v6+)
+  faPhone,
   faPiggyBank,
-  faShieldHalved, // Atualizado de faShieldAlt (v6+)
-  faStore, // Atualizado de faStoreAlt (v6+)
+  faShieldHalved,
+  faStore,
   faTools,
   faUser,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// Mapeamento blindado aceitando variações clássicas (fas) e modernas (fa-solid)
+// Mapeamento otimizado apenas com os ícones efetivamente usados na aplicação.
+// Isso permite tree-shaking e reduz o payload de JS legado da biblioteca.
 const iconMap: Record<string, IconDefinition> = {
   'fas fa-bolt': faBolt,
   'fa-solid fa-bolt': faBolt,
@@ -173,7 +83,7 @@ const iconMap: Record<string, IconDefinition> = {
   'fa fa-linkedin-in': faLinkedinIn,
   'fab fa-whatsapp': faWhatsapp,
   'fa fab-whatsapp': faWhatsapp,
-  'fas fa-whatsapp': faWhatsapp, // Caso o banco envie o prefixo de solid por engano
+  'fas fa-whatsapp': faWhatsapp,
   'fa-brands fa-whatsapp': faWhatsapp,
   whatsapp: faWhatsapp,
   'far fa-smile': faSmile,
@@ -244,6 +154,12 @@ export function FaIcon({ iconClass, className = '', ...props }: FaIconProps) {
     <FontAwesomeIcon
       icon={icon}
       className={classeFinal}
+      style={{
+        width: '1em',
+        height: '1em',
+        display: 'inline-block',
+        ...props.style,
+      }}
       {...a11yProps}
       {...props}
       aria-hidden={a11yProps['aria-hidden']}
