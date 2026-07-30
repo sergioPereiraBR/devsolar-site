@@ -40,6 +40,7 @@
 
 .carouselPlaceholder {
     min-height: 520px;
+    height: 520px;
 }
 
 /* ========== SKELETON LOADING STYLES ========== */
@@ -307,7 +308,8 @@
     /* border-color: var(--primary) !important;
     color: var(--primary) !important; */
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
     margin-top: 10px;
     /* Espaço acima do botão */
     align-self: flex-start;

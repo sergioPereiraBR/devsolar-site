@@ -1,12 +1,8 @@
-import { config } from '@fortawesome/fontawesome-svg-core';
-
-import '@fortawesome/fontawesome-svg-core/styles.css';
-// Defer Bootstrap para não bloquear renderização inicial
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
+import { config } from '@fortawesome/fontawesome-svg-core';
 
+import './critical.css';
 import './globals.css';
 
 import { devSolarSchema } from '@/data/devSolarSchema';
@@ -14,7 +10,7 @@ import { devSolarSchema } from '@/data/devSolarSchema';
 // Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.
 config.autoAddCss = false;
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], display: 'swap' });
 const isEnabled = true;
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID; // Substitua pelo seu ID do GA4
 const hasGaTrackingId = Boolean(GA_TRACKING_ID);
@@ -161,8 +157,40 @@ export default function RootLayout({ children }) {
         {/* DNS Prefetch para recursos críticos */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-
-        <Script id="polyfill-array-at" strategy="beforeInteractive">
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link
+          rel="preload"
+          href="/vendor/bootstrap/bootstrap.min.css"
+          as="style"
+        />
+        <link rel="preload" href="/vendor/fontawesome/styles.css" as="style" />
+        <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" href="/vendor/fontawesome/styles.css" />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              :root {
+                --theme: rgba(0, 77, 205, 1) 0%;
+                --primary: #ff9e00;
+                --secondary: #2ecc71;
+                --footer-color: #001f52;
+                --light: #F8F9FA;
+                --branco: #FFFFFF;
+                --text-btn: #001f52;
+                --text-calc: #001f52;
+                --body-bg: #F8F9FA;
+                --scroll-padding: 90px;
+              }
+              html { scroll-behavior: smooth; scroll-padding-top: var(--scroll-padding, 90px); }
+              body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1rem; color: rgb(55, 65, 81); background-color: #fff; overflow-x: hidden; }
+              a.skip-link { position: absolute; top: 0; left: 0; transform: translateY(-120%); background: #001f52; color: #fff; padding: .75rem 1rem; z-index: 100000; border-radius: 0 0 0 .5rem; text-decoration: none; font-weight: 600; transition: transform .2s ease; }
+              a.skip-link:focus-visible { transform: translateY(0); outline: 3px solid #ff9e00; outline-offset: 2px; }
+              img, svg, video, iframe { max-width: 100%; height: auto; }
+            `,
+          }}
+        />
+        <Script id="polyfill-array-at" strategy="lazyOnload">
           {`(function () {
     var defineAt = function (proto) {
         if (!proto || proto.at) return;
@@ -194,7 +222,7 @@ export default function RootLayout({ children }) {
     if (typeof Uint8ClampedArray !== 'undefined') defineAt(Uint8ClampedArray.prototype);
 })();`}
         </Script>
-        <Script id="force-passive-touch-listeners" strategy="beforeInteractive">
+        <Script id="force-passive-touch-listeners" strategy="lazyOnload">
           {`(function() {
     var originalAddEventListener = EventTarget.prototype.addEventListener;
     EventTarget.prototype.addEventListener = function(type, listener, options) {
@@ -245,21 +273,33 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(devSolarSchema) }}
         />
         {hasGaTrackingId ? (
-          <>
-            <Script
-              id="google-analytics-loader"
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_TRACKING_ID}');
-              `}
-            </Script>
-          </>
+          <Script id="deferred-ga-loader" strategy="lazyOnload">
+            {`
+              (function() {
+                var loaded = false;
+                function loadGA() {
+                  if (loaded) return;
+                  loaded = true;
+                  var s = document.createElement('script');
+                  s.async = true;
+                  s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}';
+                  document.head.appendChild(s);
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GA_TRACKING_ID}');
+                }
+                if ('requestIdleCallback' in window) {
+                  window.requestIdleCallback(loadGA, { timeout: 4000 });
+                } else {
+                  window.setTimeout(loadGA, 2500);
+                }
+                window.addEventListener('scroll', loadGA, { passive: true, once: true });
+                window.addEventListener('touchstart', loadGA, { passive: true, once: true });
+                document.addEventListener('click', loadGA, { passive: true, once: true });
+              })();
+            `}
+          </Script>
         ) : null}
         <noscript>
           <div className="noscript-warning">

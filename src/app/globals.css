@@ -1,9 +1,24 @@
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind base;
+
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind components;
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
+
+/* Estabilidade de layout: reserva espaço para mídia e widgets antes do carregamento */
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
 
 
 :root {

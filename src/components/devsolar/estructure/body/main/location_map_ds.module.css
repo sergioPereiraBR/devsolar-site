@@ -28,6 +28,7 @@
     margin: 40px auto;
     /* Centraliza e adiciona margem vertical */
     max-width: 100%;
+    min-height: 520px;
     /* Define uma largura máxima */
     padding: 5 5 5 5px;
     /* Espaçamento lateral */
@@ -83,6 +84,7 @@
 .addressText {
     padding: 20px;
     text-align: center;
+    min-height: 112px;
     background-color: #fff;
     /* Fundo branco para a seção de texto */
     border-top: 1px solid #eee;

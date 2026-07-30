@@ -21,6 +21,20 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'export',
   productionBrowserSourceMaps: false,
+  compress: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  experimental: {
+    optimizePackageImports: [
+      '@fortawesome/free-solid-svg-icons',
+      '@fortawesome/free-regular-svg-icons',
+      '@fortawesome/free-brands-svg-icons',
+      '@radix-ui/react-icons',
+      '@remixicon/react',
+      'lucide-react',
+    ],
+  },
   images: {
     unoptimized: true, // Necessário para 'output: export'
     qualities: [65, 75, 85], // Corrigido para incluir a qualidade 75 (padrão) + 65 e 85

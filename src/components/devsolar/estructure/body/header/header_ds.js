@@ -38,6 +38,7 @@ function HeaderDS() {
   // Estado do Input (Controlado)
   const [inputValue, setInputValue] = useState(''); // Valor como string para o input
   const inputCustoMesRef = useRef(null);
+  const hintTimerRef = useRef(null);
 
   // Estado para os Resultados
   const [calculationResult, setCalculationResult] = useState(null); // Guarda todo o resultado do cálculo
@@ -59,6 +60,14 @@ function HeaderDS() {
     }
   }, [showResultModal]);
 
+  useEffect(() => {
+    return () => {
+      if (hintTimerRef.current) {
+        clearTimeout(hintTimerRef.current);
+      }
+    };
+  }, []);
+
   // Handler do Input de Custo
   const handleInputChange = (e) => {
     const rawValue = e.target.value.replace(/[^0-9]/g, '').substring(0, 11); // Permite apenas dígitos
@@ -70,10 +79,6 @@ function HeaderDS() {
     }
 
     setInputValue(rawValue); // Atualiza o estado da string do input
-
-    if (parseInt(rawValue, 10) / 100 >= MIN_MONTHLY_COST) {
-      setShowMinimumHint(false);
-    }
   };
 
   // Função para obter o valor numérico do input
@@ -106,6 +111,12 @@ function HeaderDS() {
     if (numericCost < MIN_MONTHLY_COST || numericCost > 999999999.99) {
       if (numericCost < MIN_MONTHLY_COST) {
         setShowMinimumHint(true);
+        if (hintTimerRef.current) {
+          clearTimeout(hintTimerRef.current);
+        }
+        hintTimerRef.current = setTimeout(() => {
+          setShowMinimumHint(false);
+        }, 7000);
       }
 
       trackEvent('calculator_validation_error', {
@@ -156,9 +167,7 @@ function HeaderDS() {
   const handleInputKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      if (getNumericCost() > 0) {
-        handleCalculateAndShowResult();
-      }
+      handleCalculateAndShowResult();
     }
   };
 
@@ -214,35 +223,47 @@ function HeaderDS() {
                     />
                   </div>
 
-                  {showMinimumHint && hasTypedValue && isBelowMinimumCost && (
-                    <div
-                      id="valor-consumo-feedback"
-                      className={styles.validationHint}
-                      role="status"
-                      aria-live="polite"
-                    >
-                      Para contas abaixo de R$ 400,00, nosso time comercial pode
-                      indicar a melhor solução para o seu perfil.
-                      <a
-                        href="https://wa.me/5521999677722"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.validationHintLink}
-                        onClick={() => trackWhatsAppClick('hero_minimum_hint')}
+                  {showMinimumHint &&
+                    (!hasTypedValue || isBelowMinimumCost) && (
+                      <div
+                        id="valor-consumo-feedback"
+                        className={styles.validationHint}
+                        role="status"
+                        aria-live="polite"
                       >
-                        Falar com o atendimento
-                      </a>
-                    </div>
-                  )}
+                        Para contas abaixo de R$ 400,00, nosso time comercial
+                        pode indicar a melhor solução para o seu perfil.
+                        <a
+                          href="https://wa.me/5521999677722"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.validationHintLink}
+                          onClick={() =>
+                            trackWhatsAppClick('hero_minimum_hint')
+                          }
+                        >
+                          Falar com o atendimento
+                        </a>
+                      </div>
+                    )}
 
-                  <Row className={`g-2 ${styles.btnRow}`}>
+                  <Row className={styles.btnRow} style={{ gap: '6px' }}>
                     {/* Botão Calcular Economia */}
-                    <Col xs={12} sm="auto" className={styles.btnCol}>
+                    <Col
+                      xs={12}
+                      md={6}
+                      className={styles.btnCol}
+                      style={{
+                        padding: 0,
+                        flex: '0 0 calc(50% - 3px)',
+                        maxWidth: 'calc(50% - 3px)',
+                      }}
+                    >
                       <Button
-                        variant="warning"
+                        variant="primary"
                         className={`btn ${styles.heroButtonPrimary}`}
                         onClick={handleCalculateAndShowResult}
-                        disabled={calculando || numericCost < MIN_MONTHLY_COST}
+                        disabled={calculando}
                       >
                         {calculando ? (
                           <>
@@ -269,7 +290,16 @@ function HeaderDS() {
                       </Button>
                     </Col>
                     {/* Botão Falar com um Especialista */}
-                    <Col xs={12} sm="auto" className={styles.btnCol}>
+                    <Col
+                      xs={12}
+                      md={6}
+                      className={styles.btnCol}
+                      style={{
+                        padding: 0,
+                        flex: '0 0 calc(50% - 3px)',
+                        maxWidth: 'calc(50% - 3px)',
+                      }}
+                    >
                       <Button
                         variant="light"
                         as="a"
@@ -309,16 +339,41 @@ function HeaderDS() {
           </div>
           ''
           <div className={styles.heroBackground}>
-            <Image
-              alt="Fazenda de painéis solares" // Alt text descritivo
-              src={HERO_IMAGE_URL}
-              fill // Ocupa o container pai
-              style={{ objectFit: 'cover' }} // Cobre a área
-              quality={65} // Qualidade da imagem
-              fetchPriority="high"
-              priority
-              loading="eager" // LCP: carregar eager para melhorar LCP
-            />
+            <picture>
+              <source
+                media="(max-width: 480px)"
+                srcSet="/assets/photovoltaic-400.webp"
+                width={400}
+                height={225}
+              />
+              <source
+                media="(max-width: 991px)"
+                srcSet="/assets/photovoltaic-800.webp"
+                width={800}
+                height={450}
+              />
+              <source
+                media="(max-width: 1599px)"
+                srcSet="/assets/photovoltaic-1200.webp"
+                width={1200}
+                height={675}
+              />
+              <img
+                alt="Fazenda de painéis solares"
+                src="/assets/photovoltaic-1920.webp"
+                width={1920}
+                height={1080}
+                loading="eager"
+                decoding="async"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            </picture>
             <div className={styles.heroOverlay}></div> {/* Overlay opcional */}
           </div>
         </section>
