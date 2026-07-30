@@ -1,14 +1,20 @@
 .navbarCustom {
     transition: height 0.3s ease;
     color: #001f52;
-    min-height: 72px;
+    min-height: 38px;
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    position: relative;
+    z-index: 1030;
+    box-shadow: 0 -8px 18px rgba(0, 0, 0, 0.18);
+    -webkit-box-shadow: 0 -8px 18px rgba(0, 0, 0, 0.18);
+    -moz-box-shadow: 0 -8px 18px rgba(0, 0, 0, 0.18);
 }
 
 .navbarBrandCustom {
     cursor: pointer;
     display: flex;
     align-items: center;
-    min-height: 38px;
 }
 
 .logoImg {
@@ -108,13 +114,17 @@
 
 /* Ajustes para mobile se necessário */
 @media (max-width: 991px) {
+    .navbarCustom {
+        min-height: 38px;
+    }
+
     .navLinkCustom {
-        margin: 0.5rem 0;
+        margin: 0.25rem 0;
         /* Espaçamento vertical no mobile */
         text-align: center;
         /* Centraliza links no mobile */
-        padding: 0.75rem 1rem !important;
-        /* Padding maior no mobile */
+        padding: 0.5rem 1rem !important;
+        /* Padding menor no mobile */
     }
 
     .navLinkCustom::after {
