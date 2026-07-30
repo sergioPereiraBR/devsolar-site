@@ -2,9 +2,9 @@ import HomePageClient from './page-client';
 
 // Metadados ESPECÍFICOS para esta página (sobrescrevem ou complementam o layout.js)
 export const metadata = {
-  title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Sobrescreve o título padrão
+  title: 'DEV Solar - Efici&ecirc;ncia Energ&ecirc;tica Ltda. - Rio de Janeiro', // Sobrescreve o título padrão
   description:
-    'Instalação de painéis solares para residências, condomínios e empresas no RJ. Reduza sua conta de luz em até 95%. Orçamento gratuito!', // Descrição específica
+    'Energia solar fotovoltaica para resid&ecirc;ncias, condom&iacute;nios e empresas. Reduza sua conta de luz em at&eacute; 95%. Or&ccedil;amento gratuito!', // Descrição específica
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical para a homepage
     languages: {
