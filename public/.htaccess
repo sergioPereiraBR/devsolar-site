@@ -29,8 +29,8 @@ ErrorDocument 404 /404.html
   RewriteRule (.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # 2. Redirecionamento do WhatsApp (Totalmente codificado em UTF-8 Percent-Encoding)
-  RewriteRule ^whatsapp/?$ "https://wa.me/5521999677722?text=Ol%C3%A1%21%20Visitei%20seu%20Instagram%20e%20quero%20saber%20como%20economizar%20com%20Energia%20Solar" [R=301,L]
-
+  RewriteRule ^whatsapp/?$ "https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,NE]
+  
   # 3. Nunca reescrever assets estáticos (chunks, css, imagens, mapas)
   RewriteRule ^_next/ - [L]
   RewriteCond %{REQUEST_URI} \.(?:js|css|map|json|txt|xml|ico|png|jpe?g|gif|webp|avif|svg|woff2?|mp4)$ [NC]
