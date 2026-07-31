@@ -22,10 +22,10 @@ export const metadata = {
   // Modelo de Título: %s será substituído pelo título da página específica
   title: {
     template: '%s | DEV Solar',
-    default: 'DEV Solar - Energia Solar para Todos', // Título padrão (ex: homepage)
+    default: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título padrão (ex: homepage)
   },
   description:
-    'Transforme o Sol em Economia Real com a DEV Solar. Sistemas fotovoltaicos para residências, condomínios e empresas com até 95% de redução na conta de luz.', // Descrição padrão/base
+    'Reduza até 85% da sua Conta de Luz no Rio de Janeiro com o Sol. Proteja sua casa, condomínio ou empresa dos aumentos tarifários e valorize seu imóvel com investimento inteligente.', // Descrição padrão/base
   metadataBase: new URL('https://www.devsolar.com.br'), // URL Base para metadados relativos
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical padrão (será sobrescrito nas páginas)
@@ -45,9 +45,9 @@ export const metadata = {
     'financiamento energia solar rj',
     'reduzir conta de luz rj',
   ],
-  authors: [{ name: 'DEV Eficiência Energética Ltda.' }],
+  authors: [{ name: 'DEV Solar Eficiência Energética Ltda.' }],
   other: {
-    publisher: 'DEV Eficiência Energética Ltda.',
+    publisher: 'DEV Solar Eficiência Energética Ltda.',
     copyright: '© 2026 Dev Solar - Todos os direitos reservados.',
   },
   facebook: {

@@ -33,7 +33,6 @@
 // export default CTASectionDS;
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
-import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
 import styles from './cta_section_ds.module.css'; // Importe o CSS Module
 
 // Opcional: Importe um ícone se for usar SVG ou uma biblioteca
@@ -66,14 +65,31 @@ function CTASectionDS() {
             </h3>
           </div>
           <div className={`col-lg-4 text-lg-end ${styles.buttonContainer}`}>
-            <FaleConoscoDS
+            {/* <FaleConoscoDS
               // Passando as classes CSS (incluindo a customizada do module)
               textClassButton={buttonClasses}
               // Mantém as outras props
               textMessage="Olá, quero falar com especialista sobre avaliação gratuita." // Mensagem pode ser mais específica
               textTag="#avaliacaoGratuitaCTA" // Tag pode ser mais específica
               trackingContext="cta_section"
-            />
+            /> */}
+            <button
+              className={buttonClasses}
+              onClick={() => {
+                window.open(
+                  'https://wa.me/5521999677722?text=Ol%C3%A1!+fiz+a+simula%C3%A7%C3%A3o+no+site+e+quero+agendar+minha+vistoria+t%C3%A9cnica',
+                  '_blank',
+                  'noopener,noreferrer',
+                );
+              }}
+            >
+              <FaIcon
+                iconClass="fas fa-headset"
+                className="me-2"
+                aria-label="Falar com Especialista"
+              />
+              <span>Marcar uma Visita Técnica</span>
+            </button>
           </div>
         </div>
       </div>
