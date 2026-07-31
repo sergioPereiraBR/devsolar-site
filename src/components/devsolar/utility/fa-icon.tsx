@@ -158,6 +158,7 @@ export function FaIcon({ iconClass, className = '', ...props }: FaIconProps) {
         width: '1em',
         height: '1em',
         display: 'inline-block',
+        fontSize: 'inherit',
         ...props.style,
       }}
       {...a11yProps}

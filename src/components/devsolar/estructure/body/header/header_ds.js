@@ -180,23 +180,38 @@ function HeaderDS() {
             <div className="row">
               <div className={`col-lg-6 ${styles.textContainer}`}>
                 <h1 className="display-4 fw-bold mb-4">
-                  Transforme o Sol do Rio de Janeiro em Economia Real com
-                  Energia Solar
+                  Zere até 95% da sua Conta de Luz no Rio de Janeiro com o Sol.
                 </h1>
                 <h2 className="lead mb-4">
-                  Reduza a conta de luz da sua casa, empresa ou condomínio em
-                  até 95% e proteja-se dos aumentos de tarifa.
+                  Proteja sua casa, condomínio ou empresa dos aumentos
+                  tarifários e valorize seu imóvel com investimento inteligente.
                 </h2>
               </div>
               <div className={`col-lg-6 ${styles.calculatorContainer}`}>
                 <div className={styles.calculatorInline}>
+                  {/* <div id="calculator-icon" className={styles.calculatorIcon}>
+                    <FaIcon
+                      iconClass="fas fa-calculator"
+                      className={styles['figura-pulsante']}
+                      style={{
+                        fontSize: '22rem',
+                        width: '22rem',
+                        height: '22rem',
+                      }}
+                      aria-label="Calcular Economia"
+                      aria-hidden="true"
+                    />
+                  </div> */}
+
+                  <div className={styles.calculatorWrapper}>
+                    <h3>SIMULE SUA ECONOMIA AGORA</h3>
+                  </div>
+
                   <label
                     htmlFor="valor-consumo"
                     className={styles.calculatorCopy}
                   >
-                    Para calcular sua economia e o retorno do seu investimento,
-                    informe o valor médio mensal da sua conta de energia
-                    elétrica:
+                    Quanto você paga de luz por mês?
                   </label>
 
                   <div className="input-group mb-3">
@@ -225,19 +240,11 @@ function HeaderDS() {
 
                   <Row className={styles.btnRow} style={{ gap: '6px' }}>
                     {/* Botão Calcular Economia */}
-                    <Col
-                      xs={12}
-                      md={6}
-                      className={styles.btnCol}
-                      style={{
-                        padding: 0,
-                        flex: '0 0 calc(50% - 3px)',
-                        maxWidth: 'calc(50% - 3px)',
-                      }}
-                    >
+                    <Col className={styles.btnCol}>
                       <Button
                         variant="primary"
-                        className={`btn ${styles.heroButtonPrimary}`}
+                        className={`btn w-100 ${styles.heroButtonPrimary}`}
+                        style={{ width: '100%' }}
                         onClick={handleCalculateAndShowResult}
                         disabled={calculando}
                       >
@@ -260,12 +267,12 @@ function HeaderDS() {
                               aria-label="Calcular Economia"
                               aria-hidden="true"
                             />
-                            Calcular Economia
+                            VER MEU RELATÓRIO DE RENTABILIDADE
                           </>
                         )}
                       </Button>
                     </Col>
-                    {/* Botão Falar com um Especialista */}
+                    {/* Botão Falar com um Especialista * /}
                     <Col
                       xs={12}
                       md={6}
@@ -307,34 +314,40 @@ function HeaderDS() {
                           textTag="#avaliacaoGratuitaCTA" // Tag pode ser mais específica
                           trackingContext="cta_section"
                         />
-                      </div> */}
-                    </Col>
+                      </div> * /}
+                    </Col>*/}
                   </Row>
 
                   <div className={styles.validationHintWrapper}>
-                    {showMinimumHint &&
-                      (!hasTypedValue || isBelowMinimumCost) && (
-                        <div
-                          id="valor-consumo-feedback"
-                          className={styles.validationHint}
-                          role="status"
-                          aria-live="polite"
-                        >
-                          Para contas abaixo de R$ 400,00, nosso time comercial
-                          pode indicar a melhor solução para o seu perfil.
-                          <a
-                            href="https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.validationHintLink}
-                            onClick={() =>
-                              trackWhatsAppClick('hero_minimum_hint')
-                            }
-                          >
-                            Falar com o atendimento
-                          </a>
-                        </div>
-                      )}
+                    <div
+                      id="valor-consumo-feedback"
+                      className={`${styles.validationHint} ${
+                        showMinimumHint &&
+                        (!hasTypedValue || isBelowMinimumCost)
+                          ? ''
+                          : styles.validationHintHidden
+                      }`}
+                      role="status"
+                      aria-live="polite"
+                      aria-hidden={
+                        !(
+                          showMinimumHint &&
+                          (!hasTypedValue || isBelowMinimumCost)
+                        )
+                      }
+                    >
+                      Para contas abaixo de R$ 400,00, nosso time comercial pode
+                      indicar a melhor solução para sua conta de luz.
+                      <a
+                        href="https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.validationHintLink}
+                        onClick={() => trackWhatsAppClick('hero_minimum_hint')}
+                      >
+                        Falar com o atendimento
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -391,15 +404,52 @@ function HeaderDS() {
         {' '}
         {/* Tamanho maior para o gráfico */}
         <Modal.Header closeButton className={styles.modalHeader}>
-          <Modal.Title className="w-100">
-            <div className="position-relative d-flex align-items-center w-100">
-              <Image src={Logo} alt="Logo DEV Solar" width={140} height={38} />
-              <span
-                className="position-absolute start-50 translate-middle-x text-center"
-                style={{ fontSize: '2rem', fontWeight: '500' }}
+          <Modal.Title
+            className="w-100"
+            style={{
+              fontSize: '2rem',
+              fontWeight: '500',
+              lineHeight: 1.2,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div
+              className="d-flex align-items-center justify-content-between w-100"
+              style={{ minHeight: '32px', position: 'relative' }}
+            >
+              <div
+                style={{
+                  width: '140px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '32px',
+                }}
               >
-                CÁLCULO DE INVESTIMENTO
+                <Image
+                  src={Logo}
+                  alt="Logo DEV Solar"
+                  width={140}
+                  height={38}
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+              <span
+                className="flex-grow-1 text-center"
+                style={{
+                  fontSize: '2rem',
+                  fontWeight: '500',
+                  lineHeight: 1.2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: '32px',
+                }}
+              >
+                RENTABILIDADE
               </span>
+              <div style={{ width: '140px', height: '32px' }} />
             </div>
           </Modal.Title>
         </Modal.Header>

@@ -113,7 +113,7 @@ export default function SuccessStoriesCarouselClient() {
                 <div className={styles.thumbnailContainer}>
                   <Image
                     src={story.thumbnail}
-                    alt={`${story.title} - Instalação de painéis solares ${story.type} no Rio de Janeiro - DEV Solar`}
+                    alt={`${story.alt} - Depoimento`}
                     fill
                     className={styles.thumbnailImage}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
