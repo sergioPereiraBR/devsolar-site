@@ -404,52 +404,15 @@ function HeaderDS() {
         {' '}
         {/* Tamanho maior para o gráfico */}
         <Modal.Header closeButton className={styles.modalHeader}>
-          <Modal.Title
-            className="w-100"
-            style={{
-              fontSize: '2rem',
-              fontWeight: '500',
-              lineHeight: 1.2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              className="d-flex align-items-center justify-content-between w-100"
-              style={{ minHeight: '32px', position: 'relative' }}
-            >
-              <div
-                style={{
-                  width: '140px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: '32px',
-                }}
-              >
-                <Image
-                  src={Logo}
-                  alt="Logo DEV Solar"
-                  width={140}
-                  height={38}
-                  style={{ objectFit: 'contain' }}
-                />
-              </div>
+          <Modal.Title className="w-100">
+            <div className="position-relative d-flex align-items-center w-100">
+              <Image src={Logo} alt="Logo DEV Solar" width={140} height={38} />
               <span
-                className="flex-grow-1 text-center"
-                style={{
-                  fontSize: '2rem',
-                  fontWeight: '500',
-                  lineHeight: 1.2,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minHeight: '32px',
-                }}
+                className="position-absolute start-50 translate-middle-x text-center"
+                style={{ fontSize: '2rem', fontWeight: '500' }}
               >
                 RENTABILIDADE
               </span>
-              <div style={{ width: '140px', height: '32px' }} />
             </div>
           </Modal.Title>
         </Modal.Header>
