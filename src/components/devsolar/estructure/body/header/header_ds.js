@@ -176,7 +176,7 @@ function HeaderDS() {
       <header>
         {/* Hero Section */}
         <section id="home" className={styles.hero}>
-          <div className="position-relative container">
+          <div className="position-relative container mx-auto">
             <div className="row">
               <div className={`col-lg-6 ${styles.textContainer}`}>
                 <h1 className="display-4 fw-bold mb-4">
@@ -222,7 +222,7 @@ function HeaderDS() {
                     </span>
                     <input
                       ref={inputCustoMesRef}
-                      type="tel"
+                      type="text"
                       inputMode="numeric"
                       className={`form-control form-control-lg ${styles.currencyInput} ${
                         isBelowMinimumCost ? styles.inputWarning : ''
