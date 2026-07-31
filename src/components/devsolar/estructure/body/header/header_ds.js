@@ -222,7 +222,7 @@ function HeaderDS() {
                     </span>
                     <input
                       ref={inputCustoMesRef}
-                      type="text"
+                      type="tel"
                       inputMode="numeric"
                       className={`form-control form-control-lg ${styles.currencyInput} ${
                         isBelowMinimumCost ? styles.inputWarning : ''
