@@ -92,7 +92,8 @@
 .calculatorInline {
     width: 100%;
     max-width: 490px;
-    margin-top: 4rem;
+    margin-top: 0;
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -285,6 +286,12 @@
 .modalHeader {
     border-bottom: 1px solid var(--light);
     background-color: var(--light);
+    padding: 0.4rem 1rem 0.35rem 1rem;
+}
+
+.modalHeader :global(.modal-title) {
+    margin-bottom: 0;
+    width: 100%;
 }
 
 .modalTitle {
