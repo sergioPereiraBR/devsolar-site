@@ -286,7 +286,14 @@
 .modalHeader {
     border-bottom: 1px solid var(--light);
     background-color: var(--light);
-    padding: 0.4rem 1rem 0.35rem 1rem;
+}
+
+:global(.modal.show .modal-dialog) {
+    max-width: min(92vw, 1200px);
+}
+
+:global(.modal.show .modal-content) {
+    width: 100%;
 }
 
 .modalHeader :global(.modal-title) {
