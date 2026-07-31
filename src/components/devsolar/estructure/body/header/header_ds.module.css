@@ -91,12 +91,18 @@
 
 .calculatorInline {
     width: 100%;
-    max-width: 560px;
+    max-width: 490px;
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 0.75rem;
+    padding: 1.25rem;
+    border: 2px solid #ffffff;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .calculatorCopy {
@@ -114,7 +120,7 @@
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
-    gap: 6px;
+    /* gap: 6px; */
     align-items: stretch;
     padding: 0 !important;
     box-sizing: border-box;
@@ -122,18 +128,19 @@
 
 .btnCol {
     display: flex !important;
-    flex: 0 0 calc(50% - 3px);
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
     min-width: 0;
     padding: 0 !important;
     margin: 0 !important;
-    max-width: calc(50% - 3px);
-    width: calc(50% - 3px);
 }
 
 /* Garante que os botões ocupem toda a largura da coluna */
 .heroButtonPrimary,
 .heroButtonSecondary {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     min-height: 3rem;
     height: 100%;
     display: inline-flex;
@@ -144,8 +151,9 @@
     line-height: 1.2;
     position: relative;
     vertical-align: middle;
-    flex: 1 1 auto;
+    flex: 1 1 100%;
     min-width: 0;
+    box-sizing: border-box;
 }
 
 .heroButtonPrimary,
@@ -235,6 +243,9 @@
     border-color: var(--primary) !important;
     color: var(--text-btn) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
 
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     background-color: var(--primary) !important;
@@ -340,6 +351,12 @@
     line-height: 1.35;
 }
 
+.validationHintHidden {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+}
+
 .validationHintLink {
     margin-left: 0.4rem;
     color: #7a5200;
@@ -409,6 +426,72 @@
     text-align: center;
     color: #888;
     margin-top: 15px;
+}
+
+/* Classe principal para aplicar na sua figura/imagem */
+.figura-animada {
+    animation: flutuar 3s ease-in-out infinite;
+    display: inline-block;
+    max-width: 100%;
+}
+
+/* Keyframes do efeito de flutuação */
+@keyframes flutuar {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.calculatorIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 0.75rem auto;
+    width: 4.75rem;
+    height: 4.75rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform: translateY(-2rem);
+}
+
+/* Efeito opcional: Brilho/Pulsação suave */
+.figura-pulsante {
+    display: block;
+    font-size: 22rem;
+    line-height: 1;
+    /* color: var(--primary); */
+    color: #25d366;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    animation: flutuarEPulsar 3.2s ease-in-out infinite;
+}
+
+@keyframes flutuarEPulsar {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+
+    35% {
+        transform: translateY(-6px) scale(1.04);
+    }
+
+    70% {
+        transform: translateY(2px) scale(0.98);
+    }
+
+    100% {
+        transform: translateY(0px) scale(1);
+    }
 }
 
 /* Responsividade */
