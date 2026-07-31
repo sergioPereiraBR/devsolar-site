@@ -91,6 +91,9 @@ function HeaderDS() {
   const numericCost = getNumericCost();
   const hasTypedValue = inputValue.length > 0;
   const isBelowMinimumCost = numericCost > 0 && numericCost < MIN_MONTHLY_COST;
+  const isOriginalHintVisible =
+    showMinimumHint && (!hasTypedValue || isBelowMinimumCost);
+  const isAlternateHintVisible = !isOriginalHintVisible;
 
   // Formata o valor numérico para exibição no input
   const formatValueForInput = (rawStringValue) => {
@@ -180,7 +183,8 @@ function HeaderDS() {
             <div className="row">
               <div className={`col-lg-6 ${styles.textContainer}`}>
                 <h1 className="display-4 fw-bold mb-4">
-                  Zere até 95% da sua Conta de Luz no Rio de Janeiro com o Sol.
+                  Reduza até 85% da sua Conta de Luz no Rio de Janeiro com o
+                  Sol.
                 </h1>
                 <h2 className="lead mb-4">
                   Proteja sua casa, condomínio ou empresa dos aumentos
@@ -322,22 +326,37 @@ function HeaderDS() {
                     <div
                       id="valor-consumo-feedback"
                       className={`${styles.validationHint} ${
-                        showMinimumHint &&
-                        (!hasTypedValue || isBelowMinimumCost)
+                        isOriginalHintVisible ? '' : styles.validationHintHidden
+                      }`}
+                      role="status"
+                      aria-live="polite"
+                      aria-hidden={!isOriginalHintVisible}
+                    >
+                      Para contas abaixo de R$ 400,00, nosso time comercial pode
+                      indicar a melhor solução para sua conta de luz.
+                      <a
+                        href="https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.validationHintLink}
+                        onClick={() => trackWhatsAppClick('hero_minimum_hint')}
+                      >
+                        Falar com o atendimento
+                      </a>
+                    </div>
+
+                    <div
+                      className={`${styles.validationHint} ${styles.validationHintAlt} ${
+                        isAlternateHintVisible
                           ? ''
                           : styles.validationHintHidden
                       }`}
                       role="status"
                       aria-live="polite"
-                      aria-hidden={
-                        !(
-                          showMinimumHint &&
-                          (!hasTypedValue || isBelowMinimumCost)
-                        )
-                      }
+                      aria-hidden={!isAlternateHintVisible}
                     >
-                      Para contas abaixo de R$ 400,00, nosso time comercial pode
-                      indicar a melhor solução para sua conta de luz.
+                      Parcelas que se pagam com a própria economia de luz com
+                      várias formas de financiamento e carência de até 120 dias.
                       <a
                         href="https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
                         target="_blank"
