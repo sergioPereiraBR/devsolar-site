@@ -93,7 +93,8 @@
     width: 100%;
     max-width: 490px;
     margin-top: 0;
-    align-self: flex-start;
+    margin-inline: auto;
+    align-self: center;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -195,12 +196,24 @@
     position: relative;
     z-index: 2;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     color: var(--branco);
     min-height: 100%;
     padding-bottom: 2rem;
     width: 100%;
+}
+
+@media (min-width: 992px) {
+    .calculatorContainer {
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    .calculatorInline {
+        margin-inline: 0 0;
+        align-self: flex-end;
+    }
 }
 
 .heroBackground {
