@@ -354,6 +354,48 @@
     width: 100%;
 }
 
+.modalTitleRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.modalLogo {
+    width: 140px;
+    height: auto;
+    max-width: 100%;
+    flex-shrink: 0;
+}
+
+.modalTitleText {
+    flex: 1 1 220px;
+    min-width: 0;
+    text-align: center;
+    font-size: clamp(1.1rem, 3vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--footer-color);
+}
+
+@media (max-width: 576px) {
+    .modalTitleRow {
+        justify-content: center;
+    }
+
+    .modalLogo {
+        width: 120px;
+    }
+
+    .modalTitleText {
+        width: 100%;
+        flex-basis: 100%;
+        margin-top: 0.25rem;
+    }
+}
+
 .modalTitle {
     color: var(--footer-color);
     font-weight: 600;
