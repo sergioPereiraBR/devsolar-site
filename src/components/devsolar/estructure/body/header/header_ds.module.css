@@ -216,6 +216,46 @@
     }
 }
 
+.heroNotice {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    width: min(100%, 1320px);
+    padding: 0 1rem;
+    z-index: 3;
+    box-sizing: border-box;
+}
+
+.heroNoticeInner {
+    border: 1px solid #4b4b4b;
+    border-radius: 0.9rem;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0.7rem 0.9rem;
+    box-shadow: none;
+}
+
+.heroNoticeText {
+    margin: 0;
+    color: #111111;
+    font-size: 0.7rem;
+    line-height: 1.35;
+    font-weight: 500;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.heroNoticeText strong {
+    font-weight: 700;
+}
+
+.heroNoticeText em {
+    font-style: italic;
+}
+
 .heroBackground {
     display: block;
     -webkit-mask-image: linear-gradient(to bottom,

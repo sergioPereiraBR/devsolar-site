@@ -373,6 +373,35 @@ function HeaderDS() {
             </div>
           </div>
           ''
+          {/* <div className={styles.heroNotice}>
+            <div className={styles.heroNoticeInner}>
+              <p className={styles.heroNoticeText}>
+                Copyright Notice: © Dev Solar, suas entidades relacionadas e
+                prepostos. Todos os direitos reservados. Conheça nossos Termos e
+                Condições de Uso do Site Dev Solar. DEV Eficiência Energética
+                Ltda. Fale conosco pelo WhatsApp. Av. Jambeiro, 474 Loja C, Vila
+                Valqueire - Rio de Janeiro - RJ Cep: 21330-300 CNPJ
+                53.538.425/0001-15. Rápida** Turbo: Pedidos aprovados entre 10h
+                e 17h, serão entregues em até 4h (exceto sábados, domingos e
+                feriados). Rápida: Pedidos com os pagamentos aprovados até as
+                10h, serão entregues no mesmo dia e pedidos com os pagamentos
+                aprovados após as 10h serão entregues no dia seguinte (exceto
+                domingos e feriados). *O valor do frete para o turbo é R$ 850,00
+                e para a rápida é R$ 999,99.* *Essa condição ainda não estará
+                disponível em todas as lojas.* *Compre pelo Whatsapp e ganhe 10%
+                off nas compras acima de R$ 20000. Válido para produtos vendidos
+                e entregues pela Dev Solar. Desconto não será aplicado na compra
+                de inversores, painéis solares, baterias e itens em promoção.*
+                Dev Solar Pay: desconto de 10% para compras no site e no app,
+                produtos vendidos e entregues pela Dev Solar, válido para
+                primeira compra realizada com Dev Solar Pay, levando 5 Kit's
+                solares ou mais da categoria bateria, painéis, inversores e
+                cabos, ou em valor acima de R$ 30k. Desconto não válido para
+                compra de manutenção dos eletrônicos, limpeza de painéis e itens
+                em promoção. Descontos não cumulativos.
+              </p>
+            </div>
+          </div> */}
           <div className={styles.heroBackground}>
             <picture>
               <source

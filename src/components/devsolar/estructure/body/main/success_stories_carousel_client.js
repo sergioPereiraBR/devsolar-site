@@ -133,7 +133,16 @@ export default function SuccessStoriesCarouselClient() {
                     <h3>{story.title}</h3>
                   </Card.Title>
                   <h4 className={styles.cardShortDescription}>
-                    {story.resume}
+                    {story.power} - {story.installationDate}
+                  </h4>
+                  <h4 className={styles.cardShortDescription}>
+                    {story.energyProduction}
+                  </h4>
+                  <h4 className={styles.cardShortDescription}>
+                    {story.economicImpact}
+                  </h4>
+                  <h4 className={styles.cardShortDescription}>
+                    "{story.resume}"
                   </h4>
                   <div className={styles.badgesContainer}>
                     <span className={`badge ${styles.badgePrimary}`}>
