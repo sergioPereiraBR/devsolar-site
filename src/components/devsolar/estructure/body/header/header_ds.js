@@ -453,14 +453,15 @@ function HeaderDS() {
         {/* Tamanho maior para o gráfico */}
         <Modal.Header closeButton className={styles.modalHeader}>
           <Modal.Title className="w-100">
-            <div className="position-relative d-flex align-items-center w-100">
-              <Image src={Logo} alt="Logo DEV Solar" width={140} height={38} />
-              <span
-                className="position-absolute start-50 translate-middle-x text-center"
-                style={{ fontSize: '2rem', fontWeight: '500' }}
-              >
-                RENTABILIDADE
-              </span>
+            <div className={styles.modalTitleRow}>
+              <Image
+                src={Logo}
+                alt="Logo DEV Solar"
+                width={140}
+                height={38}
+                className={styles.modalLogo}
+              />
+              <span className={styles.modalTitleText}>RENTABILIDADE</span>
             </div>
           </Modal.Title>
         </Modal.Header>
