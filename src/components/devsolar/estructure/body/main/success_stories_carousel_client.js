@@ -132,7 +132,7 @@ export default function SuccessStoriesCarouselClient() {
                   <Card.Title className={styles.cardTitle}>
                     <h3>{story.title}</h3>
                   </Card.Title>
-                  <h4 className={styles.cardShortDescription}>
+                  {/* <h4 className={styles.cardShortDescription}>
                     {story.power} - {story.installationDate}
                   </h4>
                   <h4 className={styles.cardShortDescription}>
@@ -140,7 +140,7 @@ export default function SuccessStoriesCarouselClient() {
                   </h4>
                   <h4 className={styles.cardShortDescription}>
                     {story.economicImpact}
-                  </h4>
+                  </h4> */}
                   <h4 className={styles.cardShortDescription}>
                     "{story.resume}"
                   </h4>
