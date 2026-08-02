@@ -217,9 +217,9 @@ function HeaderDS() {
     await handleCalculateAndShowResult();
 
     // AQUI: Abra o modal com o gráfico de rentabilidade / PDF gerado
-    alert(
-      `Sucesso! Lead ${dadosLead.nome} capturado. Exibindo relatório de rentabilidade...`,
-    );
+    // alert(
+    //   `Sucesso! Lead ${dadosLead.nome} capturado. Exibindo relatório de rentabilidade...`,
+    // );
   };
 
   return (
