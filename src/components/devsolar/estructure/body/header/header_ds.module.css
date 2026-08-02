@@ -173,6 +173,12 @@
     top: 0;
 }
 
+.heroIconPrimary,
+.heroIconSecondary {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
 .heroActionRow {
     display: flex;
     align-items: center;

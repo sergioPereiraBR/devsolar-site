@@ -190,37 +190,15 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        <Script id="polyfill-array-at" strategy="lazyOnload">
-          {`(function () {
-    var defineAt = function (proto) {
-        if (!proto || proto.at) return;
-        Object.defineProperty(proto, 'at', {
-            value: function (index) {
-                var length = this.length >>> 0;
-                if (length === 0) return undefined;
-                var relativeIndex = Number(index) || 0;
-                var k = relativeIndex >= 0 ? relativeIndex : length + relativeIndex;
-                if (k < 0 || k >= length) return undefined;
-                return this[k];
-            },
-            writable: true,
-            enumerable: false,
-            configurable: true,
-        });
-    };
-
-    defineAt(Array.prototype);
-
-    if (typeof Uint8Array !== 'undefined') defineAt(Uint8Array.prototype);
-    if (typeof Uint16Array !== 'undefined') defineAt(Uint16Array.prototype);
-    if (typeof Uint32Array !== 'undefined') defineAt(Uint32Array.prototype);
-    if (typeof Int8Array !== 'undefined') defineAt(Int8Array.prototype);
-    if (typeof Int16Array !== 'undefined') defineAt(Int16Array.prototype);
-    if (typeof Int32Array !== 'undefined') defineAt(Int32Array.prototype);
-    if (typeof Float32Array !== 'undefined') defineAt(Float32Array.prototype);
-    if (typeof Float64Array !== 'undefined') defineAt(Float64Array.prototype);
-    if (typeof Uint8ClampedArray !== 'undefined') defineAt(Uint8ClampedArray.prototype);
-})();`}
+        <Script id="polyfill-array-at" strategy="beforeInteractive">
+          {`if (!Array.prototype.at) {
+  Array.prototype.at = function (n) {
+    n = Math.trunc(n) || 0;
+    if (n < 0) n += this.length;
+    if (n < 0 || n >= this.length) return undefined;
+    return this[n];
+  };
+}`}
         </Script>
         <Script id="force-passive-touch-listeners" strategy="lazyOnload">
           {`(function() {

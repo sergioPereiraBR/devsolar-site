@@ -24,19 +24,27 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # 1. Forçar HTTPS (Sempre primeiro)
+  # Bloqueia requisições com User-Agent totalmente em branco (empty user agent string)
+  RewriteCond %{HTTP_USER_AGENT} ^-?$ [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^$
+
+  # Bloqueia crawlers indesejados, scanners e scripts identificados no AWStats
+  RewriteCond %{HTTP_USER_AGENT} (scanner|crawl|curl|baiduspider|researchbot|trendiction|nutch|nbot|seek|checker) [NC]
+  RewriteRule ^ - [F,L]
+
+  # Forçar HTTPS (Sempre primeiro)
   RewriteCond %{HTTPS} off
   RewriteRule (.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # 2. Redirecionamento do WhatsApp (Totalmente codificado em UTF-8 Percent-Encoding)
+  # Redirecionamento do WhatsApp (Totalmente codificado em UTF-8 Percent-Encoding)
   RewriteRule ^whatsapp/?$ "https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,NE]
   
-  # 3. Nunca reescrever assets estáticos (chunks, css, imagens, mapas)
+  # Nunca reescrever assets estáticos (chunks, css, imagens, mapas)
   RewriteRule ^_next/ - [L]
   RewriteCond %{REQUEST_URI} \.(?:js|css|map|json|txt|xml|ico|png|jpe?g|gif|webp|avif|svg|woff2?|mp4)$ [NC]
   RewriteRule ^ - [L]
 
-  # 4. Regras padrão do site (SPA / Frontend)
+  # Regras padrão do site (SPA / Frontend)
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
