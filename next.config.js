@@ -1,3 +1,4 @@
+const isDev = process.env.NODE_ENV !== 'production';
 const isCspReportOnly = process.env.CSP_REPORT_ONLY === 'true';
 
 const cspValue = [
@@ -6,10 +7,11 @@ const cspValue = [
   "object-src 'none'",
   "frame-ancestors 'self'",
   "form-action 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net",
-  "style-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://www.recaptcha.net",
+  // Em desenvolvimento (isDev), libera 'unsafe-eval' exigido pelo React/Next.js para sourcemaps
+  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net`,
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net",
   "img-src 'self' data: blob: https:",
-  "font-src 'self' data: https:",
+  "font-src 'self' data: https: https://fonts.gstatic.com",
   "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://api.staticforms.xyz https://wa.me https://www.google.com https://www.gstatic.com https://www.googleapis.com https://www.recaptcha.net",
   "frame-src 'self' https://www.google.com https://maps.google.com https://www.gstatic.com https://www.recaptcha.net",
   "manifest-src 'self'",
@@ -37,9 +39,9 @@ const nextConfig = {
     ],
   },
   images: {
-    unoptimized: true, // Necessário para 'output: export'
-    qualities: [65, 75, 85], // Corrigido para incluir a qualidade 75 (padrão) + 65 e 85
-    formats: ['image/avif', 'image/webp'], // Adicionado suporte a PNG, JPEG e SVG
+    unoptimized: true,
+    // Corrigido: declara explicitamente as qualidades 65, 75 e 85 para eliminar os avisos no console
+    qualities: [65, 75, 85],
     remotePatterns: [
       {
         protocol: 'http',
