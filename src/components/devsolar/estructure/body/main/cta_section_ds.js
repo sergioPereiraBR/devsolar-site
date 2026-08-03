@@ -31,6 +31,7 @@
 // }
 
 // export default CTASectionDS;
+import CallWhatsapp from '@/components/devsolar/utility/call_whatsapp/CallWhatsapp';
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 import styles from './cta_section_ds.module.css'; // Importe o CSS Module
@@ -73,23 +74,10 @@ function CTASectionDS() {
               textTag="#avaliacaoGratuitaCTA" // Tag pode ser mais específica
               trackingContext="cta_section"
             /> */}
-            <button
+            <CallWhatsapp
               className={buttonClasses}
-              onClick={() => {
-                window.open(
-                  'https://wa.me/5521999677722?text=Ol%C3%A1!+fiz+a+simula%C3%A7%C3%A3o+no+site+e+quero+agendar+minha+vistoria+t%C3%A9cnica',
-                  '_blank',
-                  'noopener,noreferrer',
-                );
-              }}
-            >
-              <FaIcon
-                iconClass="fas fa-headset"
-                className="me-2"
-                aria-label="Falar com Especialista"
-              />
-              <span>Marcar uma Visita Técnica</span>
-            </button>
+              label="Marcar uma Visita Técnica"
+            />
           </div>
         </div>
       </div>

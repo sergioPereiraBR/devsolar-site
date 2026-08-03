@@ -6,7 +6,7 @@ import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
 
-import { FaIcon } from '@/components/devsolar/utility/fa-icon';
+import CallWhatsapp from '@/components/devsolar/utility/call_whatsapp/CallWhatsapp';
 import WhatsAppSender from '@/components/devsolar/utility/whatsapp/whatsapp_sender_ds.js';
 
 import CustomCepInput from './cep';
@@ -279,8 +279,9 @@ const ContactSectionDS = ({
 
   return (
     <>
-      <button
+      <CallWhatsapp
         className={textClassButton}
+        label="Falar com um Especialista"
         onClick={() => {
           trackEvent('modal_open', {
             location: trackingContext,
@@ -288,14 +289,7 @@ const ContactSectionDS = ({
           });
           setShowModal(true);
         }}
-      >
-        <FaIcon
-          iconClass="fas fa-headset"
-          className="me-2"
-          aria-label="Falar com Especialista"
-        />
-        <span>Falar com um Especialista</span>
-      </button>
+      />
 
       <Modal
         show={showModal}
@@ -370,7 +364,7 @@ const ContactSectionDS = ({
                       id="roofType"
                       style={modalStyles.formControl}
                     >
-                        <option value="">Selecione uma opção</option>
+                      <option value="">Selecione uma opção</option>
                       <option value="Metálico">Metálico</option>
                       <option value="Cerâmico">Cerâmico</option>
                       <option value="Fibrocimento">Fibrocimento</option>

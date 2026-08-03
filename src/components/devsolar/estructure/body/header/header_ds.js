@@ -511,7 +511,7 @@ function HeaderDS() {
                 height={38}
                 className={styles.modalLogo}
               />
-              <span className={styles.modalTitleText}>RENTABILIDADE</span>
+              <span className={styles.modalTitleText}>Rentabilidade</span>
             </div>
           </Modal.Title>
         </Modal.Header>
@@ -524,7 +524,7 @@ function HeaderDS() {
             </div>
           ) : calculationResult && !calculationResult.error ? ( // Verifica se há resultado e não há erro
             <>
-              <Row className="mb-4 text-center">
+              <Row className="mb-2 text-center">
                 <Col md={4}>
                   <div className={styles.resultHighlight}>
                     <span className={styles.resultLabel}>
@@ -569,9 +569,11 @@ function HeaderDS() {
                 <Example dataProject={calculationResult} />
               </div>
               <p className={styles.chartDisclaimer}>
-                *Valores simulados e projeções são estimativas e podem variar
-                conforme o caso, para um valor mais preciso fale com
-                especialista.
+                *Os resultados apresentados são estimativas baseadas no seu
+                <span> </span>
+                <strong>consumo atual</strong>. Para validar os dados e obter
+                uma <strong>proposta sob medida</strong>, fale com a{' '}
+                <strong>nossa equipe</strong>.
               </p>
             </>
           ) : (

@@ -40,7 +40,10 @@ interface ResumoDadosProps {
   dataProject: Project;
 }
 
-const currencyFormatter = (value: unknown): string => {
+const currencyFormatter = (
+  value: unknown,
+  options?: Intl.NumberFormatOptions,
+): string => {
   // Especifica o retorno como string
 
   // Verifica se o valor é null, undefined ou não pode ser convertido para número finito
@@ -59,6 +62,7 @@ const currencyFormatter = (value: unknown): string => {
     maximumFractionDigits: 0, // Sem centavos para valores grandes
     notation: 'compact',
     compactDisplay: 'short',
+    ...options,
   });
   return formatter.format(number);
 };
@@ -175,14 +179,20 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
     <>
       <div className="m-1 sm:mx-auto sm:max-w-7xl">
         <h2 className="font-medium text-footer-color dark:text-gray-50">
-          Economia Calculada -{'>'} Custo Evitado (25 Anos) + Rentabilidade
+          Custo Evitado e Ganho Financeiro Estimado (25 Anos)
         </h2>
         <p className="text-sm/6 text-gray-500 dark:text-gray-500">
-          Para maior precisão das informações fornecidas{' '}
-          <strong>consulte nossos especialistas</strong>. Com o cálculo da
-          economia na mão, você já pode chamar a <strong>DEV Solar</strong> e
-          pensar no que vai fazer com o resultado do seu{' '}
-          <strong>investimento</strong>.
+          Os valores apresentados são estimativas e projeções baseadas no seu
+          consumo atual (
+          {currencyFormatter(dataLocal.custoMensalInformado, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            notation: 'standard',
+          })}
+          ). Para um projeto sob medida para seu imóvel,{' '}
+          <strong>fale com nossos especialistas</strong> e descubra como
+          aproveitar ao <strong>máximo o retorno do seu investimento</strong>{' '}
+          com a <strong>DEV Solar</strong>.
         </p>
         <ul
           role="list"
