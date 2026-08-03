@@ -52,7 +52,7 @@
 }
 
 .cardIcon {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     /* Tamanho do ícone */
     margin-bottom: 15px;
     color: var(--primary);
@@ -97,27 +97,42 @@
 }
 
 .detailsButton {
-    /* Estilo customizado ou use classes Bootstrap via 'variant' */
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
-    /* color: var(--branco) !important; */
     color: var(--text-btn) !important;
-    /* Cor do texto no botão */
     font-weight: 500;
     padding: 10px 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     will-change: transform;
     margin-top: auto;
-    /* Garante que fique no final */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.detailsButton:hover {
-    background-color: #e68a00 !important;
-    /* Tom mais escuro da cor primária */
-    border-color: #e68a00 !important;
-    transform: scale(1.03);
+.buttonContent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    line-height: 1.2;
+    padding-top: 0.4rem;
+    padding-bottom: 0rem;
 }
 
+.buttonLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.1;
+    gap: 0.1rem;
+}
+
+.infoIcon {
+    font-size: 2.35rem;
+    line-height: 1;
+    color: inherit;
+}
 
 /* ----- ESTILOS DO MODAL ATUALIZADOS ----- */
 .modalDialog {
