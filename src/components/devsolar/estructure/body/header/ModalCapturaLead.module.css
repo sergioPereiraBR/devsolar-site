@@ -27,7 +27,7 @@
 }
 
 .modalHeader {
-    padding: 1.5rem 1.5rem 0.75rem;
+    padding: 0.9rem 1.1rem 0.35rem;
     border-bottom: 0;
 }
 
@@ -42,24 +42,47 @@
 }
 
 .modalBody {
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 1.05rem 0.9rem;
 }
 
 .modalIntro {
     text-align: center;
     color: #4b5563;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    margin-bottom: 0.65rem;
+}
+
+.formShell {
+    padding: 0.6rem;
+    margin-bottom: 0.25rem;
+    border: 2px solid #d1d5db;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.formShellHeader {
+    margin-bottom: 0.55rem;
+    color: var(--footer-color);
     font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
 }
 
 .formGroup {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 .formLabel {
     display: block;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.3rem;
     color: var(--footer-color);
     font-size: 0.95rem;
     font-weight: 600;
@@ -68,8 +91,8 @@
 .formControl,
 .formSelect {
     width: 100%;
-    min-height: 48px;
-    padding: 0.8rem 0.95rem;
+    min-height: 44px;
+    padding: 0.7rem 0.8rem;
     border: 1px solid rgba(0, 31, 82, 0.16);
     border-radius: 12px;
     background-color: #ffffff;
@@ -112,6 +135,19 @@
     border-radius: 0 12px 12px 0;
 }
 
+.recaptchaWrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0.05rem 0 0.25rem;
+}
+
+.recaptchaLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 78px;
+}
+
 .submitButton {
     width: 100%;
     padding: 0.95rem 1.2rem;
@@ -127,6 +163,11 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
+.submitButton:disabled {
+    opacity: 0.75;
+    cursor: wait;
+}
+
 .submitButton:hover {
     transform: translateY(-1px);
     box-shadow: 0 14px 28px rgba(255, 158, 0, 0.3);
@@ -134,15 +175,15 @@
 }
 
 .infoCard {
-    margin-top: 1rem;
-    padding: 1rem 1.1rem;
+    margin-top: 0.4rem;
+    padding: 0.7rem 0.85rem;
     border: 1px solid rgba(0, 31, 82, 0.09);
     border-radius: 16px;
     background: linear-gradient(135deg, #f7fbff 0%, #eef6ff 100%);
 }
 
 .infoTitle {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
     color: var(--footer-color);
     font-size: 0.95rem;
     font-weight: 700;
@@ -155,8 +196,38 @@
     line-height: 1.6;
 }
 
+.infoBullet {
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
+}
+
+.infoBullet:last-child {
+    margin-bottom: 0;
+}
+
+.statusMessage {
+    margin-top: 0.45rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    text-align: center;
+}
+
+.statusSuccess {
+    background: #ecfdf3;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+}
+
+.statusError {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
 .securityNote {
-    margin-top: 0.9rem;
+    margin-top: 0.45rem;
     text-align: center;
     color: #6b7280;
     font-size: 0.8rem;
@@ -169,6 +240,11 @@
 
     .modalBody {
         padding: 0 1rem 1rem;
+    }
+
+    .formShell {
+        padding: 0.95rem;
+        border-radius: 16px;
     }
 
     .modalIntro {

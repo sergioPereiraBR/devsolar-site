@@ -8,6 +8,7 @@ import { Spinner } from 'react-bootstrap';
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
 
+import { sendContactEmail } from '@/components/devsolar/utility/email/SendEmail';
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 import { contactInfoData, socialLinksData } from './contact_data_ds';
@@ -201,90 +202,53 @@ function ContactSectionDS() {
       redirectToEmail = 'https://devsolar.com.br/#contato';
     }
 
-    // 3. Montar Payload para StaticForms (incluindo campos hidden e reCAPTCHA)
-    const payload = {
-      ...formData,
-      // --- Campos específicos devido políticas da API ---
-      // name: `${formData.firstName} ${formData.lastName} - ${formData.phone}`,
-      // email: `${formData.email}`,
-      // message: `${formData.message}`,
-
-      // --- Campos específicos para StaticForms ---
-      accessKey: STATICFORMS_ACCESS_KEY,
-      subject: `Contato Site DEV Solar: ${formData.firstName} ${formData.lastName}`, // Assunto mais dinâmico
-      // replyTo: formData.email, // Email do remetente para responder
-      // redirectTo: { redirectToEmail },  // redirectTo: "https://devsolar.com.br/#contato", // *** CRIE UMA PÁGINA DE OBRIGADO ***
-      // --- Fim dos campos StaticForms ---
-      'g-recaptcha-response': recaptchaToken, // Nome esperado pelo backend do reCAPTCHA
-      // Adicione quaisquer outros campos que seu endpoint StaticForms espera
-      // O campo 'honeypot' NÃO deve ser enviado no JSON
-    };
-
-    //console.log("Enviando payload:", payload); // Debug
-
-    // 4. Enviar via Fetch
     try {
-      const response = await fetch('https://api.staticforms.xyz/submit', {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-          'accept-charset': 'UTF-8',
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+      const result = await sendContactEmail({
+        formData: {
+          firstName: formData.firstName,
+          lastName: formData.lastName || '',
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
         },
+        accessKey: STATICFORMS_ACCESS_KEY,
+        recaptchaToken,
+        endpoint: 'https://api.staticforms.xyz/submit',
+        subject: `Contato Site DEV Solar: ${formData.firstName} ${formData.lastName}`,
+        replyTo: formData.email,
+        redirectTo: redirectToEmail || undefined,
       });
-      //console.log("response status:", response.status); // Debug status
-      //console.log("response ok:", response.ok); // Debug ok flag
 
-      // Tenta ler o JSON mesmo se não for ok, para pegar a msg de erro
-      const result = await response.json();
-      //console.log("result:", result);
-
-      // --- CORREÇÃO AQUI: Verificar response.ok ou result específico ---
-      if (response.ok && result.success !== false) {
-        // Verifica se a requisição foi OK (status 2xx) E se o JSON não indica falha explicitamente
-        // OU, se StaticForms SEMPRE retorna 'message' no sucesso:
-        // if (response.ok && result.message === 'Form submitted successfully') {
-        //console.log("StaticForms Success:", result);
-        setSubmitStatus('success'); // <<< Define SUCESSO
+      if (result.success) {
+        setSubmitStatus('success');
         trackEvent('contact_form_submit_success', {
           location: 'contact_section',
         });
-        // Limpar formulário após sucesso
         setFormData({
           firstName: '',
-          // lastName: '',
+          lastName: '',
           phone: '',
           email: '',
           message: '',
         });
-        recaptchaRef.current?.reset(); // Reseta o reCAPTCHA
-        setTimeout(() => setSubmitStatus(null), 6000); // Limpa msg após 4s
-
-        // Opcional: Redirecionar (se removeu o redirectTo do payload)
-        // setTimeout(() => { window.location.href = "/obrigado"; }, 1500);
+        recaptchaRef.current?.reset();
+        setTimeout(() => setSubmitStatus(null), 6000);
       } else {
-        // Erro HTTP ou erro reportado pelo StaticForms
-        //console.error("StaticForms Error Response:", result.error || result.message || 'Erro desconhecido');
         trackEvent('contact_form_submit_error', {
           location: 'contact_section',
-          reason: result.error || result.message || 'service_error',
+          reason: result.error || 'service_error',
         });
-        setSubmitStatus('error'); // <<< Define ERRO
+        setSubmitStatus('error');
         recaptchaRef.current?.reset();
       }
     } catch (error) {
-      // Erro na requisição fetch (rede, CORS local, etc.)
-      //console.error("Submit Fetch Error:", error);
       trackEvent('contact_form_submit_error', {
         location: 'contact_section',
         reason: error?.message || 'network_error',
       });
-      setSubmitStatus('error'); // <<< Define ERRO
-      // Não precisa resetar o recaptcha aqui necessariamente, pois a submissão falhou antes da validação dele
-      // recaptchaRef.current?.reset();
+      setSubmitStatus('error');
     } finally {
-      setIsSubmitting(false); // Finaliza o estado de envio
+      setIsSubmitting(false);
     }
   };
 
