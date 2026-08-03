@@ -1,3 +1,4 @@
+// layout.js
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -165,7 +166,7 @@ export default function RootLayout({ children }) {
           href="/assets/photovoltaic-1920.webp"
           imageSrcSet="/assets/photovoltaic-400.webp 400w, /assets/photovoltaic-800.webp 800w, /assets/photovoltaic-1200.webp 1200w, /assets/photovoltaic-1920.webp 1920w"
           imageSizes="(max-width: 480px) 400px, (max-width: 991px) 800px, (max-width: 1599px) 1200px, 1920px"
-          fetchpriority="high"
+          fetchPriority="high"
         />
         <link
           rel="preload"
@@ -173,8 +174,22 @@ export default function RootLayout({ children }) {
           as="style"
         />
         <link rel="preload" href="/vendor/fontawesome/styles.css" as="style" />
-        <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css" />
-        <link rel="stylesheet" href="/vendor/fontawesome/styles.css" />
+        {/* <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" href="/vendor/fontawesome/styles.css" /> */}
+
+        <link
+          rel="stylesheet"
+          href="/vendor/bootstrap/bootstrap.min.css"
+          media="print"
+          onLoad="this.media='all'"
+        />
+        <link
+          rel="stylesheet"
+          href="/vendor/fontawesome/styles.css"
+          media="print"
+          onLoad="this.media='all'"
+        />
+
         <style
           dangerouslySetInnerHTML={{
             __html: `
