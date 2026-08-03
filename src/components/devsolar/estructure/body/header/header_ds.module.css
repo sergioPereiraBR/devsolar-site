@@ -350,10 +350,18 @@
 
 :global(.modal.show .modal-dialog) {
     max-width: min(82vw, 980px);
+    width: calc(100% - 1rem);
 }
 
 :global(.modal.show .modal-content) {
     width: 100%;
+}
+
+@media (max-width: 576px) {
+    :global(.modal.show .modal-dialog) {
+        max-width: calc(100% - 0.75rem);
+        margin: 0.375rem auto;
+    }
 }
 
 .modalHeader :global(.modal-title) {

@@ -177,7 +177,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
 
   return (
     <>
-      <div className="m-1 sm:mx-auto sm:max-w-7xl">
+      <div className="mx-0 w-full max-w-none px-0 sm:mx-auto sm:max-w-7xl sm:px-0">
         <h2 className="font-medium text-footer-color dark:text-gray-50">
           Custo Evitado e Ganho Financeiro Estimado (25 Anos)
         </h2>
@@ -227,13 +227,13 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
         {/* Gráfico de Economia */}
         <div
           ref={chartContainerRef}
-          className="mt-8 h-80 min-h-[20rem] w-full min-w-0"
+          className="mt-8 h-80 min-h-[20rem] w-full min-w-0 max-w-none overflow-x-auto px-0"
         >
           {isChartContainerReady ? (
             <ResponsiveContainer
               width="100%"
               height="100%"
-              minWidth={280}
+              minWidth={0}
               minHeight={320}
             >
               <RechartsAreaChart

@@ -83,7 +83,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
 
   return (
     <>
-      <div className="m-1 sm:mx-auto sm:max-w-7xl">
+      <div className="mx-0 w-full max-w-none px-0 sm:mx-auto sm:max-w-7xl sm:px-0">
         <h2 className="font-medium text-gray-900 dark:text-gray-50">
           Economia Calculada
         </h2>
@@ -134,7 +134,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
           yAxisWidth={90}
           valueFormatter={currencyFormatter}
           fill="solid"
-          className="mt-10 hidden h-72 sm:block"
+          className="mt-10 hidden h-72 w-full max-w-none sm:block"
         />
       </div>
     </>

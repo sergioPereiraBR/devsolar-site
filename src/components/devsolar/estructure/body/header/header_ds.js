@@ -498,6 +498,7 @@ function HeaderDS() {
         onHide={handleHideResult}
         centered
         size="xl"
+        fullscreen="sm-down"
       >
         {' '}
         {/* Tamanho maior para o gráfico */}
