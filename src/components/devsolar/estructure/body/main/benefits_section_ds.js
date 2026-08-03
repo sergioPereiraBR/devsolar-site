@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { Card, Col, Modal, Row } from 'react-bootstrap';
 
-import { trackEvent } from '@/lib/analytics';
+import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
 
+import CallWhatsapp from '@/components/devsolar/utility/call_whatsapp/CallWhatsapp';
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
-import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
 import { benefitsData } from './benefits_data_ds'; // Importa os dados estruturados
 import styles from './benefits_section_ds.module.css'; // Importar CSS Module
 
@@ -122,14 +122,14 @@ function BenefitsSectionDS() {
         </Row>
       </Modal.Body>
       <Modal.Footer className="justify-content-center justify-content-md-end">
-        <FaleConoscoDS
-          textClassButton={`btn btn-outline-custom btn-lg ${styles.modalFooterButton}`} // Use classe do module se precisar
-          textMessage={
+        <CallWhatsapp
+          className={`btn btn-outline-custom btn-lg ${styles.modalFooterButton}`}
+          label="Fale com um Especialista"
+          message={
             modalContent?.contactMessageBase ||
             'Olá, quero falar com especialista sobre os benefícios.'
           }
-          textTag={modalContent?.contactTagBase || '#devSolar #beneficios'}
-          trackingContext="benefits_categories"
+          onClick={() => trackWhatsAppClick('benefits_categories')}
         />
       </Modal.Footer>
     </>
@@ -183,15 +183,17 @@ function BenefitsSectionDS() {
         )}
       </Modal.Body>
       <Modal.Footer className="justify-content-center justify-content-md-end">
-        <FaleConoscoDS
-          onClick={handleCloseModal}
-          textClassButton={`btn btn-outline-custom btn-lg ${styles.modalFooterButton}`}
-          textMessage={
+        <CallWhatsapp
+          className={`btn btn-outline-custom btn-lg ${styles.modalFooterButton}`}
+          label="Fale com um Especialista"
+          message={
             modalContent?.contactMessage ||
             'Olá, quero falar com especialista sobre este benefício.'
           }
-          textTag={modalContent?.contactTag || '#devSolar #beneficioDetalhe'}
-          trackingContext="benefits_detail"
+          onClick={() => {
+            handleCloseModal();
+            trackWhatsAppClick('benefits_detail');
+          }}
         />
       </Modal.Footer>
     </>

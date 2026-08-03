@@ -10,9 +10,9 @@ import { Button, Col, Modal, Row, Spinner } from 'react-bootstrap'; // Adicionar
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
 
+import CallWhatsapp from '@/components/devsolar/utility/call_whatsapp/CallWhatsapp';
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
-import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
 import styles from './header_ds.module.css'; // Importar CSS Module
 import ModalCapturaLead from './ModalCapturaLead';
 
@@ -586,10 +586,11 @@ function HeaderDS() {
           <Button variant="secondary" onClick={handleHideResult}>
             Fechar
           </Button>
-          <FaleConoscoDS
-            textClassButton={`btn ${styles.heroButtonPrimaryFC}`}
-            textMessage={`Olá, vi minha simulação de economia, meu custo médio mensal é de R$ ${currencyFormatter.format(calculationResult && calculationResult.custoMensalInformado)} e quero falar com especialista.`}
-            textTag={`${FALE_CONOSCO_TAG_RESULT}`} // Tag com o valor
+          <CallWhatsapp
+            className={`btn ${styles.heroButtonPrimaryFC}`}
+            label="Fale com um Especialista"
+            message={`Olá, vi minha simulação de economia, meu custo médio mensal é de R$ ${currencyFormatter.format(calculationResult && calculationResult.custoMensalInformado)} e quero falar com especialista.`}
+            onClick={() => trackWhatsAppClick('hero_result_cta')}
           />
         </Modal.Footer>
       </Modal>
