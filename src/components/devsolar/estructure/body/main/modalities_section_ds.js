@@ -9,9 +9,9 @@ import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
 
 import { trackEvent } from '@/lib/analytics';
 
+import CallWhatsapp from '@/components/devsolar/utility/call_whatsapp/CallWhatsapp';
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
-import FaleConoscoDS from '../fale_conosco_ds';
 import styles from './modalities_section_ds.module.css'; // Importar CSS Module
 
 // --- Dados (com HTML, definidos fora) ---
@@ -215,12 +215,11 @@ function ModalitiesSectionDS() {
           )}
         </Modal.Body>
         <Modal.Footer className={styles.modalFooter}>
-          <FaleConoscoDS
-            textClassButton={`btn btn-outline-custom btn-lg ${styles.modalFooterButton}`} // Use classe do module se precisar
-            textMessage={`Olá, quero falar com especialista sobre ${selectedModalContent?.modalMessage}.`}
-            textTag={'#devSolar #beneficios'}
+          <CallWhatsapp
+            className={`btn btn-outline-custom btn-lg ${styles.modalFooterButton}`}
+            label="Falar com um Especialista"
+            message={`Olá, quero falar com especialista sobre ${selectedModalContent?.modalMessage}.`}
             onClick={handleCloseModal}
-            trackingContext="modalities_section"
           />
           <Button variant="secondary" onClick={handleCloseModal}>
             Fechar

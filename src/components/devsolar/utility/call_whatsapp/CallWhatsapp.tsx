@@ -1,0 +1,56 @@
+import { FaIcon } from '@/components/devsolar/utility/fa-icon';
+
+import styles from './call_whatsapp.module.css';
+
+type CallWhatsappProps = {
+  className?: string;
+  label?: string;
+  phone?: string;
+  message?: string;
+  iconClass?: string;
+  buttonType?: 'button' | 'submit' | 'reset';
+  onClick?: () => void;
+  disabled?: boolean;
+};
+
+export default function CallWhatsapp({
+  className,
+  label = 'Marcar uma Visita Técnica',
+  phone = '5521999677722',
+  message = 'Olá! fiz a simulação no site e quero agendar minha vistoria técnica',
+  iconClass = 'fas fa-headset',
+  buttonType = 'button',
+  onClick,
+  disabled = false,
+}: CallWhatsappProps) {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+      return;
+    }
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(
+      `https://wa.me/${phone}?text=${encodedMessage}`,
+      '_blank',
+      'noopener,noreferrer',
+    );
+  };
+
+  return (
+    <button
+      type={buttonType}
+      className={className ? `${className} ${styles.button}` : styles.button}
+      onClick={handleClick}
+      disabled={disabled}
+      style={{ minWidth: '250px' }}
+    >
+      <FaIcon
+        iconClass={iconClass}
+        className={styles.icon}
+        aria-label="Falar com Especialista"
+      />
+      <span>{label}</span>
+    </button>
+  );
+}
