@@ -174,20 +174,18 @@ export default function RootLayout({ children }) {
           as="style"
         />
         <link rel="preload" href="/vendor/fontawesome/styles.css" as="style" />
-        {/* <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css" />
-        <link rel="stylesheet" href="/vendor/fontawesome/styles.css" /> */}
+        <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" href="/vendor/fontawesome/styles.css" />
 
         <link
           rel="stylesheet"
           href="/vendor/bootstrap/bootstrap.min.css"
-          media="print"
-          onLoad="this.media='all'"
+          media="all"
         />
         <link
           rel="stylesheet"
           href="/vendor/fontawesome/styles.css"
-          media="print"
-          onLoad="this.media='all'"
+          media="all"
         />
 
         <style
