@@ -181,13 +181,17 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="/vendor/bootstrap/bootstrap.min.css"
           media="print"
-          onLoad="this.media='all'"
+          onLoad={(event) => {
+            event.currentTarget.media = 'all';
+          }}
         />
         <link
           rel="stylesheet"
           href="/vendor/fontawesome/styles.css"
           media="print"
-          onLoad="this.media='all'"
+          onLoad={(event) => {
+            event.currentTarget.media = 'all';
+          }}
         />
 
         <style
