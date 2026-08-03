@@ -155,8 +155,6 @@ export default function SuccessStoriesCarouselClient() {
                       fill
                       className={styles.thumbnailImage}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                      fetchPriority={index === 0 ? 'high' : 'low'}
                       onLoad={() => handleImageLoad(story.id)}
                       onError={() => handleImageError(story.id)}
                       style={{
@@ -166,7 +164,7 @@ export default function SuccessStoriesCarouselClient() {
                     <span className={styles.thumbnailOverlay}>
                       Assistir Depoimento
                     </span>
-                    <span className={styles.playIcon} aria-hidden="true"></span>
+                    {/* <span className={styles.playIcon} aria-hidden="true"></span> */}
                   </button>
                 </div>
                 <Card.Body style={{ backgroundColor: 'var(--branco)' }}>
