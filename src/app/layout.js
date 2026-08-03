@@ -208,7 +208,7 @@ export default function RootLayout({ children }) {
         {/* <AsyncStyles /> */}
 
         {/* Injeção do CSS de forma totalmente assíncrona após a renderização inicial */}
-        <Script id="load-external-css" strategy="afterInteractive">
+        {/* <Script id="load-external-css" strategy="afterInteractive">
           {`
             [
               '/vendor/bootstrap/bootstrap.min.css',
@@ -217,6 +217,17 @@ export default function RootLayout({ children }) {
               var l = document.createElement('link');
               l.rel = 'stylesheet';
               l.href = src;
+              document.head.appendChild(l);
+            });
+          `}
+        </Script> */}
+
+        <Script id="load-external-css" strategy="lazyOnload">
+          {`
+            ['/vendor/bootstrap/bootstrap.min.css', '/vendor/fontawesome/styles.css'].forEach(function(href) {
+              var l = document.createElement('link');
+              l.rel = 'stylesheet';
+              l.href = href;
               document.head.appendChild(l);
             });
           `}
