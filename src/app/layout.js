@@ -180,18 +180,12 @@ export default function RootLayout({ children }) {
         <link
           rel="stylesheet"
           href="/vendor/bootstrap/bootstrap.min.css"
-          media="print"
-          onLoad={(event) => {
-            event.currentTarget.media = 'all';
-          }}
+          media="all"
         />
         <link
           rel="stylesheet"
           href="/vendor/fontawesome/styles.css"
-          media="print"
-          onLoad={(event) => {
-            event.currentTarget.media = 'all';
-          }}
+          media="all"
         />
 
         <style
