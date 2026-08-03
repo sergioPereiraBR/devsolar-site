@@ -350,10 +350,18 @@
 
 :global(.modal.show .modal-dialog) {
     max-width: min(82vw, 980px);
+    width: calc(100% - 1rem);
 }
 
 :global(.modal.show .modal-content) {
     width: 100%;
+}
+
+@media (max-width: 576px) {
+    :global(.modal.show .modal-dialog) {
+        max-width: calc(100% - 0.75rem);
+        margin: 0.375rem auto;
+    }
 }
 
 .modalHeader :global(.modal-title) {
@@ -436,6 +444,21 @@
 
 .currencyInput::placeholder {
     font-size: 1rem;
+    line-height: 1.2;
+    opacity: 0.8;
+}
+
+@media (max-width: 576px) {
+    .currencyInput {
+        font-size: 1.15rem;
+        padding-inline: 0.6rem;
+    }
+
+    .currencyInput::placeholder {
+        font-size: 0.8rem;
+        white-space: normal;
+        line-height: 1.1;
+    }
 }
 
 .currencyInput:focus {

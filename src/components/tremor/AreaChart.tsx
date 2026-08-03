@@ -649,11 +649,11 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
     return (
       <div
         ref={ref}
-        className={cx('h-80 w-full', className)}
+        className={cx('h-80 w-full max-w-none overflow-x-auto', className)}
         tremor-id="tremor-raw"
         {...other}
       >
-        <ResponsiveContainer>
+        <ResponsiveContainer width="100%" height="100%" minWidth={0}>
           <RechartsAreaChart
             data={data}
             onClick={
