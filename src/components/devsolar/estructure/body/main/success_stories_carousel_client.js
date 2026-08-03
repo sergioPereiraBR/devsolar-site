@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Button, Card, Modal } from 'react-bootstrap';
 
@@ -25,6 +25,31 @@ export default function SuccessStoriesCarouselClient() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [imageStates, setImageStates] = useState({});
   const videoRef = useRef(null);
+  const swiperRef = useRef(null);
+
+  const scheduleCarouselLayout = useCallback(() => {
+    if (!swiperRef.current) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      swiperRef.current?.update();
+    });
+  }, []);
+
+  useEffect(() => {
+    scheduleCarouselLayout();
+
+    const handleResize = () => {
+      scheduleCarouselLayout();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [scheduleCarouselLayout]);
 
   useEffect(() => {
     if (showModal && videoRef.current) {
@@ -81,6 +106,10 @@ export default function SuccessStoriesCarouselClient() {
       <div className={styles.carouselContainer}>
         <Swiper
           modules={[Pagination, Navigation, Autoplay]}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+            scheduleCarouselLayout();
+          }}
           loop={successStories.length >= MIN_SLIDES_FOR_LOOP}
           slidesPerView={1}
           spaceBetween={20}
@@ -111,22 +140,32 @@ export default function SuccessStoriesCarouselClient() {
             <SwiperSlide key={story.id} className={styles.swiperSlide}>
               <Card className={styles.storyCard}>
                 <div className={styles.thumbnailContainer}>
-                  <Image
-                    src={story.thumbnail}
-                    alt={`${story.alt} - Depoimento`}
-                    fill
-                    className={styles.thumbnailImage}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    onLoad={() => handleImageLoad(story.id)}
-                    onError={() => handleImageError(story.id)}
-                    style={{
-                      opacity: imageStates[story.id] === 'loaded' ? 1 : 0.5,
-                    }}
+                  <button
+                    type="button"
+                    className={styles.thumbnailButton}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleCardClick(story);
                     }}
-                  />
+                    aria-label={`Assistir vídeo do depoimento de ${story.title}`}
+                  >
+                    <Image
+                      src={story.thumbnail}
+                      alt={`${story.alt} - Depoimento`}
+                      fill
+                      className={styles.thumbnailImage}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      onLoad={() => handleImageLoad(story.id)}
+                      onError={() => handleImageError(story.id)}
+                      style={{
+                        opacity: imageStates[story.id] === 'loaded' ? 1 : 0.5,
+                      }}
+                    />
+                    <span className={styles.thumbnailOverlay}>
+                      Assistir Depoimento
+                    </span>
+                    <span className={styles.playIcon} aria-hidden="true"></span>
+                  </button>
                 </div>
                 <Card.Body style={{ backgroundColor: 'var(--branco)' }}>
                   <Card.Title className={styles.cardTitle}>

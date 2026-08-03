@@ -246,6 +246,44 @@
     /* Melhor visual enquanto imagem carrega */
 }
 
+.thumbnailButton {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+    display: block;
+}
+
+.thumbnailButton:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.thumbnailOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 31, 82, 0.55);
+    color: var(--branco);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.thumbnailButton:hover .thumbnailOverlay,
+.thumbnailButton:focus-visible .thumbnailOverlay {
+    opacity: 1;
+}
+
 .thumbnailImage {
     object-fit: cover;
     /* Transição suave quando imagem aparece */
