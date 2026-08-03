@@ -161,6 +161,14 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://www.google-analytics.com" /> */}
         <link
           rel="preload"
+          as="image"
+          href="/assets/photovoltaic-1920.webp"
+          imageSrcSet="/assets/photovoltaic-400.webp 400w, /assets/photovoltaic-800.webp 800w, /assets/photovoltaic-1200.webp 1200w, /assets/photovoltaic-1920.webp 1920w"
+          imageSizes="(max-width: 480px) 400px, (max-width: 991px) 800px, (max-width: 1599px) 1200px, 1920px"
+          fetchpriority="high"
+        />
+        <link
+          rel="preload"
           href="/vendor/bootstrap/bootstrap.min.css"
           as="style"
         />
