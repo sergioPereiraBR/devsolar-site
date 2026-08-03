@@ -45,7 +45,7 @@ function CTASectionDS() {
 
   return (
     // Removido o Fragmento desnecessário
-    <section className={styles.ctaSection} aria-labelledby="cta-headline">
+    <div className={styles.ctaSection} aria-labelledby="cta-headline">
       {' '}
       {/* Usando classe do module */}
       <div className="container">
@@ -81,7 +81,7 @@ function CTASectionDS() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

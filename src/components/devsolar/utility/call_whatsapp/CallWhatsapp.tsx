@@ -24,10 +24,7 @@ export default function CallWhatsapp({
   disabled = false,
 }: CallWhatsappProps) {
   const handleClick = () => {
-    if (onClick) {
-      onClick();
-      return;
-    }
+    onClick?.();
 
     const encodedMessage = encodeURIComponent(message);
     window.open(
