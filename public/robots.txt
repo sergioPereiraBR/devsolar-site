@@ -1,2 +1,26 @@
+# Regra Geral para Mecanismos de Busca (Google, Bing, Yahoo, etc.)
 User-agent: *
+Allow: /
 Disallow: /cgi-sys/
+Disallow: /wp-admin/          # Caso utilize WordPress (remova o '#' se aplicar)
+Disallow: /admin/             # Painéis administrativos
+Disallow: /private/           # Pastas privadas/de testes
+
+# Permite Explicitamente Crawlers de IA Generativa (ChatGPT, Gemini, Perplexity, Claude)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Indica o Sitemap do Site
+Sitemap: https://devsolar.com.br/sitemap.xml

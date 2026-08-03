@@ -14,6 +14,7 @@ import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 
 import FaleConoscoDS from '../fale_conosco_ds'; // Confirme o caminho
 import styles from './header_ds.module.css'; // Importar CSS Module
+import ModalCapturaLead from './ModalCapturaLead';
 
 const Example = dynamic(() => import('@/components/tremor/area-chart-15'), {
   ssr: false,
@@ -103,9 +104,15 @@ function HeaderDS() {
     return currencyFormatter.format(num / 100);
   };
 
+  const syncMonthlyValueToState = () => {
+    const numericCost = getNumericCost();
+    setValorConta(currencyFormatter.format(numericCost));
+    return numericCost;
+  };
+
   // Fecha o modal de input, calcula e abre o modal de resultado
   const handleCalculateAndShowResult = async () => {
-    const numericCost = getNumericCost();
+    const numericCost = syncMonthlyValueToState();
     trackEvent('calculator_submit_attempt', {
       location: 'hero_section',
       monthly_cost: numericCost,
@@ -166,12 +173,53 @@ function HeaderDS() {
     // O useEffect de limpeza cuidará de resetar o inputValue
   };
 
-  // Previne envio com Enter no input de custo
+  // Previne envio com Enter no input de custo e mantém o fluxo de lead
   const handleInputKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      handleCalculateAndShowResult();
+      handleAbrirCalculadora(e);
     }
+  };
+
+  // --- Captura Leads ---
+  const [valorConta, setValorConta] = useState('');
+  const [showModalLead, setShowModalLead] = useState(false);
+
+  // Manipula o clique no botão "VER MEU RELATÓRIO DE RENTABILIDADE"
+  const handleAbrirCalculadora = (e) => {
+    e?.preventDefault?.();
+
+    const numericCost = syncMonthlyValueToState();
+    if (numericCost < MIN_MONTHLY_COST || numericCost > 999999999.99) {
+      if (numericCost < MIN_MONTHLY_COST) {
+        setShowMinimumHint(true);
+        if (hintTimerRef.current) {
+          clearTimeout(hintTimerRef.current);
+        }
+        hintTimerRef.current = setTimeout(() => {
+          setShowMinimumHint(false);
+        }, 7000);
+      }
+      return;
+    }
+
+    setShowModalLead(true);
+  };
+
+  // Executado quando o lead preenche os dados com sucesso
+  const handleLeadCapturado = async (dadosLead) => {
+    setShowModalLead(false);
+
+    // AQUI: Dispare o evento para seu Analytics (Google Tag Manager, Meta Pixel)
+    // Ex: window.gtag('event', 'generate_lead', { ... });
+
+    const numericCost = syncMonthlyValueToState();
+    await handleCalculateAndShowResult();
+
+    // AQUI: Abra o modal com o gráfico de rentabilidade / PDF gerado
+    // alert(
+    //   `Sucesso! Lead ${dadosLead.nome} capturado. Exibindo relatório de rentabilidade...`,
+    // );
   };
 
   return (
@@ -248,8 +296,10 @@ function HeaderDS() {
                       <Button
                         variant="primary"
                         className={`btn w-100 ${styles.heroButtonPrimary}`}
+                        //className="btn btn-warning w-100 fw-bold py-2 text-uppercase"
                         style={{ width: '100%' }}
-                        onClick={handleCalculateAndShowResult}
+                        //onClick={handleCalculateAndShowResult}
+                        onClick={handleAbrirCalculadora}
                         disabled={calculando}
                       >
                         {calculando ? (
@@ -267,7 +317,7 @@ function HeaderDS() {
                           <>
                             <FaIcon
                               iconClass="fas fa-calculator"
-                              className="me-2"
+                              className="heroIconPrimary me-2"
                               aria-label="Calcular Economia"
                               aria-hidden="true"
                             />
@@ -298,7 +348,7 @@ function HeaderDS() {
                       >
                         <FaIcon
                           iconClass="fas fa-headset"
-                          className="me-2"
+                          className="me-2 heroIconSecondary"
                           aria-label="Falar com um Especialista"
                           aria-hidden="true"
                         />
@@ -541,6 +591,13 @@ function HeaderDS() {
           />
         </Modal.Footer>
       </Modal>
+      {/* Modal de Captura */}
+      <ModalCapturaLead
+        show={showModalLead}
+        handleClose={() => setShowModalLead(false)}
+        valorConta={valorConta}
+        onSuccess={handleLeadCapturado}
+      />
     </>
   );
 }
