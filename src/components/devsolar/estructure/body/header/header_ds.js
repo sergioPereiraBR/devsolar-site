@@ -477,8 +477,10 @@ function HeaderDS() {
                 src="/assets/photovoltaic-1920.webp"
                 width={1920}
                 height={1080}
-                loading="eager"
-                decoding="async"
+                fetchPriority="high"
+                decoding="sync"
+                // loading="eager"
+                // decoding="async"
                 style={{
                   position: 'absolute',
                   inset: 0,
