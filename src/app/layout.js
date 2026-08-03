@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import { config } from '@fortawesome/fontawesome-svg-core';
 
+import AsyncStyles from '@/components/suporte/AsyncStyles';
+
 import './critical.css';
 import './globals.css';
 
@@ -177,16 +179,35 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css" />
         <link rel="stylesheet" href="/vendor/fontawesome/styles.css" />
 
-        <link
+        {/* <link
           rel="stylesheet"
           href="/vendor/bootstrap/bootstrap.min.css"
-          media="all"
+          media="print"
+          onLoad={(e) => {
+            e.currentTarget.media = 'all';
+          }}
         />
         <link
           rel="stylesheet"
           href="/vendor/fontawesome/styles.css"
-          media="all"
-        />
+          media="print"
+          onLoad={(e) => {
+            e.currentTarget.media = 'all';
+          }}
+        /> */}
+
+        {/* <Script id="async-css-loader" strategy="afterInteractive">
+          {`
+            (function() {
+              var bs = document.getElementById('bootstrap-css');
+              var fa = document.getElementById('fontawesome-css');
+              if (bs) bs.media = 'all';
+              if (fa) fa.media = 'all';
+            })();
+          `}
+        </Script> */}
+
+        <AsyncStyles />
 
         <style
           dangerouslySetInnerHTML={{
