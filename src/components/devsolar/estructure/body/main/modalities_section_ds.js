@@ -24,7 +24,7 @@ const modalitiesData = [
     idealFor: 'Ideal para Residências, Comércio e Telhados Próprios',
     iconClass: 'fa-solid fa-bolt',
     shortDescription: 'Gere energia para consumo no próprio local...',
-    buttonText: 'Saiba Mais: Produção Própria de Energia',
+    buttonText: 'Produção Própria de Energia',
     modalTitle: 'Modalidade: Produção Própria',
     modalMessage: 'produção de energia para utilização no mesmo imóvel',
     modalImage: ProducaoPropria,
@@ -45,7 +45,7 @@ const modalitiesData = [
     idealFor: 'Ideal para Apartamentos, Aluguel e Múltiplas Filiais',
     iconClass: 'fas fa-users',
     shortDescription: 'Múltiplos consumidores compartilham os benefícios...',
-    buttonText: 'Saiba Mais: Produção Compartilhada',
+    buttonText: 'Produção Compartilhada',
     modalTitle: 'Modalidade: Produção Compartilhada',
     modalMessage: 'produção de energia com utilização também em outro imóvel',
     modalImage: ProducaoCompartilhada,
@@ -66,7 +66,7 @@ const modalitiesData = [
     idealFor: 'Ideal para Investidores e Fazendas Solares',
     iconClass: 'fas fa-store-alt',
     shortDescription: 'Comercialização de créditos de energia solar...',
-    buttonText: 'Saiba Mais: Produção para Negócio',
+    buttonText: 'Produção para Negócio',
     modalTitle: 'Modalidade: Produção para Negócio',
     modalMessage: 'produção de energia e comercialização de créditos',
     modalImage: ProducaoParaNegocio,
@@ -159,8 +159,16 @@ function ModalitiesSectionDS() {
                       aria-label={`Saiba Mais: ${modality.title} de Energia.`}
                       aria-describedby={`${modality.idealFor}. ${modality.modalMessage} - Clique para mais detalhes.`}
                     >
-                      <FaIcon iconClass="fas fa-info-circle" className="me-2" />
-                      <span>{modality.buttonText}</span>
+                      <span className={styles.buttonContent}>
+                        <FaIcon
+                          iconClass="fas fa-info-circle"
+                          className={styles.infoIcon}
+                        />
+                        <span className={styles.buttonLabel}>
+                          <span>Saiba Mais:</span>
+                          <strong>{modality.buttonText}</strong>
+                        </span>
+                      </span>
                     </Button>
                   </Card.Body>
                 </Card>
