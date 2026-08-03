@@ -3,8 +3,6 @@ import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import { config } from '@fortawesome/fontawesome-svg-core';
 
-import AsyncStyles from '@/components/suporte/AsyncStyles';
-
 import './critical.css';
 import './globals.css';
 
@@ -207,7 +205,22 @@ export default function RootLayout({ children }) {
           `}
         </Script> */}
 
-        <AsyncStyles />
+        {/* <AsyncStyles /> */}
+
+        {/* Injeção do CSS de forma totalmente assíncrona após a renderização inicial */}
+        <Script id="load-external-css" strategy="afterInteractive">
+          {`
+            [
+              '/vendor/bootstrap/bootstrap.min.css',
+              '/vendor/fontawesome/styles.css'
+            ].forEach(function(src) {
+              var l = document.createElement('link');
+              l.rel = 'stylesheet';
+              l.href = src;
+              document.head.appendChild(l);
+            });
+          `}
+        </Script>
 
         <style
           dangerouslySetInnerHTML={{
@@ -232,7 +245,7 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        <Script id="polyfill-array-at" strategy="beforeInteractive">
+        {/* <Script id="polyfill-array-at" strategy="beforeInteractive">
           {`if (!Array.prototype.at) {
   Array.prototype.at = function (n) {
     n = Math.trunc(n) || 0;
@@ -241,7 +254,7 @@ export default function RootLayout({ children }) {
     return this[n];
   };
 }`}
-        </Script>
+        </Script> */}
         <Script id="force-passive-touch-listeners" strategy="lazyOnload">
           {`(function() {
     var originalAddEventListener = EventTarget.prototype.addEventListener;
