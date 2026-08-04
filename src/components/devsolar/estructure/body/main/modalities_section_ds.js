@@ -226,7 +226,9 @@ function ModalitiesSectionDS() {
           <CallWhatsapp
             className={`btn btn-outline-custom btn-lg ${styles.modalFooterButton}`}
             label="Falar com um Especialista"
-            message={`Olá, quero falar com especialista sobre ${selectedModalContent?.modalMessage}.`}
+            message={`Olá! 👋
+              
+Visitei o site e quero falar com especialista sobre ${selectedModalContent?.modalMessage}.`}
             onClick={handleCloseModal}
           />
           <Button variant="secondary" onClick={handleCloseModal}>
