@@ -27,11 +27,21 @@ export default function CallWhatsapp({
     onClick?.();
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(
-      `https://wa.me/${phone}?text=${encodedMessage}`,
-      '_blank',
-      'noopener,noreferrer',
-    );
+    const hasFaqPrefix = message.includes('FAQ do site:');
+
+    if (!hasFaqPrefix) {
+      window.open(
+        `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`,
+        '_blank',
+        'noopener,noreferrer',
+      );
+    } else {
+      window.open(
+        `https://wa.me/${phone}?text=${encodedMessage}`,
+        '_blank',
+        'noopener,noreferrer',
+      );
+    }
   };
 
   return (
@@ -45,7 +55,7 @@ export default function CallWhatsapp({
       <FaIcon
         iconClass={iconClass}
         className={styles.icon}
-        aria-label="Falar com Especialista"
+        aria-label={label}
       />
       <span>{label}</span>
     </button>

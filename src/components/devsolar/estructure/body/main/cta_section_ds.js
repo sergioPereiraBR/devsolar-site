@@ -42,6 +42,13 @@ import styles from './cta_section_ds.module.css'; // Importe o CSS Module
 function CTASectionDS() {
   // Defina a classe do botão aqui ou use diretamente na prop
   const buttonClasses = `${styles.ctaButton} mb-3`; // Combina estilo do module com margem do Bootstrap
+  const message = `Olá! 👋
+
+Tudo bem?
+
+Visitei o site e quero agendar minha vistoria técnica para uma avaliação gratuita ✅
+
+📌 Nome: `;
 
   return (
     // Removido o Fragmento desnecessário
@@ -77,6 +84,8 @@ function CTASectionDS() {
             <CallWhatsapp
               className={buttonClasses}
               label="Marcar uma Visita Técnica"
+              message={message}
+              trackingContext="cta_section"
             />
           </div>
         </div>
