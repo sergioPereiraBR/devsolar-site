@@ -73,6 +73,8 @@ export const socialLinksData = [
     accessibility: 'Entre em contato conosco via WhatsApp',
   },
 ];
+const WHATSAPP_MESSAGE = `Olá! 👋 
 
+Visitei o site da DEV Solar e gostaria de falar com um atendente.`;
 // Dados específicos do botão flutuante do WhatsApp
-export const WHATSAPP_FLOAT_URL = `https://wa.me/${CONTACT_PHONE_RAW}?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20da%20DEV%20Solar.`;
+export const WHATSAPP_FLOAT_URL = `https://api.whatsapp.com/send?phone=${CONTACT_PHONE_RAW}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
