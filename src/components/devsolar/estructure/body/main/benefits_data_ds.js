@@ -48,8 +48,9 @@ export const benefitsData = [
     description:
       'Reduza sua conta de luz em até 85% já no primeiro mês após a instalação.',
     modalTitle: 'Economia Imediata com Energia Solar',
-    contactMessageBase:
-      'Olá, tenho interesse em reduzir custos com energia elétrica e quero falar com especialista.',
+    contactMessageBase: `Olá! 👋
+
+Visitei o site com interesse em reduzir custos com energia elétrica e quero falar com especialista.`,
     contactTagBase: '#economiaImediata',
     categories: [
       {
@@ -82,7 +83,9 @@ export const benefitsData = [
             '[2] Sistema Fotovoltaico: Como Economizar Até 95%... Solalux. Acesso em: 11 abr. 2025.',
             '[3] Conheça os muitos benefícios da Energia Solar... Reenergisa. Acesso em: 11 abr. 2025.',
           ],
-          'Olá, tenho interesse em reduzir custos com energia elétrica na residência e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse em reduzir custos com energia elétrica na residência e quero falar com especialista.`,
           '#economia #residencial',
         ),
       },
@@ -116,7 +119,9 @@ export const benefitsData = [
             '[2] Viabilidade económica de medidas... Repositório ULisboa. Acesso em: 11 abr. 2025.',
             '[3] Pequenas atitudes podem gerar economia... Fabasa. Acesso em: 11 abr. 2025.',
           ],
-          'Olá, tenho interesse em reduzir custos com energia elétrica no condomínio e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse em reduzir custos com energia elétrica no condomínio e quero falar com especialista.`,
           '#economia #condominial',
         ),
       },
@@ -150,7 +155,9 @@ export const benefitsData = [
             '[2] Conheça os muitos benefícios da Energia Solar... Reenergisa. Acesso em: 11 abr. 2025.',
             '[3] EMPRESA com energia solar: aumento de competitividade... Elysia. Acesso em: 11 abr. 2025.',
           ],
-          'Olá, tenho interesse em reduzir custos com energia elétrica na empresa e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse em reduzir custos com energia elétrica na empresa e quero falar com especialista.`,
           '#economia #empresarial',
         ),
       },
@@ -164,8 +171,9 @@ export const benefitsData = [
     description:
       'Energia limpa e renovável que reduz significativamente sua pegada de carbono.',
     modalTitle: 'Sustentabilidade com Energia Solar',
-    contactMessageBase:
-      'Olá, tenho interesse em reduzir a pegada de carbono, em energia limpa e renovável e quero falar com especialista.',
+    contactMessageBase: `Olá! 👋
+
+Visitei o site com interesse em reduzir a pegada de carbono, em energia limpa e renovável e quero falar com especialista.`,
     contactTagBase: '#sustentabilidade',
     categories: [
       {
@@ -198,7 +206,9 @@ export const benefitsData = [
             '[2] Energia limpa: o que é, vantagens... FIA. Acesso em: 12 abr. 2025.',
             '[3] Energia Limpa: veja quais as vantagens... Origo Energia. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse em reduzir a pegada de carbono, em energia limpa e renovável na residência e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse em reduzir a pegada de carbono, em energia limpa e renovável na residência e quero falar com especialista.`,
           '#sustentabilidade #residencial',
         ),
       },
@@ -232,7 +242,9 @@ export const benefitsData = [
             '[2] Energia fotovoltaica e suas contribuições... Repositório UFERSA. Acesso em: 12 abr. 2025.',
             '[3] O Futuro da Geração de Energia... LinkedIn. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse em reduzir a pegada de carbono, em energia limpa e renovável no condomínio e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse em reduzir a pegada de carbono, em energia limpa e renovável no condomínio e quero falar com especialista.`,
           '#sustentabilidade #condominial',
         ),
       },
@@ -266,7 +278,9 @@ export const benefitsData = [
             '[2] Reduzindo a Pegada de Carbono com Energia Solar. Maya Energy. Acesso em: 12 abr. 2025.',
             '[3] Energia renovável com baixa emissão de carbono. KAS. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse em reduzir a pegada de carbono, em energia limpa e renovável na empresa e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse em reduzir a pegada de carbono, em energia limpa e renovável na empresa e quero falar com especialista.`,
           '#sustentabilidade #empresarial',
         ),
       },
@@ -280,8 +294,9 @@ export const benefitsData = [
     description:
       'Imóveis com sistemas solares são avaliados em até 4% acima do valor de mercado.', // Nota: As fontes citam valores variados, de 3% a 30%. Usar uma média ou faixa pode ser mais seguro.
     modalTitle: 'Valorização Imobiliária com Energia Solar',
-    contactMessageBase:
-      'Olá, tenho interesse na valorização do imóvel e quero falar com especialista.',
+    contactMessageBase: `Olá! 👋
+
+Visitei o site com interesse na valorização do imóvel e quero falar com especialista.`,
     contactTagBase: '#valorizaçãoImobiliária',
     categories: [
       {
@@ -314,7 +329,9 @@ export const benefitsData = [
             '[2] Valorize seu imóvel em até 10%... G1. Acesso em: 12 abr. 2025.',
             '[3] Você sabia que os imóveis com energia solar... Solar Power Energy Blog. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na valorização do imóvel da residência e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na valorização do imóvel residencial e quero falar com especialista.`,
           '#valorizaçãoImobiliária #residencial',
         ),
       },
@@ -347,7 +364,9 @@ export const benefitsData = [
             '[5] Valorização imobiliária, o impacto da energia solar... Imperio Solar. Acesso em: 12 abr. 2025.',
             '[6] A Solar Power ensina como valorizar o seu imóvel... G1. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na valorização do imóvel do condomínio e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na valorização dos imóveis do condomínio e quero falar com especialista.`,
           '#valorizaçãoImobiliária #condominial',
         ),
       },
@@ -381,7 +400,9 @@ export const benefitsData = [
             '[8] Energia Solar: O Potencial de Valorização... LinkedIn. Acesso em: 12 abr. 2025.',
             '[9] Valorização do imóvel com energia solar... Meu Financiamento Solar. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na valorização do imóvel da empresa e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na valorização do imóvel da empresa e quero falar com especialista.`,
           '#valorizaçãoImobiliária #empresarial',
         ),
       },
@@ -395,8 +416,9 @@ export const benefitsData = [
     description:
       'Sistemas duráveis com garantia de até 25 anos e mínima necessidade de manutenção.',
     modalTitle: 'Baixa Manutenção do Sistema de Energia Solar',
-    contactMessageBase:
-      'Olá, tenho interesse na baixa manutenção do sistema de energia solar e quero falar com especialista.',
+    contactMessageBase: `Olá! 👋
+
+Visitei o site com interesse na baixa manutenção do sistema de energia solar e quero falar com especialista.`,
     contactTagBase: '#baixaManutenção',
     categories: [
       {
@@ -429,7 +451,9 @@ export const benefitsData = [
             '[2] Manutenção de sistemas fotovoltaicos... Solar Volt Blog. Acesso em: 12 abr. 2025.',
             '[3] Instalação, manutenção e suporte... Sunergia Blog. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na baixa manutenção do sistema de energia solar na residência e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na baixa manutenção do sistema de energia solar na residência e quero falar com especialista.`,
           '#baixaManutenção #residencial',
         ),
       },
@@ -463,7 +487,9 @@ export const benefitsData = [
             '[5] Manutenção em energia solar... Energia Sirius. Acesso em: 12 abr. 2025.',
             '[6] Energia solar: como funciona... Energia Sirius. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na baixa manutenção do sistema de energia solar no condomínio e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na baixa manutenção do sistema de energia solar no condomínio e quero falar com especialista.`,
           '#baixaManutenção #condominial',
         ),
       },
@@ -497,7 +523,9 @@ export const benefitsData = [
             '[8] Citações Paráfrases e Citação Da Citação [PDF]. Scribd. Acesso em: 12 abr. 2025.',
             '[9] Análise integrada de desempenho... [PDF] Teses USP. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na baixa manutenção do sistema de energia solar na empresa e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na baixa manutenção do sistema de energia solar na empresa e quero falar com especialista.`,
           '#baixaManutenção #empresarial',
         ),
       },
@@ -511,8 +539,9 @@ export const benefitsData = [
     description:
       'Fique imune aos constantes aumentos na tarifa de energia elétrica.',
     modalTitle: 'Proteção contra Aumentos na Conta de Luz',
-    contactMessageBase:
-      'Olá, tenho interesse na proteção contra aumentos no custo da energia e quero falar com especialista.',
+    contactMessageBase: `Olá! 👋
+
+Visitei o site com interesse na proteção contra aumentos no custo da energia e quero falar com especialista.`,
     contactTagBase: '#proteçãoContraAumento',
     categories: [
       {
@@ -545,7 +574,9 @@ export const benefitsData = [
             '[2] Entenda a relação entre conta de luz... Cordeiro Energia. Acesso em: 12 abr. 2025.',
             '[3] Como se proteger dos aumentos... Insol Energia. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na proteção contra aumentos no custo da energia consumida na residência e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na proteção contra aumentos no custo da energia consumida na residência e quero falar com especialista.`,
           '#proteçãoContraAumento #residencial',
         ),
       },
@@ -579,7 +610,9 @@ export const benefitsData = [
             '[5] RELATÓRIO DE IMPACTO AMBIENTAL [PDF]. SEMACE CE. Acesso em: 12 abr. 2025.',
             '[6] O Impacto da Taxação do Sol... Solar dos Pomares. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na proteção contra aumentos no custo da energia consumida no condomínio e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na proteção contra aumentos no custo da energia consumida no condomínio e quero falar com especialista.`,
           '#proteçãoContraAumento #condominial',
         ),
       },
@@ -613,7 +646,9 @@ export const benefitsData = [
             '[8] O Impacto da Taxação do Sol... Solar dos Pomares. Acesso em: 12 abr. 2025.',
             '[9] Micro e Minigeração Distribuída. Gov.br ANEEL. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse na proteção contra aumentos no custo da energia consumida na empresa e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse na proteção contra aumentos no custo da energia consumida na empresa e quero falar com especialista.`,
           '#proteçãoContraAumento #empresarial',
         ),
       },
@@ -627,8 +662,9 @@ export const benefitsData = [
     description:
       'Parcelas que cabem no seu bolso, muitas vezes menores que sua atual conta de luz.',
     modalTitle: 'Financiamento Facilitado para Energia Solar',
-    contactMessageBase:
-      'Olá, tenho interesse no financiamento facilitado e quero falar com especialista.',
+    contactMessageBase: `Olá! 👋
+
+Visitei o site com interesse no financiamento facilitado e quero falar com especialista.`,
     contactTagBase: '#financiamentoFacilitado',
     categories: [
       {
@@ -661,7 +697,9 @@ export const benefitsData = [
             '[2] Energia Solar no Brasil... Portal Solar. Acesso em: 12 abr. 2025.',
             '[3] Manual de Engenharia para Sistemas... Cresesb/CEPEL. Acesso em: 12 abr. 2025.',
           ],
-          'Olá, tenho interesse no financiamento facilitado para residência e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse no financiamento facilitado para residência e quero falar com especialista.`,
           '#financiamentoFacilitado #residencial',
         ),
       },
@@ -695,7 +733,9 @@ export const benefitsData = [
             '[3] Manual de Engenharia para Sistemas... Cresesb/CEPEL. Acesso em: 12 abr. 2025.', // Nota: índice 2 usado na ref 3 original
             '[4] Energia solar é a 2ª maior fonte... Absolar. Acesso em: 12 abr. 2025.', // Reajustando índice
           ],
-          'Olá, tenho interesse no financiamento facilitado para condomínio e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse no financiamento facilitado para condomínio e quero falar com especialista.`,
           '#financiamentoFacilitado #condominial',
         ),
       },
@@ -729,7 +769,9 @@ export const benefitsData = [
             '[3] Manual de Engenharia para Sistemas... Cresesb/CEPEL. Acesso em: 12 abr. 2025.',
             '[1] FINANCIAMENTO PARA ENERGIA SOLAR... [PDF]. Febraban. Acesso em: 12 abr. 2025.', // Índice 1 usado na ref 3 original
           ],
-          'Olá, tenho interesse no financiamento facilitado para empresa e quero falar com especialista.',
+          `Olá! 👋
+
+Visitei o site com interesse no financiamento facilitado para empresa e quero falar com especialista.`,
           '#financiamentoFacilitado #empresarial',
         ),
       },

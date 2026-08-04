@@ -127,7 +127,9 @@ function BenefitsSectionDS() {
           label="Fale com um Especialista"
           message={
             modalContent?.contactMessageBase ||
-            'Olá, quero falar com especialista sobre os benefícios.'
+            `Olá! 👋
+
+Visitei o site na seção dos benefícios e quero falar com especialista sobre energia solar.`
           }
           onClick={() => trackWhatsAppClick('benefits_categories')}
         />
@@ -188,7 +190,9 @@ function BenefitsSectionDS() {
           label="Fale com um Especialista"
           message={
             modalContent?.contactMessage ||
-            'Olá, quero falar com especialista sobre este benefício.'
+            `Olá! 👋
+
+Visitei o site na seção dos benefícios e quero falar com especialista sobre energia solar.`
           }
           onClick={() => {
             handleCloseModal();

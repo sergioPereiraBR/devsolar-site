@@ -156,10 +156,10 @@ export default function RootLayout({ children }) {
       <head>
         {/* <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" /> */}
         {/* DNS Prefetch para recursos críticos */}
-        {/* <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" /> */}
+        <link rel="preconnect" href="https://www.google-analytics.com" />
         <link
           rel="preload"
           as="image"

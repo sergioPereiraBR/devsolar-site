@@ -183,6 +183,7 @@ function HeaderDS() {
 
   // --- Captura Leads ---
   const [valorConta, setValorConta] = useState('');
+  const [leadData, setLeadData] = useState(null);
   const [showModalLead, setShowModalLead] = useState(false);
 
   // Manipula o clique no botão "VER MEU RELATÓRIO DE RENTABILIDADE"
@@ -209,6 +210,7 @@ function HeaderDS() {
   // Executado quando o lead preenche os dados com sucesso
   const handleLeadCapturado = async (dadosLead) => {
     setShowModalLead(false);
+    setLeadData(dadosLead);
 
     // AQUI: Dispare o evento para seu Analytics (Google Tag Manager, Meta Pixel)
     // Ex: window.gtag('event', 'generate_lead', { ... });
@@ -221,6 +223,11 @@ function HeaderDS() {
     //   `Sucesso! Lead ${dadosLead.nome} capturado. Exibindo relatório de rentabilidade...`,
     // );
   };
+
+  const leadDisplayName = leadData?.nome || 'Não informado';
+  const leadMonthlyValue =
+    leadData?.valorContaMensal || valorConta || 'Não informado';
+  const leadInstallationForecast = leadData?.previsaoTexto || 'Não informada';
 
   return (
     <>
@@ -592,7 +599,13 @@ function HeaderDS() {
           <CallWhatsapp
             className={`btn ${styles.heroButtonPrimaryFC}`}
             label="Fale com um Especialista"
-            message={`Olá, vi minha simulação de economia, meu custo médio mensal é de R$ ${currencyFormatter.format(calculationResult && calculationResult.custoMensalInformado)} e quero falar com especialista.`}
+            message={`Olá! 👋
+
+Vi minha simulação de economia no site, meu custo mensal é de R$ ${leadMonthlyValue} e quero falar com especialista ✅
+
+📌 Nome: ${leadDisplayName}
+📌 Valor da conta mensal: R$ ${leadMonthlyValue}
+📌 Previsão para instalar: ${leadInstallationForecast}`}
             onClick={() => trackWhatsAppClick('hero_result_cta')}
           />
         </Modal.Footer>

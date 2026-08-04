@@ -122,6 +122,7 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
     const leadData = {
       ...formData,
       valorContaMensal: valorConta,
+      previsaoTexto: previsaoTexto,
       dataCaptura: new Date().toISOString(),
       mensagem,
     };
