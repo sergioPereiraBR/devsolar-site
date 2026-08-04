@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react'; // Importar useState para Newsletter
+import { useCallback, useEffect, useState } from 'react'; // Importar useState para Newsletter
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -38,6 +38,11 @@ function FooterDS() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState(null); // null | 'submitting' | 'success' | 'error'
   const [newsletterMessage, setNewsletterMessage] = useState('');
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   const getScrollOffset = useCallback(() => {
     const rootStyles = window.getComputedStyle(document.documentElement);
@@ -182,70 +187,82 @@ function FooterDS() {
             <h3 className={styles.atendimentoInfo}>
               Atendimento de Segunda a Sexta, das 9h às 18h
             </h3>
-            <div className={styles.contactInfo}>
-              {/* Telefone Clicável */}
-              <div
-                className={`${styles.contactItem} d-flex align-items-center mb-2`}
-              >
-                <FaIcon
-                  iconClass="fas fa-phone-alt"
-                  className={styles.contactIcon}
-                  aria-label="Telefone DEV Solar"
-                />
-                <a
-                  href={`tel:${CONTACT_PHONE_RAW}`}
-                  aria-label={`Ligar para DEV Solar: ${CONTACT_PHONE_DISPLAY}`}
-                  onClick={() =>
-                    trackEvent('contact_click', {
-                      contact_channel: 'phone',
-                      location: 'footer',
-                    })
-                  }
+            <div className={styles.contactInfo} suppressHydrationWarning>
+              {isHydrated ? (
+                <>
+                  {/* Telefone Clicável */}
+                  <div
+                    className={`${styles.contactItem} d-flex align-items-center mb-2`}
+                  >
+                    <FaIcon
+                      iconClass="fas fa-phone-alt"
+                      className={styles.contactIcon}
+                      aria-label="Telefone DEV Solar"
+                    />
+                    <a
+                      href={`tel:${CONTACT_PHONE_RAW}`}
+                      aria-label={`Ligar para DEV Solar: ${CONTACT_PHONE_DISPLAY}`}
+                      onClick={() =>
+                        trackEvent('contact_click', {
+                          contact_channel: 'phone',
+                          location: 'footer',
+                        })
+                      }
+                    >
+                      {' '}
+                      {CONTACT_PHONE_DISPLAY}
+                    </a>
+                  </div>
+                  {/* Email Clicável */}
+                  <div
+                    className={`${styles.contactItem} d-flex align-items-center mb-2`}
+                  >
+                    <FaIcon
+                      iconClass="fas fa-envelope"
+                      className={styles.contactIcon}
+                      aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
+                    />
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
+                      onClick={() =>
+                        trackEvent('contact_click', {
+                          contact_channel: 'email',
+                          location: 'footer',
+                        })
+                      }
+                    >
+                      {' '}
+                      {CONTACT_EMAIL}
+                    </a>
+                  </div>
+                  {/* Endereço Consolidado */}
+                  <div
+                    className={`${styles.contactItem} d-flex align-items-start mb-2`}
+                  >
+                    <FaIcon
+                      iconClass="fas fa-location-dot"
+                      className={`${styles.contactIcon} mt-1`}
+                      aria-label="Localização DEV Solar"
+                    />
+                    <div>
+                      {ADDRESS_INFO.line1}
+                      <br />
+                      {ADDRESS_INFO.line2}
+                      <br />
+                      CEP: {ADDRESS_INFO.cep}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div
+                  className={`${styles.contactItem} d-flex align-items-center mb-2`}
                 >
-                  {' '}
-                  {CONTACT_PHONE_DISPLAY}
-                </a>
-              </div>
-              {/* Email Clicável */}
-              <div
-                className={`${styles.contactItem} d-flex align-items-center mb-2`}
-              >
-                <FaIcon
-                  iconClass="fas fa-envelope"
-                  className={styles.contactIcon}
-                  aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
-                />
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
-                  onClick={() =>
-                    trackEvent('contact_click', {
-                      contact_channel: 'email',
-                      location: 'footer',
-                    })
-                  }
-                >
-                  {' '}
-                  {CONTACT_EMAIL}
-                </a>
-              </div>
-              {/* Endereço Consolidado */}
-              <div
-                className={`${styles.contactItem} d-flex align-items-start mb-2`}
-              >
-                <FaIcon
-                  iconClass="fas fa-location-dot"
-                  className={`${styles.contactIcon} mt-1`}
-                  aria-label="Localização DEV Solar"
-                />
-                <div>
-                  {ADDRESS_INFO.line1}
-                  <br />
-                  {ADDRESS_INFO.line2}
-                  <br />
-                  CEP: {ADDRESS_INFO.cep}
+                  <span className="visually-hidden">
+                    Carregando informações de contato
+                  </span>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 

@@ -31,6 +31,7 @@ const ContactInfoItem = ({
   link,
   onClick,
   tabEntry,
+  isHydrated,
 }) => (
   // ... (código inalterado) ...
   <div className={`${styles.contactItem} d-flex align-items-start mb-3`}>
@@ -39,7 +40,7 @@ const ContactInfoItem = ({
     </div>
     <div className="flex-grow-1">
       <p className={`${styles.contactTitle} mb-0`}>{title}</p>
-      {link ? (
+      {link && isHydrated ? (
         <a
           href={link}
           className={styles.contactLink}
@@ -284,12 +285,13 @@ function ContactSectionDS() {
               Estamos prontos para esclarecer todas as suas dúvidas e ajudar
               você a economizar com energia solar.
             </h3>
-            <div className="mb-4">
+            <div className="mb-4" suppressHydrationWarning>
               {contactInfoData.map((item) => (
                 <ContactInfoItem
                   key={item.id}
                   {...item}
                   tabEntry={item.id === 'phone'}
+                  isHydrated={isHydrated}
                   onClick={() => {
                     if (!item.link) return;
 
