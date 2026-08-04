@@ -82,20 +82,11 @@ function ContactSectionDS() {
     setIsHydrated(true);
   }, []);
 
-  // Fallback: carrega reCAPTCHA após 3 segundos se não houver interação
-  useEffect(() => {
-    if (shouldLoadRecaptcha || !isHydrated) {
+  const ensureRecaptchaLoaded = () => {
+    if (shouldLoadRecaptcha) {
       return;
     }
 
-    const fallbackTimer = setTimeout(() => {
-      setShouldLoadRecaptcha(true);
-    }, 3000);
-
-    return () => clearTimeout(fallbackTimer);
-  }, [shouldLoadRecaptcha, isHydrated]);
-
-  const ensureRecaptchaLoaded = () => {
     setShouldLoadRecaptcha(true);
   };
 
@@ -233,7 +224,7 @@ function ContactSectionDS() {
           message: '',
         });
         recaptchaRef.current?.reset();
-        setTimeout(() => setSubmitStatus(null), 6000);
+        window.setTimeout(() => setSubmitStatus(null), 3000);
       } else {
         trackEvent('contact_form_submit_error', {
           location: 'contact_section',
@@ -454,10 +445,10 @@ function ContactSectionDS() {
                         <ReCAPTCHA
                           ref={recaptchaRef}
                           sitekey={RECAPTCHA_SITE_KEY}
-                          onChange={(token) =>
-                            console.log('Captcha token:', token)
-                          } // Opcional: para debug ou lógica extra
                           hl="pt-BR" // Define o idioma
+                          // onChange={(token) =>
+                          //   console.log('Captcha token:', token)
+                          // } // Opcional: para debug ou lógica extra
                         />
                       ) : (
                         <p className={`${styles.recaptchaHint} small mb-0`}>
