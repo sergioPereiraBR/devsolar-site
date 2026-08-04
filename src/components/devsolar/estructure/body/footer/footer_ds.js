@@ -141,7 +141,7 @@ function FooterDS() {
         });
         setNewsletterMessage('Obrigado por se inscrever!');
         setNewsletterEmail(''); // Limpa o campo
-        setTimeout(() => setNewsletterStatus(null), 4000); // Limpa msg após 4s
+        window.setTimeout(() => setNewsletterStatus(null), 2500); // Limpa msg após 2.5s
       } else {
         throw new Error(
           result.error || result.message || 'Erro desconhecido do serviço.',
@@ -155,7 +155,7 @@ function FooterDS() {
         reason: error?.message || 'service_error',
       });
       setNewsletterMessage('Erro ao inscrever. Tente novamente.');
-      setTimeout(() => setNewsletterStatus(null), 5000); // Limpa msg após 5s
+      window.setTimeout(() => setNewsletterStatus(null), 3000); // Limpa msg após 3s
     }
   };
 
