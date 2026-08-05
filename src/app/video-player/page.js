@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 export default function VideoPlayerPage() {
   const searchParams = useSearchParams();
   const videoRef = useRef(null);
+  const [isReady, setIsReady] = useState(false);
 
   const rawSrc = searchParams.get('src') || '';
   const title = searchParams.get('title') || 'Depoimento DEV Solar';
@@ -21,16 +22,22 @@ export default function VideoPlayerPage() {
     video.playsInline = true;
     video.setAttribute('playsinline', 'true');
     video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('x-webkit-airplay', 'allow');
 
-    const startPlayback = () => {
+    const handleCanPlay = () => {
+      setIsReady(true);
       video.play().catch(() => {});
     };
 
     if (video.readyState >= 2) {
-      startPlayback();
+      handleCanPlay();
     } else {
-      video.addEventListener('canplay', startPlayback, { once: true });
+      video.addEventListener('canplay', handleCanPlay, { once: true });
     }
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+    };
   }, [src]);
 
   return (
@@ -81,6 +88,12 @@ export default function VideoPlayerPage() {
           objectFit: 'contain',
         }}
       />
+
+      {!isReady && (
+        <p style={{ marginTop: '12px', color: '#ccc', fontSize: '14px' }}>
+          Se o vídeo não iniciar, toque no player para reproduzir manualmente.
+        </p>
+      )}
     </main>
   );
 }
