@@ -83,6 +83,14 @@ export default function SuccessStoriesCarouselClient() {
     }
   }, [showModal, selectedVideo, isIOSDevice]);
 
+  const openVideoPlayer = (videoUrl, title) => {
+    const encodedUrl = encodeURIComponent(videoUrl);
+    const encodedTitle = encodeURIComponent(title);
+    const playerUrl = `/video-player?src=${encodedUrl}&title=${encodedTitle}`;
+
+    window.location.assign(playerUrl);
+  };
+
   const handleCardClick = (video) => {
     trackEvent('modal_open', {
       location: 'success_stories',
@@ -92,7 +100,7 @@ export default function SuccessStoriesCarouselClient() {
     });
 
     if (isIOSDevice) {
-      window.open(video.preview, '_blank', 'noopener,noreferrer');
+      openVideoPlayer(video.preview, video.title);
       return;
     }
 
