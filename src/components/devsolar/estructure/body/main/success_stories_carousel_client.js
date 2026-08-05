@@ -94,6 +94,17 @@ export default function SuccessStoriesCarouselClient() {
     setShowModal(true);
   };
 
+  const handleCloseModal = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      videoRef.current.removeAttribute('src');
+      videoRef.current.load();
+    }
+    setShowModal(false);
+    setSelectedVideo(null);
+  };
+
   const handleShowDetails = (story) => {
     trackEvent('modal_open', {
       location: 'success_stories',
@@ -246,10 +257,11 @@ export default function SuccessStoriesCarouselClient() {
 
       <Modal
         show={showModal}
-        onHide={() => setShowModal(false)}
+        onHide={handleCloseModal}
         size="lg"
         aria-labelledby="video-modal"
         centered
+        dialogClassName="modal-video-story"
       >
         <Modal.Header closeButton>
           <Modal.Title
@@ -266,6 +278,7 @@ export default function SuccessStoriesCarouselClient() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            minHeight: 'min(70vh, 480px)',
           }}
         >
           <video
