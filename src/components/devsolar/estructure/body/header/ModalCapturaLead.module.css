@@ -28,10 +28,11 @@
     display: flex;
     flex-direction: column;
     max-height: calc(100dvh - 1.5rem);
+    background-clip: padding-box;
 }
 
 .modalHeader {
-    padding: 0.9rem 1.1rem 0.35rem;
+    padding: 0.75rem 1rem 0.25rem;
     border-bottom: 0;
 }
 
@@ -39,17 +40,18 @@
     width: 100%;
     text-align: center;
     color: var(--footer-color);
-    font-size: clamp(1.35rem, 2.1vw, 1.7rem);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .modalBody {
-    padding: 0 1.05rem calc(1rem + env(safe-area-inset-bottom)) !important;
+    padding: 0 1.05rem 1rem !important;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
+    background: transparent;
 }
 
 .modalIntro {
@@ -61,10 +63,10 @@
 }
 
 .formShell {
-    padding: 0.6rem;
-    margin-bottom: 0.25rem;
+    padding: 0.55rem;
+    margin-bottom: 0.2rem;
     border: 2px solid #d1d5db;
-    border-radius: 18px;
+    border-radius: 16px;
     background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
@@ -157,12 +159,12 @@
 
 .submitButton {
     width: 100%;
-    padding: 0.95rem 1.2rem;
+    padding: 0.85rem 1.05rem;
     border: 0;
     border-radius: 999px;
     background: linear-gradient(90deg, var(--primary) 0%, #ffbc42 100%);
     color: var(--text-btn);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -170,7 +172,7 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     position: relative;
     z-index: 1;
-    margin-top: 0.15rem;
+    margin-top: 0.1rem;
 }
 
 .submitButton:disabled {
@@ -246,30 +248,31 @@
 
 @media (max-width: 575px) {
     .modalHeader {
-        padding: 1.25rem 1rem 0.6rem;
+        padding: 0.8rem 0.9rem 0.25rem;
     }
 
     .modalBody {
-        padding: 0 1rem 1rem;
+        padding: 0 0.8rem 0.9rem;
     }
 
     .formShell {
-        padding: 0.95rem;
-        border-radius: 16px;
+        padding: 0.8rem;
+        border-radius: 14px;
     }
 
     .modalIntro {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .formControl,
     .formSelect {
-        min-height: 46px;
-        font-size: 0.92rem;
+        min-height: 44px;
+        font-size: 0.9rem;
     }
 
     .submitButton {
-        font-size: 0.9rem;
-        padding: 0.9rem 1rem;
+        font-size: 0.86rem;
+        padding: 0.8rem 0.95rem;
+        margin-bottom: 0.05rem;
     }
 }
