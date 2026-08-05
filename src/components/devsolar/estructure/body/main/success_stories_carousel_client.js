@@ -24,6 +24,7 @@ export default function SuccessStoriesCarouselClient() {
   const [showModal, setShowModal] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [imageStates, setImageStates] = useState({});
+  const [isIOSDevice, setIsIOSDevice] = useState(false);
   const videoRef = useRef(null);
   const swiperRef = useRef(null);
 
@@ -44,6 +45,9 @@ export default function SuccessStoriesCarouselClient() {
       scheduleCarouselLayout();
     };
 
+    const isIOS = /iPad|iPhone|iPod/.test(window.navigator.userAgent);
+    setIsIOSDevice(isIOS);
+
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -52,13 +56,32 @@ export default function SuccessStoriesCarouselClient() {
   }, [scheduleCarouselLayout]);
 
   useEffect(() => {
-    if (showModal && videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    } else if (videoRef.current) {
+    if (!videoRef.current) {
+      return;
+    }
+
+    if (showModal && selectedVideo) {
+      const videoElement = videoRef.current;
+      videoElement.load();
+      videoElement.muted = isIOSDevice;
+      videoElement.playsInline = true;
+      videoElement.setAttribute('playsinline', 'true');
+      videoElement.setAttribute('webkit-playsinline', 'true');
+
+      const tryPlay = () => {
+        videoElement.play().catch(() => {});
+      };
+
+      if (videoElement.readyState >= 2) {
+        tryPlay();
+      } else {
+        videoElement.addEventListener('canplay', tryPlay, { once: true });
+      }
+    } else {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
-  }, [showModal, selectedVideo]);
+  }, [showModal, selectedVideo, isIOSDevice]);
 
   const handleCardClick = (video) => {
     trackEvent('modal_open', {
@@ -69,6 +92,17 @@ export default function SuccessStoriesCarouselClient() {
     });
     setSelectedVideo(video);
     setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      videoRef.current.removeAttribute('src');
+      videoRef.current.load();
+    }
+    setShowModal(false);
+    setSelectedVideo(null);
   };
 
   const handleShowDetails = (story) => {
@@ -223,10 +257,11 @@ export default function SuccessStoriesCarouselClient() {
 
       <Modal
         show={showModal}
-        onHide={() => setShowModal(false)}
+        onHide={handleCloseModal}
         size="lg"
         aria-labelledby="video-modal"
         centered
+        dialogClassName="modal-video-story"
       >
         <Modal.Header closeButton>
           <Modal.Title
@@ -243,6 +278,7 @@ export default function SuccessStoriesCarouselClient() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            minHeight: 'min(70vh, 480px)',
           }}
         >
           <video
@@ -251,6 +287,9 @@ export default function SuccessStoriesCarouselClient() {
             controls
             autoPlay
             loop
+            muted={isIOSDevice}
+            playsInline
+            preload="metadata"
             className="w-100"
             style={{
               maxHeight: '75vh',
