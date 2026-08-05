@@ -486,7 +486,7 @@ function HeaderDS() {
                 height={1080}
                 fetchPriority="high"
                 decoding="sync"
-                // loading="eager"
+                loading="eager"
                 // decoding="async"
                 style={{
                   position: 'absolute',

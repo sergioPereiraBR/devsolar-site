@@ -1,7 +1,8 @@
 .modalDialog {
     width: min(92vw, 840px) !important;
     max-width: min(92vw, 840px) !important;
-    margin: 1.5rem auto !important;
+    margin: 1rem auto !important;
+    max-height: calc(100dvh - 1.5rem);
 }
 
 @media (min-width: 992px) {
@@ -24,6 +25,9 @@
     overflow: hidden;
     background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
     box-shadow: 0 24px 70px rgba(0, 31, 82, 0.14);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100dvh - 1.5rem);
 }
 
 .modalHeader {
@@ -42,7 +46,10 @@
 }
 
 .modalBody {
-    padding: 0 1.05rem 0.9rem;
+    padding: 0 1.05rem calc(1rem + env(safe-area-inset-bottom)) !important;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 .modalIntro {
@@ -161,6 +168,9 @@
     letter-spacing: 0.04em;
     box-shadow: 0 10px 24px rgba(255, 158, 0, 0.25);
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    position: relative;
+    z-index: 1;
+    margin-top: 0.15rem;
 }
 
 .submitButton:disabled {
@@ -212,6 +222,7 @@
     font-size: 0.9rem;
     line-height: 1.45;
     text-align: center;
+    word-break: break-word;
 }
 
 .statusSuccess {
