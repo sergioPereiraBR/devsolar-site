@@ -90,6 +90,12 @@ export default function SuccessStoriesCarouselClient() {
       story_id: video.id,
       story_title: video.title,
     });
+
+    if (isIOSDevice) {
+      window.open(video.preview, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
     setSelectedVideo(video);
     setShowModal(true);
   };
@@ -259,6 +265,7 @@ export default function SuccessStoriesCarouselClient() {
         show={showModal}
         onHide={handleCloseModal}
         size="lg"
+        fullscreen="sm-down"
         aria-labelledby="video-modal"
         centered
         dialogClassName="modal-video-story"
@@ -279,6 +286,7 @@ export default function SuccessStoriesCarouselClient() {
             justifyContent: 'center',
             alignItems: 'center',
             minHeight: 'min(70vh, 480px)',
+            width: '100%',
           }}
         >
           <video
