@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -27,21 +23,11 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/src/*": [
-        "./src/app/*"
-      ],
-      "@/ui/*": [
-        "./src/app/ui/*"
-      ],
-      "@/lib/*": [
-        "./src/lib/*"
-      ],
-      "@/utils/*": [
-        "./utils/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/src/*": ["./src/app/*"],
+      "@/ui/*": ["./src/app/ui/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/utils/*": ["./utils/*"]
     },
     "strictNullChecks": true
   },
@@ -57,6 +43,7 @@
   ],
   "exclude": [
     "node_modules",
-    "src/components/devsolar/**/*.{js,jsx,ts,tsx,mdx}"
+    "src/components/devsolar/**/*.{js,jsx,ts,tsx,mdx}",
+    "caçamba/**"
   ]
 }
