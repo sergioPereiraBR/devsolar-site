@@ -45,7 +45,11 @@ export default function SuccessStoriesCarouselClient() {
       scheduleCarouselLayout();
     };
 
-    const isIOS = /iPad|iPhone|iPod/.test(window.navigator.userAgent);
+    const isIOS =
+      /iPad|iPhone|iPod/.test(window.navigator.userAgent) ||
+      (navigator.maxTouchPoints &&
+        navigator.maxTouchPoints > 2 &&
+        /Macintosh/.test(window.navigator.userAgent));
     setIsIOSDevice(isIOS);
 
     window.addEventListener('resize', handleResize);
@@ -99,10 +103,10 @@ export default function SuccessStoriesCarouselClient() {
       story_title: video.title,
     });
 
-    if (isIOSDevice) {
-      openVideoPlayer(video.preview, video.title);
-      return;
-    }
+    // if (isIOSDevice) {
+    //   openVideoPlayer(video.preview, video.title);
+    //   return;
+    // }
 
     setSelectedVideo(video);
     setShowModal(true);
@@ -307,13 +311,21 @@ export default function SuccessStoriesCarouselClient() {
             playsInline
             preload="metadata"
             className="w-100"
+            crossOrigin="anonymous"
             style={{
               maxHeight: '75vh',
               backgroundColor: 'var(--light)',
               objectFit: 'contain',
             }}
           >
-            <source src={selectedVideo?.preview} type="video/mp4" />
+            <source
+              src={
+                selectedVideo?.preview.startsWith('http')
+                  ? selectedVideo?.preview
+                  : `https://devsolar.com.br${selectedVideo?.preview}`
+              }
+              type="video/mp4"
+            />
           </video>
         </Modal.Body>
       </Modal>
