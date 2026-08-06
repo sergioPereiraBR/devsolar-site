@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function VideoPlayerPage() {
+function VideoPlayerContent() {
   const searchParams = useSearchParams();
   const videoRef = useRef(null);
   const [isReady, setIsReady] = useState(false);
@@ -95,5 +95,19 @@ export default function VideoPlayerPage() {
         </p>
       )}
     </main>
+  );
+}
+
+export default function VideoPlayerPage() {
+  return (
+    <Suspense
+      fallback={
+        <div style={{ color: '#fff', padding: '24px' }}>
+          Carregando vídeo...
+        </div>
+      }
+    >
+      <VideoPlayerContent />
+    </Suspense>
   );
 }
