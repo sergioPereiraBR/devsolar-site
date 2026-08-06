@@ -322,7 +322,7 @@ export default function SuccessStoriesCarouselClient() {
               src={
                 selectedVideo?.preview.startsWith('http')
                   ? selectedVideo?.preview
-                  : `https://devsolar.com.br${selectedVideo?.preview}`
+                  : `https://devsolar.com.br/images/${selectedVideo?.preview}`
               }
               type="video/mp4"
             />
