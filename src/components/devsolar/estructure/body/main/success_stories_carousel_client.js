@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Card, Modal } from 'react-bootstrap';
 
 import { trackEvent } from '@/lib/analytics';
@@ -322,7 +322,7 @@ export default function SuccessStoriesCarouselClient() {
               src={
                 selectedVideo?.preview.startsWith('http')
                   ? selectedVideo?.preview
-                  : `https://devsolar.com.br/images/${selectedVideo?.preview}`
+                  : `https://devsolar.com.br/images${selectedVideo?.preview}`
               }
               type="video/mp4"
             />
