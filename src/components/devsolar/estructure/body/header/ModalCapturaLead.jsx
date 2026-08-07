@@ -1,25 +1,13 @@
-import dynamic from 'next/dynamic';
-import Script from 'next/script';
 import { useEffect, useRef, useState } from 'react';
 import { Button, Form, InputGroup, Modal, Spinner } from 'react-bootstrap';
 
 import { sendContactEmail } from '@/components/devsolar/utility/email/SendEmail';
+import RecaptchaField from '@/components/devsolar/utility/recapcha/RecaptchaField';
+import {
+  RECAPTCHA_ENABLED,
+  STATICFORMS_ACCESS_KEY
+} from '@/lib/email-config';
 import styles from './ModalCapturaLead.module.css';
-
-const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), {
-  ssr: false,
-  loading: () => (
-    <div className={styles.recaptchaLoader}>
-      <Spinner animation="border" size="sm" />
-    </div>
-  ),
-});
-
-const RECAPTCHA_SITE_KEY =
-  process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
-  '6LeshiwrAAAAAPVbR8FTS_4l-80ea1G_UyBhZuFk';
-const STATICFORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_STATICFORMS_KEY || 'sf_b14798mng2klecllc3dljkgb';
 
 export default function ModalCapturaLead({ show, handleClose, valorConta, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -32,15 +20,17 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [shouldLoadRecaptcha, setShouldLoadRecaptcha] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const recaptchaRef = useRef(null);
   const phoneInputRef = useRef(null);
   const phoneDigitsRef = useRef('');
+  const recaptchaEnabled = RECAPTCHA_ENABLED;
 
   useEffect(() => {
-    if (show) {
+    if (show && recaptchaEnabled) {
       setShouldLoadRecaptcha(true);
     }
-  }, [show]);
+  }, [show, recaptchaEnabled]);
 
   const formatPhoneValue = (value) => {
     const digits = value.replace(/\D/g, '').slice(0, 11);
@@ -87,17 +77,19 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
       return;
     }
 
-    if (!shouldLoadRecaptcha) {
+    if (recaptchaEnabled && !shouldLoadRecaptcha) {
       setShouldLoadRecaptcha(true);
       setSubmitStatus('error');
       return;
     }
 
-    const recaptchaToken = recaptchaRef.current?.getValue();
+    const currentRecaptchaToken = recaptchaEnabled
+      ? recaptchaToken || recaptchaRef.current?.getValue?.()
+      : null;
 
-    if (!recaptchaToken) {
+    if (recaptchaEnabled && !currentRecaptchaToken) {
       setSubmitStatus('error');
-      recaptchaRef.current?.reset();
+      recaptchaRef.current?.reset?.();
       return;
     }
 
@@ -137,21 +129,23 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
           valorContaMensal: `R$ ${valorConta}`,
         },
         accessKey: STATICFORMS_ACCESS_KEY,
-        recaptchaToken,
-        endpoint: 'https://api.staticforms.xyz/submit',
+        recaptchaToken: currentRecaptchaToken,
+        endpoint: '/api/contact',
         subject: `Lead DEV Solar - ${formData.nome}`,
         replyTo: formData.whatsapp,
       });
 
       if (result.success) {
         setSubmitStatus('success');
-        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
+        recaptchaRef.current?.reset?.();
         if (onSuccess) {
           onSuccess(leadData);
         }
       } else {
         setSubmitStatus('error');
-        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
+        recaptchaRef.current?.reset?.();
       }
     } catch (error) {
       setSubmitStatus('error');
@@ -173,15 +167,6 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
       contentClassName={styles.modalContent}
       className="modal-lead-solar"
     >
-      {shouldLoadRecaptcha && (
-        <Script
-          src="https://www.google.com/recaptcha/api.js"
-          strategy="lazyOnload"
-          async
-          defer
-        />
-      )}
-
       <Modal.Header closeButton className={styles.modalHeader}>
         <Modal.Title className={styles.modalTitle}>
           ⚡ Estamos Quase Lá!
@@ -230,6 +215,7 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
                   required
                   minLength={14}
                   className={styles.formControl}
+                  autoComplete="tel"
                 />
                 <Form.Control.Feedback type="invalid">
                   Informe um número de WhatsApp válido.
@@ -252,15 +238,22 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
                 <option value="pesquisando">🔍 Apenas pesquisando / Comparando custos</option>
               </Form.Select>
             </Form.Group>
-            <div className={styles.recaptchaWrapper}>
-              {shouldLoadRecaptcha ? (
-                <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} />
-              ) : (
-                <div className={styles.recaptchaLoader}>
-                  <Spinner animation="border" size="sm" />
-                </div>
-              )}
-            </div>
+            {recaptchaEnabled && (
+              <div className={styles.recaptchaWrapper}>
+                <RecaptchaField
+                  ref={recaptchaRef}
+                  shouldLoad={shouldLoadRecaptcha}
+                  onChange={setRecaptchaToken}
+                  onExpired={() => setRecaptchaToken(null)}
+                  onErrored={() => setRecaptchaToken(null)}
+                  loadingFallback={
+                    <div className={styles.recaptchaLoader}>
+                      <Spinner animation="border" size="sm" />
+                    </div>
+                  }
+                />
+              </div>
+            )}
 
             <Button
               type="submit"

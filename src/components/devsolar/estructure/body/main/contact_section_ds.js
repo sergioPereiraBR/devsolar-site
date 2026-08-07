@@ -1,27 +1,17 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import Script from 'next/script';
-import { Spinner } from 'react-bootstrap';
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
+import { RECAPTCHA_ENABLED, STATICFORMS_ACCESS_KEY } from '@/lib/email-config';
 
 import { sendContactEmail } from '@/components/devsolar/utility/email/SendEmail';
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
+import RecaptchaField from '@/components/devsolar/utility/recapcha/RecaptchaField';
 
 import { contactInfoData, socialLinksData } from './contact_data_ds';
 import styles from './contact_section_ds.module.css';
-
-const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), {
-  ssr: false,
-  loading: () => (
-    <div className="d-flex justify-content-center">
-      <Spinner animation="border" size="sm" />
-    </div>
-  ),
-});
 
 // Subcomponente para item de contato
 const ContactInfoItem = ({
@@ -56,12 +46,6 @@ const ContactInfoItem = ({
   </div>
 );
 
-const RECAPTCHA_SITE_KEY =
-  process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
-  '6LeshiwrAAAAAPVbR8FTS_4l-80ea1G_UyBhZuFk';
-const STATICFORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_STATICFORMS_KEY || 'sf_b14798mng2klecllc3dljkgb';
-
 function ContactSectionDS() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -72,18 +56,28 @@ function ContactSectionDS() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', 'error_recaptcha'
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const recaptchaRef = useRef(null); // Ref para o componente reCAPTCHA
   const sectionRef = useRef(null);
+  const phoneDigitsRef = useRef('');
   const [shouldLoadRecaptcha, setShouldLoadRecaptcha] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
+  const recaptchaEnabled = RECAPTCHA_ENABLED;
 
   // Garante hidratação correta na produção
   useEffect(() => {
     setIsHydrated(true);
   }, []);
 
+  useEffect(() => {
+    if (!recaptchaEnabled) {
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset?.();
+    }
+  }, [recaptchaEnabled]);
+
   const ensureRecaptchaLoaded = () => {
-    if (shouldLoadRecaptcha) {
+    if (!recaptchaEnabled || shouldLoadRecaptcha) {
       return;
     }
 
@@ -114,6 +108,34 @@ function ContactSectionDS() {
 
     return () => observer.disconnect();
   }, [shouldLoadRecaptcha]);
+
+  const formatPhoneValue = (value) => {
+    const digits = value.replace(/\D/g, '').slice(0, 11);
+
+    if (!digits) return '';
+    if (digits.length <= 2) return `(${digits}`;
+    if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+  };
+
+  const handlePhoneChange = (e) => {
+    const input = e.target;
+    const nextValue = input.value;
+    const digits = nextValue.replace(/\D/g, '').slice(0, 11);
+    const previousDigits = phoneDigitsRef.current;
+
+    if (digits.length > previousDigits.length) {
+      const inserted = digits.slice(previousDigits.length);
+      const nextDigits = previousDigits + inserted;
+      phoneDigitsRef.current = nextDigits;
+      setFormData((prev) => ({ ...prev, phone: formatPhoneValue(nextDigits) }));
+      return;
+    }
+
+    phoneDigitsRef.current = digits;
+    setFormData((prev) => ({ ...prev, phone: formatPhoneValue(digits) }));
+  };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -154,7 +176,7 @@ function ContactSectionDS() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    if (!shouldLoadRecaptcha) {
+    if (recaptchaEnabled && !shouldLoadRecaptcha) {
       trackEvent('contact_form_validation_error', {
         location: 'contact_section',
         reason: 'recaptcha_not_loaded',
@@ -168,12 +190,14 @@ function ContactSectionDS() {
     //console.log("event: ", e); // Debug
 
     // 1. Obter token do reCAPTCHA
-    const recaptchaToken = recaptchaRef.current?.getValue(); // Usa optional chaining
+    const currentRecaptchaToken = recaptchaEnabled
+      ? recaptchaToken || recaptchaRef.current?.getValue?.()
+      : undefined;
 
-    //console.log("recaptchaToken: ", recaptchaToken); // Debug
+    //console.log("recaptchaToken: ", currentRecaptchaToken); // Debug
 
     // 2. Validar token
-    if (!recaptchaToken) {
+    if (recaptchaEnabled && !currentRecaptchaToken) {
       trackEvent('contact_form_validation_error', {
         location: 'contact_section',
         reason: 'recaptcha_missing',
@@ -183,15 +207,6 @@ function ContactSectionDS() {
       recaptchaRef.current?.reset(); // Reseta para o usuário tentar de novo
       //console.error("reCAPTCHA não preenchido.");
       return;
-    }
-
-    // Montar Payload
-    const isLocalDevelopment =
-      window.location.hostname === 'localhost' ||
-      window.location.hostname.startsWith('192.168.'); // Ou outra forma de detectar dev
-    let redirectToEmail = '';
-    if (!isLocalDevelopment) {
-      redirectToEmail = 'https://devsolar.com.br/#contato';
     }
 
     try {
@@ -204,11 +219,10 @@ function ContactSectionDS() {
           message: formData.message,
         },
         accessKey: STATICFORMS_ACCESS_KEY,
-        recaptchaToken,
-        endpoint: 'https://api.staticforms.xyz/submit',
+        recaptchaToken: currentRecaptchaToken,
+        endpoint: '/api/contact',
         subject: `Contato Site DEV Solar: ${formData.firstName} ${formData.lastName}`,
         replyTo: formData.email,
-        redirectTo: redirectToEmail || undefined,
       });
 
       if (result.success) {
@@ -223,7 +237,9 @@ function ContactSectionDS() {
           email: '',
           message: '',
         });
-        recaptchaRef.current?.reset();
+        phoneDigitsRef.current = '';
+        setRecaptchaToken(null);
+        recaptchaRef.current?.reset?.();
         window.setTimeout(() => setSubmitStatus(null), 3000);
       } else {
         trackEvent('contact_form_submit_error', {
@@ -231,7 +247,8 @@ function ContactSectionDS() {
           reason: result.error || 'service_error',
         });
         setSubmitStatus('error');
-        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
+        recaptchaRef.current?.reset?.();
       }
     } catch (error) {
       trackEvent('contact_form_submit_error', {
@@ -253,14 +270,6 @@ function ContactSectionDS() {
       onMouseEnter={ensureRecaptchaLoaded}
       onTouchStart={ensureRecaptchaLoaded}
     >
-      {shouldLoadRecaptcha && (
-        <Script
-          src="https://www.google.com/recaptcha/api.js"
-          strategy="lazyOnload"
-          async
-          defer
-        />
-      )}
       <div className="container">
         <div className="row">
           {/* Coluna de Informações (inalterada) */}
@@ -273,8 +282,10 @@ function ContactSectionDS() {
               Entre em Contato
             </h2>
             <h3 className={`${styles.sectionSubtitle} mb-4`}>
-              Estamos prontos para esclarecer todas as suas dúvidas e ajudar
-              você a economizar com energia solar.
+              Estamos à disposição em todas as etapas do seu projeto. Seja para
+              tirar dúvidas antes de investir, acompanhar sua instalação ou
+              oferecer suporte no pós-venda, nossa equipe está pronta para
+              atender você, seu condomínio ou sua empresa.
             </h3>
             <div className="mb-4" suppressHydrationWarning>
               {contactInfoData.map((item) => (
@@ -359,6 +370,7 @@ function ContactSectionDS() {
                       className="form-control var(--branco)"
                       id="firstName"
                       name="firstName"
+                      placeholder="Seu nome"
                       required
                       value={formData.firstName}
                       onChange={handleChange}
@@ -385,23 +397,6 @@ function ContactSectionDS() {
                     />
                   </div> */}
                   <div className="mb-3">
-                    <label htmlFor="email" className="form-label">
-                      E-mail
-                    </label>
-                    <input
-                      type="email"
-                      className="form-control var(--branco)"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      onInvalid={handleRequiredInvalid}
-                      onInput={clearValidationMessage}
-                      autoComplete="email"
-                    />
-                  </div>
-                  <div className="mb-3">
                     <label htmlFor="phone" className="form-label">
                       Telefone
                     </label>
@@ -411,11 +406,31 @@ function ContactSectionDS() {
                       id="phone"
                       name="phone"
                       required
+                      placeholder="(21) 99999-9999"
+                      minLength={14}
                       value={formData.phone}
-                      onChange={handleChange}
+                      onChange={handlePhoneChange}
                       onInvalid={handleRequiredInvalid}
                       onInput={clearValidationMessage}
                       autoComplete="tel"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label">
+                      E-mail
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="seuemail@exemplo.com"
+                      className="form-control var(--branco)"
+                      id="email"
+                      name="email"
+                      // required
+                      value={formData.email}
+                      onChange={handleChange}
+                      onInvalid={handleRequiredInvalid}
+                      onInput={clearValidationMessage}
+                      autoComplete="email"
                     />
                   </div>
                   <div className="mb-3">
@@ -433,36 +448,40 @@ function ContactSectionDS() {
                   </div>
 
                   {/* ***** COMPONENTE reCAPTCHA ***** */}
-                  <div htmlFor="recaptcha" className="form-label d-block">
-                    Verificação*
-                  </div>
-                  <fieldset
-                    id="recaptcha"
-                    className={`${styles.recaptchaContainer} m-0 mb-3 border-0 p-0`}
-                  >
-                    <div className="mb-3">
-                      {shouldLoadRecaptcha ? (
-                        <ReCAPTCHA
-                          ref={recaptchaRef}
-                          sitekey={RECAPTCHA_SITE_KEY}
-                          hl="pt-BR" // Define o idioma
-                          // onChange={(token) =>
-                          //   console.log('Captcha token:', token)
-                          // } // Opcional: para debug ou lógica extra
-                        />
-                      ) : (
-                        <p className={`${styles.recaptchaHint} small mb-0`}>
-                          A verificação será carregada quando você começar a
-                          preencher o formulário.
-                        </p>
-                      )}
-                      {submitStatus === 'error_recaptcha' && (
-                        <div className="text-danger small mt-1">
-                          Por favor, complete a verificação.
+                  {recaptchaEnabled && (
+                    <>
+                      <div htmlFor="recaptcha" className="form-label d-block">
+                        Verificação*
+                      </div>
+                      <fieldset
+                        id="recaptcha"
+                        className={`${styles.recaptchaContainer} m-0 mb-3 border-0 p-0`}
+                      >
+                        <div className="mb-3">
+                          {shouldLoadRecaptcha ? (
+                            <RecaptchaField
+                              ref={recaptchaRef}
+                              shouldLoad
+                              hl="pt-BR"
+                              onChange={setRecaptchaToken}
+                              onExpired={() => setRecaptchaToken(null)}
+                              onErrored={() => setRecaptchaToken(null)}
+                            />
+                          ) : (
+                            <p className={`${styles.recaptchaHint} small mb-0`}>
+                              A verificação será carregada quando você começar a
+                              preencher o formulário.
+                            </p>
+                          )}
+                          {submitStatus === 'error_recaptcha' && (
+                            <div className="text-danger small mt-1">
+                              Por favor, complete a verificação.
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </fieldset>
+                      </fieldset>
+                    </>
+                  )}
                   {/* Mensagens de Feedback */}
                   {submitStatus === 'success' && (
                     <div className="alert alert-success">
