@@ -1,5 +1,24 @@
-export interface EmailPayload {
-  [key: string]: string | number | boolean | undefined | null;
+import { RECAPTCHA_ENABLED, STATICFORMS_ENDPOINT } from '@/lib/email-config';
+
+export type EmailPayload = Record<string, unknown>;
+
+export function serializeForStaticForms(payload: EmailPayload): URLSearchParams {
+  const formData = new URLSearchParams();
+
+  Object.entries(payload).forEach(([key, value]) => {
+    if (value === undefined || value === null) {
+      return;
+    }
+
+    const normalizedValue =
+      typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
+        ? String(value)
+        : JSON.stringify(value);
+
+    formData.append(key, normalizedValue);
+  });
+
+  return formData;
 }
 
 export interface SendEmailOptions {
@@ -17,16 +36,23 @@ export interface SendEmailResult {
 }
 
 export async function sendEmail({
-  endpoint = 'https://api.staticforms.xyz/submit',
+  endpoint = STATICFORMS_ENDPOINT,
   payload,
   headers,
 }: SendEmailOptions): Promise<SendEmailResult> {
+  const isJsonEndpoint = typeof endpoint === 'string' && endpoint.startsWith('/api/');
+  const formBody = isJsonEndpoint
+    ? JSON.stringify(payload)
+    : serializeForStaticForms(payload);
+
   const response = await fetch(endpoint, {
     method: 'POST',
-    body: JSON.stringify(payload),
+    body: formBody,
     headers: {
       'accept-charset': 'UTF-8',
-      'Content-Type': 'application/json',
+      ...(isJsonEndpoint
+        ? { 'Content-Type': 'application/json; charset=utf-8' }
+        : { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }),
       Accept: 'application/json',
       ...headers,
     },
@@ -79,16 +105,50 @@ export async function sendContactEmail({
   replyTo,
   redirectTo,
 }: SendContactEmailOptions): Promise<SendEmailResult> {
+  const shouldIncludeCaptcha =
+    RECAPTCHA_ENABLED === true &&
+    typeof recaptchaToken === 'string' &&
+    recaptchaToken.trim().length > 0;
+
+  const normalizedName = [
+    formData.firstName,
+    formData.lastName,
+    formData.name,
+    formData.nome,
+  ]
+    .filter((value): value is string => Boolean(value && value.trim()))
+    .join(' ')
+    .trim();
+
+  const normalizedEmail = formData.email || formData.replyTo || '';
+  const normalizedPhone = formData.phone || formData.whatsapp || '';
+  const normalizedMessage = [
+    formData.message,
+    normalizedPhone ? `Telefone: ${normalizedPhone}` : undefined,
+  ]
+    .filter((value): value is string => Boolean(value && value.trim()))
+    .join('\n\n');
+
   const payload: EmailPayload = {
-    ...formData,
     accessKey,
+    firstName: formData.firstName || undefined,
+    lastName: formData.lastName || undefined,
+    name: normalizedName || formData.name || formData.nome || formData.firstName || undefined,
+    email: normalizedEmail || undefined,
+    phone: normalizedPhone || undefined,
+    message: normalizedMessage || formData.message || undefined,
     subject:
       subject ||
-      `Contato Site DEV Solar: ${formData.firstName || formData.name || 'Contato'}`,
+      `Contato Site DEV Solar: ${normalizedName || formData.firstName || formData.name || 'Contato'}`,
     ...(replyTo ? { replyTo } : {}),
     ...(redirectTo ? { redirectTo } : {}),
-    ...(recaptchaToken ? { 'g-recaptcha-response': recaptchaToken } : {}),
   };
 
-  return sendEmail({ endpoint, payload });
+  if (shouldIncludeCaptcha) {
+    payload['g-recaptcha-response'] = recaptchaToken;
+  }
+
+  const apiEndpoint = endpoint || '/api/contact';
+
+  return sendEmail({ endpoint: apiEndpoint, payload });
 }

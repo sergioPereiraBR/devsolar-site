@@ -1,13 +1,15 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react'; // Importar useState para Newsletter
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCallback, useEffect, useState } from 'react'; // Importar useState para Newsletter
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
 import { smoothScrollTo } from '@/lib/smoothScroll';
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
+import { sendNewsletter } from '@/components/devsolar/utility/newsletter/sendNewsletter';
+import { NEWSLETTER_STATICFORMS_ACCESS_KEY } from '@/lib/email-config';
 
 import {
   ADDRESS_INFO, // Importando dados
@@ -27,11 +29,6 @@ import {
 } from './footer_data_ds';
 // Ajuste o caminho se necessário
 import styles from './footer_ds.module.css';
-
-// Chave de acesso DO NOVO formulário Newsletter no StaticForms
-const NEWSLETTER_STATICFORMS_KEY =
-  process.env.NEXT_PUBLIC_NEWSLETTER_STATICFORMS_KEY ||
-  'sf_0cg1jn4jjmlngif74g76lk9j';
 
 function FooterDS() {
   // Estado para o input e feedback da newsletter
@@ -112,29 +109,15 @@ function FooterDS() {
     setNewsletterStatus('submitting');
     setNewsletterMessage('');
 
-    const payload = {
-      accessKey: NEWSLETTER_STATICFORMS_KEY,
-      email: newsletterEmail, // Campo principal
-      subject: `Nova Inscrição Newsletter DEV Solar: ${newsletterEmail}`, // Assunto do email que VOCÊ recebe
-      // --- Campos Opcionais StaticForms ---
-      replyTo: newsletterEmail, // Permite responder diretamente ao inscrito (se aplicável)
-      // redirectTo: '/obrigado-newsletter', // Página de sucesso opcional
-      // honeypot: '' // Campo honeypot se você adicionar um no HTML
-    };
-
     try {
-      const response = await fetch('https://api.staticforms.xyz/submit', {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
+      const result = await sendNewsletter({
+        email: newsletterEmail,
+        accessKey: NEWSLETTER_STATICFORMS_ACCESS_KEY,
+        subject: `Nova Inscrição Newsletter DEV Solar: ${newsletterEmail}`,
+        replyTo: newsletterEmail,
       });
 
-      const result = await response.json();
-
-      if (response.ok && result.success !== false) {
+      if (result.success) {
         setNewsletterStatus('success');
         trackEvent('newsletter_submit_success', {
           location: 'footer',
@@ -143,9 +126,7 @@ function FooterDS() {
         setNewsletterEmail(''); // Limpa o campo
         window.setTimeout(() => setNewsletterStatus(null), 2500); // Limpa msg após 2.5s
       } else {
-        throw new Error(
-          result.error || result.message || 'Erro desconhecido do serviço.',
-        );
+        throw new Error(result.error || 'Erro desconhecido do serviço.');
       }
     } catch (error) {
       //console.error("Newsletter Submit Error:", error);
