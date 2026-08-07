@@ -262,8 +262,7 @@ function FAQSectionDS() {
               {/* Área de Input do Usuário */}
               <div className={styles.userInputSection}>
                 <h3 className={styles.userInputTitle}>
-                  Tire suas dúvidas para gerar sua própria energia com a Dev
-                  Solar:
+                  Tire suas dúvidas sobre <strong>energia solar</strong>:
                 </h3>
                 <div className={styles.inputAreaContainer}>
                   {/* Botão Emoji e Picker */}
