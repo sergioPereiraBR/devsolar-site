@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Form, InputGroup, Modal, Spinner } from 'react-bootstrap';
 
 import { sendContactEmail } from '@/components/devsolar/utility/email/SendEmail';
+import { formatPhoneValue } from '@/components/devsolar/utility/phone/formatPhoneValue';
 import RecaptchaField from '@/components/devsolar/utility/recapcha/RecaptchaField';
 import {
   RECAPTCHA_ENABLED,
@@ -32,33 +33,10 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
     }
   }, [show, recaptchaEnabled]);
 
-  const formatPhoneValue = (value) => {
-    const digits = value.replace(/\D/g, '').slice(0, 11);
-
-    if (!digits) return '';
-    if (digits.length <= 2) return `(${digits}`;
-    if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
-
-    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
-  };
-
   const handlePhoneChange = (e) => {
-    const input = e.target;
-    const nextValue = input.value;
-    const digits = nextValue.replace(/\D/g, '').slice(0, 11);
-    const previousDigits = phoneDigitsRef.current;
-
-    if (digits.length > previousDigits.length) {
-      const inserted = digits.slice(previousDigits.length);
-      const nextDigits = previousDigits + inserted;
-      const formatted = formatPhoneValue(nextDigits);
-      phoneDigitsRef.current = nextDigits;
-      setFormData((prev) => ({ ...prev, whatsapp: formatted }));
-      return;
-    }
-
-    phoneDigitsRef.current = digits;
-    setFormData((prev) => ({ ...prev, whatsapp: formatPhoneValue(digits) }));
+    const nextValue = e.target.value;
+    phoneDigitsRef.current = nextValue.replace(/\D/g, '');
+    setFormData((prev) => ({ ...prev, whatsapp: formatPhoneValue(nextValue) }));
   };
 
   const handleChange = (e) => {
@@ -214,8 +192,9 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
                   onChange={handlePhoneChange}
                   required
                   minLength={14}
+                  maxLength={17}
                   className={styles.formControl}
-                  autoComplete="tel"
+                  autoComplete="tel-national"
                 />
                 <Form.Control.Feedback type="invalid">
                   Informe um número de WhatsApp válido.

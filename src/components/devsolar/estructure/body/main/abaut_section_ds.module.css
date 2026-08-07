@@ -1,0 +1,45 @@
+.sectionAbout {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8fbff 0%, #f4f7fb 100%);
+}
+
+.contentWrapper {
+    align-items: center;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f3a5f;
+    margin-bottom: 1.25rem;
+}
+
+.sectionText {
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.featureCard {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.featureTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1f3a5f;
+    margin-bottom: 1rem;
+}
+
+.featureList {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: #4b5563;
+    display: grid;
+    gap: 0.6rem;
+}
