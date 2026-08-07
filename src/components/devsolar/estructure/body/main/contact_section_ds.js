@@ -8,6 +8,7 @@ import { RECAPTCHA_ENABLED, STATICFORMS_ACCESS_KEY } from '@/lib/email-config';
 
 import { sendContactEmail } from '@/components/devsolar/utility/email/SendEmail';
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
+import { formatPhoneValue } from '@/components/devsolar/utility/phone/formatPhoneValue';
 import RecaptchaField from '@/components/devsolar/utility/recapcha/RecaptchaField';
 
 import { contactInfoData, socialLinksData } from './contact_data_ds';
@@ -109,32 +110,10 @@ function ContactSectionDS() {
     return () => observer.disconnect();
   }, [shouldLoadRecaptcha]);
 
-  const formatPhoneValue = (value) => {
-    const digits = value.replace(/\D/g, '').slice(0, 11);
-
-    if (!digits) return '';
-    if (digits.length <= 2) return `(${digits}`;
-    if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
-
-    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
-  };
-
   const handlePhoneChange = (e) => {
-    const input = e.target;
-    const nextValue = input.value;
-    const digits = nextValue.replace(/\D/g, '').slice(0, 11);
-    const previousDigits = phoneDigitsRef.current;
-
-    if (digits.length > previousDigits.length) {
-      const inserted = digits.slice(previousDigits.length);
-      const nextDigits = previousDigits + inserted;
-      phoneDigitsRef.current = nextDigits;
-      setFormData((prev) => ({ ...prev, phone: formatPhoneValue(nextDigits) }));
-      return;
-    }
-
-    phoneDigitsRef.current = digits;
-    setFormData((prev) => ({ ...prev, phone: formatPhoneValue(digits) }));
+    const nextValue = e.target.value;
+    phoneDigitsRef.current = nextValue.replace(/\D/g, '');
+    setFormData((prev) => ({ ...prev, phone: formatPhoneValue(nextValue) }));
   };
 
   const handleChange = (e) => {
@@ -408,11 +387,12 @@ function ContactSectionDS() {
                       required
                       placeholder="(21) 99999-9999"
                       minLength={14}
+                      maxLength={17}
                       value={formData.phone}
                       onChange={handlePhoneChange}
                       onInvalid={handleRequiredInvalid}
                       onInput={clearValidationMessage}
-                      autoComplete="tel"
+                      autoComplete="tel-national"
                     />
                   </div>
                   <div className="mb-3">

@@ -31,7 +31,7 @@ export const contactInfoData = [
     id: 'atendimento',
     iconClass: 'fas fa-clock',
     title: 'Atendimento',
-    text: 'de 9h às 18h de Segunda a Sexta.',
+    text: 'Segunda a Sexta, das 9h às 18h',
   },
 ];
 

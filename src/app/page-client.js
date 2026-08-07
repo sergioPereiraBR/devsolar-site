@@ -38,8 +38,8 @@ export default function HomePageClient() {
         <ModalitiesSectionDS /> {/* Service Modalities Section */}
         <SuccessStoriesDS /> {/* Success Stories */}
         <FAQSectionDS /> {/* FAQ Section */}
-        {/* About Section 
-                    <section id="sobre"></section>*/}
+        {/* <DevSolarAboutSectionDS /> About Section */}
+        {/* <GarantiasSectionDS /> Guarantees Section */}
         <LocationSectionDS /> {/* Location Section */}
         <ParceirosFinanceirasSectionDS /> {/* Partners Section */}
         {/* Terms Section

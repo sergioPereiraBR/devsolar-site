@@ -60,6 +60,31 @@ const financeirasData = [
   },
   // Adicione mais financeiras...
 ];
+
+const formasPagamentoData = [
+  {
+    id: 'pag1',
+    name: 'Pix',
+    logoUrl: Santander,
+    description:
+      'Pagamento imediato, seguro e com confirmação instantânea para sua compra.',
+  },
+  {
+    id: 'pag2',
+    name: 'Boleto Bancário',
+    logoUrl: Bv,
+    description:
+      'Opção tradicional com vencimento definido e praticidade para o cliente.',
+  },
+  {
+    id: 'pag3',
+    name: 'Cartão de Crédito',
+    logoUrl: Solagora,
+    description:
+      'Parcelamento em até várias vezes, conforme a disponibilidade da operadora.',
+  },
+  // Adicione mais formas de pagamento...
+];
 // --- Fim dos Dados de Exemplo ---
 
 function ParceirosFinanceirasSectionDS() {
@@ -107,6 +132,21 @@ function ParceirosFinanceirasSectionDS() {
               ))}
             </div>
           </div>
+
+          {/* Subseção Formas de Pagamento */}
+          {/* <div className={styles.subsection}>
+            <h3 className={styles.subsectionTitle}>Formas de pagamento</h3>
+            <div className={styles.partnerGrid}>
+              {formasPagamentoData.map((partner) => (
+                <PartnerCard
+                  key={partner.id}
+                  logoUrl={partner.logoUrl}
+                  name={partner.name}
+                  description={partner.description}
+                />
+              ))}
+            </div>
+          </div> */}
         </div>
       </section>
     </>

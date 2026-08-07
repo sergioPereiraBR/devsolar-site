@@ -1,15 +1,15 @@
 'use client';
 
+import { useCallback, useEffect, useState } from 'react'; // Importar useState para Newsletter
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react'; // Importar useState para Newsletter
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
+import { NEWSLETTER_STATICFORMS_ACCESS_KEY } from '@/lib/email-config';
 import { smoothScrollTo } from '@/lib/smoothScroll';
 
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import { sendNewsletter } from '@/components/devsolar/utility/newsletter/sendNewsletter';
-import { NEWSLETTER_STATICFORMS_ACCESS_KEY } from '@/lib/email-config';
 
 import {
   ADDRESS_INFO, // Importando dados
@@ -165,9 +165,9 @@ function FooterDS() {
               {COMPANY_SLOGAN_PA}
               <br></br> {COMPANY_SLOGAN_PB}
             </h2>
-            <h3 className={styles.atendimentoInfo}>
+            {/* <h3 className={styles.atendimentoInfo}>
               Atendimento de Segunda a Sexta, das 9h às 18h
-            </h3>
+            </h3> */}
             <div className={styles.contactInfo} suppressHydrationWarning>
               {isHydrated ? (
                 <>
@@ -233,6 +233,17 @@ function FooterDS() {
                       <br />
                       CEP: {ADDRESS_INFO.cep}
                     </div>
+                  </div>
+                  {/* Horário de Atendimento */}
+                  <div
+                    className={`${styles.contactItem} d-flex align-items-start mb-2`}
+                  >
+                    <FaIcon
+                      iconClass="fas fa-clock"
+                      className={`${styles.contactIcon} mt-1`}
+                      aria-label="Horário de Atendimento DEV Solar"
+                    />
+                    <div>Segunda a Sexta, das 9h às 18h</div>
                   </div>
                 </>
               ) : (
