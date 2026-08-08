@@ -4,6 +4,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import LogoSm from '@/assets/logo_sm.webp';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
@@ -21,6 +22,7 @@ const LeadAccessModal = dynamic(() => import('./LeadAccessModal'), {
 });
 
 const LOGO_URL = LogoSm.src;
+const PENDING_HOME_SECTION_KEY = 'pendingHomeSection';
 const FOCUSABLE_SELECTOR = [
   '[data-tab-entry="true"]',
   'a[href]:not([tabindex="-1"])',
@@ -49,6 +51,7 @@ function NavDS() {
   const [expanded, setExpanded] = useState(false);
   const navbarRef = useRef(null);
   const resizeTimeoutRef = useRef(null); // Ref para armazenar timeout de resize
+  const pathname = usePathname();
 
   // --- Lógica para Scroll Padding Dinâmico (otimizado para evitar reflow) ---
   const updateScrollPadding = useCallback(() => {
@@ -135,8 +138,24 @@ function NavDS() {
       return;
     }
 
+    const targetUrl = new URL(href, window.location.origin);
+    const isHomeSectionLink =
+      targetUrl.pathname === '/' && Boolean(targetUrl.hash);
+
+    if (isHomeSectionLink && pathname !== '/') {
+      e.preventDefault();
+      setExpanded(false);
+
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.setItem(PENDING_HOME_SECTION_KEY, targetUrl.hash);
+        window.location.assign('/');
+      }
+
+      return;
+    }
+
     e.preventDefault();
-    const hash = href.slice(href.indexOf('#'));
+    const hash = targetUrl.hash || href.slice(href.indexOf('#'));
     const targetId = hash.replace('#', '');
     const targetElement = document.getElementById(targetId);
 
@@ -160,12 +179,18 @@ function NavDS() {
   };
 
   const handleBrandClick = (e) => {
-    e.preventDefault(); // Previne a navegação padrão para '#'
+    e.preventDefault();
     trackEvent('navigation_click', {
       location: 'navbar_brand',
       target: '#home',
     });
     setExpanded(false);
+
+    if (pathname !== '/') {
+      window.location.assign('/');
+      return;
+    }
+
     smoothScrollTo(0); // Scroll suave para o topo
   };
 

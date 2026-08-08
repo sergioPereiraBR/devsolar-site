@@ -12,9 +12,20 @@ export const devSolarSchema = {
       url: 'https://www.devsolar.com.br',
       logo: 'https://www.devsolar.com.br/images/logo-devsolar-icon.png',
       image: 'https://www.devsolar.com.br/images/og-calculator-devsolar.png',
-      telephone: '+55-21-99967-7722',
       priceRange: '$$$',
       taxID: '53.538.425/0001-15',
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-21-99967-7722",
+        "contactType": "customer service",
+        "contactOption": "TollFree",
+        "availableLanguage": "Portuguese"
+      },
+      sameAs: [
+        'https://www.facebook.com/profile.php?id=61562778810789',
+        'https://www.instagram.com/devsolar_',
+        'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica/about/'
+      ],
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Av. Jambeiro, 474 Loja C',

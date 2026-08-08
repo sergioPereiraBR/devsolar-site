@@ -171,6 +171,17 @@ function FooterDS() {
             <div className={styles.contactInfo} suppressHydrationWarning>
               {isHydrated ? (
                 <>
+                  {/* Horário de Atendimento */}
+                  <div
+                    className={`${styles.contactItem} d-flex align-items-start mb-2`}
+                  >
+                    <FaIcon
+                      iconClass="fas fa-clock"
+                      className={`${styles.contactIcon} mt-1`}
+                      aria-label="Horário de Atendimento DEV Solar"
+                    />
+                    <div>Segunda a Sexta, das 9h às 18h</div>
+                  </div>
                   {/* Telefone Clicável */}
                   <div
                     className={`${styles.contactItem} d-flex align-items-center mb-2`}
@@ -233,17 +244,6 @@ function FooterDS() {
                       <br />
                       CEP: {ADDRESS_INFO.cep}
                     </div>
-                  </div>
-                  {/* Horário de Atendimento */}
-                  <div
-                    className={`${styles.contactItem} d-flex align-items-start mb-2`}
-                  >
-                    <FaIcon
-                      iconClass="fas fa-clock"
-                      className={`${styles.contactIcon} mt-1`}
-                      aria-label="Horário de Atendimento DEV Solar"
-                    />
-                    <div>Segunda a Sexta, das 9h às 18h</div>
                   </div>
                 </>
               ) : (
@@ -388,7 +388,7 @@ function FooterDS() {
             © {CURRENT_YEAR} {COMPANY_NAME} - Todos os direitos reservados.{' '}
             {/* Links legais agora apenas aqui (removidos da coluna 3 ou vice-versa) */}
             <Link
-              href="/#"
+              href="/politica-de-privacidade"
               onClick={() =>
                 trackEvent('navigation_click', {
                   location: 'footer_legal',
@@ -400,7 +400,7 @@ function FooterDS() {
             </Link>{' '}
             |{' '}
             <Link
-              href="/#"
+              href="/termos-de-uso"
               onClick={() =>
                 trackEvent('navigation_click', {
                   location: 'footer_legal',
@@ -439,7 +439,8 @@ function FooterDS() {
         target="_blank"
         rel="noopener noreferrer"
         className={styles.whatsappBtn} // Classe do CSS Module
-        aria-label="Entrar em contato pelo WhatsApp"
+        aria-label="Atendimento via WhatsApp"
+        title="Falar no WhatsApp"
         onClick={() => trackWhatsAppClick('floating_button')}
       >
         {' '}

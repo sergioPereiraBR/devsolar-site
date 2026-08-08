@@ -57,7 +57,7 @@ function VideoPlayerContent() {
       <a
         href="/"
         style={{
-          color: '#fff',
+          color: 'var(--primary-color, #00f)',
           textDecoration: 'none',
           marginBottom: '16px',
           alignSelf: 'flex-start',

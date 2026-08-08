@@ -21,6 +21,53 @@
     font-style: italic;
 }
 
+.googleRatingBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 8px 16px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.googleRatingBadge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.googleLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ratingInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stars {
+    color: #ffc107;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+}
+
+.score {
+    color: #333333;
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.score strong {
+    color: #222222;
+}
+
 /* Estilos para Informações de Contato */
 /*
 .contactItem {
@@ -55,7 +102,7 @@
 
 .contactText {
     /* color: #666; */
-    color: #767676; 
+    color: #767676;
     font-size: 0.95rem;
 }
 
@@ -131,9 +178,10 @@
     background-color: var(--light);
 }
 
-.formCard.shadow-sm label, 
+.formCard.shadow-sm label,
 .formCard.shadow-sm p {
-    color: #212529 !important; /* Um tom quase preto garante contraste total no fundo branco */
+    color: #212529 !important;
+    /* Um tom quase preto garante contraste total no fundo branco */
 }
 
 .formTitle {
