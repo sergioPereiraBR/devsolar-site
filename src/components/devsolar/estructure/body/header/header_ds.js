@@ -291,7 +291,7 @@ function HeaderDS() {
                       value={formatValueForInput(inputValue)}
                       onChange={handleInputChange}
                       onKeyDown={handleInputKeyDown}
-                      placeholder="Digite o valor (mínimo R$ 400,00)"
+                      placeholder="Digite o valor da conta de luz"
                       autoComplete="off"
                       aria-describedby="valor-consumo-feedback"
                     />

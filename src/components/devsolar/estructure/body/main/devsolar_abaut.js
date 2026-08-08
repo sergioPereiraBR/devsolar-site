@@ -6,9 +6,16 @@ function DevSolarAboutSectionDS() {
   return (
     <section id="sobre-devsolar" className={styles.sectionAbout}>
       <div className="container">
+        <div className="mb-5 text-center">
+          <h2 className={`${styles.sectionTitle} fw-bold`}>
+            Sobre a Dev Solar
+          </h2>
+          <p className={`${styles.sectionSubtitle} lead`}>
+            Conheça a história, a proposta e os diferenciais da nossa empresa.
+          </p>
+        </div>
         <div className={`${styles.contentWrapper} row align-items-center g-4`}>
           <div className="col-lg-7">
-            <h3 className={styles.sectionTitle}>Sobre a Dev Solar</h3>
             <p className={styles.sectionText}>
               A Dev Solar é uma empresa especializada em soluções de energia
               solar, com foco em eficiência, economia e atendimento de alto

@@ -39,9 +39,11 @@ function GarantiasSectionDS() {
   return (
     <section id="garantias" className={styles.sectionAbout}>
       <div className="container">
-        <div className="mb-4 text-center">
-          <h3 className={styles.sectionTitle}>Garantias e conformidades</h3>
-          <p className={styles.sectionText}>
+        <div className="mb-5 text-center">
+          <h2 className={`${styles.sectionTitle} fw-bold`}>
+            Garantias e conformidades
+          </h2>
+          <p className={`${styles.sectionSubtitle} lead`}>
             Nossa estrutura é pensada para oferecer segurança técnica, respaldo
             regulatório e tranquilidade em cada etapa.
           </p>
