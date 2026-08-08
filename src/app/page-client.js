@@ -13,7 +13,6 @@ import ContactSectionDS from '../components/devsolar/estructure/body/main/contac
 import CTASectionDS from '../components/devsolar/estructure/body/main/cta_section_ds';
 // import DevSolarAboutSectionDS from '../components/devsolar/estructure/body/main/devsolar_abaut';
 import FAQSectionDS from '../components/devsolar/estructure/body/main/faq_section_ds';
-import GarantiasSectionDS from '../components/devsolar/estructure/body/main/garantias_section_ds';
 import LocationSectionDS from '../components/devsolar/estructure/body/main/location_ds';
 import ModalitiesSectionDS from '../components/devsolar/estructure/body/main/modalities_section_ds';
 import ParceirosFinanceirasSectionDS from '../components/devsolar/estructure/body/main/parceiros_financeiras_ds';
@@ -83,7 +82,7 @@ export default function HomePageClient() {
         <FAQSectionDS /> {/* FAQ Section */}
         {/* <AboutDevSolar /> {/* About DevSolar Section */}
         {/* <DevSolarAboutSectionDS /> {/*  About Section */}
-        <GarantiasSectionDS /> {/*  Guarantees Section */}
+        {/* <GarantiasSectionDS />  Guarantees Section */}
         <LocationSectionDS /> {/* Location Section */}
         <ParceirosFinanceirasSectionDS /> {/* Partners Section */}
         {/* Terms Section
