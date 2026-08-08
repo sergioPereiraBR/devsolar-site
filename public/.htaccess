@@ -32,13 +32,13 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Bloqueia requisições com User-Agent totalmente em branco
+  # Bloqueia apenas User-Agents estritamente vazios ou traço
   RewriteCond %{HTTP_USER_AGENT} ^-?$ [NC,OR]
-  RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+  RewriteCond %{HTTP_USER_AGENT} ^$
+  RewriteRule ^ - [F,L]
 
-  # Bloqueia crawlers indesejados, EXCETO para mídias e assets estáticos (evita erro 403 no player do iOS)
-  RewriteCond %{REQUEST_URI} !\.(?:mp4|m4v|webm|jpg|jpeg|png|gif|webp|css|js)$ [NC]
-  RewriteCond %{HTTP_USER_AGENT} (scanner|crawl|curl|baiduspider|researchbot|trendiction|nutch|nbot|seek|checker) [NC]
+  # Bloqueia bots conhecidos usando ancoragem nos nomes (\b) para evitar falsos positivos em navegadores
+  RewriteCond %{HTTP_USER_AGENT} \b(baiduspider|researchbot|trendiction|nutch|seekbot)\b [NC]
   RewriteRule ^ - [F,L]
 
   # Forçar HTTPS
