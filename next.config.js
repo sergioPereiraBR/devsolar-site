@@ -22,6 +22,7 @@ const cspValue = [
 
 const nextConfig = {
   reactStrictMode: true,
+  trailingSlash: true,
   output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
   productionBrowserSourceMaps: false,
   compress: true,

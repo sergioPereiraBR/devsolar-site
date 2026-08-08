@@ -1,6 +1,7 @@
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .html .css .js .txt .json
 ErrorDocument 404 /404.html
+DirectoryIndex index.html index.php
 
 <IfModule mod_mime.c>
   AddType video/mp4 .mp4 .m4v
@@ -52,6 +53,10 @@ RewriteEngine On
   RewriteRule ^_next/ - [L]
   RewriteCond %{REQUEST_URI} \.(?:js|css|map|json|txt|xml|ico|png|jpe?g|gif|webp|avif|svg|woff2?|mp4|m4v|webm)$ [NC]
   RewriteRule ^ - [L]
+
+  # Garante que pastas de rotas estáticas com index.html sejam servidas corretamente em hosts Apache/cPanel
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.+)$ /$1/index.html [L]
 
   # 1. Remove a barra do final da URL se ela existir (ex: /termos-de-uso/ -> /termos-de-uso)
   RewriteCond %{REQUEST_FILENAME} !-d
