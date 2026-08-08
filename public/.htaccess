@@ -30,14 +30,14 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 <IfModule mod_rewrite.c>
-  RewriteEngine On
+RewriteEngine On
 
   # Bloqueia apenas User-Agents estritamente vazios ou traço
   RewriteCond %{HTTP_USER_AGENT} ^-?$ [NC,OR]
   RewriteCond %{HTTP_USER_AGENT} ^$
   RewriteRule ^ - [F,L]
 
-  # Bloqueia bots conhecidos usando ancoragem nos nomes (\b) para evitar falsos positivos em navegadores
+  # Bloqueia bots conhecidos
   RewriteCond %{HTTP_USER_AGENT} \b(baiduspider|researchbot|trendiction|nutch|seekbot)\b [NC]
   RewriteRule ^ - [F,L]
 
@@ -53,7 +53,15 @@ ErrorDocument 404 /404.html
   RewriteCond %{REQUEST_URI} \.(?:js|css|map|json|txt|xml|ico|png|jpe?g|gif|webp|avif|svg|woff2?|mp4|m4v|webm)$ [NC]
   RewriteRule ^ - [L]
 
-  # Regras padrão do site (SPA / Frontend)
+  # 1. Remove a barra do final da URL se ela existir (ex: /termos-de-uso/ -> /termos-de-uso)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # 2. Mapeia rotas para arquivos .html estáticos (ex: /termos-de-uso -> /termos-de-uso.html)
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # 3. Regras padrão do site (Fallback SPA)
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
