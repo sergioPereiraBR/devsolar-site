@@ -51,7 +51,7 @@ export async function sendEmail({
       ? new URL(normalizedEndpoint, window.location.origin).toString()
       : normalizedEndpoint;
 
-  const isJsonEndpoint = typeof resolvedEndpoint === 'string' && resolvedEndpoint.startsWith('/api/');
+  const isJsonEndpoint = isApiEndpoint;
   const formBody = isJsonEndpoint
     ? JSON.stringify(payload)
     : serializeForStaticForms(payload);
