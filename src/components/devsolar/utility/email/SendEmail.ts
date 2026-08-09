@@ -51,10 +51,7 @@ export async function sendEmail({
       ? new URL(normalizedEndpoint, window.location.origin).toString()
       : normalizedEndpoint;
 
-  const isJsonEndpoint = isApiEndpoint;
-  const formBody = isJsonEndpoint
-    ? JSON.stringify(payload)
-    : serializeForStaticForms(payload);
+  const formBody = serializeForStaticForms(payload);
 
   let response: Response;
 
@@ -66,9 +63,7 @@ export async function sendEmail({
       body: formBody,
       headers: {
         'accept-charset': 'UTF-8',
-        ...(isJsonEndpoint
-          ? { 'Content-Type': 'application/json; charset=utf-8' }
-          : { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }),
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         Accept: 'application/json',
         ...headers,
       },
@@ -173,7 +168,7 @@ export async function sendContactEmail({
     payload['g-recaptcha-response'] = recaptchaToken;
   }
 
-  const apiEndpoint = endpoint || '/api/contact';
+  const apiEndpoint = endpoint || STATICFORMS_ENDPOINT;
 
   return sendEmail({ endpoint: apiEndpoint, payload });
 }
