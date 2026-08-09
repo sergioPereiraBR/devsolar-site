@@ -55,21 +55,9 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
       return;
     }
 
-    if (recaptchaEnabled && !shouldLoadRecaptcha) {
-      setShouldLoadRecaptcha(true);
-      setSubmitStatus('error');
-      return;
-    }
-
     const currentRecaptchaToken = recaptchaEnabled
       ? recaptchaToken || recaptchaRef.current?.getValue?.()
       : null;
-
-    if (recaptchaEnabled && !currentRecaptchaToken) {
-      setSubmitStatus('error');
-      recaptchaRef.current?.reset?.();
-      return;
-    }
 
     setIsSubmitting(true);
     setSubmitStatus(null);
@@ -108,7 +96,6 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
         },
         accessKey: STATICFORMS_ACCESS_KEY,
         recaptchaToken: currentRecaptchaToken,
-        endpoint: '/api/contact',
         subject: `Lead DEV Solar - ${formData.nome}`,
         replyTo: formData.whatsapp,
       });
