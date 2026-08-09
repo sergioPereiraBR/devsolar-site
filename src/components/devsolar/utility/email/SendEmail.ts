@@ -40,12 +40,17 @@ export async function sendEmail({
   payload,
   headers,
 }: SendEmailOptions): Promise<SendEmailResult> {
-  const isJsonEndpoint = typeof endpoint === 'string' && endpoint.startsWith('/api/');
+  const normalizedEndpoint =
+    typeof endpoint === 'string' && endpoint.startsWith('/api/') && !endpoint.endsWith('/')
+      ? `${endpoint}/`
+      : endpoint;
+
+  const isJsonEndpoint = typeof normalizedEndpoint === 'string' && normalizedEndpoint.startsWith('/api/');
   const formBody = isJsonEndpoint
     ? JSON.stringify(payload)
     : serializeForStaticForms(payload);
 
-  const response = await fetch(endpoint, {
+  const response = await fetch(normalizedEndpoint, {
     method: 'POST',
     body: formBody,
     headers: {
