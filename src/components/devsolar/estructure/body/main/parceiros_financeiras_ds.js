@@ -134,7 +134,7 @@ function ParceirosFinanceirasSectionDS() {
           </div>
 
           {/* Subseção Formas de Pagamento */}
-          <div className={styles.subsection}>
+          {/* <div className={styles.subsection}>
             <h3 className={styles.subsectionTitle}>Formas de pagamento</h3>
             <div className={styles.partnerGrid}>
               {formasPagamentoData.map((partner) => (
@@ -146,7 +146,7 @@ function ParceirosFinanceirasSectionDS() {
                 />
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </>
