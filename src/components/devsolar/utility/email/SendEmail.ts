@@ -40,28 +40,48 @@ export async function sendEmail({
   payload,
   headers,
 }: SendEmailOptions): Promise<SendEmailResult> {
+  const isApiEndpoint = typeof endpoint === 'string' && endpoint.startsWith('/api/');
   const normalizedEndpoint =
-    typeof endpoint === 'string' && endpoint.startsWith('/api/') && !endpoint.endsWith('/')
+    isApiEndpoint && !endpoint.endsWith('/')
       ? `${endpoint}/`
       : endpoint;
 
-  const isJsonEndpoint = typeof normalizedEndpoint === 'string' && normalizedEndpoint.startsWith('/api/');
+  const resolvedEndpoint =
+    isApiEndpoint && typeof window !== 'undefined'
+      ? new URL(normalizedEndpoint, window.location.origin).toString()
+      : normalizedEndpoint;
+
+  const isJsonEndpoint = typeof resolvedEndpoint === 'string' && resolvedEndpoint.startsWith('/api/');
   const formBody = isJsonEndpoint
     ? JSON.stringify(payload)
     : serializeForStaticForms(payload);
 
-  const response = await fetch(normalizedEndpoint, {
-    method: 'POST',
-    body: formBody,
-    headers: {
-      'accept-charset': 'UTF-8',
-      ...(isJsonEndpoint
-        ? { 'Content-Type': 'application/json; charset=utf-8' }
-        : { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }),
-      Accept: 'application/json',
-      ...headers,
-    },
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(resolvedEndpoint, {
+      method: 'POST',
+      cache: 'no-store',
+      credentials: 'same-origin',
+      body: formBody,
+      headers: {
+        'accept-charset': 'UTF-8',
+        ...(isJsonEndpoint
+          ? { 'Content-Type': 'application/json; charset=utf-8' }
+          : { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }),
+        Accept: 'application/json',
+        ...headers,
+      },
+    });
+  } catch (error) {
+    return {
+      ok: false,
+      success: false,
+      status: null,
+      message: 'Falha ao enviar o formulário.',
+      error: error instanceof Error ? error.message : 'service_error',
+    };
+  }
 
   let result: Record<string, unknown> = {};
 
