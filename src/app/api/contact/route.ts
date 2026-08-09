@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import {
-    CONTACT_EMAIL_FROM,
-    CONTACT_EMAIL_FROM_NAME,
-    CONTACT_EMAIL_TO,
-    RESEND_API_KEY,
-    RESEND_FROM_EMAIL,
-    STATICFORMS_ACCESS_KEY,
-    STATICFORMS_ENDPOINT,
+  CONTACT_EMAIL_FROM,
+  CONTACT_EMAIL_FROM_NAME,
+  CONTACT_EMAIL_TO,
+  RESEND_API_KEY,
+  RESEND_FROM_EMAIL,
+  STATICFORMS_ACCESS_KEY,
+  STATICFORMS_ENDPOINT,
 } from '@/lib/email-config';
 
 function normalizeString(value: unknown): string {
@@ -105,7 +105,11 @@ export async function POST(request: NextRequest) {
       ? fromEmail
       : `${senderName} <${fromEmail}>`;
 
-  if (RESEND_API_KEY) {
+  const shouldUseResend = Boolean(
+    RESEND_API_KEY && RESEND_API_KEY.trim() && RESEND_API_KEY.trim() !== STATICFORMS_ACCESS_KEY,
+  );
+
+  if (shouldUseResend) {
     try {
       const resendResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
