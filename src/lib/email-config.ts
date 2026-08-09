@@ -7,8 +7,9 @@ export const STATICFORMS_ACCESS_KEY =
 export const CONTACT_EMAIL_TO = process.env.CONTACT_EMAIL_TO || 'contato@devsolar.com.br';
 export const CONTACT_EMAIL_FROM = process.env.CONTACT_EMAIL_FROM || 'contato@devsolar.com.br';
 export const CONTACT_EMAIL_FROM_NAME = process.env.CONTACT_EMAIL_FROM_NAME || 'Dev Solar';
-export const RESEND_API_KEY = process.env.RESEND_API_KEY || STATICFORMS_ACCESS_KEY;
-export const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'contato@devsolar.com.br';
+export const RESEND_API_KEY = (process.env.RESEND_API_KEY || process.env.NEXT_PUBLIC_RESEND_API_KEY || '').trim();
+export const RESEND_FROM_EMAIL =
+  process.env.RESEND_FROM_EMAIL || process.env.NEXT_PUBLIC_RESEND_FROM_EMAIL || CONTACT_EMAIL_FROM;
 
 export const NEWSLETTER_STATICFORMS_ACCESS_KEY =
   process.env.NEXT_PUBLIC_NEWSLETTER_STATICFORMS_KEY || STATICFORMS_ACCESS_KEY;
