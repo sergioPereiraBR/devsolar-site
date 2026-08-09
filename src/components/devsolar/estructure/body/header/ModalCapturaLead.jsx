@@ -108,7 +108,6 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
         },
         accessKey: STATICFORMS_ACCESS_KEY,
         recaptchaToken: currentRecaptchaToken,
-        endpoint: '/api/contact',
         subject: `Lead DEV Solar - ${formData.nome}`,
         replyTo: formData.whatsapp,
       });

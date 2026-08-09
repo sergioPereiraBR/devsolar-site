@@ -199,7 +199,6 @@ function ContactSectionDS() {
         },
         accessKey: STATICFORMS_ACCESS_KEY,
         recaptchaToken: currentRecaptchaToken,
-        endpoint: '/api/contact',
         subject: `Contato Site DEV Solar: ${formData.firstName} ${formData.lastName}`,
         replyTo: formData.email,
       });
