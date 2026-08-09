@@ -55,21 +55,9 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
       return;
     }
 
-    if (recaptchaEnabled && !shouldLoadRecaptcha) {
-      setShouldLoadRecaptcha(true);
-      setSubmitStatus('error');
-      return;
-    }
-
     const currentRecaptchaToken = recaptchaEnabled
       ? recaptchaToken || recaptchaRef.current?.getValue?.()
       : null;
-
-    if (recaptchaEnabled && !currentRecaptchaToken) {
-      setSubmitStatus('error');
-      recaptchaRef.current?.reset?.();
-      return;
-    }
 
     setIsSubmitting(true);
     setSubmitStatus(null);

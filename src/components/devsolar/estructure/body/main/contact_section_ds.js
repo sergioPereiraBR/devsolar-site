@@ -155,38 +155,12 @@ function ContactSectionDS() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    if (recaptchaEnabled && !shouldLoadRecaptcha) {
-      trackEvent('contact_form_validation_error', {
-        location: 'contact_section',
-        reason: 'recaptcha_not_loaded',
-      });
-      setShouldLoadRecaptcha(true);
-      setSubmitStatus('error_recaptcha');
-      setIsSubmitting(false);
-      return;
-    }
-
     //console.log("event: ", e); // Debug
 
-    // 1. Obter token do reCAPTCHA
+    // 1. Obter token do reCAPTCHA, se disponível
     const currentRecaptchaToken = recaptchaEnabled
       ? recaptchaToken || recaptchaRef.current?.getValue?.()
       : undefined;
-
-    //console.log("recaptchaToken: ", currentRecaptchaToken); // Debug
-
-    // 2. Validar token
-    if (recaptchaEnabled && !currentRecaptchaToken) {
-      trackEvent('contact_form_validation_error', {
-        location: 'contact_section',
-        reason: 'recaptcha_missing',
-      });
-      setSubmitStatus('error_recaptcha');
-      setIsSubmitting(false);
-      recaptchaRef.current?.reset(); // Reseta para o usuário tentar de novo
-      //console.error("reCAPTCHA não preenchido.");
-      return;
-    }
 
     try {
       const result = await sendContactEmail({
