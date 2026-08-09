@@ -77,7 +77,14 @@ function extractContactPayload(rawBody: unknown): Record<string, unknown> {
 }
 
 export async function POST(request: NextRequest) {
-  const rawBody = await request.json().catch(() => ({}));
+  let rawBody: unknown = {};
+
+  try {
+    rawBody = await request.json();
+  } catch {
+    rawBody = {};
+  }
+
   const formData = extractContactPayload(rawBody);
 
   const name = normalizeString(formData.name || formData.firstName || formData.nome);
@@ -96,6 +103,16 @@ export async function POST(request: NextRequest) {
     subject,
     replyTo,
   };
+
+  console.log('[contact-api] payload', {
+    name,
+    email,
+    phone,
+    subject,
+    replyTo,
+    message,
+    hasResendKey: Boolean(RESEND_API_KEY && RESEND_API_KEY.trim()),
+  });
 
   const toEmail = CONTACT_EMAIL_TO || 'contato@devsolar.com.br';
   const fromEmail = RESEND_FROM_EMAIL || CONTACT_EMAIL_FROM || 'contato@devsolar.com.br';
@@ -173,6 +190,12 @@ export async function POST(request: NextRequest) {
     });
 
     const responseBody = await response.json().catch(() => ({}));
+
+    console.log('[contact-api] staticforms response', {
+      status: response.status,
+      ok: response.ok,
+      body: responseBody,
+    });
 
     return NextResponse.json({
       success: response.ok && responseBody.success !== false,
