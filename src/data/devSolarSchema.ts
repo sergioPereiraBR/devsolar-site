@@ -12,6 +12,7 @@ export const devSolarSchema = {
       url: 'https://www.devsolar.com.br',
       logo: 'https://www.devsolar.com.br/images/logo-devsolar-icon.png',
       image: 'https://www.devsolar.com.br/images/og-calculator-devsolar.png',
+      telephone: '+55-21-99967-7722',
       priceRange: '$$$',
       taxID: '53.538.425/0001-15',
       "contactPoint": {
