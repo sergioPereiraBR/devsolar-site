@@ -108,25 +108,19 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
     >
       <Modal.Header closeButton className={styles.modalHeader}>
         <Modal.Title className={styles.modalTitle}>
-          ⚡ Estamos Quase Lá!
+          ⚡Estamos quase lá!
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body className={styles.modalBody}>
-        <div className={styles.infoCard}>
-          <p className={styles.infoTitle}>💡 O que você verá no relatório</p>
-          <div className={styles.infoText}>
-            <div className={styles.infoBullet}>✅ Projeção de economia em 25 anos e tempo estimado de retorno (payback).</div>
-            <div className={styles.infoBullet}>✅ Potência ideal do sistema calculada para sua conta de R$ {valorConta}.</div>
-            <div className={styles.infoBullet}>✅ Análise comparativa de cenários para uma decisão financeira segura.</div>
-          </div>
-        </div>
-        <br />
+      <Modal.Body className={`${styles.modalBody} mt-4 pt-2`}>
         <div className={styles.formShell}>
-          <div className={styles.formShellHeader}>Dados para o relatório</div>
-          <Form noValidate validated={validated} onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.formShellHeader}>💡 O que você verá no relatório</div>
+          <div className={`${styles.infoBullet} mt-2 pt-2`}>✅ Projeção de economia em 25 anos e tempo estimado de retorno (payback).</div>
+          <div className={styles.infoBullet}>✅ Potência ideal do sistema calculada para sua conta de R$ {valorConta}.</div>
+          <div className={styles.infoBullet}>✅ Análise comparativa de cenários para uma decisão financeira segura.</div>
+          <Form noValidate validated={validated} onSubmit={handleSubmit} className={`${styles.form} mt-4 pt-2`}>
             <Form.Group className={styles.formGroup} controlId="leadNome">
-              <Form.Label className={styles.formLabel}>Seu Nome Completo *</Form.Label>
+              <Form.Label className={styles.formLabel}>Seu Nome *</Form.Label>
               <Form.Control
                 type="text"
                 name="nome"
@@ -142,7 +136,7 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
             </Form.Group>
 
             <Form.Group className={styles.formGroup} controlId="leadWhatsapp">
-              <Form.Label className={styles.formLabel}>WhatsApp (para envio do gráfico e PDF) *</Form.Label>
+              <Form.Label className={styles.formLabel}>WhatsApp *</Form.Label>
               <InputGroup className={styles.inputGroup} hasValidation>
                 <InputGroup.Text className={styles.inputGroupText}>📲</InputGroup.Text>
                 <Form.Control
@@ -163,7 +157,7 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
               </InputGroup>
             </Form.Group>
 
-            <Form.Group className={`${styles.formGroup} mb-4`} controlId="leadPrevisao">
+            <Form.Group className={styles.formGroup} controlId="leadPrevisao">
               <Form.Label className={styles.formLabel}>Qual sua previsão para instalar? *</Form.Label>
               <Form.Select
                 name="previsaoInstalacao"
@@ -182,16 +176,16 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
             <Button
               type="submit"
               size="lg"
-              className={styles.submitButton}
+              className={`${styles.submitButton} mt-4 pt-2`}
               disabled={isSubmitting}
               style={{ textTransform: 'capitalize' }}
             >
-              Ver Relatório{/* {isSubmitting ? 'Enviando...' : '📊 Ver Relatório'} */}
+              Ver meu relatório
             </Button>
 
             {submitStatus === 'success' && (
               <div className={`${styles.statusMessage} ${styles.statusSuccess}`}>
-                E-mail enviado com sucesso. Seu relatório será preparado em breve.
+                Seu relatório de investimento será preparado em breve.
               </div>
             )}
 
@@ -202,7 +196,7 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
             )}
           </Form>
 
-          <div className={styles.securityNote}>
+          <div className={`${styles.securityNote} mt-4 pt-2`}>
             <small>🔒 Seus dados estão seguros. Não enviamos spam.</small>
           </div>
         </div>
