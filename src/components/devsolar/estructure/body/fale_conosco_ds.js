@@ -160,7 +160,10 @@ const ContactSectionDS = ({
     setUserMessage(messageBody);
     trackEvent('specialist_form_submit_success', {
       location: trackingContext,
+      section: 'main',
       form_type: 'specialist',
+      status: 'success',
+      label: 'specialist_form_submit',
     });
     trackWhatsAppClick(trackingContext, 'specialist_form_submit');
     handleInitiateSend();

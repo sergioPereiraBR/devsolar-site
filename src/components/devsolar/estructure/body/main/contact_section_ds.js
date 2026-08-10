@@ -160,7 +160,9 @@ function ContactSectionDS() {
         e.currentTarget.querySelector(':invalid')?.id || 'unknown_field';
       trackEvent('contact_form_validation_error', {
         location: 'contact_section',
+        section: 'main',
         form_type: 'contact',
+        status: 'error',
         reason: 'invalid_required_field',
         failed_field: invalidField,
       });
@@ -197,7 +199,10 @@ function ContactSectionDS() {
         setSubmitStatus('success');
         trackEvent('contact_form_submit_success', {
           location: 'contact_section',
+          section: 'main',
           form_type: 'contact',
+          status: 'success',
+          label: 'contact_form_submit',
         });
         setFormData({
           firstName: '',

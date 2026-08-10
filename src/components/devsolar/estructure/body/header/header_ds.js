@@ -164,10 +164,13 @@ function HeaderDS() {
     setCalculando(false);
     if (!result.error) {
       trackEvent('calculator_result_generated', {
-        location: 'hero_section',
+        location: 'calculator_hero',
+        section: 'main',
         form_type: 'calculator',
         monthly_cost: numericCost,
         monthly_bill_range: getMonthlyBillRange(numericCost),
+        property_type: 'residential',
+        status: 'success',
         payback_years: result.payback,
       });
       setShowResultModal(true);

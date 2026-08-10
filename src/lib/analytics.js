@@ -168,6 +168,8 @@ export function trackWhatsAppClick(location, label = 'whatsapp_contact') {
     contact_channel: 'whatsapp',
     location,
     label,
+    section: 'main',
+    status: 'click',
   });
 }
 
