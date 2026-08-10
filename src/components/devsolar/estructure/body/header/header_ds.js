@@ -31,6 +31,14 @@ const FALE_CONOSCO_TAG_HERO = '#solNaEconomia';
 const FALE_CONOSCO_TAG_RESULT = '#calculaEconomia'; // Tag base para resultado
 const MIN_MONTHLY_COST = 400;
 
+function getMonthlyBillRange(monthlyCost) {
+  if (monthlyCost < 500) return '0_499';
+  if (monthlyCost < 1000) return '500_999';
+  if (monthlyCost < 2000) return '1000_1999';
+  if (monthlyCost < 3000) return '2000_2999';
+  return '3000_plus';
+}
+
 // --- Componente Principal ---
 function HeaderDS() {
   const [showResultModal, setShowResultModal] = useState(false);
@@ -115,7 +123,9 @@ function HeaderDS() {
     const numericCost = syncMonthlyValueToState();
     trackEvent('calculator_submit_attempt', {
       location: 'hero_section',
+      form_type: 'calculator',
       monthly_cost: numericCost,
+      monthly_bill_range: getMonthlyBillRange(numericCost),
     });
 
     if (numericCost < MIN_MONTHLY_COST || numericCost > 999999999.99) {
@@ -131,9 +141,12 @@ function HeaderDS() {
 
       trackEvent('calculator_validation_error', {
         location: 'hero_section',
+        form_type: 'calculator',
         reason:
           numericCost < MIN_MONTHLY_COST ? 'below_minimum' : 'out_of_range',
+        failed_field: 'monthly_cost',
         monthly_cost: numericCost,
+        monthly_bill_range: getMonthlyBillRange(numericCost),
       });
       return;
     } // Não calcula se o valor for inválido
@@ -152,14 +165,19 @@ function HeaderDS() {
     if (!result.error) {
       trackEvent('calculator_result_generated', {
         location: 'hero_section',
+        form_type: 'calculator',
         monthly_cost: numericCost,
+        monthly_bill_range: getMonthlyBillRange(numericCost),
         payback_years: result.payback,
       });
       setShowResultModal(true);
     } else {
       trackEvent('calculator_result_error', {
         location: 'hero_section',
+        form_type: 'calculator',
         reason: result.error,
+        failed_field: 'monthly_cost',
+        monthly_bill_range: getMonthlyBillRange(numericCost),
       });
       // Poderia mostrar um alerta de erro aqui
       //console.error("Erro no cálculo:", result.error);

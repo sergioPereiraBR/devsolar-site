@@ -28,6 +28,19 @@ function queueGtagCall(command, ...args) {
   }
 }
 
+function sanitizeParams(params = {}) {
+  if (!params || typeof params !== 'object') return {};
+
+  return Object.entries(params).reduce((acc, [key, value]) => {
+    if (value === undefined || value === null || value === '') {
+      return acc;
+    }
+
+    acc[key] = value;
+    return acc;
+  }, {});
+}
+
 function normalizeText(value) {
   return String(value || '')
     .replace(/\s+/g, ' ')
@@ -147,7 +160,7 @@ function initGlobalClickTracking() {
 export function trackEvent(eventName, params = {}) {
   if (!eventName) return;
 
-  queueGtagCall('event', eventName, params);
+  queueGtagCall('event', eventName, sanitizeParams(params));
 }
 
 export function trackWhatsAppClick(location, label = 'whatsapp_contact') {

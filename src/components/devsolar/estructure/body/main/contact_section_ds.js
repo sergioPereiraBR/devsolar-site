@@ -151,7 +151,23 @@ function ContactSectionDS() {
     e.preventDefault(); // Previne envio nativo
     trackEvent('contact_form_submit_attempt', {
       location: 'contact_section',
+      form_type: 'contact',
     });
+
+    const isFormValid = e.currentTarget.checkValidity();
+    if (!isFormValid) {
+      const invalidField =
+        e.currentTarget.querySelector(':invalid')?.id || 'unknown_field';
+      trackEvent('contact_form_validation_error', {
+        location: 'contact_section',
+        form_type: 'contact',
+        reason: 'invalid_required_field',
+        failed_field: invalidField,
+      });
+      e.currentTarget.reportValidity();
+      setIsSubmitting(false);
+      return;
+    }
     setIsSubmitting(true);
     setSubmitStatus(null);
 
@@ -181,6 +197,7 @@ function ContactSectionDS() {
         setSubmitStatus('success');
         trackEvent('contact_form_submit_success', {
           location: 'contact_section',
+          form_type: 'contact',
         });
         setFormData({
           firstName: '',
@@ -253,6 +270,8 @@ function ContactSectionDS() {
                       trackEvent('contact_click', {
                         contact_channel: 'phone',
                         location: 'contact_section',
+                        label: 'contact_phone',
+                        form_type: 'contact',
                       });
                       return;
                     }
@@ -261,6 +280,8 @@ function ContactSectionDS() {
                       trackEvent('contact_click', {
                         contact_channel: 'email',
                         location: 'contact_section',
+                        label: 'contact_email',
+                        form_type: 'contact',
                       });
                     }
                   }}
