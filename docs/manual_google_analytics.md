@@ -212,7 +212,29 @@ Exemplos:
   - success, error, attempt
 
 - error_message
+
   - mensagem do erro de validação
+
+- failed_field
+
+  - campo que causou a falha de validação, como phone_number ou email
+
+- monthly_bill_range
+
+  - faixa de valor da conta de luz, útil para entender a qualificação do lead sem expor dados pessoais
+
+- property_type
+  - tipo de imóvel, como residential, commercial ou condominium
+
+Exemplo recomendado para a calculadora:
+
+```js
+trackEvent('calculator_result_generated', {
+  monthly_bill_range: '500_1000',
+  property_type: 'residential',
+  location: 'calculator_hero',
+});
+```
 
 ---
 
@@ -238,6 +260,9 @@ Recomendação para este projeto:
 - path
 - form_type
 - status
+- failed_field
+- monthly_bill_range
+- property_type
 
 ### 7.3. Defina corretamente o tipo de dimensão
 
@@ -246,6 +271,25 @@ Use:
 - Dimension scope: Event
 
 Isso faz com que a dimensão seja aplicada ao evento enviado.
+
+### 7.4. Marque eventos principais para CRO
+
+Para maximizar a análise de conversão, configure no GA4 os eventos de sucesso como Eventos Principais (Key Events). Isso permite medir melhor a taxa de conversão e entender quais passos do funil têm maior impacto.
+
+Eventos recomendados para marcar como principais:
+
+- contact_form_submit_success
+- specialist_form_submit_success
+- calculator_result_generated
+- contact_click quando contact_channel for whatsapp
+
+Ação prática no GA4:
+
+1. Acesse Admin > Events.
+2. Localize os eventos acima.
+3. Marque-os como Eventos Principais.
+
+Esses eventos devem ser tratados como conversões prioritárias, principalmente em campanhas de captação de leads e contatos qualificados.
 
 ---
 
@@ -337,6 +381,9 @@ Use para ignorar elementos que não devem gerar rastreamento.
 - Não envie dados pessoais sensíveis.
 - Use eventos para ações importantes, não para cada detalhe de interface.
 - Teste sempre em ambiente de desenvolvimento antes de publicar.
+- Priorize o rastreamento do funil de conversão: attempt → success/error.
+- Use atributos data-analytics-\* para identificar CTAs, blocos e seções que geram mais contatos.
+- Acompanhe fricção de conversão com eventos de erro e detalhes de campo falho.
 
 ---
 

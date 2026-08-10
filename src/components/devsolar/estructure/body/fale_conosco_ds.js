@@ -117,18 +117,26 @@ const ContactSectionDS = ({
 
     trackEvent('specialist_form_submit_attempt', {
       location: trackingContext,
+      form_type: 'specialist',
     });
 
     // Campos obrigatórios
-    if (
-      !formData.firstName ||
-      !formData.cep ||
-      !formData.roofType ||
-      (formData.roofType === 'Outro' && !formData.otherRoof)
-    ) {
+    const missingField = !formData.firstName
+      ? 'firstName'
+      : !formData.cep
+        ? 'cep'
+        : !formData.roofType
+          ? 'roofType'
+          : formData.roofType === 'Outro' && !formData.otherRoof
+            ? 'otherRoof'
+            : null;
+
+    if (missingField) {
       trackEvent('specialist_form_validation_error', {
         location: trackingContext,
+        form_type: 'specialist',
         reason: 'required_fields_missing',
+        failed_field: missingField,
       });
       // Idealmente, mostre um erro mais específico ou destaque os campos
       alert('Preencha todos os campos obrigatórios.');
@@ -150,6 +158,10 @@ const ContactSectionDS = ({
     const encodedMessage = encodeURIComponent(messageBody);
 
     setUserMessage(messageBody);
+    trackEvent('specialist_form_submit_success', {
+      location: trackingContext,
+      form_type: 'specialist',
+    });
     trackWhatsAppClick(trackingContext, 'specialist_form_submit');
     handleInitiateSend();
     closeForm();
