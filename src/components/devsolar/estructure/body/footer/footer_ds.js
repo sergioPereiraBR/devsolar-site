@@ -214,6 +214,10 @@ function FooterDS() {
                       className={styles.contactIcon}
                       aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
                     />
+                    {/* Desativa a ofuscação do Cloudflare no HTML renderizado */}
+                    <span
+                      dangerouslySetInnerHTML={{ __html: '<!--email_off-->' }}
+                    />
                     <a
                       href={`mailto:${CONTACT_EMAIL}`}
                       aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
@@ -227,6 +231,10 @@ function FooterDS() {
                       {' '}
                       {CONTACT_EMAIL}
                     </a>
+                    {/* Ativa a ofuscação do Cloudflare no HTML renderizado */}
+                    <span
+                      dangerouslySetInnerHTML={{ __html: '<!--/email_off-->' }}
+                    />
                   </div>
                   {/* Endereço Consolidado */}
                   <div

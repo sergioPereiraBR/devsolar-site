@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
@@ -263,34 +263,46 @@ function ContactSectionDS() {
             </h3>
             <div className="mb-4 mt-5 pt-3" suppressHydrationWarning>
               {contactInfoData.map((item) => (
-                <ContactInfoItem
-                  key={item.id}
-                  {...item}
-                  tabEntry={item.id === 'phone'}
-                  isHydrated={isHydrated}
-                  onClick={() => {
-                    if (!item.link) return;
+                <Fragment key={item.id}>
+                  <ContactInfoItem
+                    key={item.id}
+                    {...item}
+                    tabEntry={item.id === 'phone'}
+                    isHydrated={isHydrated}
+                    onClick={() => {
+                      if (!item.link) return;
 
-                    if (item.link.startsWith('tel:')) {
-                      trackEvent('contact_click', {
-                        contact_channel: 'phone',
-                        location: 'contact_section',
-                        label: 'contact_phone',
-                        form_type: 'contact',
-                      });
-                      return;
-                    }
+                      if (item.link.startsWith('tel:')) {
+                        trackEvent('contact_click', {
+                          contact_channel: 'phone',
+                          location: 'contact_section',
+                          label: 'contact_phone',
+                          form_type: 'contact',
+                        });
+                        return;
+                      }
 
-                    if (item.link.startsWith('mailto:')) {
-                      trackEvent('contact_click', {
-                        contact_channel: 'email',
-                        location: 'contact_section',
-                        label: 'contact_email',
-                        form_type: 'contact',
-                      });
-                    }
-                  }}
-                />
+                      if (item.link.startsWith('mailto:')) {
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: '<!--email_off-->',
+                          }}
+                        />;
+                        trackEvent('contact_click', {
+                          contact_channel: 'email',
+                          location: 'contact_section',
+                          label: 'contact_email',
+                          form_type: 'contact',
+                        });
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: '<!--/email_off-->',
+                          }}
+                        />;
+                      }
+                    }}
+                  />
+                </Fragment>
               ))}
             </div>
 

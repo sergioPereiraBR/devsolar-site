@@ -160,7 +160,101 @@ Esse evento é disparado para:
 
 Para facilitar a análise, o ideal é padronizar os parâmetros enviados com cada evento.
 
-### 6.1. Parâmetros genéricos
+### 6.1. Tabela de variáveis de rastreamento
+
+| Variável             | Descrição                                                                                   | Fase no funil            |
+| -------------------- | ------------------------------------------------------------------------------------------- | ------------------------ |
+| `location`           | Identifica onde a interação ocorreu, como hero, footer, contact_section ou calculator_hero. | Atração / Engajamento    |
+| `section`            | Indica a seção do site em que o evento aconteceu.                                           | Atração / Engajamento    |
+| `label`              | Rótulo do CTA ou ação, útil para identificar botões e links.                                | Consideração / Conversão |
+| `path`               | Caminho da página atual no navegador.                                                       | Atração / Análise        |
+| `form_type`          | Tipo de formulário envolvido, como contact, specialist ou calculator.                       | Consideração / Conversão |
+| `status`             | Estado do evento: attempt, success, error ou click.                                         | Conversão / Atrito       |
+| `failed_field`       | Campo que gerou erro ou atrito na validação.                                                | Atrito / Queda           |
+| `monthly_bill_range` | Faixa estimada de valor da conta de luz para qualificar o lead sem expor dados pessoais.    | Qualificação             |
+| `property_type`      | Tipo de imóvel associado ao lead, como residential, commercial ou condominium.              | Qualificação             |
+| `contact_channel`    | Canal de contato utilizado, como whatsapp, phone ou email.                                  | Conversão                |
+| `monthly_cost`       | Valor mensal usado na calculadora.                                                          | Qualificação             |
+| `payback_years`      | Tempo estimado de retorno do investimento.                                                  | Qualificação / Conversão |
+| `reason`             | Motivo do erro ou falha de validação.                                                       | Atrito / Queda           |
+| `target`             | Destino do clique de navegação.                                                             | Engajamento              |
+| `href`               | URL alvo do elemento clicado.                                                               | Engajamento / Conversão  |
+| `id`                 | Identificador do elemento HTML.                                                             | Engajamento              |
+| `class_name`         | Classe CSS do elemento, útil para análise técnica.                                          | Engajamento              |
+| `element`            | Tipo de elemento clicado (button, a, input etc.).                                           | Engajamento              |
+| `message_length`     | Tamanho da mensagem enviada em fluxos de FAQ ou WhatsApp.                                   | Engajamento              |
+| `faq_id`             | Identificador da pergunta do FAQ aberta.                                                    | Consideração             |
+| `faq_question`       | Texto da pergunta do FAQ.                                                                   | Consideração             |
+| `network`            | Rede social ou canal externo clicado.                                                       | Engajamento              |
+| `destination`        | URL de destino do clique externo.                                                           | Engajamento              |
+| `modal_name`         | Nome do modal aberto.                                                                       | Consideração / Conversão |
+| `opened`             | Estado de abertura/fechamento de um componente.                                             | Engajamento              |
+
+### 6.2. Funil de conversão recomendado
+
+A estrutura ideal para análise de CRO é seguir o fluxo abaixo:
+
+1. Atração / Engajamento
+
+   - Eventos de clique, navegação, abertura de modal e interação com CTAs.
+   - Exemplo: `user_click`, `navigation_click`, `modal_open`.
+
+2. Consideração
+
+   - Interações que mostram interesse, como abrir FAQ, abrir modal de contato e iniciar formulários.
+   - Exemplo: `faq_item_open`, `specialist_form_submit_attempt`, `contact_form_submit_attempt`.
+
+3. Conversão
+
+   - Ações com maior intenção de lead, como envio de formulário e clique em canais diretos.
+   - Exemplo: `contact_form_submit_success`, `specialist_form_submit_success`, `contact_click`.
+
+4. Qualificação / Atrito
+   - Eventos que ajudam a entender se o lead está bem qualificado ou se há barreiras de conversão.
+   - Exemplo: `calculator_result_generated`, `calculator_validation_error`, `contact_form_validation_error`.
+
+Essa estrutura permite identificar não só se a pessoa converteu, mas também onde ela abandonou ou teve atrito.
+
+### 6.3. Parâmetros específicos por fluxo
+
+Exemplos:
+
+- contact_channel
+
+  - whatsapp, telefone, email
+
+- form_type
+
+  - contact, specialist, newsletter
+
+- status
+
+  - success, error, attempt
+
+- error_message
+
+  - mensagem do erro de validação
+
+- failed_field
+
+  - campo que causou a falha de validação, como phone_number ou email
+
+- monthly_bill_range
+
+  - faixa de valor da conta de luz, útil para entender a qualificação do lead sem expor dados pessoais
+
+- property_type
+  - tipo de imóvel, como residential, commercial ou condominium
+
+Exemplo recomendado para a calculadora:
+
+```js
+trackEvent('calculator_result_generated', {
+  monthly_bill_range: '500_1000',
+  property_type: 'residential',
+  location: 'calculator_hero',
+});
+```
 
 Os mais úteis para o projeto são:
 
