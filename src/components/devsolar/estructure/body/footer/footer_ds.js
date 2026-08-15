@@ -320,7 +320,14 @@ function FooterDS() {
                   key={social.id}
                   href={social.url}
                   target="_blank"
-                  rel="noopener noreferrer nofollow"
+                  rel={
+                    social.url.startsWith('http') ? 'noopener noreferrer' : ''
+                  }
+                  rel={
+                    social.url.includes('facebook.com')
+                      ? 'noopener noreferrer nofollow'
+                      : 'noopener noreferrer'
+                  }
                   className={styles.socialIconLinkFooter} // Classe específica do footer
                   aria-label={`Visitar ${COMPANY_NAME} no ${social.name}: ${social.url}`}
                   onClick={() => {
@@ -444,6 +451,7 @@ function FooterDS() {
       {/* Botão flutuante do WhatsApp com next/image */}
       <Link
         href={WHATSAPP_FLOAT_URL}
+        rel="nofollow"
         target="_blank"
         rel="noopener noreferrer nofollow"
         className={styles.whatsappBtn} // Classe do CSS Module
