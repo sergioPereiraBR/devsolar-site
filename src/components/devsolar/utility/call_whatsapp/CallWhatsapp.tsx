@@ -37,7 +37,7 @@ export default function CallWhatsapp({
       );
     } else {
       window.open(
-        `https://wa.me/${phone}?text=${encodedMessage}`,
+        `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`,
         '_blank',
         'noopener,noreferrer',
       );

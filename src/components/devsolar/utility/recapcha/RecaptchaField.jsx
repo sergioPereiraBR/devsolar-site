@@ -56,7 +56,7 @@ const RecaptchaField = forwardRef(function RecaptchaField(
         <div className={containerClassName}>
             {shouldLoad && (
                 <Script
-                    src="https://www.google.com/recaptcha/api.js"
+                    src="https://www.google.com/recaptcha/api.js/"
                     strategy="lazyOnload"
                     async
                     defer
