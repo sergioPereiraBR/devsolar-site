@@ -117,7 +117,7 @@ export default function LeadAccessModal({ show, onHide }) {
             variant="success"
             size="lg"
             className="w-100 py-3 shadow"
-            href={`https://wa.me/55${lead.telefone.replace(/\D/g, '')}`}
+            href={`https://api.whatsapp.com/send?phone=55${lead.telefone.replace(/\D/g, '')}`}
             target="_blank"
           >
             FALAR NO WHATSAPP

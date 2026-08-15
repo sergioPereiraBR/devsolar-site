@@ -158,7 +158,7 @@ function WhatsAppSender({
       window.location.href = preparedUrls.app; // Tenta protocolo
     } else {
       //console.log("Usuário escolheu Navegador (Desktop). Abrindo URL:", preparedUrls.web);
-      window.open(preparedUrls.web, '_blank', 'noopener,noreferrer'); // Abre wa.me
+      window.open(preparedUrls.web, '_blank', 'noopener,noreferrer'); // Abre api.whatsapp
     }
     onHide(); // Chama onHide após a escolha e tentativa
   };

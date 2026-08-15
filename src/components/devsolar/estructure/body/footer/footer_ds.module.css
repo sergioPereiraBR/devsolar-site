@@ -188,7 +188,7 @@
     background-color: #ff0000;
 }
 
-.socialIconLinkFooter[href*="wa.me"]:hover {
+.socialIconLinkFooter[href*="api.whatsapp"]:hover {
     background-color: #25d366;
 }
 
