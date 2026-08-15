@@ -400,7 +400,7 @@ function FooterDS() {
             © {CURRENT_YEAR} {COMPANY_NAME} - Todos os direitos reservados.{' '}
             {/* Links legais agora apenas aqui (removidos da coluna 3 ou vice-versa) */}
             <Link
-              href="/politica-de-privacidade"
+              href="/politica-de-privacidade/"
               onClick={() =>
                 trackEvent('navigation_click', {
                   location: 'footer_legal',
@@ -412,7 +412,7 @@ function FooterDS() {
             </Link>{' '}
             |{' '}
             <Link
-              href="/termos-de-uso"
+              href="/termos-de-uso/"
               onClick={() =>
                 trackEvent('navigation_click', {
                   location: 'footer_legal',

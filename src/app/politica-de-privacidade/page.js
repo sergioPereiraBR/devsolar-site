@@ -4,6 +4,9 @@ export const metadata = {
   title: 'Política de Privacidade',
   description:
     'Conheça como a DEV Solar coleta, utiliza e protege seus dados pessoais em nosso site.',
+  alternates: {
+    canonical: 'https://www.devsolar.com.br/politica-de-privacidade/',
+  },
 };
 
 const sections = [
