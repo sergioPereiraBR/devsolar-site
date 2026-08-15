@@ -319,7 +319,7 @@ function ContactSectionDS() {
                   href={link.url}
                   target={link.url.startsWith('http') ? '_blank' : '_self'}
                   rel={
-                    social.url.includes('api.whatsapp')
+                    link.url.includes('api.whatsapp')
                       ? 'noopener noreferrer nofollow'
                       : 'noopener noreferrer'
                   }
