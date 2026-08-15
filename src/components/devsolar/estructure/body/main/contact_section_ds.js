@@ -264,6 +264,12 @@ function ContactSectionDS() {
             <div className="mb-4 mt-5 pt-3" suppressHydrationWarning>
               {contactInfoData.map((item) => (
                 <Fragment key={item.id}>
+                  {/* Se for e-mail, envolve o componente com os comentários da Cloudflare */}
+                  {item.id === 'email' && (
+                    <span
+                      dangerouslySetInnerHTML={{ __html: '<!--email_off-->' }}
+                    />
+                  )}
                   <ContactInfoItem
                     key={item.id}
                     {...item}
@@ -283,25 +289,20 @@ function ContactSectionDS() {
                       }
 
                       if (item.link.startsWith('mailto:')) {
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: '<!--email_off-->',
-                          }}
-                        />;
                         trackEvent('contact_click', {
                           contact_channel: 'email',
                           location: 'contact_section',
                           label: 'contact_email',
                           form_type: 'contact',
                         });
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: '<!--/email_off-->',
-                          }}
-                        />;
                       }
                     }}
                   />
+                  {item.id === 'email' && (
+                    <span
+                      dangerouslySetInnerHTML={{ __html: '<!--/email_off-->' }}
+                    />
+                  )}
                 </Fragment>
               ))}
             </div>
