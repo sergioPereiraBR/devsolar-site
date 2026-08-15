@@ -313,6 +313,7 @@ export default function SuccessStoriesCarouselClient() {
             playsInline
             preload="metadata"
             className="w-100"
+            suppressHydrationWarning
             style={{
               maxHeight: '75vh',
               backgroundColor: 'var(--light)',
