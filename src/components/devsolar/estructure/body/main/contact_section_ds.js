@@ -317,11 +317,11 @@ function ContactSectionDS() {
                   href={link.url}
                   target={link.url.startsWith('http') ? '_blank' : '_self'}
                   rel={link.url.startsWith('http') ? 'noopener noreferrer' : ''}
-                  rel={
-                    link.url.includes('facebook.com')
-                      ? 'noopener noreferrer nofollow'
-                      : 'nofollow'
-                  }
+                  // rel={
+                  //   link.url.includes('facebook.com')
+                  //     ? 'noopener noreferrer nofollow'
+                  //     : 'nofollow'
+                  // }
                   className={styles.socialIconLink}
                   aria-label={`Visite nosso ${link.name}: ${link.url}`}
                   onClick={() => {

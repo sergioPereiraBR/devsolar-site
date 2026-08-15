@@ -17,7 +17,7 @@ export const CURRENT_YEAR = new Date().getFullYear();
 export const LOGO_URL = LogoDevBranco.src; // Logo para o rodapé
 export const WHATSAPP_FLOAT_ICON_URL = '/images/WhatsApp.svg'; //"https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"; //'/icons/whatsapp-white.svg'; // Ícone branco para botão flutuante
 export const DEVELOPER_NAME = 'Pereira Dev';
-export const DEVELOPER_URL = 'https://www.linkedin.com/in/sergiopereira-br/'; // https://github.com/sergioPereiraBR
+export const DEVELOPER_URL = 'https://www.linkedin.com/in/sergiopereira-br'; // https://github.com/sergioPereiraBR
 
 // Links de Navegação Principal do Rodapé
 export const navLinksData = [
@@ -37,10 +37,10 @@ export const navLinksData = [
 // Links Úteis
 export const usefulLinksData = [
   { id: 'faq', href: '/#faq', text: 'Perguntas Frequentes' },
-  { id: 'terms', href: '/termos-de-uso/', text: 'Termos de Uso' }, // Exemplo página interna
+  { id: 'terms', href: '/termos-de-uso', text: 'Termos de Uso' }, // Exemplo página interna
   {
     id: 'privacy',
-    href: '/politica-de-privacidade/',
+    href: '/politica-de-privacidade',
     text: 'Política de Privacidade',
   }, // Exemplo página interna
   // { id: 'terms', href: '/termos-de-uso', text: 'Termos de Uso' }, // Exemplo página interna
@@ -56,21 +56,21 @@ export const socialLinksData = [
   {
     id: 'facebook',
     name: 'Facebook',
-    url: 'https://www.facebook.com/profile.php?id=61562778810789/',
+    url: 'https://www.facebook.com/profile.php?id=61562778810789',
     iconClass: 'fab fa-facebook-f',
     accessibility: 'Acesse nossa página no Facebook',
   },
   {
     id: 'instagram',
     name: 'Instagram',
-    url: 'https://www.instagram.com/devsolar_/',
+    url: 'https://www.instagram.com/devsolar_',
     iconClass: 'fab fa-instagram',
     accessibility: 'Acesse nosso perfil no Instagram',
   },
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica/',
+    url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica',
     iconClass: 'fab fa-linkedin-in',
     accessibility: 'Acesse nossa página no LinkedIn',
   },
