@@ -286,6 +286,7 @@ function ContactSectionDS() {
                           form_type: 'contact',
                         });
                         window.location.href = item.link;
+                        window.location.rel = 'noopener noreferrer,nofollow';
                         return;
                       }
 
@@ -297,6 +298,7 @@ function ContactSectionDS() {
                           form_type: 'contact',
                         });
                         window.location.href = item.link;
+                        window.location.rel = 'noopener noreferrer,nofollow';
                       }
                     }}
                   />
@@ -316,12 +318,11 @@ function ContactSectionDS() {
                   key={link.id}
                   href={link.url}
                   target={link.url.startsWith('http') ? '_blank' : '_self'}
-                  rel={link.url.startsWith('http') ? 'noopener noreferrer' : ''}
-                  // rel={
-                  //   link.url.includes('facebook.com')
-                  //     ? 'noopener noreferrer nofollow'
-                  //     : 'nofollow'
-                  // }
+                  rel={
+                    social.url.includes('api.whatsapp')
+                      ? 'noopener noreferrer nofollow'
+                      : 'noopener noreferrer'
+                  }
                   className={styles.socialIconLink}
                   aria-label={`Visite nosso ${link.name}: ${link.url}`}
                   onClick={() => {

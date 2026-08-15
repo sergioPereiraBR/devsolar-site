@@ -321,13 +321,10 @@ function FooterDS() {
                   href={social.url}
                   target="_blank"
                   rel={
-                    social.url.startsWith('http') ? 'noopener noreferrer' : ''
+                    social.url.includes('api.whatsapp')
+                      ? 'noopener noreferrer nofollow'
+                      : 'noopener noreferrer'
                   }
-                  // rel={
-                  //   social.url.includes('facebook.com')
-                  //     ? 'noopener noreferrer nofollow'
-                  //     : 'noopener noreferrer'
-                  // }
                   className={styles.socialIconLinkFooter} // Classe específica do footer
                   aria-label={`Visitar ${COMPANY_NAME} no ${social.name}: ${social.url}`}
                   onClick={() => {
