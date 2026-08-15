@@ -272,7 +272,6 @@ function ContactSectionDS() {
                   )}
 
                   <ContactInfoItem
-                    key={item.id}
                     {...item}
                     tabEntry={item.id === 'phone'}
                     isHydrated={isHydrated}
