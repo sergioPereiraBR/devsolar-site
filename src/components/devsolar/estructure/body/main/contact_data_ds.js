@@ -39,7 +39,7 @@ export const socialLinksData = [
   {
     id: 'facebook',
     name: 'Facebook',
-    url: 'https://www.facebook.com/profile.php?id=61562778810789',
+    url: 'https://www.facebook.com/profile.php?id=61562778810789/',
     iconClass: 'fab fa-facebook-f',
     accessibility: 'Acesse nossa página no Facebook',
   },
@@ -53,7 +53,7 @@ export const socialLinksData = [
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica/about/',
+    url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica/',
     iconClass: 'fab fa-linkedin-in',
     accessibility: 'Acesse nossa página no LinkedIn',
   },
@@ -62,7 +62,7 @@ export const socialLinksData = [
   {
     id: 'whatsapp',
     name: 'WhatsApp',
-    url: 'https://wa.me/5521999677722?text=Olá!%20Gostaria%20de%20mais%20informações',
+    url: 'https://api.whatsapp.com/send?phone=5521999677722&text=Olá!%20Gostaria%20de%20mais%20informações/',
     iconClass: 'fab fa-whatsapp',
     accessibility: 'Entre em contato conosco via WhatsApp',
   },
