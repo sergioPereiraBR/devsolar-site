@@ -368,7 +368,7 @@ function HeaderDS() {
                       <Button
                         variant="light"
                         as="a"
-                        href="https://wa.me/5521999677722"
+                        href="https://api.whatsapp.com/send?phone=5521999677722"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`btn ${styles.heroButtonSecondary}`}
@@ -413,7 +413,7 @@ function HeaderDS() {
                       Para contas abaixo de R$ 400,00, nosso time comercial pode
                       indicar a melhor solução para sua conta de luz.
                       <a
-                        href="https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
+                        href="https://api.whatsapp.com/send?phone=5521999677722&text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.validationHintLink}

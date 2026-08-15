@@ -324,7 +324,7 @@ function FooterDS() {
                   className={styles.socialIconLinkFooter} // Classe específica do footer
                   aria-label={`Visitar ${COMPANY_NAME} no ${social.name}: ${social.url}`}
                   onClick={() => {
-                    if (social.url.includes('wa.me')) {
+                    if (social.url.includes('api.whatsapp')) {
                       trackWhatsAppClick('footer_social');
                       return;
                     }

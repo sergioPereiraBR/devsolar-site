@@ -320,7 +320,7 @@ function ContactSectionDS() {
                   className={styles.socialIconLink}
                   aria-label={`Visite nosso ${link.name}: ${link.url}`}
                   onClick={() => {
-                    if (link.url.includes('wa.me')) {
+                    if (link.url.includes('api.whatsapp')) {
                       trackWhatsAppClick(
                         'contact_section',
                         'contact_social_whatsapp',
