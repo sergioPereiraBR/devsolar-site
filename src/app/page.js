@@ -4,7 +4,8 @@ import HomePageClient from './page-client';
 export const metadata = {
   title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Sobrescreve o título padrão
   description:
-    'Economize até 85% na conta de luz com energia solar no RJ para casas, condomínios e empresas. Peça orçamento gratuito!', // Descrição específica
+    // 'Reduza até 85% da sua Conta de Luz no RJ com Energia Solar para casas, condomínios e empresas. Peça orçamento gratuito!', // Descrição específica
+    'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Simule sua economia agora!', // Descrição específica
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical para a homepage
     languages: {
@@ -18,7 +19,7 @@ export const metadata = {
   openGraph: {
     title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título OG específico
     description:
-      'Economize até 85% na conta de luz com energia solar no RJ para casas, condomínios e empresas. Peça orçamento gratuito!', // Descrição OG específica
+      'Reduza até 85% da sua Conta de Luz no RJ com Energia Solar para casas, condomínios e empresas. Peça orçamento gratuito!', // Descrição OG específica
     url: 'https://www.devsolar.com.br/', // URL OG específica
     siteName: 'DEV Solar',
     images: [
@@ -38,7 +39,7 @@ export const metadata = {
     // Pode sobrescrever twitter tags também se necessário
     title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro',
     description:
-      'Economize até 85% na conta de luz com energia solar no RJ para casas, condomínios e empresas. Peça orçamento gratuito.',
+      'Reduza até 85% da sua Conta de Luz no RJ com Energia Solar para casas, condomínios e empresas. Peça orçamento gratuito.',
     images: [
       'https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png',
     ],

@@ -4,6 +4,9 @@ export const metadata = {
   title: 'Termos de Uso',
   description:
     'Consulte os termos de uso do site da DEV Solar e as regras para uso de nossos serviços.',
+  alternates: {
+    canonical: 'https://www.devsolar.com.br/termos-de-uso/',
+  },
 };
 
 const sections = [

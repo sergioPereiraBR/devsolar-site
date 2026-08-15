@@ -28,7 +28,7 @@ export const metadata = {
     default: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título padrão (ex: homepage)
   },
   description:
-    'Reduza até 85% da sua Conta de Luz no Rio de Janeiro com o Sol. Proteja sua casa, condomínio ou empresa dos aumentos tarifários e valorize seu imóvel com investimento inteligente.', // Descrição padrão/base
+    'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Solicite um orçamento!', // Descrição padrão/base
   metadataBase: new URL('https://www.devsolar.com.br/'), // URL Base para metadados relativos
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical padrão (será sobrescrito nas páginas)
