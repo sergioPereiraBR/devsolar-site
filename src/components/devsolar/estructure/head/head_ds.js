@@ -4,8 +4,8 @@ function HeadDS() {
   return (
     <>
       <Script src="http://localhost:3000" />
-      <meta charset="UTF-8" />
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+      <meta charSet="UTF-8" />
+      <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8"></meta>
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -16,7 +16,7 @@ function HeadDS() {
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       {/* <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1.0" /> */}
       <title>DEV Solar - Energia Solar para Todos</title>
-      <link rel="canonical" href="https://www.devsolar.com.br" />
+      <link rel="canonical" href="https://www.devsolar.com.br/" />
       <meta name="robots" content="index,follow" />
       <meta
         name="description"
@@ -40,7 +40,7 @@ function HeadDS() {
         property="og:description"
         content="Transforme o Sol em Economia Real - Descubra quanto você pode economizar com energia solar em sua casa, empresa ou condomínio. Nossos sistemas garantem até 95% de redução na sua conta de luz. O FUTURO É SOLAR, junte-se a essa mudança."
       />
-      <meta property="og:url" content="https://www.devsolar.com.br" />
+      <meta property="og:url" content="https://www.devsolar.com.br/" />
       <meta property="og:updated_time" content="2021-05-01T15:00:00.000Z" />
       <meta
         property="article:modified_time"

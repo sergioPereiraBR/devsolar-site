@@ -25,7 +25,7 @@ export const devSolarSchema = {
       sameAs: [
         'https://www.facebook.com/profile.php?id=61562778810789',
         'https://www.instagram.com/devsolar_',
-        'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica/about/'
+        'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica'
       ],
       address: {
         '@type': 'PostalAddress',
