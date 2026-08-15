@@ -98,7 +98,7 @@ function WhatsAppSender({
       if (deviceType === 'Mobile' || deviceType === 'Tablet') {
         // TV removida por enquanto
         console.log(`${deviceType}: Tentando abrir app:`, urls.app);
-        window.open(`${urls.pho}`, '_blank', 'noopener,noreferrer');
+        window.open(`${urls.pho}`, '_blank', 'noopener,noreferrer,nofollow');
         // window.location.href = urls.app;
         // Pequeno delay antes de chamar onHide no mobile para dar tempo ao redirect
         setTimeout(onHide, 300);
@@ -113,7 +113,7 @@ function WhatsAppSender({
           setTimeout(onHide, 300); // Delay para dar tempo
         } else if (savedPreference === 'web') {
           //console.log("Desktop: Usando preferência salva 'web'.");
-          window.open(urls.web, '_blank', 'noopener,noreferrer'); // Abre web
+          window.open(urls.web, '_blank', 'noopener,noreferrer,nofollow'); // Abre web
           onHide();
         } else {
           // Nenhuma preferência salva, mostra o modal
@@ -124,7 +124,7 @@ function WhatsAppSender({
       } else {
         // Caso desconhecido ou TV/Console - talvez fallback para web?
         //console.log(`Tipo de dispositivo ${deviceType} não tratado ou desconhecido, usando fallback web.`);
-        window.open(urls.web, '_blank', 'noopener,noreferrer');
+        window.open(urls.web, '_blank', 'noopener,noreferrer,nofollow');
         onHide();
       }
     } else if (!show) {
@@ -158,7 +158,7 @@ function WhatsAppSender({
       window.location.href = preparedUrls.app; // Tenta protocolo
     } else {
       //console.log("Usuário escolheu Navegador (Desktop). Abrindo URL:", preparedUrls.web);
-      window.open(preparedUrls.web, '_blank', 'noopener,noreferrer'); // Abre api.whatsapp
+      window.open(preparedUrls.web, '_blank', 'noopener,noreferrer,nofollow'); // Abre api.whatsapp
     }
     onHide(); // Chama onHide após a escolha e tentativa
   };

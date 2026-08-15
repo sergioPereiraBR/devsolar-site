@@ -33,13 +33,13 @@ export default function CallWhatsapp({
       window.open(
         `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`,
         '_blank',
-        'noopener,noreferrer',
+        'noopener,noreferrer,nofollow',
       );
     } else {
       window.open(
         `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`,
         '_blank',
-        'noopener,noreferrer',
+        'noopener,noreferrer,nofollow',
       );
     }
   };
