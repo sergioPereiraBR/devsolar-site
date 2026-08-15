@@ -270,8 +270,8 @@ function ContactSectionDS() {
                       dangerouslySetInnerHTML={{ __html: '<!--email_off-->' }}
                     />
                   )}
+
                   <ContactInfoItem
-                    key={item.id}
                     {...item}
                     tabEntry={item.id === 'phone'}
                     isHydrated={isHydrated}
@@ -285,6 +285,7 @@ function ContactSectionDS() {
                           label: 'contact_phone',
                           form_type: 'contact',
                         });
+                        window.location.href = item.link;
                         return;
                       }
 
@@ -295,9 +296,11 @@ function ContactSectionDS() {
                           label: 'contact_email',
                           form_type: 'contact',
                         });
+                        window.location.href = item.link;
                       }
                     }}
                   />
+
                   {item.id === 'email' && (
                     <span
                       dangerouslySetInnerHTML={{ __html: '<!--/email_off-->' }}
