@@ -35,6 +35,11 @@ export const contactInfoData = [
   },
 ];
 
+const WHATSAPP_CONTACT_MESSAGE = 'Olá! Gostaria de mais informações.';
+const WHATSAPP_CONTACT_MESSAGE_ENCODED = encodeURIComponent(
+  WHATSAPP_CONTACT_MESSAGE,
+);
+
 export const socialLinksData = [
   {
     id: 'facebook',
@@ -62,7 +67,7 @@ export const socialLinksData = [
   {
     id: 'whatsapp',
     name: 'WhatsApp',
-    url: 'https://api.whatsapp.com/send?phone=5521999677722&text=Olá!%20Gostaria%20de%20mais%20informações/',
+    url: `https://api.whatsapp.com/send?phone=5521999677722&text=${WHATSAPP_CONTACT_MESSAGE_ENCODED}`,
     iconClass: 'fab fa-whatsapp',
     accessibility: 'Entre em contato conosco via WhatsApp',
   },

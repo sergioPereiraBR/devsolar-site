@@ -370,7 +370,7 @@ function HeaderDS() {
                         as="a"
                         href="https://api.whatsapp.com/send?phone=5521999677722"
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow"
                         className={`btn ${styles.heroButtonSecondary}`}
                         onClick={() => trackWhatsAppClick('hero_section')}
                       >
@@ -415,7 +415,7 @@ function HeaderDS() {
                       <a
                         href="https://api.whatsapp.com/send?phone=5521999677722&text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow"
                         className={styles.validationHintLink}
                         onClick={() => trackWhatsAppClick('hero_minimum_hint')}
                       >
@@ -436,9 +436,9 @@ function HeaderDS() {
                       Parcelas que se pagam com a própria economia de luz com
                       várias formas de financiamento e carência de até 120 dias.
                       <a
-                        href="https://api.whatsapp.com/send?phone=5521999677722&text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz./"
+                        href="https://api.whatsapp.com/send?phone=5521999677722&text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow"
                         className={styles.validationHintLink}
                         onClick={() => trackWhatsAppClick('hero_minimum_hint')}
                       >

@@ -15,6 +15,8 @@ const inter = Inter({ subsets: ['latin'], display: 'swap' });
 const isEnabled = true;
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID; // Substitua pelo seu ID do GA4
 const hasGaTrackingId = Boolean(GA_TRACKING_ID);
+const FACEBOOK_DOMAIN_VERIFICATION =
+  process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION || '';
 
 // --- Metadados Base ---
 // Estes serão aplicados a todas as páginas, mas podem ser sobrescritos
@@ -27,7 +29,7 @@ export const metadata = {
   },
   description:
     'Reduza até 85% da sua Conta de Luz no Rio de Janeiro com o Sol. Proteja sua casa, condomínio ou empresa dos aumentos tarifários e valorize seu imóvel com investimento inteligente.', // Descrição padrão/base
-  metadataBase: new URL('https://www.devsolar.com.br'), // URL Base para metadados relativos
+  metadataBase: new URL('https://www.devsolar.com.br/'), // URL Base para metadados relativos
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical padrão (será sobrescrito nas páginas)
   },
@@ -156,10 +158,10 @@ export default function RootLayout({ children }) {
       <head>
         {/* <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" /> */}
         {/* DNS Prefetch para recursos críticos */}
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com/" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com/" />
+        <link rel="preconnect" href="https://www.googletagmanager.com/" />
+        <link rel="preconnect" href="https://www.google-analytics.com/" />
         <link
           rel="preload"
           as="image"
@@ -287,10 +289,12 @@ export default function RootLayout({ children }) {
         </Script>
         {/* Tags que DEVEM estar no <head> e não são cobertas pela Metadata API */}
         {/* Ex: Fontes externas carregadas diretamente, scripts inline críticos (raro) */}
-        <meta
-          name="facebook-domain-verification"
-          content="nk6hini7dghzylggt85l67u1es1xwv"
-        />
+        {FACEBOOK_DOMAIN_VERIFICATION ? (
+          <meta
+            name="facebook-domain-verification"
+            content={FACEBOOK_DOMAIN_VERIFICATION}
+          />
+        ) : null}
       </head>
       <body
         className={inter.className}
@@ -353,7 +357,7 @@ export default function RootLayout({ children }) {
               <a
                 href="https://www.enable-javascript.com/pt/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
               >
                 habilite o JavaScript
               </a>{' '}

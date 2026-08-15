@@ -153,7 +153,7 @@ Visitei o site na seção dos benefícios e quero falar com especialista sobre e
                   <a
                     href={cite.link}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer nofollow"
                     className={styles.citationLink}
                     onClick={() =>
                       trackEvent('outbound_click', {

@@ -320,7 +320,7 @@ function FooterDS() {
                   key={social.id}
                   href={social.url}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className={styles.socialIconLinkFooter} // Classe específica do footer
                   aria-label={`Visitar ${COMPANY_NAME} no ${social.name}: ${social.url}`}
                   onClick={() => {
@@ -426,7 +426,7 @@ function FooterDS() {
             <a
               href={DEVELOPER_URL}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               onClick={() =>
                 trackEvent('outbound_click', {
                   location: 'footer',
@@ -445,7 +445,7 @@ function FooterDS() {
       <Link
         href={WHATSAPP_FLOAT_URL}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer nofollow"
         className={styles.whatsappBtn} // Classe do CSS Module
         aria-label="Atendimento via WhatsApp"
         title="Falar no WhatsApp"

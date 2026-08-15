@@ -87,7 +87,7 @@ const AtendimentoApp = () => {
         <a
           href={`https://api.whatsapp.com/send?phone=55${leadAtual.telefone}`}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer nofollow"
         >
           <button
             style={{
