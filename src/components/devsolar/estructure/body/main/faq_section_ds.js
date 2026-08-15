@@ -4,12 +4,12 @@
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import PersonaA from '@/assets/Camila_Albuquerque-Proprietária_Residencial.webp';
-import PersonaE from '@/assets/Eng_Ricardo_Alves-Gerente_de_Operações.webp';
-import LogoDevSolar from '@/assets/Especialista-DEV-Solar.webp';
-import PersonaD from '@/assets/Fernando_Souza-Produtor_Rural.webp';
-import PersonaC from '@/assets/Mariana_Freitas-Síndica_Profissional.webp';
-import PersonaB from '@/assets/Roberto_Mendes-Diretor_Comercial.webp';
+import PersonaA from '@/assets/camila-albuquerque-proprietaria-residencial.webp';
+import PersonaE from '@/assets/eng-ricardo-alves-gerente-de-operacoes.webp';
+import LogoDevSolar from '@/assets/especialista-dev-solar.webp';
+import PersonaD from '@/assets/fernando-souza-produtor-rural.webp';
+import PersonaC from '@/assets/mariana-freitas-sindica-profissional.webp';
+import PersonaB from '@/assets/roberto-mendes-diretor-comercial.webp';
 import { faAnglesDown, faComments } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Spinner } from 'react-bootstrap';

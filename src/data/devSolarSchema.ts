@@ -9,7 +9,7 @@ export const devSolarSchema = {
       name: 'DEV Solar',
       legalName: 'DEV Eficiência Energética Ltda.',
       alternateName: 'DEV Solar',
-      url: 'https://www.devsolar.com.br',
+      url: 'https://www.devsolar.com.br/',
       logo: 'https://www.devsolar.com.br/images/logo-devsolar-icon.png',
       image: 'https://www.devsolar.com.br/images/og-calculator-devsolar.png',
       telephone: '+55-21-99967-7722',
@@ -25,7 +25,8 @@ export const devSolarSchema = {
       sameAs: [
         'https://www.facebook.com/profile.php?id=61562778810789',
         'https://www.instagram.com/devsolar_',
-        'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica'
+        'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica',
+        'https://wa.me/5521999677722&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20energia%20solar',
       ],
       address: {
         '@type': 'PostalAddress',
