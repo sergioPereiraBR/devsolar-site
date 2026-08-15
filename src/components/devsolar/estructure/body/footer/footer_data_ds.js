@@ -47,6 +47,10 @@ export const usefulLinksData = [
   // { id: 'privacy', href: '/politica-de-privacidade', text: 'Política de Privacidade' }, // Exemplo página interna
 ];
 
+const WHATSAPP_MESSAGE =
+  'Olá! 👋\n\nVisitei o site da DEV Solar e gostaria de falar com um atendente.';
+const WHATSAPP_MESSAGE_ENCODED = encodeURIComponent(WHATSAPP_MESSAGE);
+
 // Links Sociais (mantendo FontAwesome por enquanto)
 export const socialLinksData = [
   {
@@ -74,13 +78,10 @@ export const socialLinksData = [
   {
     id: 'whatsapp',
     name: 'WhatsApp',
-    url: `https://api.whatsapp.com/send?phone=5521999677722&text=/${CONTACT_PHONE_RAW}?text=Olá!%20Gostaria%20de%20mais%20informações/`,
+    url: `https://api.whatsapp.com/send?phone=${CONTACT_PHONE_RAW}&text=${WHATSAPP_MESSAGE_ENCODED}`,
     iconClass: 'fab fa-whatsapp',
     accessibility: 'Entre em contato conosco via WhatsApp',
   },
 ];
-const WHATSAPP_MESSAGE = `Olá! 👋 
-
-Visitei o site da DEV Solar e gostaria de falar com um atendente.`;
 // Dados específicos do botão flutuante do WhatsApp
-export const WHATSAPP_FLOAT_URL = `https://api.whatsapp.com/send?phone=${CONTACT_PHONE_RAW}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}/`;
+export const WHATSAPP_FLOAT_URL = `https://api.whatsapp.com/send?phone=${CONTACT_PHONE_RAW}&text=${WHATSAPP_MESSAGE_ENCODED}`;

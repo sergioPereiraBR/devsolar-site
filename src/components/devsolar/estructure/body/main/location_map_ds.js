@@ -24,7 +24,7 @@ function LocationMap() {
         <a
           href="https://www.google.com/maps/dir/?api=1&destination=Av.+Jambeiro,+474+-+C+-+Vila+Valqueire,+Rio+de+Janeiro+-+RJ,+21330-300"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
           className={styles.directionsButton}
           data-tab-entry="true"
           onClick={() =>

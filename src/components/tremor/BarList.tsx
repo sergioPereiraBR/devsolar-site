@@ -113,7 +113,7 @@ function BarListInner<T>(
                       focusRing,
                     )}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer nofollow"
                     onClick={(event) => event.stopPropagation()}
                   >
                     {item.name}

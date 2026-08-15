@@ -344,7 +344,7 @@ function ContactSectionDS() {
               <a
                 href="https://www.google.com/search?q=dev+solar#lrd=0x9963a865267047:0xe012023a2b57908d,1"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className={styles.googleRatingBadge}
                 aria-label="Ver avaliações da DEV Solar no Google"
               >

@@ -89,9 +89,9 @@ function WhatsAppSender({
       const { encodedMessageApp, encodedMessageWeb } = messages;
 
       const urls = {
-        app: `whatsapp://send?phone=${phoneNumber}&text=${encodedMessageApp}/`,
-        web: `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessageWeb}/`,
-        pho: `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessageWeb}/`,
+        app: `whatsapp://send?phone=${phoneNumber}&text=${encodedMessageApp}`,
+        web: `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessageWeb}`,
+        pho: `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessageWeb}`,
       };
       setPreparedUrls(urls); // Guarda as URLs prontas
 

@@ -447,7 +447,7 @@ const ContactSectionDS = ({
                         href={`https://web.whatsapp.com/send?phone=${phone}&text=${messageWebWhastsapp}`}
                         aria-label="Enviar mensagem via WhatsApp"
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow"
                         onClick={() => {
                           trackWhatsAppClick(
                             trackingContext,
