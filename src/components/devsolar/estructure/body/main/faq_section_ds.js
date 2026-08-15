@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import PersonaA from '@/assets/camila-albuquerque-proprietaria-residencial.webp';
 import PersonaE from '@/assets/eng-ricardo-alves-gerente-de-operacoes.webp';
-import LogoDevSolar from '@/assets/Especialista-DEV-Solar.webp';
+import LogoDevSolar from '@/assets/especialista-dev-solar.webp';
 import PersonaD from '@/assets/fernando-souza-produtor-rural.webp';
 import PersonaC from '@/assets/mariana-freitas-sindica-profissional.webp';
 import PersonaB from '@/assets/roberto-mendes-diretor-comercial.webp';
