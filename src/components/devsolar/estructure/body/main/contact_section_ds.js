@@ -264,12 +264,12 @@ function ContactSectionDS() {
             <div className="mb-4 mt-5 pt-3" suppressHydrationWarning>
               {contactInfoData.map((item) => (
                 <Fragment key={item.id}>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: '<!--email_off-->',
-                    }}
-                  />
-                  ;
+                  {/* Se for e-mail, envolve o componente com os comentários da Cloudflare */}
+                  {item.id === 'email' && (
+                    <span
+                      dangerouslySetInnerHTML={{ __html: '<!--email_off-->' }}
+                    />
+                  )}
                   <ContactInfoItem
                     key={item.id}
                     {...item}
@@ -298,12 +298,11 @@ function ContactSectionDS() {
                       }
                     }}
                   />
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: '<!--/email_off-->',
-                    }}
-                  />
-                  ;
+                  {item.id === 'email' && (
+                    <span
+                      dangerouslySetInnerHTML={{ __html: '<!--/email_off-->' }}
+                    />
+                  )}
                 </Fragment>
               ))}
             </div>
