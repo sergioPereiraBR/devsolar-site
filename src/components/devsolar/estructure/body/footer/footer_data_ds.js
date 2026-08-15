@@ -37,10 +37,10 @@ export const navLinksData = [
 // Links Úteis
 export const usefulLinksData = [
   { id: 'faq', href: '/#faq', text: 'Perguntas Frequentes' },
-  { id: 'terms', href: '/termos-de-uso', text: 'Termos de Uso' }, // Exemplo página interna
+  { id: 'terms', href: '/termos-de-uso/', text: 'Termos de Uso' }, // Exemplo página interna
   {
     id: 'privacy',
-    href: '/politica-de-privacidade',
+    href: '/politica-de-privacidade/',
     text: 'Política de Privacidade',
   }, // Exemplo página interna
   // { id: 'terms', href: '/termos-de-uso', text: 'Termos de Uso' }, // Exemplo página interna
