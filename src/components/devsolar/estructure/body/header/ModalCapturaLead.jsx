@@ -180,7 +180,17 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
               disabled={isSubmitting}
               style={{ textTransform: 'capitalize' }}
             >
-              Ver meu relatório
+              Minha economia em 1 clique{' '}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                width="28"
+                height="28"
+                style={{ color: '#000000', marginLeft: '6px', verticalAlign: 'middle' }}
+                fill="currentColor"
+              >
+                <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
+              </svg>
             </Button>
 
             {submitStatus === 'success' && (

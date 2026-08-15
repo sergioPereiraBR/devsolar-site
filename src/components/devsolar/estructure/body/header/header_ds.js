@@ -349,7 +349,7 @@ function HeaderDS() {
                               aria-label="Calcular Economia"
                               aria-hidden="true"
                             />
-                            VER MEU RELATÓRIO DE RENTABILIDADE
+                            VER MINHA ECONOMIA
                           </>
                         )}
                       </Button>
