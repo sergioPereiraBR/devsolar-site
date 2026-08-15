@@ -207,6 +207,8 @@ export default function SuccessStoriesCarouselClient() {
                       fill
                       className={styles.thumbnailImage}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={index === 0}
+                      loading={index === 0 ? 'eager' : 'lazy'}
                       onLoad={() => handleImageLoad(story.id)}
                       onError={() => handleImageError(story.id)}
                       style={{

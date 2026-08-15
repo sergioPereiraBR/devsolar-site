@@ -436,7 +436,7 @@ function HeaderDS() {
                       Parcelas que se pagam com a própria economia de luz com
                       várias formas de financiamento e carência de até 120 dias.
                       <a
-                        href="https://wa.me/5521999677722?text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz."
+                        href="https://api.whatsapp.com/send?phone=5521999677722&text=Ol%C3%A1!+Visitei+seu+site+e+quero+saber+como+economizar+com+Energia+Solar+com+um+sistema+adequado+para+minha+conta+de+luz./"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.validationHintLink}
