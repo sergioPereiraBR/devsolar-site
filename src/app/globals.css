@@ -15,15 +15,15 @@ iframe {
 	height: auto;
 }
 
-a,
+/* a,
 a:visited,
 a:hover,
 a:active {
 	color: inherit !important;
 	/* Herda a cor do elemento pai ou defina uma cor exata, ex: #000 ou #0056b3 */
-	/* text-decoration: none; */
-	/* Opcional: remove o sublinhado padrão */
-}
+/* text-decoration: none; */
+/* Opcional: remove o sublinhado padrão */
+/*} */
 
 svg {
 	display: inline-block;

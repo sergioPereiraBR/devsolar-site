@@ -8,6 +8,7 @@ import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
 import { NEWSLETTER_STATICFORMS_ACCESS_KEY } from '@/lib/email-config';
 import { smoothScrollTo } from '@/lib/smoothScroll';
 
+import { SafeEmailLink } from '@/components/devsolar/utility/email/SafeEmailLink';
 import { FaIcon } from '@/components/devsolar/utility/fa-icon';
 import { sendNewsletter } from '@/components/devsolar/utility/newsletter/sendNewsletter';
 
@@ -214,11 +215,16 @@ function FooterDS() {
                       className={styles.contactIcon}
                       aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
                     />
-                    {/* Desativa a ofuscação do Cloudflare no HTML renderizado */}
+                    {/* Desativa a ofuscação do Cloudflare no HTML renderizado
                     <span
                       dangerouslySetInnerHTML={{ __html: '<!--email_off-->' }}
+                    /> */}
+                    <SafeEmailLink
+                      email={CONTACT_EMAIL}
+                      location="footer"
+                      className={styles.contactIcon}
                     />
-                    <a
+                    {/* <a
                       href={`mailto:${CONTACT_EMAIL}`}
                       aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}
                       onClick={() =>
@@ -230,11 +236,11 @@ function FooterDS() {
                     >
                       {' '}
                       {CONTACT_EMAIL}
-                    </a>
-                    {/* Ativa a ofuscação do Cloudflare no HTML renderizado */}
+                    </a> */}
+                    {/* Ativa a ofuscação do Cloudflare no HTML renderizado
                     <span
                       dangerouslySetInnerHTML={{ __html: '<!--/email_off-->' }}
-                    />
+                    /> */}
                   </div>
                   {/* Endereço Consolidado */}
                   <div
