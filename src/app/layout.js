@@ -25,7 +25,7 @@ export const metadata = {
   // Modelo de Título: %s será substituído pelo título da página específica
   title: {
     template: '%s | DEV Solar',
-    default: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título padrão (ex: homepage)
+    default: 'DEV Solar | Energia Solar Fotovoltaica no Rio de Janeiro', // Título padrão (ex: homepage)
   },
   description:
     'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Solicite um orçamento!', // Descrição padrão/base
