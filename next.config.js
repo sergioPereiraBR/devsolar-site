@@ -90,6 +90,15 @@ if (nextConfig.output !== 'export') {
         ],
       },
       {
+        source: '/images/WhatsApp.svg',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
+          },
+        ],
+      },
+      {
         source: '/(.*)',
         headers: [
           { key: cspHeaderKey, value: cspValue },
