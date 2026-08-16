@@ -382,7 +382,7 @@ function FooterDS() {
         {/* Seção de Copyright */}
         <div className={styles.footerCopyright}>
           <p>
-            © {CURRENT_YEAR} {COMPANY_NAME} - Todos os direitos reservados.{' '}
+            © <span suppressHydrationWarning>{CURRENT_YEAR}</span> {COMPANY_NAME} - Todos os direitos reservados.{' '}
             {/* Links legais agora apenas aqui (removidos da coluna 3 ou vice-versa) */}
             <Link
               href="/politica-de-privacidade/"
