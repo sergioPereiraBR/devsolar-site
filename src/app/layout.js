@@ -177,6 +177,12 @@ export default function RootLayout({ children }) {
         <link rel="preload" href="/vendor/fontawesome/styles.css" as="style" />
         <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css" />
         <link rel="stylesheet" href="/vendor/fontawesome/styles.css" />
+        <link
+          rel="help"
+          type="text/markdown"
+          href="/llms.txt"
+          title="Documentação para LLM"
+        />
 
         {/* <link
           rel="stylesheet"
