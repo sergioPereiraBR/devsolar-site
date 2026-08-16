@@ -194,7 +194,7 @@ function FooterDS() {
                     />
                     <a
                       href={`tel:${CONTACT_PHONE_RAW}`}
-                      aria-label={`Ligar para DEV Solar: ${CONTACT_PHONE_DISPLAY}`}
+                      rel="noopener noreferrer nofollow"
                       onClick={() =>
                         trackEvent('contact_click', {
                           contact_channel: 'phone',
@@ -280,6 +280,7 @@ function FooterDS() {
                 <li key={link.id}>
                   <a
                     href={link.href}
+                    aria-label={`Navegar para ${link.text}`}
                     onClick={(event) =>
                       handleInPageLinkClick(event, link.href, 'footer_nav')
                     }
@@ -327,7 +328,8 @@ function FooterDS() {
                   href={social.url}
                   target="_blank"
                   rel={
-                    social.url.includes('api.whatsapp')
+                    social.url.includes('api.whatsapp') ||
+                    social.url.includes('facebook.com')
                       ? 'noopener noreferrer nofollow'
                       : 'noopener noreferrer'
                   }
