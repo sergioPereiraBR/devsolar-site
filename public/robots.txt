@@ -2,11 +2,14 @@
 User-agent: *
 Allow: /
 Disallow: /cgi-sys/
-Disallow: /wp-admin/          # Caso utilize WordPress (remova o '#' se aplicar)
-Disallow: /admin/             # Painéis administrativos
-Disallow: /private/           # Pastas privadas/de testes
+Disallow: /admin/
+Disallow: /private/
+Disallow: /cdn-cgi/
 
-# Permite Explicitamente Crawlers de IA Generativa (ChatGPT, Gemini, Perplexity, Claude)
+# Descomente a linha abaixo caso utilize WordPress
+# Disallow: /wp-admin/
+
+# Permite Explicitamente Crawlers de IA Generativa
 User-agent: GPTBot
 Allow: /
 
@@ -23,4 +26,4 @@ User-agent: ClaudeBot
 Allow: /
 
 # Indica o Sitemap do Site
-Sitemap: https://devsolar.com.br/sitemap.xml
+Sitemap: https://www.devsolar.com.br/sitemap.xml
