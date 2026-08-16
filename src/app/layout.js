@@ -12,7 +12,6 @@ import { devSolarSchema } from '@/data/devSolarSchema';
 config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
-const isEnabled = true;
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID; // Substitua pelo seu ID do GA4
 const hasGaTrackingId = Boolean(GA_TRACKING_ID);
 const FACEBOOK_DOMAIN_VERIFICATION =
@@ -296,10 +295,7 @@ export default function RootLayout({ children }) {
           />
         ) : null}
       </head>
-      <body
-        className={inter.className}
-        cz-shortcut-listen={isEnabled.toString()}
-      >
+      <body className={inter.className}>
         <a href="#main-content" className="skip-link">
           Ir para o conteúdo principal
         </a>
