@@ -35,11 +35,6 @@ function FooterDS() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState(null); // null | 'submitting' | 'success' | 'error'
   const [newsletterMessage, setNewsletterMessage] = useState('');
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
 
   const getScrollOffset = useCallback(() => {
     const rootStyles = window.getComputedStyle(document.documentElement);
@@ -168,9 +163,8 @@ function FooterDS() {
             {/* <h3 className={styles.atendimentoInfo}>
               Atendimento de Segunda a Sexta, das 9h às 18h
             </h3> */}
-            <div className={styles.contactInfo} suppressHydrationWarning>
-              {isHydrated ? (
-                <>
+            <div className={styles.contactInfo}>
+              <>
                   {/* Horário de Atendimento */}
                   <div
                     className={`${styles.contactItem} d-flex align-items-start mb-2`}
@@ -254,15 +248,6 @@ function FooterDS() {
                     </div>
                   </div>
                 </>
-              ) : (
-                <div
-                  className={`${styles.contactItem} d-flex align-items-center mb-2`}
-                >
-                  <span className="visually-hidden">
-                    Carregando informações de contato
-                  </span>
-                </div>
-              )}
             </div>
           </div>
 
@@ -397,7 +382,7 @@ function FooterDS() {
         {/* Seção de Copyright */}
         <div className={styles.footerCopyright}>
           <p>
-            © {CURRENT_YEAR} {COMPANY_NAME} - Todos os direitos reservados.{' '}
+            © <span suppressHydrationWarning>{CURRENT_YEAR}</span> {COMPANY_NAME} - Todos os direitos reservados.{' '}
             {/* Links legais agora apenas aqui (removidos da coluna 3 ou vice-versa) */}
             <Link
               href="/politica-de-privacidade/"
