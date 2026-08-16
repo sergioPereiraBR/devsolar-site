@@ -10,7 +10,7 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
   const [formData, setFormData] = useState({
     nome: '',
     whatsapp: '',
-    previsaoInstalacao: '30-60_dias', // valor padrão estratégico
+    previsaoInstalacao: 'imediato', // valor padrão estratégico
   });
 
   const [validated, setValidated] = useState(false);

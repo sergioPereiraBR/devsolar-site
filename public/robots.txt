@@ -4,10 +4,12 @@ Allow: /
 Disallow: /cgi-sys/
 Disallow: /admin/
 Disallow: /private/
-Disallow: /cdn-cgi/
+Disallow: /_next/static/media/
+Disallow: /assets/
 
-# Descomente a linha abaixo caso utilize WordPress
-# Disallow: /wp-admin/
+# Permite que os endpoints de proteção de e-mail do Cloudflare sejam acessados
+Allow: /cdn-cgi/l/
+Allow: /cdn-cgi/scripts/
 
 # Permite Explicitamente Crawlers de IA Generativa
 User-agent: GPTBot

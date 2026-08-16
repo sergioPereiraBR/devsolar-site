@@ -65,6 +65,14 @@ if (nextConfig.output !== 'export') {
 
     return [
       {
+        source: '/_next/static/media/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      {
+        source: '/assets/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      {
         source: '/(.*)',
         headers: [
           { key: cspHeaderKey, value: cspValue },
