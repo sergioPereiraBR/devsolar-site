@@ -19,6 +19,7 @@ export const contactInfoData = [
     title: 'Telefone',
     text: '(21) 99967-7722',
     link: 'tel:+5521999677722',
+    rel: 'noopener noreferrer nofollow',
   },
   {
     id: 'email',
@@ -26,6 +27,7 @@ export const contactInfoData = [
     title: 'Email',
     text: 'comercial@devsolar.com.br',
     link: 'mailto:comercial@devsolar.com.br',
+    rel: 'noopener noreferrer nofollow',
   },
   {
     id: 'atendimento',
@@ -47,6 +49,7 @@ export const socialLinksData = [
     url: 'https://www.facebook.com/profile.php?id=61562778810789',
     iconClass: 'fab fa-facebook-f',
     accessibility: 'Acesse nossa página no Facebook',
+    rel: 'noopener noreferrer nofollow',
   },
   {
     id: 'instagram',
@@ -54,6 +57,7 @@ export const socialLinksData = [
     url: 'https://www.instagram.com/devsolar_',
     iconClass: 'fab fa-instagram',
     accessibility: 'Acesse nosso perfil no Instagram',
+    rel: 'noopener noreferrer',
   },
   {
     id: 'linkedin',
@@ -61,6 +65,7 @@ export const socialLinksData = [
     url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica',
     iconClass: 'fab fa-linkedin-in',
     accessibility: 'Acesse nossa página no LinkedIn',
+    rel: 'noopener noreferrer',
   },
   // { id: 'youtube', name: 'YouTube', url: '#', iconClass: 'fab fa-youtube', accessibility: 'Acesse nosso canal no YouTube' }, // Exemplo de link interno ou placeholder
   // { id: 'youtube', name: 'YouTube', url: 'https://youtube.com/', iconClass: 'fab fa-youtube', accessibility: 'Acesse nosso canal no YouTube' }, // Exemplo link externo
@@ -70,5 +75,6 @@ export const socialLinksData = [
     url: `https://api.whatsapp.com/send?phone=5521999677722&text=${WHATSAPP_CONTACT_MESSAGE_ENCODED}`,
     iconClass: 'fab fa-whatsapp',
     accessibility: 'Entre em contato conosco via WhatsApp',
+    rel: 'noopener noreferrer nofollow',
   },
 ];

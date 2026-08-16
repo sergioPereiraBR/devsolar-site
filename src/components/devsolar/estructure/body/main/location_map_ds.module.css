@@ -114,10 +114,6 @@
     margin-top: 15px;
     padding: 10px 20px;
     background-color: #001f52;
-    /* background-color: var(--footer-color); */
-    /* Cor primária do seu tema */
-    /* ou color: var(--footer-color);se preferir */
-    /* Cor de texto que contrasta com o botão */
     color: #f9f9f9 !important;
     text-decoration: none;
     border-radius: 5px;

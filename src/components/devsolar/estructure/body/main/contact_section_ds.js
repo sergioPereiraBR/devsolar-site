@@ -20,6 +20,7 @@ const ContactInfoItem = ({
   title,
   text,
   link,
+  rel,
   onClick,
   tabEntry,
   isHydrated,
@@ -34,6 +35,7 @@ const ContactInfoItem = ({
       {link && isHydrated ? (
         <a
           href={link}
+          rel={rel}
           className={styles.contactLink}
           onClick={onClick}
           data-tab-entry={tabEntry ? 'true' : undefined}
@@ -264,20 +266,11 @@ function ContactSectionDS() {
             <div className="mb-4 mt-5 pt-3" suppressHydrationWarning>
               {contactInfoData.map((item) => (
                 <Fragment key={item.id}>
-                  {/* Se for e-mail, envolve o componente com os comentários da Cloudflare */}
-                  {item.id === 'email' && (
-                    <span
-                      dangerouslySetInnerHTML={{ __html: '<!--email_off-->' }}
-                    />
-                  )}
-
                   <ContactInfoItem
                     {...item}
                     tabEntry={item.id === 'phone'}
                     isHydrated={isHydrated}
                     onClick={() => {
-                      if (!item.link) return;
-
                       if (item.link.startsWith('tel:')) {
                         trackEvent('contact_click', {
                           contact_channel: 'phone',
@@ -285,29 +278,24 @@ function ContactSectionDS() {
                           label: 'contact_phone',
                           form_type: 'contact',
                         });
-                        window.location.href = item.link;
-                        window.location.rel = 'noopener noreferrer,nofollow';
-                        return;
                       }
 
-                      if (item.link.startsWith('mailto:')) {
+                      if (item.link.includes('mailto:')) {
                         trackEvent('contact_click', {
                           contact_channel: 'email',
                           location: 'contact_section',
                           label: 'contact_email',
                           form_type: 'contact',
                         });
-                        window.location.href = item.link;
-                        window.location.rel = 'noopener noreferrer,nofollow';
+                        item.link;
                       }
                     }}
+                    rel={item.rel || 'noopener noreferrer'}
+                    link={item.link || undefined}
+                    iconClass={item.iconClass}
+                    title={item.title}
+                    text={item.text}
                   />
-
-                  {item.id === 'email' && (
-                    <span
-                      dangerouslySetInnerHTML={{ __html: '<!--/email_off-->' }}
-                    />
-                  )}
                 </Fragment>
               ))}
             </div>

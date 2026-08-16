@@ -10,9 +10,8 @@ import { devSolarSchema } from '@/data/devSolarSchema';
 
 // Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.
 config.autoAddCss = false;
-
-const inter = Inter({ subsets: ['latin'], display: 'swap' });
 const isEnabled = true;
+const inter = Inter({ subsets: ['latin'], display: 'swap' });
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID; // Substitua pelo seu ID do GA4
 const hasGaTrackingId = Boolean(GA_TRACKING_ID);
 const FACEBOOK_DOMAIN_VERIFICATION =
