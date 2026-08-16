@@ -270,6 +270,11 @@ function ContactSectionDS() {
                     {...item}
                     tabEntry={item.id === 'phone'}
                     isHydrated={isHydrated}
+                    rel={item.rel || 'noopener noreferrer'}
+                    link={item.link || undefined}
+                    iconClass={item.iconClass}
+                    title={item.title}
+                    text={item.text}
                     onClick={() => {
                       if (item.link.startsWith('tel:')) {
                         trackEvent('contact_click', {
@@ -278,6 +283,7 @@ function ContactSectionDS() {
                           label: 'contact_phone',
                           form_type: 'contact',
                         });
+                        return;
                       }
 
                       if (item.link.includes('mailto:')) {
@@ -287,14 +293,9 @@ function ContactSectionDS() {
                           label: 'contact_email',
                           form_type: 'contact',
                         });
-                        item.link;
+                        return;
                       }
                     }}
-                    rel={item.rel || 'noopener noreferrer'}
-                    link={item.link || undefined}
-                    iconClass={item.iconClass}
-                    title={item.title}
-                    text={item.text}
                   />
                 </Fragment>
               ))}
