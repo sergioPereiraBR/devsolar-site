@@ -22,7 +22,6 @@ const ContactInfoItem = ({
   link,
   onClick,
   tabEntry,
-  isHydrated,
 }) => (
   // ... (código inalterado) ...
   <div className={`${styles.contactItem} d-flex align-items-start mb-3`}>
@@ -31,7 +30,7 @@ const ContactInfoItem = ({
     </div>
     <div className="flex-grow-1">
       <p className={`${styles.contactTitle} mb-0`}>{title}</p>
-      {link && isHydrated ? (
+      {link ? (
         <a
           href={link}
           className={styles.contactLink}
@@ -62,13 +61,7 @@ function ContactSectionDS() {
   const sectionRef = useRef(null);
   const phoneDigitsRef = useRef('');
   const [shouldLoadRecaptcha, setShouldLoadRecaptcha] = useState(false);
-  const [isHydrated, setIsHydrated] = useState(false);
   const recaptchaEnabled = RECAPTCHA_ENABLED;
-
-  // Garante hidratação correta na produção
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
 
   useEffect(() => {
     if (!recaptchaEnabled) {
@@ -261,7 +254,7 @@ function ContactSectionDS() {
               oferecer suporte no pós-venda, nossa equipe está pronta para
               atender você, seu condomínio ou sua empresa.
             </h3>
-            <div className="mb-4 mt-5 pt-3" suppressHydrationWarning>
+            <div className="mb-4 mt-5 pt-3">
               {contactInfoData.map((item) => (
                 <Fragment key={item.id}>
                   {/* Se for e-mail, envolve o componente com os comentários da Cloudflare */}
@@ -274,7 +267,6 @@ function ContactSectionDS() {
                   <ContactInfoItem
                     {...item}
                     tabEntry={item.id === 'phone'}
-                    isHydrated={isHydrated}
                     onClick={() => {
                       if (!item.link) return;
 
