@@ -27,5 +27,6 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-# Indica o Sitemap do Site
+# Apontamento de arquivos para LLMs, Sitemap e Indexadores
 Sitemap: https://www.devsolar.com.br/sitemap.xml
+Sitemap: https://www.devsolar.com.br/llms.txt
