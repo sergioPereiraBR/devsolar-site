@@ -42,6 +42,10 @@ const WHATSAPP_CONTACT_MESSAGE_ENCODED = encodeURIComponent(
   WHATSAPP_CONTACT_MESSAGE,
 );
 
+const linkedinCompany = 'dev-solar-eficiência-energética';
+// Encode da string acentuada
+const encodedPath = encodeURIComponent(linkedinCompany);
+
 export const socialLinksData = [
   {
     id: 'facebook',
@@ -62,7 +66,7 @@ export const socialLinksData = [
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica',
+    url: `https://www.linkedin.com/company/${encodedPath}`,
     iconClass: 'fab fa-linkedin-in',
     accessibility: 'Acesse nossa página no LinkedIn',
     rel: 'noopener noreferrer',
