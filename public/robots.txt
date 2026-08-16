@@ -5,7 +5,11 @@ Disallow: /cgi-sys/
 Disallow: /admin/
 Disallow: /private/
 Disallow: /_next/static/media/
+Disallow: /
 Disallow: /assets/
+Disallow: /fonts/
+Disallow: /icons/
+Disallow: /images/WhatsApp.svg
 
 # Permite que os endpoints de proteção de e-mail do Cloudflare sejam acessados
 Allow: /cdn-cgi/l/
