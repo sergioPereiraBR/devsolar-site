@@ -26,7 +26,7 @@ export const devSolarSchema = {
         'https://www.facebook.com/profile.php?id=61562778810789',
         'https://www.instagram.com/devsolar_',
         'https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica',
-        'https://wa.me/5521999677722&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20energia%20solar',
+        'https://api.whatsapp.com/send?phone=${phone}&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20energia%20solar',
       ],
       address: {
         '@type': 'PostalAddress',
@@ -49,7 +49,46 @@ export const devSolarSchema = {
         latitude: -22.8893,
         longitude: -43.3712,
       },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Catálogo de Serviços e Kits Solares',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Projeto e Homologação Fotovoltaica',
+              description: 'Elaboração do projeto engenharia e trâmites de homologação junto à concessionária de energia.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Instalação de Sistema Solar',
+              description: 'Instalação física e elétrica completa de painéis solares e inversores.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Manutenção e Limpeza de Painéis Solares',
+              description: 'Manutenção preventiva, corretiva e limpeza técnica de módulos fotovoltaicos.',
+            },
+          },
+        ],
+      },
+
+      // -------------------------------------------------------------
+      // Declaração dos serviços oferecidos diretamente na empresa
+      // -------------------------------------------------------------
+
       review: [
+
+        // -------------------------------------------------------------
+        // Casos de sucesso
+        // -------------------------------------------------------------
         {
           '@type': 'Review',
           name: 'Case de Sucesso: Condomínio Lilases',
@@ -108,6 +147,98 @@ export const devSolarSchema = {
         reviewCount: '3',
       },
     },
+
+    // -------------------------------------------------------------
+    // KITS DE PRODUTOS (Product + IndividualProduct / ProductCollection)
+    // -------------------------------------------------------------
+    {
+      '@type': 'Product',
+      '@id': 'https://www.devsolar.com.br/#kit-residencial',
+      name: 'Kit Gerador de Energia Solar Residencial',
+      description: 'Kit completo de energia solar fotovoltaica on-grid para residências, incluindo módulos solares, inversor e estrutura de fixação.',
+      category: 'Kits de Energia Solar',
+      brand: {
+        '@type': 'Brand',
+        name: 'DEV Solar',
+      },
+      offers: {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'BRL',
+        itemCondition: 'https://schema.org/NewCondition',
+        seller: {
+          '@id': 'https://www.devsolar.com.br/#organization',
+        },
+      },
+    },
+    {
+      '@type': 'Product',
+      '@id': 'https://www.devsolar.com.br/#kit-comercial',
+      name: 'Kit Gerador de Energia Solar Comercial / Condominial',
+      description: 'Sistema fotovoltaico de alta potência para empresas, indústrias e condomínios.',
+      category: 'Kits de Energia Solar',
+      brand: {
+        '@type': 'Brand',
+        name: 'DEV Solar',
+      },
+      offers: {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'BRL',
+        itemCondition: 'https://schema.org/NewCondition',
+        seller: {
+          '@id': 'https://www.devsolar.com.br/#organization',
+        },
+      },
+    },
+
+    // -------------------------------------------------------------
+    // SERVIÇOS ESPECÍFICOS (Service)
+    // -------------------------------------------------------------
+    {
+      '@type': 'Service',
+      '@id': 'https://www.devsolar.com.br/#servico-projeto',
+      name: 'Projeto e Homologação Fotovoltaica',
+      serviceType: 'Solar Energy Engineering',
+      description: 'Desenvolvimento do projeto de engenharia elétrica e gestão do processo de homologação junto à distribuidora de energia.',
+      provider: {
+        '@id': 'https://www.devsolar.com.br/#organization',
+      },
+      areaServed: {
+        '@type': 'State',
+        name: 'Rio de Janeiro',
+      },
+    },
+    {
+      '@type': 'Service',
+      '@id': 'https://www.devsolar.com.br/#servico-instalacao',
+      name: 'Instalação de Sistemas Fotovoltaicos',
+      serviceType: 'Solar Panel Installation',
+      description: 'Montagem de estrutura, fixação de painéis solares, cabeamento e conexão de inversores por equipe qualificada.',
+      provider: {
+        '@id': 'https://www.devsolar.com.br/#organization',
+      },
+      areaServed: {
+        '@type': 'State',
+        name: 'Rio de Janeiro',
+      },
+    },
+    {
+      '@type': 'Service',
+      '@id': 'https://www.devsolar.com.br/#servico-manutencao',
+      name: 'Manutenção e Limpeza Técnica Solar',
+      serviceType: 'Solar Panel Maintenance',
+      description: 'Serviço periódico de limpeza técnica de módulos solares e revisão das conexões elétricas do sistema.',
+      provider: {
+        '@id': 'https://www.devsolar.com.br/#organization',
+      },
+      areaServed: {
+        '@type': 'State',
+        name: 'Rio de Janeiro',
+      },
+    },
+
+    // -------------------------------------------------------------
+    // FAQPage
+    // -------------------------------------------------------------
     {
       '@type': 'FAQPage',
       '@id': 'https://www.devsolar.com.br/#faq',

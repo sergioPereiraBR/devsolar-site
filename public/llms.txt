@@ -20,12 +20,23 @@
 - Parceiros e Marcas: Intelbras Solar, WEG Solar, Canadian Solar.
 - Instituições Financeiras: Santander, BV Financeira, Sol Agora (Creditas).
 
+## Informações Principais
+- [Benefícios](https://www.devsolar.com.br/#beneficios): Descubra os benefícios que milhares de clientes já aproveitam.
+- [Serviços e Modalidades](https://www.devsolar.com.br/#servicos): Detalhes sobre Produção Própria, Compartilhada e para Negócios.
+- [Cases de Sucesso](https://www.devsolar.com.br/#cases): Conheça com quem já está economizando com energia solar.
+- [Perguntas Frequentes](https://www.devsolar.com.br/#faq): Prazos de instalação, funcionamento em dias nublados e financiamento.
+- [Localização](https://www.devsolar.com.br/#location): Nossa localização, vamos marcar, encontre sua rota para vir falar com a gente!
+- [Parceiros](https://www.devsolar.com.br/#parceiros): Formamos uma rede com fornecedores e financeiras que colabora para o benefício dos nossos clientes.
+
+
+
 ## Links Úteis do Site
 - [Página Inicial](https://www.devsolar.com.br/)
-- [Política de Privacidade](https://www.devsolar.com.br/politica-de-privacidade/)
-- [Termos de Uso](https://www.devsolar.com.br/termos-de-uso/)
+- [Política de Privacidade](https://www.devsolar.com.br/politica-de-privacidade/): Termos e privacidade de dados.
+- [Termos de Uso](https://www.devsolar.com.br/termos-de-uso/): Termos de uso.
 
-## Contato Comercial
+## Contato Comercial e Atendimento
+- **Site**: [Contato](https://www.devsolar.com.br/#contato): Estamos à disposição em todas as etapas do seu projeto.
 - **Telefone / WhatsApp**: (21) 99967-7722
 - **E-mail**: comercial@devsolar.com.br
 - **Horário de Atendimento**: Segunda a Sexta, das 9h às 18h
