@@ -33,6 +33,18 @@ export const metadata = {
     canonical: 'https://www.devsolar.com.br/', // Canonical padrão (será sobrescrito nas páginas)
   },
   keywords: [
+    'como calcular quantidade de placas solares',
+    'quanto dura um painel solar',
+    'diferença entre on-grid e off-grid',
+    'energia solar funciona em dia chuvoso',
+    'tempo de retorno energia solar payback',
+    'qual o custo de manutenção de energia solar',
+    'passo a passo homologação energia solar concessionária',
+    'financiamento para energia solar vale a pena',
+    'orçamento projeto fotovoltaico residencial',
+    'melhor empresa de energia solar [Sua Cidade]',
+    'preço kit energia solar instalado',
+    'contratar projeto solar comercial',
     'energia solar rio de janeiro',
     'energia solar rj',
     'energia solar vila valqueire',

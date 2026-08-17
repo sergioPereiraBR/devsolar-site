@@ -85,12 +85,6 @@ export default function HomePageClient() {
         {/* <GarantiasSectionDS />  Guarantees Section */}
         <LocationSectionDS /> {/* Location Section */}
         <ParceirosFinanceirasSectionDS /> {/* Partners Section */}
-        {/* Terms Section
-                    <section id="termos-de-uso"></section>
-
-                    {/* Policy Section */}
-        {/*
-                    <section id="politica-de-privacidade"></section> */}
         <CTASectionDS /> {/* CTA Section */}
         <ContactSectionDS /> {/* Contact Section */}
       </article>
