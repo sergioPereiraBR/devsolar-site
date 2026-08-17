@@ -7,12 +7,10 @@ Disallow: /private/
 Disallow: /_next/static/media/
 Disallow: /.well-known/
 Disallow: /assets/
-Disallow: /fonts/
-Disallow: /icons/
 Disallow: /images/WhatsApp.svg
 Disallow: /vendor/
 
-# Permite que os endpoints de proteção de e-mail do Cloudflare sejam acessados
+# Permite endpoints essenciais do Cloudflare
 Allow: /cdn-cgi/l/
 Allow: /cdn-cgi/scripts/
 
@@ -32,6 +30,7 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-# Apontamento de arquivos para LLMs, Sitemap e Indexadores
+# Mapeamento de Sitemaps
 Sitemap: https://www.devsolar.com.br/sitemap.xml
-Sitemap: https://www.devsolar.com.br/llms.txt
+
+# LLM Information: https://www.devsolar.com.br/llms.txt
