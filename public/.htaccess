@@ -47,7 +47,7 @@ DirectoryIndex index.html index.php
   RewriteRule (.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # Redirecionamento do WhatsApp
-  RewriteRule ^whatsapp/?$ "https://api.whatsapp.com/send?phone=5521999677722&text=Olá Visitei seu Instagram e quero saber como economizar com Energia Solar" [R=301,L,QSD]
+  RewriteRule ^whatsapp/?$ "https://api.whatsapp.com/send?phone=5521999677722&text=Olá!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,QSD]
 
   # Nunca reescrever assets estáticos (chunks, css, imagens, mídias)
   RewriteRule ^_next/ - [L]
