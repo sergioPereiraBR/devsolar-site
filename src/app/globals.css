@@ -15,6 +15,11 @@ iframe {
 	height: auto;
 }
 
+a:visited {
+	background-color: transparent;
+	color: inherit;
+}
+
 /* a,
 a:visited,
 a:hover,
