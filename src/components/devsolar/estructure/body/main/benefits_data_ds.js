@@ -70,7 +70,7 @@ Visitei o site com interesse em reduzir custos com energia elétrica e quero fal
               link: 'https://blog.intelbras.com.br/como-funciona-energia-solar-residencial/',
             },
             {
-              text: '"Sistema fotovoltaico pode economizar até 95% na sua conta de energia..."',
+              text: '"Sistema fotovoltaico pode economizar até 85% na sua conta de energia..."',
               link: 'https://solalux.com.br/sistema-fotovoltaico-economia-energia/',
             },
             {
@@ -80,7 +80,7 @@ Visitei o site com interesse em reduzir custos com energia elétrica e quero fal
           ],
           [
             '[1] Como funciona a energia solar residencial... Intelbras Blog. Acesso em: 11 abr. 2025.',
-            '[2] Sistema Fotovoltaico: Como Economizar Até 95%... Solalux. Acesso em: 11 abr. 2025.',
+            '[2] Sistema Fotovoltaico: Como Economizar Até 85%... Solalux. Acesso em:',
             '[3] Conheça os muitos benefícios da Energia Solar... Reenergisa. Acesso em: 11 abr. 2025.',
           ],
           `Olá! 👋
@@ -138,7 +138,7 @@ Visitei o site com interesse em reduzir custos com energia elétrica no condomí
           'Viabilizado pela redução dos seus custos operacionais com energia elétrica, desde o início da operação do sistema solar.',
           [
             {
-              text: '"Empresas reduzem custos operacionais com energia em até 95%..."',
+              text: '"Empresas reduzem custos operacionais com energia em até 85%..."',
               link: 'https://solalux.com.br/sistema-fotovoltaico-economia-energia/',
             },
             {
@@ -151,7 +151,7 @@ Visitei o site com interesse em reduzir custos com energia elétrica no condomí
             },
           ],
           [
-            '[1] Sistema Fotovoltaico: Como Economizar Até 95%... Solalux. Acesso em: 11 abr. 2025.',
+            '[1] Sistema Fotovoltaico: Como Economizar Até 85%... Solalux. Acesso em:',
             '[2] Conheça os muitos benefícios da Energia Solar... Reenergisa. Acesso em: 11 abr. 2025.',
             '[3] EMPRESA com energia solar: aumento de competitividade... Elysia. Acesso em: 11 abr. 2025.',
           ],

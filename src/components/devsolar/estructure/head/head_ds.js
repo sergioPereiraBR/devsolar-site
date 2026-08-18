@@ -20,7 +20,7 @@ function HeadDS() {
       <meta name="robots" content="index,follow" />
       <meta
         name="description"
-        content="Transforme o Sol em Economia Real - Descubra quanto você pode economizar com energia solar em sua casa, empresa ou condomínio. Nossos sistemas garantem até 95% de redução na sua conta de luz.  O FUTURO É SOLAR, junte-se a essa mudança."
+        content="Transforme o Sol em Economia Real - Descubra quanto você pode economizar com energia solar em sua casa, empresa ou condomínio. Nossos sistemas garantem até 85% de redução na sua conta de luz.  O FUTURO É SOLAR, junte-se a essa mudança."
       ></meta>
       <meta name="format-detection" content="" />
       <meta name="theme-color" content="#FFFFFF"></meta>
@@ -34,11 +34,11 @@ function HeadDS() {
       <meta property="og:site_name" content="DEV Solar" />
       <meta
         property="og:title"
-        content="Eficiência energética, com até 95% de redução na sua conta de luz. | DEV Solar"
+        content="Eficiência energética, com até 85% de redução na sua conta de luz. | DEV Solar"
       />
       <meta
         property="og:description"
-        content="Transforme o Sol em Economia Real - Descubra quanto você pode economizar com energia solar em sua casa, empresa ou condomínio. Nossos sistemas garantem até 95% de redução na sua conta de luz. O FUTURO É SOLAR, junte-se a essa mudança."
+        content="Transforme o Sol em Economia Real - Descubra quanto você pode economizar com energia solar em sua casa, empresa ou condomínio. Nossos sistemas garantem até 85% de redução na sua conta de luz. O FUTURO É SOLAR, junte-se a essa mudança."
       />
       <meta property="og:url" content="https://www.devsolar.com.br/" />
       <meta property="og:updated_time" content="2021-05-01T15:00:00.000Z" />
@@ -70,11 +70,11 @@ function HeadDS() {
       <meta name="twitter:card" content="summary_large_image" />
       <meta
         name="twitter:title"
-        content="Eficiência energética, com até 95% de redução na sua conta de luz. | DEV Solar"
+        content="Eficiência energética, com até 85% de redução na sua conta de luz. | DEV Solar"
       />
       <meta
         name="twitter:description"
-        content="Transforme o Sol em Economia Real - Descubra quanto você pode economizar com energia solar em sua casa, empresa ou condomínio. Nossos sistemas garantem até 95% de redução na sua conta de luz. O FUTURO É SOLAR, junte-se a essa mudança."
+        content="Transforme o Sol em Economia Real - Descubra quanto você pode economizar com energia solar em sua casa, empresa ou condomínio. Nossos sistemas garantem até 85% de redução na sua conta de luz. O FUTURO É SOLAR, junte-se a essa mudança."
       />
       <meta
         name="twitter:image"

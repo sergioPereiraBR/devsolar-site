@@ -34,7 +34,7 @@ const modalitiesData = [
             <strong>Base legal:</strong> Regulamentada pela Resolução Normativa ANEEL nº 482/2012 e suas atualizações, como a Lei nº 14.300/2022 (Marco Legal da Microgeração).<br><br>
             <strong>Aplicação:</strong> Ideal para residências unifamiliares, empresas, indústrias e propriedades rurais que possuam espaço adequado para instalação.<br><br>
             <strong>Benefício fiscal:</strong> Os equipamentos possuem isenção de ICMS em muitos estados e possibilidade de depreciação acelerada para pessoas jurídicas.<br><br>
-            <strong>Economia:</strong> Redução de até 95% na conta de energia, dependendo do dimensionamento do sistema.<br><br>
+            <strong>Economia:</strong> Redução de até 85% na conta de energia, dependendo do dimensionamento do sistema.<br><br>
             <strong>Compensação:</strong> A energia excedente gera créditos que podem ser utilizados em até 60 meses.<br><br>
             <strong>Valorização imobiliária:</strong> Propriedades com sistemas solares tendem a valorizar no mercado.<br><br>`,
   },
