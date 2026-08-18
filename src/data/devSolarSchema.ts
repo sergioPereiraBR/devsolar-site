@@ -76,8 +76,8 @@ export const devSolarSchema = {
       hasMap: 'https://www.google.com/maps?q=Av.+Jambeiro,+474+Loja+C,+Vila+Valqueire,+Rio+de+Janeiro,+RJ',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Av. Jambeiro, 474 Loja C',
-        addressLocality: 'Vila Valqueire',
+        streetAddress: 'Av. Jambeiro, 474 Loja C, Vila Valqueire',
+        addressLocality: 'Rio de Janeiro',
         addressRegion: 'RJ',
         postalCode: '21330-300',
         addressCountry: 'BR',
@@ -95,14 +95,33 @@ export const devSolarSchema = {
         latitude: -22.8893,
         longitude: -43.3712,
       },
-      // Área de atuação detalhada por cidade em vez de apenas o estado — mais forte para SEO local.
+      // Área de atuação: Região Metropolitana do Rio de Janeiro — escopo realista para
+      // uma empresa que instala fisicamente os sistemas a partir de Vila Valqueire (RJ capital).
+      // Evita reivindicar municípios distantes (Região Serrana, Costa Verde, Norte/Noroeste
+      // Fluminense), o que diluiria a relevância local e poderia ser lido como sinal de spam.
       areaServed: [
         { '@type': 'City', name: 'Rio de Janeiro' },
         { '@type': 'City', name: 'Niterói' },
         { '@type': 'City', name: 'São Gonçalo' },
         { '@type': 'City', name: 'Duque de Caxias' },
         { '@type': 'City', name: 'Nova Iguaçu' },
+        { '@type': 'City', name: 'Belford Roxo' },
+        { '@type': 'City', name: 'São João de Meriti' },
+        { '@type': 'City', name: 'Mesquita' },
+        { '@type': 'City', name: 'Nilópolis' },
+        { '@type': 'City', name: 'Itaboraí' },
+        { '@type': 'City', name: 'Maricá' },
+        { '@type': 'City', name: 'Magé' },
+        { '@type': 'City', name: 'Itaguaí' },
+        { '@type': 'City', name: 'Guapimirim' },
+        { '@type': 'City', name: 'Queimados' },
+        { '@type': 'City', name: 'Japeri' },
+        { '@type': 'City', name: 'Paracambi' },
+        { '@type': 'City', name: 'Seropédica' },
+        { '@type': 'City', name: 'Mangaratiba' },
+        { '@type': 'City', name: 'Tanguá' },
         { '@type': 'AdministrativeArea', name: 'Baixada Fluminense' },
+        { '@type': 'AdministrativeArea', name: 'Região Metropolitana do Rio de Janeiro' },
       ],
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
@@ -250,9 +269,9 @@ export const devSolarSchema = {
         '@type': 'AggregateOffer',
         priceCurrency: 'BRL',
         // TODO: ajustar lowPrice/highPrice com os valores reais dos kits residenciais
-        lowPrice: '9000',
-        highPrice: '35000',
-        offerCount: '1',
+        lowPrice: '',
+        highPrice: '',
+        offerCount: '',
         itemCondition: 'https://schema.org/NewCondition',
         availability: 'https://schema.org/InStock',
         seller: { '@id': 'https://www.devsolar.com.br/#organization' },
@@ -302,9 +321,9 @@ export const devSolarSchema = {
         '@type': 'AggregateOffer',
         priceCurrency: 'BRL',
         // TODO: ajustar lowPrice/highPrice com os valores reais dos kits comerciais
-        lowPrice: '40000',
-        highPrice: '250000',
-        offerCount: '1',
+        lowPrice: '',
+        highPrice: '',
+        offerCount: '',
         itemCondition: 'https://schema.org/NewCondition',
         availability: 'https://schema.org/InStock',
         seller: { '@id': 'https://www.devsolar.com.br/#organization' },
@@ -337,10 +356,33 @@ export const devSolarSchema = {
       description:
         'Desenvolvimento do projeto de engenharia elétrica e gestão do processo de homologação junto à distribuidora de energia.',
       provider: { '@id': 'https://www.devsolar.com.br/#organization' },
+      // Área de atuação: Região Metropolitana do Rio de Janeiro — escopo realista para
+      // uma empresa que instala fisicamente os sistemas a partir de Vila Valqueire (RJ capital).
+      // Evita reivindicar municípios distantes (Região Serrana, Costa Verde, Norte/Noroeste
+      // Fluminense), o que diluiria a relevância local e poderia ser lido como sinal de spam.
       areaServed: [
         { '@type': 'City', name: 'Rio de Janeiro' },
         { '@type': 'City', name: 'Niterói' },
+        { '@type': 'City', name: 'São Gonçalo' },
+        { '@type': 'City', name: 'Duque de Caxias' },
+        { '@type': 'City', name: 'Nova Iguaçu' },
+        { '@type': 'City', name: 'Belford Roxo' },
+        { '@type': 'City', name: 'São João de Meriti' },
+        { '@type': 'City', name: 'Mesquita' },
+        { '@type': 'City', name: 'Nilópolis' },
+        { '@type': 'City', name: 'Itaboraí' },
+        { '@type': 'City', name: 'Maricá' },
+        { '@type': 'City', name: 'Magé' },
+        { '@type': 'City', name: 'Itaguaí' },
+        { '@type': 'City', name: 'Guapimirim' },
+        { '@type': 'City', name: 'Queimados' },
+        { '@type': 'City', name: 'Japeri' },
+        { '@type': 'City', name: 'Paracambi' },
+        { '@type': 'City', name: 'Seropédica' },
+        { '@type': 'City', name: 'Mangaratiba' },
+        { '@type': 'City', name: 'Tanguá' },
         { '@type': 'AdministrativeArea', name: 'Baixada Fluminense' },
+        { '@type': 'AdministrativeArea', name: 'Região Metropolitana do Rio de Janeiro' },
       ],
     },
     {
@@ -350,10 +392,33 @@ export const devSolarSchema = {
       serviceType: 'Solar Panel Installation',
       description: 'Montagem de estrutura, fixação de painéis solares, cabeamento e conexão de inversores por equipe qualificada.',
       provider: { '@id': 'https://www.devsolar.com.br/#organization' },
+      // Área de atuação: Região Metropolitana do Rio de Janeiro — escopo realista para
+      // uma empresa que instala fisicamente os sistemas a partir de Vila Valqueire (RJ capital).
+      // Evita reivindicar municípios distantes (Região Serrana, Costa Verde, Norte/Noroeste
+      // Fluminense), o que diluiria a relevância local e poderia ser lido como sinal de spam.
       areaServed: [
         { '@type': 'City', name: 'Rio de Janeiro' },
         { '@type': 'City', name: 'Niterói' },
+        { '@type': 'City', name: 'São Gonçalo' },
+        { '@type': 'City', name: 'Duque de Caxias' },
+        { '@type': 'City', name: 'Nova Iguaçu' },
+        { '@type': 'City', name: 'Belford Roxo' },
+        { '@type': 'City', name: 'São João de Meriti' },
+        { '@type': 'City', name: 'Mesquita' },
+        { '@type': 'City', name: 'Nilópolis' },
+        { '@type': 'City', name: 'Itaboraí' },
+        { '@type': 'City', name: 'Maricá' },
+        { '@type': 'City', name: 'Magé' },
+        { '@type': 'City', name: 'Itaguaí' },
+        { '@type': 'City', name: 'Guapimirim' },
+        { '@type': 'City', name: 'Queimados' },
+        { '@type': 'City', name: 'Japeri' },
+        { '@type': 'City', name: 'Paracambi' },
+        { '@type': 'City', name: 'Seropédica' },
+        { '@type': 'City', name: 'Mangaratiba' },
+        { '@type': 'City', name: 'Tanguá' },
         { '@type': 'AdministrativeArea', name: 'Baixada Fluminense' },
+        { '@type': 'AdministrativeArea', name: 'Região Metropolitana do Rio de Janeiro' },
       ],
     },
     {
@@ -363,10 +428,33 @@ export const devSolarSchema = {
       serviceType: 'Solar Panel Maintenance',
       description: 'Serviço periódico de limpeza técnica de módulos solares e revisão das conexões elétricas do sistema.',
       provider: { '@id': 'https://www.devsolar.com.br/#organization' },
+      // Área de atuação: Região Metropolitana do Rio de Janeiro — escopo realista para
+      // uma empresa que instala fisicamente os sistemas a partir de Vila Valqueire (RJ capital).
+      // Evita reivindicar municípios distantes (Região Serrana, Costa Verde, Norte/Noroeste
+      // Fluminense), o que diluiria a relevância local e poderia ser lido como sinal de spam.
       areaServed: [
         { '@type': 'City', name: 'Rio de Janeiro' },
         { '@type': 'City', name: 'Niterói' },
+        { '@type': 'City', name: 'São Gonçalo' },
+        { '@type': 'City', name: 'Duque de Caxias' },
+        { '@type': 'City', name: 'Nova Iguaçu' },
+        { '@type': 'City', name: 'Belford Roxo' },
+        { '@type': 'City', name: 'São João de Meriti' },
+        { '@type': 'City', name: 'Mesquita' },
+        { '@type': 'City', name: 'Nilópolis' },
+        { '@type': 'City', name: 'Itaboraí' },
+        { '@type': 'City', name: 'Maricá' },
+        { '@type': 'City', name: 'Magé' },
+        { '@type': 'City', name: 'Itaguaí' },
+        { '@type': 'City', name: 'Guapimirim' },
+        { '@type': 'City', name: 'Queimados' },
+        { '@type': 'City', name: 'Japeri' },
+        { '@type': 'City', name: 'Paracambi' },
+        { '@type': 'City', name: 'Seropédica' },
+        { '@type': 'City', name: 'Mangaratiba' },
+        { '@type': 'City', name: 'Tanguá' },
         { '@type': 'AdministrativeArea', name: 'Baixada Fluminense' },
+        { '@type': 'AdministrativeArea', name: 'Região Metropolitana do Rio de Janeiro' },
       ],
     },
 
