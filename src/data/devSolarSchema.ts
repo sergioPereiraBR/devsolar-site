@@ -17,7 +17,7 @@ export const devSolarSchema = {
         'Empresa de energia solar fotovoltaica no Rio de Janeiro. Projeto, homologação, instalação e manutenção de sistemas solares residenciais, comerciais e condominiais, com até 85% de redução na conta de luz.',
       foundingDate: '2023',
       url: 'https://www.devsolar.com.br/',
-      email: 'contato@devsolar.com.br', // TODO: confirmar e-mail real (está ofuscado via Cloudflare no HTML)
+      email: 'comercial@devsolar.com.br', // TODO: confirmar e-mail real (está ofuscado via Cloudflare no HTML)
       logo: {
         '@type': 'ImageObject',
         url: 'https://www.devsolar.com.br/_next/static/media/logo-dev-branco.0hhcwps62p05p.webp',
@@ -47,7 +47,7 @@ export const devSolarSchema = {
         {
           '@type': 'ContactPoint',
           telephone: '+55-21-99967-7722',
-          email: 'contato@devsolar.com.br',
+          email: 'comercial@devsolar.com.br',
           contactType: 'sales',
           areaServed: 'BR',
           availableLanguage: 'Portuguese',
