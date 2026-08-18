@@ -13,21 +13,24 @@ import PartnerCard from './partner_card_ds'; // Ajuste o caminho se necessário
 // --- Dados de Exemplo (Substitua pelos seus dados reais) ---
 const fornecedoresData = [
   {
-    id: 'f1',
+    id: '#fornecedor-intelbras',
+    id_service: '#produtos-intelbras',
     name: 'Intelbras Solar',
     logoUrl: Intelbras, // Coloque os logos em public/images/logos/
     description:
       'Soluções completas em equipamentos para energia solar fotovoltaica.',
   },
   {
-    id: 'f2',
+    id: '#fornecedor-weg',
+    id_service: '#produtos-weg',
     name: 'WEG Solar',
     logoUrl: Weg,
     description:
       'Tecnologia e eficiência em inversores, módulos e kits solares.',
   },
   {
-    id: 'f3',
+    id: '#fornecedor-canadian',
+    id_service: '#produtos-canadian',
     name: 'Canadian Solar',
     logoUrl: Canadian,
     description:
@@ -38,21 +41,24 @@ const fornecedoresData = [
 
 const financeirasData = [
   {
-    id: 'fin1',
+    id: '#financeira-santander',
+    id_service: '#financiamento-santander',
     name: 'Santander (Financiamentos)',
     logoUrl: Santander,
     description:
       'Linhas de crédito especiais para projetos de energia solar. Até 100% financiado.',
   },
   {
-    id: 'fin2',
+    id: '#financeira-bv',
+    id_service: '#financiamento-bv',
     name: 'BV Financeira',
     logoUrl: Bv,
     description:
       'Facilidade e agilidade no financiamento do seu sistema solar. Até 120 dias para a 1ª parcela',
   },
   {
-    id: 'fin3',
+    id: '#financeira-solagora',
+    id_service: '#financiamento-solagora',
     name: 'Sol Agora (Creditas)',
     logoUrl: Solagora,
     description:
@@ -63,21 +69,21 @@ const financeirasData = [
 
 const formasPagamentoData = [
   {
-    id: 'pag1',
+    id: '#pag-pix',
     name: 'Pix',
     logoUrl: Santander,
     description:
       'Pagamento imediato, seguro e com confirmação instantânea para sua compra.',
   },
   {
-    id: 'pag2',
+    id: '#pag-boleto',
     name: 'Boleto Bancário',
     logoUrl: Bv,
     description:
       'Opção tradicional com vencimento definido e praticidade para o cliente.',
   },
   {
-    id: 'pag3',
+    id: '#pag-cartao',
     name: 'Cartão de Crédito',
     logoUrl: Solagora,
     description:
@@ -110,6 +116,7 @@ function ParceirosFinanceirasSectionDS() {
               {fornecedoresData.map((partner) => (
                 <PartnerCard
                   key={partner.id}
+                  id={partner.id}
                   logoUrl={partner.logoUrl}
                   name={partner.name}
                   description={partner.description}
@@ -125,6 +132,7 @@ function ParceirosFinanceirasSectionDS() {
               {financeirasData.map((partner) => (
                 <PartnerCard
                   key={partner.id}
+                  id={partner.id}
                   logoUrl={partner.logoUrl}
                   name={partner.name}
                   description={partner.description}
@@ -140,6 +148,7 @@ function ParceirosFinanceirasSectionDS() {
               {formasPagamentoData.map((partner) => (
                 <PartnerCard
                   key={partner.id}
+                  id={partner.id}
                   logoUrl={partner.logoUrl}
                   name={partner.name}
                   description={partner.description}
