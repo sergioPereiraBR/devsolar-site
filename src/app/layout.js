@@ -70,7 +70,7 @@ export const metadata = {
   openGraph: {
     title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título OG padrão
     description:
-      'Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar.', // Descrição OG padrão
+      'Reduza a conta de luz da sua casa, empresa ou condomínio em até 85% com a DEV Solar.', // Descrição OG padrão
     url: 'https://www.devsolar.com.br/', // URL OG padrão (será sobrescrita)
     siteName: 'DEV Solar',
     images: [
@@ -91,7 +91,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro',
     description:
-      'Reduza a conta de luz da sua casa, empresa ou condomínio em até 95% com a DEV Solar.',
+      'Reduza a conta de luz da sua casa, empresa ou condomínio em até 85% com a DEV Solar.',
     // siteId: 'YourTwitterSiteID', // Opcional
     // creator: '@devsolar', // Seu handle do Twitter
     // creatorId: 'YourTwitterCreatorID', // Opcional
