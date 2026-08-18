@@ -265,17 +265,17 @@ export const devSolarSchema = {
         { '@id': 'https://www.devsolar.com.br/#fornecedor-weg' },
         { '@id': 'https://www.devsolar.com.br/#fornecedor-canadian' },
       ],
-      offers: {
-        '@type': 'AggregateOffer',
-        priceCurrency: 'BRL',
-        // TODO: ajustar lowPrice/highPrice com os valores reais dos kits residenciais
-        lowPrice: '',
-        highPrice: '',
-        offerCount: '',
-        itemCondition: 'https://schema.org/NewCondition',
-        availability: 'https://schema.org/InStock',
-        seller: { '@id': 'https://www.devsolar.com.br/#organization' },
-      },
+      // offers: {
+      //   '@type': 'AggregateOffer',
+      //   priceCurrency: 'BRL',
+      //   // TODO: ajustar lowPrice/highPrice com os valores reais dos kits residenciais
+      //   lowPrice: '',
+      //   highPrice: '',
+      //   offerCount: '',
+      //   itemCondition: 'https://schema.org/NewCondition',
+      //   availability: 'https://schema.org/InStock',
+      //   seller: { '@id': 'https://www.devsolar.com.br/#organization' },
+      // },
       // Reviews reais de clientes residenciais — elegíveis a rich results aqui (diferente de LocalBusiness).
       review: [
         {
@@ -317,17 +317,17 @@ export const devSolarSchema = {
         { '@id': 'https://www.devsolar.com.br/#fornecedor-weg' },
         { '@id': 'https://www.devsolar.com.br/#fornecedor-canadian' },
       ],
-      offers: {
-        '@type': 'AggregateOffer',
-        priceCurrency: 'BRL',
-        // TODO: ajustar lowPrice/highPrice com os valores reais dos kits comerciais
-        lowPrice: '',
-        highPrice: '',
-        offerCount: '',
-        itemCondition: 'https://schema.org/NewCondition',
-        availability: 'https://schema.org/InStock',
-        seller: { '@id': 'https://www.devsolar.com.br/#organization' },
-      },
+      // offers: {
+      //   '@type': 'AggregateOffer',
+      //   priceCurrency: 'BRL',
+      //   // TODO: ajustar lowPrice/highPrice com os valores reais dos kits comerciais
+      //   lowPrice: '',
+      //   highPrice: '',
+      //   offerCount: '',
+      //   itemCondition: 'https://schema.org/NewCondition',
+      //   availability: 'https://schema.org/InStock',
+      //   seller: { '@id': 'https://www.devsolar.com.br/#organization' },
+      // },
       review: [
         {
           '@type': 'Review',
