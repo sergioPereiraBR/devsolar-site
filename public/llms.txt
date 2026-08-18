@@ -28,8 +28,6 @@
 - [Localização](https://www.devsolar.com.br/#location): Nossa localização, vamos marcar, encontre sua rota para vir falar com a gente!
 - [Parceiros](https://www.devsolar.com.br/#parceiros): Formamos uma rede com fornecedores e financeiras que colabora para o benefício dos nossos clientes.
 
-
-
 ## Links Úteis do Site
 - [Página Inicial](https://www.devsolar.com.br/)
 - [Política de Privacidade](https://www.devsolar.com.br/politica-de-privacidade/): Termos e privacidade de dados.

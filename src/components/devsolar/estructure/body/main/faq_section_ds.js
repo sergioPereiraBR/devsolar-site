@@ -81,6 +81,23 @@ const faqData = [
     personaImage: PersonaE,
     personaImageAlt: 'Eng. Ricardo Alves - Gerente de Operações',
   },
+  {
+    id: '5',
+    question:
+      'Qual o tempo de retorno (payback) do investimento em energia solar?',
+    answer:
+      'O tempo de retorno varia conforme o porte do sistema e o valor da conta de luz atual, mas na maioria dos casos residenciais e comerciais o payback ocorre entre 3 e 5 anos. Como o financiamento é estruturado para caber no valor da economia gerada, o sistema começa a gerar economia líquida desde a primeira parcela.',
+    personaImage: PersonaE,
+    personaImageAlt: 'Roberto Mendes - Diretor Comercial',
+  },
+  {
+    id: '6',
+    question: 'Qual a diferença entre sistema On-Grid, Off-Grid e Híbrido?',
+    answer:
+      'O sistema On-Grid é conectado à rede pública e é o mais comum, pois não exige baterias: o excedente gerado vira crédito de energia. O Off-Grid é totalmente independente da rede, usando baterias para armazenar toda a energia, indicado para locais isolados. O Híbrido combina os dois modelos, mantendo a conexão à rede e ainda contando com baterias para autonomia em quedas de energia.',
+    personaImage: PersonaE,
+    personaImageAlt: 'Fernando Souza - Produtor Rural',
+  },
 ];
 const COMPANY_LOGO_URL = EspecialistaDevSolar.src;
 const WHATSAPP_CONTACT_NUMBER = '5521999677722';

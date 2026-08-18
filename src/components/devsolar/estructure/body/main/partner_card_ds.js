@@ -2,9 +2,9 @@ import Image from 'next/image';
 
 import styles from './partner_card_ds.module.css'; // Criaremos este CSS
 
-const PartnerCard = ({ logoUrl, name, description }) => {
+const PartnerCard = ({ id, id_service, logoUrl, name, description }) => {
   return (
-    <div className={styles.card}>
+    <div id={id} className={styles.card}>
       <div className={styles.logoContainer}>
         {/* Usamos next/image para otimização */}
         <Image
@@ -18,7 +18,7 @@ const PartnerCard = ({ logoUrl, name, description }) => {
           quality={65}
         />
       </div>
-      <div className={styles.textContainer}>
+      <div id={id_service} className={styles.textContainer}>
         <h4 className={styles.partnerName}>{name}</h4>
         <p className={styles.partnerDescription}>{description}</p>
       </div>
