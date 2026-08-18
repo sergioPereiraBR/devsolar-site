@@ -15,7 +15,7 @@ export const devSolarSchema = {
       slogan: 'O futuro é solar',
       description:
         'Empresa de energia solar fotovoltaica no Rio de Janeiro. Projeto, homologação, instalação e manutenção de sistemas solares residenciais, comerciais e condominiais, com até 85% de redução na conta de luz.',
-      foundingDate: '2023',
+      foundingDate: '2024-01-17',
       url: 'https://www.devsolar.com.br/',
       email: 'comercial@devsolar.com.br', // TODO: confirmar e-mail real (está ofuscado via Cloudflare no HTML)
       logo: {

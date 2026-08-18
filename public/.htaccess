@@ -31,7 +31,7 @@ DirectoryIndex index.html index.php
 </IfModule>
 
 <IfModule mod_rewrite.c>
-RewriteEngine On
+  RewriteEngine On
 
   # Bloqueia apenas User-Agents estritamente vazios ou traço
   RewriteCond %{HTTP_USER_AGENT} ^-?$ [NC,OR]
@@ -47,7 +47,7 @@ RewriteEngine On
   RewriteRule (.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # Redirecionamento do WhatsApp
-  RewriteRule ^whatsapp/?$ `https://api.whatsapp.com/send?phone=5521999677722&text=Ol%C3%A1%20Visitei%20seu%20Instagram%20e%20quero%20saber%20como%20economizar%20com%20Energia%20Solar` [R=301,L,NE,QSD]
+  RewriteRule ^whatsapp/?$ "https://api.whatsapp.com/send?phone=5521999677722&text=Olá Visitei seu Instagram e quero saber como economizar com Energia Solar" [R=301,L,NE]
 
   # Nunca reescrever assets estáticos (chunks, css, imagens, mídias)
   RewriteRule ^_next/ - [L]
