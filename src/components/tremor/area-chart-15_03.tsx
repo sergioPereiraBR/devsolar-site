@@ -49,39 +49,6 @@ interface CustomYAxisTickProps {
   maxY: number;
 }
 
-const currencyFormatter = (
-  value: unknown,
-  options?: Intl.NumberFormatOptions,
-): string => {
-  const number = Number(value);
-
-  if (value === null || value === undefined || !isFinite(number)) {
-    return 'N/A';
-  }
-  const formatter = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    notation: 'compact',
-    compactDisplay: 'short',
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
-    ...options,
-  });
-  return formatter.format(number);
-};
-
-const percentFormatter = (number: number): string => {
-  if (typeof number !== 'number' || isNaN(number) || !isFinite(number)) {
-    return 'N/A';
-  }
-  const formatter = new Intl.NumberFormat('pt-BR', {
-    style: 'percent',
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
-  });
-  return formatter.format(number / 100);
-};
-
 const CustomYAxisTick: React.FC<CustomYAxisTickProps> = ({
   x = 0,
   y = 0,
@@ -91,6 +58,7 @@ const CustomYAxisTick: React.FC<CustomYAxisTickProps> = ({
   if (!payload) return null;
   const value = payload.value;
 
+  // Formatação do texto
   let text = currencyFormatter(value, {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
@@ -100,17 +68,19 @@ const CustomYAxisTick: React.FC<CustomYAxisTickProps> = ({
     text = 'R$ 0';
   }
 
+  // Estilização condicional ff9e00 10b981
   const isNegative = value < 0;
-  const isMax = Math.abs(value - maxY) < 1;
+  const isMax = Math.abs(value - maxY) < 1; // Verifica se é o valor máximo
 
-  const fill = isMax ? '#ff9e00' : isNegative ? '#ef4444' : '#6b7280';
-  const fontWeight = isMax ? 700 : 400;
+  const fill = isMax ? '#ff9e00' : isNegative ? '#ef4444' : '#6b7280'; // Verde se máximo, Vermelho se negativo e Cinza padrão se positivo
+  const fontWeight = isMax ? 700 : 400; // Negrito apenas no valor máximo
 
+  // Ajuste fino vertical (dy) para afastar o R$ 0 do valor negativo
   let dyOffset = 4;
   if (value === 0) {
-    dyOffset = -1;
+    dyOffset = -1; // Sobe o R$ 0 para não colidir com o valor negativo
   } else if (isNegative) {
-    dyOffset = 6;
+    dyOffset = 6; // Desce ligeiramente o valor negativo
   }
 
   return (
@@ -128,6 +98,74 @@ const CustomYAxisTick: React.FC<CustomYAxisTickProps> = ({
       </text>
     </g>
   );
+};
+
+// // Componente de Tick Customizado para afastar o R$ 0 do -R$ 71k
+// const CustomYAxisTick = (props: any) => {
+//   const { x, y, payload } = props;
+//   const value = payload.value;
+
+//   // Trata a legenda do Zero
+//   let text = currencyFormatter(value, {
+//     minimumFractionDigits: 1,
+//     maximumFractionDigits: 1,
+//   });
+//   let dyOffset = 4; // Padrão de alinhamento vertical
+
+//   if (value === 0) {
+//     text = 'R$ 0';
+//     dyOffset = -1; // <-- Move APENAS o rótulo "R$ 0" para CIMA
+//   } else if (value < 0) {
+//     dyOffset = 5; // <-- Move ligeiramente o valor negativo para BAIXO
+//   }
+
+//   return (
+//     <g transform={`translate(${x},${y})`}>
+//       <text
+//         x={0}
+//         y={0}
+//         dy={dyOffset}
+//         textAnchor="end"
+//         fill="#6b7280"
+//         fontSize={11}
+//       >
+//         {text}
+//       </text>
+//     </g>
+//   );
+// };
+
+const currencyFormatter = (
+  value: unknown,
+  options?: Intl.NumberFormatOptions,
+): string => {
+  const number = Number(value);
+
+  if (value === null || value === undefined || !isFinite(number)) {
+    return 'N/A';
+  }
+  const formatter = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    notation: 'compact',
+    compactDisplay: 'short',
+    minimumFractionDigits: 1, // <-- Controla o mínimo de casas decimais (ex: R$ 2,4 mi)
+    maximumFractionDigits: 1, // <-- Controla o máximo de casas decimais
+    ...options,
+  });
+  return formatter.format(number);
+};
+
+const percentFormatter = (number: number): string => {
+  if (typeof number !== 'number' || isNaN(number) || !isFinite(number)) {
+    return 'N/A';
+  }
+  const formatter = new Intl.NumberFormat('pt-BR', {
+    style: 'percent',
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+  return formatter.format(number / 100);
 };
 
 const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
@@ -167,10 +205,11 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
 
   const dataLocal: Project = dataProject;
 
+  // Garante que o investimento dinâmico seja respeitado
   const investimentoInicial =
     Math.abs(Number(dataLocal.investimentoEstimado)) || 0;
 
-  // Mapeamento dinâmico da série de Payback Líquido
+  // Mapeamento seguro dos dados
   const chartData: Dado[] = (dataLocal.dataResume ?? dataLocal.data ?? []).map(
     (item, index) => {
       const ano = Number(item.Ano) || 0;
@@ -196,37 +235,54 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
     },
   );
 
-  // Obtém o Saldo Líquido Final dinâmico (Ano 2050)
+  // 1. Define o valor máximo do gráfico como a Economia Acumulada Total (ex: 3.6 mi)
+  // const totalEconomiaAcumulada = Number(dataLocal.economiaAcumulada) || 0;
+
+  // Pega o último ponto do gráfico ou a economia acumulada como o limite máximo cravado
+  // const maxY =
+  //   totalEconomiaAcumulada > 0
+  //     ? totalEconomiaAcumulada
+  //     : Math.max(...chartData.map((d) => d.Payback), 100000);
+
+  // const domainMin = -investimentoInicial; // Ex: -71000
+  // const domainMax = maxY; // Cravado em R$ 3,6 mi (Economia Acumulada)
+
+  // Pega o valor exato do último ano da série temporal (Ano 2050)
   const ultimoPayback =
     chartData.length > 0 ? chartData[chartData.length - 1].Payback : 0;
 
   const maxY = ultimoPayback > 0 ? ultimoPayback : 100000;
-  const domainMin = -investimentoInicial;
-  const domainMax = maxY;
 
-  // Geração de ticks dinâmicos para o eixo Y
+  const domainMin = -investimentoInicial;
+  const domainMax = maxY; // Agora o topo do eixo Y será exatamente igual ao valor de 2050
+
+  // 2. Cria 4 divisões bem espaçadas acima do zero até o máximo (3,6 mi)
   const numSteps = 4;
   const positiveTicks = Array.from({ length: numSteps }, (_, i) =>
     Math.round(((i + 1) * maxY) / numSteps),
   );
 
+  // // Cálculo do maior valor positivo
+  // const yValues = chartData.map((d) => d.Payback);
+  // const maxY = yValues.length > 0 ? Math.max(...yValues) : 400000;
+
+  // const domainMin = -investimentoInicial;
+  // const domainMax = isFinite(maxY) ? Math.ceil(maxY * 1.02) : 'auto';
+
+  // // --- GERADOR DE MAIS TICKS NO EIXO Y ---
+  // // Aumenta o número de divisões (6 passos positivos para gerar mais linhas de referência)
+  // const numSteps = 4;
+  // const positiveTicks = Array.from({ length: numSteps }, (_, i) =>
+  //   Math.round(((i + 1) * maxY) / numSteps),
+  // );
+
+  // Combina o valor inicial negativo, o zero e as marcas positivas adicionais
   const customTicks = [domainMin, 0, ...positiveTicks];
 
-  // 2. Obtém a Economia Bruta Total em 25 anos (usa o dado original do projeto ou soma individual)
-  const economiaTotalAcumulada = Number(dataLocal.economiaAcumulada) || 0;
-
-  // 3. Calcula o Custo Operacional/Preventivo Acumulado com respaldo matemático exato
-  // (Economia Bruta - Retorno Líquido - Investimento Inicial)
-  const custosOperacionaisTotais = Math.max(
-    0,
-    economiaTotalAcumulada - ultimoPayback - investimentoInicial,
-  );
-
-  // Estrutura atualizada dos cards de indicadores
   const summary = [
     {
-      category: 'Retorno Líquido Real (25 Anos)',
-      total: currencyFormatter(ultimoPayback), // Usa o Saldo Líquido do Ano 2050
+      category: 'Economia Acumulada (25 Anos)',
+      total: currencyFormatter(dataLocal.economiaAcumulada),
       color: 'bg-[#ff9e00]',
     },
     {
@@ -253,7 +309,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
 
   return (
     <>
-      {/* <div className="mx-0 w-full max-w-none px-0 sm:mx-auto sm:max-w-7xl sm:px-0">
+      <div className="mx-0 w-full max-w-none px-0 sm:mx-auto sm:max-w-7xl sm:px-0">
         <h2 className="font-medium text-footer-color dark:text-gray-50">
           Custo Evitado e Ganho Financeiro Estimado (25 Anos)
         </h2>
@@ -269,53 +325,32 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
           <strong>fale com nossos especialistas</strong> e descubra como
           aproveitar ao <strong>máximo o retorno do seu investimento</strong>{' '}
           com a <strong>DEV Solar</strong>.
-        </p> */}
+        </p>
 
-      <div className="mx-0 w-full max-w-none px-0 sm:mx-auto sm:max-w-7xl sm:px-0">
-        <div className="mt-6 space-y-3 rounded-lg border border-gray-100 bg-gray-50/50 p-4 dark:border-gray-800 dark:bg-gray-900/40">
-          <h2 className="font-medium text-footer-color dark:text-gray-50">
-            Retorno Financeiro e Projeção de Economia (25 Anos)
-          </h2>
-
-          <p className="text-sm/6 text-gray-500 dark:text-gray-500">
-            Estimativas baseadas no seu consumo mensal informado de{' '}
-            <span className="font-medium text-gray-900 dark:text-gray-200">
-              {currencyFormatter(dataLocal.custoMensalInformado, {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-                notation: 'standard',
-              })}
-            </span>
-            . Para um estudo personalizado para o seu imóvel, fale com{' '}
-            <strong>nossos especialistas</strong> e descubra como{' '}
-            <strong>maximizar a rentabilidade do seu projeto</strong>
-            com a <strong>DEV Solar</strong>.
-          </p>
-
-          <ul
-            role="list"
-            className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-5"
-          >
-            {summary.map((item, index) => (
-              <li key={index}>
-                <div className="flex space-x-1">
-                  {item.color && (
-                    <span
-                      className={cx(item.color, 'w-1 shrink-0 rounded')}
-                      aria-hidden={true}
-                    />
-                  )}
-                  <p className="text-lg font-semibold text-gray-900 dark:text-gray-50">
-                    {item.total}
-                  </p>
-                </div>
-                <p className="pl-3 text-sm text-gray-500 dark:text-gray-500">
-                  {item.category}
+        <ul
+          role="list"
+          className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-5"
+        >
+          {summary.map((item, index) => (
+            <li key={index}>
+              <div className="flex space-x-1">
+                {item.color && (
+                  <span
+                    className={cx(item.color, 'w-1 shrink-0 rounded')}
+                    aria-hidden={true}
+                  />
+                )}
+                <p className="text-lg font-semibold text-gray-900 dark:text-gray-50">
+                  {item.total}
                 </p>
-              </li>
-            ))}
-          </ul>
-        </div>
+              </div>
+              <p className="pl-3 text-sm text-gray-500 dark:text-gray-500">
+                {item.category}
+              </p>
+            </li>
+          ))}
+        </ul>
+
         {/* Gráfico de Economia e Payback */}
         <div
           ref={chartContainerRef}
@@ -334,12 +369,29 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
               >
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="Ano" tick={{ fontSize: 12 }} />
+                {/* <YAxis
+                  width={85}
+                  domain={[domainMin, domainMax]}
+                  ticks={customTicks} // <-- Força a exibição de mais valores no eixo Y
+                  interval={0} // <-- Impede o Recharts de ocultar valores
+                  tickFormatter={(value) => currencyFormatter(value)}
+                  tick={{ fontSize: 11 }}
+                /> */}
                 <YAxis
                   width={90}
                   domain={[domainMin, domainMax]}
                   ticks={customTicks}
                   interval={0}
-                  tick={<CustomYAxisTick maxY={maxY} />}
+                  tickFormatter={(value) => {
+                    // Se for o zero, mostra simplesmente "R$ 0" para não colidir com "-R$ 71,0 mil"
+                    if (value === 0) return 'R$ 0';
+
+                    return currencyFormatter(value, {
+                      minimumFractionDigits: 1,
+                      maximumFractionDigits: 1,
+                    });
+                  }}
+                  tick={<CustomYAxisTick maxY={maxY} />} // <-- Usa o tick customizado com ajuste de offset
                   allowDataOverflow={true}
                 />
                 <Tooltip
@@ -350,7 +402,7 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
                   labelFormatter={(label) => `Ano ${label}`}
                 />
 
-                {/* Linha do Ponto Zero de Payback */}
+                {/* Linha do Ponto Zero de Payback 3b82f6 */}
                 <ReferenceLine
                   y={0}
                   stroke="#3b82f6"
@@ -379,50 +431,6 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
               </RechartsAreaChart>
             </ResponsiveContainer>
           ) : null}
-        </div>
-
-        {/* Rodapé do Gráfico: Explicativo + Aviso */}
-        <div className="mt-6 space-y-3 rounded-lg border border-gray-100 bg-gray-50/50 p-4 dark:border-gray-800 dark:bg-gray-900/40">
-          <p className="text-xs/5 text-gray-600 dark:text-gray-300">
-            <strong className="font-semibold text-gray-900 dark:text-gray-100">
-              Entenda o Ganho Líquido Acumulado:
-            </strong>{' '}
-            Este gráfico reflete o <strong>ganho real</strong> gerado no seu
-            bolso ao longo de 25 anos:
-          </p>
-
-          <ul className="list-disc space-y-1 pl-5 text-xs/5 text-gray-600 dark:text-gray-300">
-            <li>
-              <strong>Economia Bruta Gerada:</strong> Projeção de{' '}
-              <span className="font-semibold text-gray-900 dark:text-gray-100">
-                {currencyFormatter(economiaTotalAcumulada)}
-              </span>{' '}
-              em custos evitados na conta de luz.
-            </li>
-            <li>
-              <strong>Deduções Previstas:</strong> Já contempla a quitação do
-              investimento inicial ({currencyFormatter(investimentoInicial)}) e
-              uma reserva preventiva para custos operacionais (
-              {currencyFormatter(custosOperacionaisTotais)}).
-            </li>
-            <li>
-              <strong>Retorno Líquido Real:</strong> Resultado limpo de{' '}
-              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-                {currencyFormatter(ultimoPayback)}
-              </span>{' '}
-              disponível no seu bolso.
-            </li>
-          </ul>
-          <p
-            className={`border-t border-gray-200/60 pt-1.5 text-[12px]/4 italic text-gray-600 dark:border-gray-800 dark:text-gray-400`}
-          >
-            * Os resultados apresentados são estimativas baseadas no seu
-            <span> </span>
-            <strong>perfil atual de consumo</strong>. Para validar as projeções
-            e obter uma
-            <strong>proposta sob medida</strong>, consulte{' '}
-            <strong>nossa equipe</strong> de especialistas.
-          </p>
         </div>
       </div>
     </>
