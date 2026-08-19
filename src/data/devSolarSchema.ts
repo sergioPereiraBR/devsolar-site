@@ -457,7 +457,7 @@ export const devSolarSchema = {
         { '@type': 'AdministrativeArea', name: 'Região Metropolitana do Rio de Janeiro' },
       ],
     },
-
+	
     // -------------------------------------------------------------
     // FAQPage
     // -------------------------------------------------------------

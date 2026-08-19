@@ -447,3 +447,282 @@ A seguir está uma consolidação dos bairros da cidade do Rio de Janeiro, organ
 - Vila Marieta
 
 > Observação: a nomenclatura dos bairros pode variar ligeiramente dependendo da fonte, do bairro histórico, do uso administrativo e da referência cartográfica adotada. A lista acima foi organizada para oferecer uma visão completa e prática dos bairros mais reconhecidos e tradicionalmente vinculados à cidade do Rio de Janeiro.
+
+// Belford Roxo, Rio de Janeiro, Brasil
+// Duque de Caxias, Rio de Janeiro, Brasil
+// Magé, Rio de Janeiro, Brasil
+// Mesquita, Rio de Janeiro, Brasil
+// Nilópolis, Rio de Janeiro, Brasil
+// Nova Iguaçu, Rio de Janeiro, Brasil
+// Rio de Janeiro, Rio de Janeiro, Brasil
+// Seropédica, Rio de Janeiro, Brasil
+// São João de Meriti, Rio de Janeiro, Brasil
+// Niterói, Rio de Janeiro, Brasil
+// São Gonçalo, Rio de Janeiro, Brasil
+// Itaboraí, Rio de Janeiro, Brasil
+// Maricá, Rio de Janeiro, Brasil
+// Itaguaí, Rio de Janeiro, Brasil
+// Guapimirim, Rio de Janeiro, Brasil
+// Queimados, Rio de Janeiro, Brasil
+// Japeri, Rio de Janeiro, Brasil
+// Paracambi, Rio de Janeiro, Brasil
+// Mangaratiba, Rio de Janeiro, Brasil
+// Tanguá, Rio de Janeiro, Brasil
+
+simular economia
+empresa energia solar
+Projetos homologados na Light
+instalação rápida de energia solar
+visita técnica energia solar gratuita
+instalação de placa solar
+energia solar para condomínio
+instalador placa solar
+instalar energia solar comercial
+simulador energia solar
+financiamento energia solar
+quanto custa painel solar
+melhor empresa de energia solar
+comprar kit fotovoltaico on grid
+empresa de energia solar perto de mim
+cotação projeto energia solar empresas
+simular valor sistema fotovoltaico
+quanto custa instalar painel solar residencial
+MP 1300 energia solar
+contra aumentos tarifários
+como reduzir a conta de luz
+energia solar no rio de janeiro
+qual o custo de manutenção de energia solar
+tempo de retorno energia solar payback
+energia solar funciona em dia chuvoso
+diferença entre on-grid e off-grid
+quanto dura um painel solar
+preço kit energia solar instalado
+contratar projeto solar comercial
+
+Reduza até 85% o gasto com Luz
+Obrigatório
+30 / 30
+O texto tem 30 caracteres de 30
+Proteja-se da tarifa de luz
+Obrigatório
+27 / 30
+O texto tem 27 caracteres de 30
+Solicite um orçamento Grátis!
+Obrigatório
+29 / 30
+O texto tem 29 caracteres de 30
+Simule rápido sua economia!
+
+27 / 30
+O texto tem 27 caracteres de 30
+Mude de gasto a investimento
+
+28 / 30
+
+Reduza até 85% da sua Conta de Luz com Energia Solar. Simule na hora sua economia!
+Obrigatório
+82 / 90
+O texto tem 82 caracteres de 90
+Proteja sua casa, condomínio ou empresa contra aumentos tarifários. Solicite um orçamento!
+Obrigatório
+90 / 90
+O texto tem 90 caracteres de 90
+Investimento Inteligente com a DEV Solar. Troque sua conta pelo financiamento do sistema!
+
+89 / 90
+O texto tem 89 caracteres de 90
+Fique livre dos altos custo com energia e use o retorno do investimento como achar melhor.
+
+90 / 90
+O texto tem 90 caracteres de 90
+Com energia solar no verão do Rio de Janeiro a 40ºC até a conta vai te dar um refresco.
+
+87 / 90
+
+Simular Economia Grátis
+https://www.devsolar.com.br/#simulaca
+
+Texto do sitelink
+Simular Economia Grátis
+
+23 / 25
+O texto tem 23 caracteres de 25
+Linha de descrição 1 (recomendado)
+Descubra quanto vai economizar.
+
+31 / 35
+O texto tem 31 caracteres de 35
+Linha de descrição 2 (recomendado)
+Orçamento rápido e sem compromisso.
+
+35 / 35
+O texto tem 35 caracteres de 35
+URL final
+https://www.devsolar.com.br/#simulaca
+
+Projetos e Instalação
+https://www.devsolar.com.br/#servicos
+
+Texto do sitelink
+Projetos e Instalação
+
+21 / 25
+O texto tem 21 caracteres de 25
+Linha de descrição 1 (recomendado)
+Soluções completas e sob medida.
+
+32 / 35
+O texto tem 32 caracteres de 35
+Linha de descrição 2 (recomendado)
+Equipe técnica especializada no RJ.
+
+35 / 35
+O texto tem 35 caracteres de 35
+URL final
+https://www.devsolar.com.br/#servicos
+
+Financiamento Facilitado
+https://www.devsolar.com.br/#financiamento
+
+Texto do sitelink
+Financiamento Facilitado
+
+24 / 25
+O texto tem 24 caracteres de 25
+Linha de descrição 1 (recomendado)
+Troque sua conta por parcelas.
+
+30 / 35
+O texto tem 30 caracteres de 35
+Linha de descrição 2 (recomendado)
+Condições de pagamento especiais.
+
+33 / 35
+O texto tem 33 caracteres de 35
+URL final
+https://www.devsolar.com.br/#financiamento
+
+Equipamentos de Qualidade
+https://www.devsolar.com.br/#garantia
+
+Texto do sitelink
+Equipamentos de Qualidade
+
+25 / 25
+O texto tem 25 caracteres de 25
+Linha de descrição 1 (recomendado)
+Painéis duráveis de alta tecnologia
+
+35 / 35
+O texto tem 35 caracteres de 35
+Linha de descrição 2 (recomendado)
+Garantia de até 25 anos inclusa.
+
+32 / 35
+O texto tem 32 caracteres de 35
+URL final
+https://www.devsolar.com.br/#garantia
+
+Manutenção e Limpeza
+https://www.devsolar.com.br/#manutencao
+
+Texto do sitelink
+Manutenção e Limpeza
+
+20 / 25
+O texto tem 20 caracteres de 25
+Linha de descrição 1 (recomendado)
+Mantenha o rendimento máximo.
+
+29 / 35
+O texto tem 29 caracteres de 35
+Linha de descrição 2 (recomendado)
+Limpeza e revisão técnica solar.
+
+32 / 35
+O texto tem 32 caracteres de 35
+URL final
+https://www.devsolar.com.br/#manutencao
+
+Casas, Cond. e Empresas
+https://www.devsolar.com.br/#comercial
+
+Texto do sitelink
+Casas, Cond. e Empresas
+
+23 / 25
+O texto tem 23 caracteres de 25
+Linha de descrição 1 (recomendado)
+Reduza os custos do seu negócio.
+
+32 / 35
+O texto tem 32 caracteres de 35
+Linha de descrição 2 (recomendado)
+Atendimento residencial e comercial
+
+35 / 35
+O texto tem 35 caracteres de 35
+URL final
+https://www.devsolar.com.br/#comercial
+
+Veja Instalações Reais
+https://www.devsolar.com.br/#portfólio
+
+Texto do sitelink
+Veja Instalações Reais
+
+22 / 25
+O texto tem 22 caracteres de 25
+Linha de descrição 1 (recomendado)
+Confira depoimentos dos clientes.
+
+33 / 35
+O texto tem 33 caracteres de 35
+Linha de descrição 2 (recomendado)
+Conheça nossos trabalhos recentes.
+
+34 / 35
+O texto tem 34 caracteres de 35
+URL final
+https://www.devsolar.com.br/#portfólio
+
+Opções de URL do sitelink
+Modelo de rastreamento
+{lpurl}?utm*source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_content={creative}&utm_term={keyword}&device={device}
+Exemplo: https://www.trackingtemplate.foo/?url={lpurl}&id=5
+Sufixo do URL final
+Exemplo: param1=value1&param2=value2
+Parâmetro personalizado
+{*
+origem
+}
+
+=
+sitelink_pmax
+
+{\_
+Nome
+}
+
+=
+Valor
+
+Usar um URL final diferente para dispositivos móveis
+Opções avançadas
+Programação de recurso
+Selecione quando seus recursos vão estar qualificados para veiculação
+Data de início
+Nenhuma
+Selecionar data
+Data de término
+Nenhuma
+Selecionar data
+Dias e horários
+Todos os dias
+
+00:00
+a
+00:00
+
+Para oferecer um gasto mensal mais previsível, agora os orçamentos das campanhas são planejados para durar um mês inteiro, distribuídos na sua programação de anúncios ativa. Saiba mais
+Fuso horário da conta: (GMT-03:00) Horário Padrão de Brasília
