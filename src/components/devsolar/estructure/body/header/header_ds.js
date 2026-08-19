@@ -599,13 +599,6 @@ function HeaderDS() {
                 </h5> */}
                 <Example dataProject={calculationResult} />
               </div>
-              <p className={styles.chartDisclaimer}>
-                *Os resultados apresentados são estimativas baseadas no seu
-                <span> </span>
-                <strong>consumo atual</strong>. Para validar os dados e obter
-                uma <strong>proposta sob medida</strong>, fale com a{' '}
-                <strong>nossa equipe</strong>.
-              </p>
             </>
           ) : (
             <p className="text-danger p-4 text-center">
