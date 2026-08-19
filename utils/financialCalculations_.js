@@ -305,85 +305,61 @@ console.log("TIR Estimada:", minhaTIR);
 /*
  * Calcula o Valor Presente Líquido para
  * um período constante sem inversão de sinal
+ *
+ * @taxa => taxa de desconto
+ * @montantes => vetor com os valores com os recebimentos ou pagamentos
+ * -100,30,30,10,10,10,10
  */
 export function vpl(taxa, montantes) {
-  if (taxa <= -1.0) return NaN; // Evita divisão por zero
   var ret = montantes[0];
-  for (var i = 1; i < montantes.length; i++) {
-    ret += montantes[i] / Math.pow(1.0 + taxa, i);
-  }
-  return ret;
-}
 
-/**
- * Derivada do VPL em relação à taxa (necessário para Newton-Raphson rápido)
- */
-function vpl_derivada(taxa, montantes) {
-  var ret = 0;
-  for (var i = 1; i < montantes.length; i++) {
-    ret -= (i * montantes[i]) / Math.pow(1.0 + taxa, i + 1);
-  }
+  for (var i = 1; i < montantes.length; i++)
+    ret += montantes[i] / Math.pow(1.0 + taxa, i);
   return ret;
 }
 
 /*
- * Calcula a Taxa Interna de Retorno (TIR / IRR)
- * Retorna a TIR em PERCENTUAL (ex: 15.5 para 15.5%) ou NaN se falhar.
+ * Calcula a Taxa Interna de Retorno
+ *
+ * @montantes => vetor com os valores
  */
 export function tir(montantes) {
-  if (!montantes || montantes.length < 2) return NaN;
+  var ret = -1000000000.0;
+  var juros_inicial = -1.0;
+  var juros_medio = 0.0;
+  var juros_final = 1.0;
+  var vpl_inicial = 0.0;
+  var vpl_final = 0.0;
+  var vf = 0.0;
+  var erro = 1e-5;
 
-  // Tenta Newton-Raphson primeiro (super rápido e preciso)
-  let rate = 0.1; // Estimativa inicial (10%)
-  const maxIterations = 200;
-  const tolerance = 1e-6;
-
-  for (let i = 0; i < maxIterations; i++) {
-    if (rate <= -0.999) rate = -0.999; // Evita chegar perto de -100%
-
-    const npvVal = vpl(rate, montantes);
-    const npvDeriv = vpl_derivada(rate, montantes);
-
-    if (Math.abs(npvVal) < tolerance) {
-      return rate * 100.0; // Retorna em porcentagem
-    }
-
-    if (Math.abs(npvDeriv) < 1e-12) break; // Evita divisão por zero na derivada
-
-    const newRate = rate - npvVal / npvDeriv;
-    if (Math.abs(newRate - rate) < tolerance) {
-      return newRate * 100.0;
-    }
-
-    rate = newRate;
+  for (var i = 0; i < 100; i++) {
+    vpl_inicial = vpl(juros_inicial, montantes);
+    vpl_final = vpl(juros_final, montantes);
+    if (sinal(vpl_inicial) != sinal(vpl_final)) break;
+    juros_inicial -= 1.0;
+    juros_final += 1.0;
   }
+  var count = 0;
+  for (;;) {
+    // Busca por Bisseção
+    var juros_medio = (juros_inicial + juros_final) / 2.0;
+    var vpl_medio = vpl(juros_medio, montantes);
 
-  // Fallback: Busca por Bisseção Segura com limites positivos flexíveis
-  let low = -0.95;
-  let high = 5.0; // Suporta TIR de até 500% a.a.
-  const erro = 1e-5;
-
-  // Garante que o limite superior englobe o VPL negativo para TIRs altíssimas
-  while (vpl(high, montantes) > 0 && high < 100.0) {
-    high *= 2.0;
-  }
-
-  for (let count = 0; count < 1000; count++) {
-    let mid = (low + high) / 2.0;
-    let vpl_medio = vpl(mid, montantes);
-
-    if (Math.abs(vpl_medio) <= erro || high - low < erro) {
-      return mid * 100.0;
+    if (Math.abs(vpl_medio) <= erro) {
+      // Resultado foi encontrado
+      return juros_medio * 100.0;
     }
-
-    if (vpl_medio > 0) {
-      low = mid;
+    if (sinal(vpl_inicial) == sinal(vpl_medio)) {
+      juros_inicial = juros_medio;
+      vpl_inicial = vpl(juros_medio, montantes);
     } else {
-      high = mid;
+      juros_final = juros_medio;
+      vpl_final = vpl(juros_medio, montantes);
     }
+    if (++count > 10000) throw 'looping inválido';
   }
-
-  return NaN; // Retorna NaN de forma graciosa em vez de lançar exceção / crash
+  return ret;
 }
 
 function sinal(x) {

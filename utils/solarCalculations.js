@@ -1,43 +1,39 @@
 import { calculateNPV, tir } from '@/utils/financialCalculations';
 
+import { CalculadorPrecoDinamico } from './CalculadorPrecoDinamico';
+
+const DADOS_FAIXAS_PADRAO = [
+  { valor_faixa: 12000.0, conta_de: 400.0, conta_ate: 499.99 },
+  { valor_faixa: 13000.0, conta_de: 500.0, conta_ate: 699.99 },
+  { valor_faixa: 15000.0, conta_de: 700.0, conta_ate: 899.99 },
+  { valor_faixa: 17000.0, conta_de: 900.0, conta_ate: 1099.99 },
+  { valor_faixa: 19000.0, conta_de: 1100.0, conta_ate: 1199.99 },
+  { valor_faixa: 22000.0, conta_de: 1200.0, conta_ate: 1399.99 },
+  { valor_faixa: 24000.0, conta_de: 1400.0, conta_ate: 1599.99 },
+  { valor_faixa: 26000.0, conta_de: 1500.0, conta_ate: 1799.99 },
+];
+
+const calculadorPrecoPadrao = new CalculadorPrecoDinamico(DADOS_FAIXAS_PADRAO);
+
+function calcularPrecoPadrao(valorConta) {
+  try {
+    return calculadorPrecoPadrao.calcular(valorConta);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 export function calcularEconomiaSolar(custoMensalRs) {
-  // Constantes de Cálculo (Exemplo - Devem ser mais precisas ou configuráveis)
+  // Constantes de Cálculo
   const TAXA_ENERGIA_RS_KWH = 1.18;
-  const PERDA_SISTEMA_PERCENT = 25; // %
+  const PERDA_SISTEMA_PERCENT = 25; // % de perdas (PR de 75%)
   const POTENCIA_PAINEL_W = 570;
-  const INVESTIMENTO_ESTIMADO_BASE = 18000.0; // Exemplo, cálculo real seria mais complexo
-  const TAXA_JUROS_ANUAL_ENERGIA = 0.06; // Para projeção de custo evitado
-  const DEGRADACAO_PAINEL_ANO1 = 0.03;
-  const DEGRADACAO_PAINEL_ANOS_SEGUINTES = 0.01;
+  const INFLACAO_ENERGIA_ANUAL = 0.06; // Reajuste tarifário anual estimado (6%)
+  const TAXA_DESCONTO_VPL = 0.1; // Taxa Mínima de Atratividade para o VPL (ex: 10% a.a.)
+  const DEGRADACAO_PAINEL_ANO1 = 0.02; // Degradação típica ano 1 (2%)
+  const DEGRADACAO_PAINEL_ANOS_SEGUINTES = 0.0055; // Degradação anual seguinte (0.55%)
   const VIDA_UTIL_SISTEMA_ANOS = 25;
-  // --- Fim das Constantes ---
-
-  // Placeholder - NECESSITA IMPLEMENTAÇÃO REAL (API, JSON, etc.)
-  const obterDadosIrradiacao = (
-    uf = 'RJ',
-    latitude = -22.9,
-    longitude = -43.2,
-  ) => {
-    // console.warn('Placeholder: Implementar busca real de dados de irradiação.');
-    // Simulando uma média anual para RJ (exemplo, valor irreal)
-    const mediaAnualKWhM2Dia = 5.5; //[0, 0, 0, 0, 5.5, 5.3, 5.1, 5.4, 5.7, 6.0, 6.2, 6.1, 5.9, 5.8, 5.6, 5.4, 5.4]
-    // Retorna um array simulando a média para cada mês (simplificado)
-    return Array(12).fill(mediaAnualKWhM2Dia); // [5.0, 5.0, ..., 5.0]
-  };
-
-  // Placeholder - PRECISA DE DADOS REAIS OU INPUTS (CEP, etc.)
-  const getLocalizacaoGeradora = () => ({
-    uf: 'RJ',
-    lat: -22.9,
-    long: -43.2,
-    // ... outros dados se necessários para irradiação
-  });
-
-  const roundPotenciaPico80p = (potenciaPico) => {
-    // Lógica mantida, mas pode ser simplificada ou usar Math.round diretamente dependendo da regra exata
-    const potenciaPico80pMin = potenciaPico * 0.8;
-    return Math.max(1, Math.round(potenciaPico80pMin)); // Simplificado para arredondar normal e garantir min 1
-  };
 
   if (!custoMensalRs || custoMensalRs < 300 || custoMensalRs > 999999999.99) {
     return {
@@ -50,165 +46,109 @@ export function calcularEconomiaSolar(custoMensalRs) {
   // 1. Dados de Consumo
   const consumoTotalKwhMes = custoMensalRs / TAXA_ENERGIA_RS_KWH;
   const consumoTotalKwhAno = consumoTotalKwhMes * 12;
-  const consumoMediaKwhDia = consumoTotalKwhAno / 12 / 30;
+  const consumoMediaKwhDia = consumoTotalKwhAno / 365.25;
 
-  // 2. Dados da Unidade Geradora (Simplificado)
-  const localizacao = getLocalizacaoGeradora();
-  const eficienciaSistema = 1 - PERDA_SISTEMA_PERCENT / 100;
-  const irradiacaoMediaDiariaMesKwhM2 = obterDadosIrradiacao(
-    localizacao.uf,
-    localizacao.lat,
-    localizacao.long,
-  );
-  // console.log('irradiacaoMediaDiariaMesKwhM2: ', irradiacaoMediaDiariaMesKwhM2);
-  // Média anual simples para este exemplo
-  const irradiacaoMediaAnualKwhM2Dia =
-    irradiacaoMediaDiariaMesKwhM2.reduce((a, b) => a + b, 0) / 12;
-  // console.log('irradiacaoMediaAnualKwhM2Dia: ', irradiacaoMediaAnualKwhM2Dia);
+  // 2. Dados de Irradiacao e Eficiência
+  const eficienciaSistema = 1 - PERDA_SISTEMA_PERCENT / 100; // 0.75
+  const irradiacaoMediaAnualKwhM2Dia = 5.5; // Exemplo RJ (kWh/m²/dia)
 
-  // 3. Potencial do Sistema
-  const consumoCompensadoKwhDia = consumoMediaKwhDia / eficienciaSistema;
-  // console.log('consumoCompensadoKwhDia: ', consumoCompensadoKwhDia);
+  // 3. Potencial do Sistema (Ajuste no Dimensionamento)
+  // Potência kWp necessária considerando o PR (Performance Ratio)
   const potenciaSistemaKwpNecessaria =
-    consumoCompensadoKwhDia / irradiacaoMediaAnualKwhM2Dia;
-  // console.log('potenciaSistemaKwpNecessaria: ', potenciaSistemaKwpNecessaria);
+    consumoMediaKwhDia / (irradiacaoMediaAnualKwhM2Dia * eficienciaSistema);
+
   const quantidadePaineis = Math.ceil(
     potenciaSistemaKwpNecessaria / (POTENCIA_PAINEL_W / 1000),
   );
-  // console.log('quantidadePaineis: ', quantidadePaineis);
-  // Recalcula a potência real do sistema com base nos painéis inteiros
-  const potenciaRealSistemaKwp = quantidadePaineis * (POTENCIA_PAINEL_W / 1000);
-  // console.log('potenciaRealSistemaKwp: ', potenciaRealSistemaKwp);
 
-  // 4. Produção Anual Estimada (Simplificado)
-  // let potenciaSistemaKwpAno = 0;
-  // irradiacaoMediaDiariaMesKwhM2.forEach(irradiacaoMes => {
-  //     // Produção mensal = Potência_Sistema * Irradiação_Média_Dia * Dias_no_Mês * Eficiência
-  //     // Simplificação: usando média anual de irradiação * 30 dias * 12 meses
-  //     potenciaSistemaKwpAno += potenciaRealSistemaKwp * irradiacaoMediaAnualKwhM2Dia * 30 * eficienciaSistema;
-  // });
-  const potenciaSistemaKwpAno =
+  const potenciaRealSistemaKwp = quantidadePaineis * (POTENCIA_PAINEL_W / 1000);
+
+  // 4. Produção Anual do Ano 1 (kWp * Irradiação * 365.25 * Eficiência)
+  const geracaoAno1Kwh =
     potenciaRealSistemaKwp *
     irradiacaoMediaAnualKwhM2Dia *
     365.25 *
     eficienciaSistema;
-  // Correção: cálculo direto anual
-  // potenciaSistemaKwpAno = potenciaRealSistemaKwp * irradiacaoMediaAnualKwhM2Dia * 365 * eficienciaSistema;
-  // console.log('potenciaSistemaKwpAno: ', potenciaSistemaKwpAno);
 
-  // 5. Cálculo do Payback
-  let investimento = INVESTIMENTO_ESTIMADO_BASE * potenciaRealSistemaKwp; // Investimento proporcional
-
-  if (custoMensalRs >= 300 && custoMensalRs <= 500) {
-    investimento =
-      ((custoMensalRs - 300) / (500 - 300)) * (16200.0 - 12911.02) + 12911.02;
-  }
-
-  if (custoMensalRs > 500 && custoMensalRs <= 800) {
-    investimento =
-      ((custoMensalRs - 500) / (800 - 500.01)) * (17900.0 - 16200.0) + 16200.0;
-  }
-
-  if (custoMensalRs > 800 && custoMensalRs <= 1000) {
-    investimento =
-      ((custoMensalRs - 800) / (1000 - 800.01)) * (24000.24 - 17900.0) +
-      17900.0;
-  }
-
-  if (custoMensalRs > 1000) {
-    investimento = custoMensalRs * 24.0;
-  }
+  // 5. Investimento
+  const investimento = calcularPrecoPadrao(custoMensalRs) || 0;
 
   const acumulado = [];
   let economiaAcumulada = 0.0;
   let custoEvitadoAcumulado = 0.0;
   let paybackAnos = 0;
-  let potenciaAtualSistema = potenciaSistemaKwpAno; // Produção no ano 1
+  let geracaoAnoAtual = geracaoAno1Kwh;
 
   const fc = [-1 * investimento];
 
-  for (let ano = 1; ano <= VIDA_UTIL_SISTEMA_ANOS; ano++) {
-    // Taxa de energia atualizada com inflação energética
-    const taxaEnergiaAtualizada =
-      TAXA_ENERGIA_RS_KWH * Math.pow(1 + TAXA_JUROS_ANUAL_ENERGIA, ano - 1);
+  const anoAtualReal = new Date().getFullYear();
 
-    // Economia gerada no ano (Produção * Tarifa Atualizada)
-    const economiaAno = potenciaAtualSistema * taxaEnergiaAtualizada;
+  for (let ano = 1; ano <= VIDA_UTIL_SISTEMA_ANOS; ano++) {
+    // Tarifas e inflação energética
+    const taxaEnergiaAtualizada =
+      TAXA_ENERGIA_RS_KWH * Math.pow(1 + INFLACAO_ENERGIA_ANUAL, ano - 1);
+
+    // Economia gerada no ano
+    const economiaAno = geracaoAnoAtual * taxaEnergiaAtualizada;
     economiaAcumulada += economiaAno;
 
     fc.push(economiaAno);
 
-    // Custo que teria sem o sistema
+    // Custo estimado sem energia solar
     const custoSemSolarAno = consumoTotalKwhAno * taxaEnergiaAtualizada;
     custoEvitadoAcumulado += custoSemSolarAno;
 
-    // Verifica payback
+    // Cálculo do Payback
     if (paybackAnos === 0 && economiaAcumulada >= investimento) {
-      // Cálculo mais preciso do mês/ano do payback (simplificado aqui para apenas o ano)
       paybackAnos = ano;
     }
 
     acumulado.push({
-      Ano: new Date().getFullYear() + ano, // Ano real
-      // Recharts funciona melhor com series numericas; arredonda sem converter para string
-      Economia: Number(economiaAcumulada.toFixed(2)), // Economia ACUMULADA
-      Custo: Number(custoEvitadoAcumulado.toFixed(2)), // Custo evitado ACUMULADO
+      Ano: anoAtualReal + ano,
+      Economia: Number(economiaAcumulada.toFixed(2)),
+      Custo: Number(custoEvitadoAcumulado.toFixed(2)),
       Payback: Number((economiaAcumulada - investimento).toFixed(2)),
     });
 
-    // Aplica degradação para o próximo ano
+    // Degradação para o próximo ano
     const taxaDegradacao =
       ano === 1 ? DEGRADACAO_PAINEL_ANO1 : DEGRADACAO_PAINEL_ANOS_SEGUINTES;
-    potenciaAtualSistema *= 1 - taxaDegradacao;
+    geracaoAnoAtual *= 1 - taxaDegradacao;
   }
 
-  // Seleciona pontos para o resumo (dataResume)
+  // Resumo para gráficos/cards
   const indices = [0, 1, 2, 3, 4, 9, 14, 19, VIDA_UTIL_SISTEMA_ANOS - 1].filter(
     (i) => i < acumulado.length,
   );
   const dataResume = indices.map((index) => acumulado[index]);
 
-  // Texto do Payback
+  // Formatação do Payback
   let textPayback = `Mais de ${VIDA_UTIL_SISTEMA_ANOS} anos`;
   if (paybackAnos > 0) {
     textPayback = paybackAnos <= 1 ? `Menos de 1 ano` : `~ ${paybackAnos} anos`;
   }
 
-  // console.log("textPayback: ", textPayback);
-  // console.log("acumulado: ", acumulado);
-  // console.log("dataResume: ", dataResume);
-  // console.log("potenciaRealSistemaKwp: ", potenciaRealSistemaKwp.toFixed(2));
-  // console.log("economiaPrimeiroAno: ", (acumulado[0]?.Economia - (acumulado[-1]?.Economia || 0)).toFixed(2));
-  // console.log("investimentoEstimado: ", investimento.toFixed(2));
-  // console.log("custoMensalInformado: ", custoMensalRs);
-
-  //economiaPrimeiroAno: (acumulado[0]?.Economia - (acumulado[-1]?.Economia || 0)).toFixed(2), // Simplificado
-  const reduction =
-    (1 + (economiaAcumulada - custoEvitadoAcumulado) / economiaAcumulada) * 100;
-  const roi_calc = ((economiaAcumulada - investimento) / investimento) * 100;
-  const vpl_calc = calculateNPV(TAXA_JUROS_ANUAL_ENERGIA, fc);
+  // Indicadores Financeiros
+  const reduction = (economiaAcumulada / custoEvitadoAcumulado) * 100;
+  const roi_calc =
+    investimento > 0
+      ? ((economiaAcumulada - investimento) / investimento) * 100
+      : 0;
+  const vpl_calc = calculateNPV(TAXA_DESCONTO_VPL, fc);
   const tir_calc = tir(fc);
-
-  // console.log("fc: ", fc);
-  // console.log("reduction: ", reduction);
-  // console.log("roi_calc: ", roi_calc);
-  // console.log("vpl_calc: ", vpl_calc);
-  // console.log("tir_calc: ", tir_calc);
 
   return {
     text_payback: textPayback,
-    data: acumulado, // Dados anuais completos
-    dataResume: dataResume, // Dados resumidos para o gráfico
-    potenciaEstimadaKwp: potenciaRealSistemaKwp,
+    data: acumulado,
+    dataResume: dataResume,
+    potenciaEstimadaKwp: Number(potenciaRealSistemaKwp.toFixed(2)),
     investimentoEstimado: investimento,
     custoMensalInformado: custoMensalRs,
-    economiaAcumulada: economiaAcumulada,
+    economiaAcumulada: Number(economiaAcumulada.toFixed(2)),
     tir: tir_calc,
     vpl: vpl_calc,
     roi: roi_calc,
-    taxCostReduct: reduction,
+    taxCostReduct: Number(reduction.toFixed(2)),
     projecao: VIDA_UTIL_SISTEMA_ANOS,
   };
 }
-
-// --- Fim das Funções de Cálculo ---
