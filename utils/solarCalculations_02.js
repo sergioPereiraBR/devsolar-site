@@ -73,29 +73,7 @@ export function calcularEconomiaSolar(custoMensalRs) {
   // 5. Investimento
   const investimento = calcularPrecoPadrao(custoMensalRs) || 0;
 
-  // const acumulado = [];
-  // let economiaAcumulada = 0.0;
-  // let custoEvitadoAcumulado = 0.0;
-  // let paybackAnos = 0;
-  // let geracaoAnoAtual = geracaoAno1Kwh;
-
-  // const fc = [-1 * investimento];
-
-  // const anoAtualReal = new Date().getFullYear();
-
-  // 1. Inicializa o array acumulado com o Ano 0 (Investimento Negativo)
-  const anoAtualReal = new Date().getFullYear();
-
-  const acumulado = [
-    {
-      Ano: anoAtualReal, // Ano 0 (Ex: 2026)
-      Economia: 0,
-      Custo: 0,
-      SaldoCaixa: Number((-1 * investimento).toFixed(2)), // Começa NEGATIVO
-      PaybackZero: 0, // Linha de referência no zero
-    },
-  ];
-
+  const acumulado = [];
   let economiaAcumulada = 0.0;
   let custoEvitadoAcumulado = 0.0;
   let paybackAnos = 0;
@@ -103,22 +81,25 @@ export function calcularEconomiaSolar(custoMensalRs) {
 
   const fc = [-1 * investimento];
 
+  const anoAtualReal = new Date().getFullYear();
+
   for (let ano = 1; ano <= VIDA_UTIL_SISTEMA_ANOS; ano++) {
+    // Tarifas e inflação energética
     const taxaEnergiaAtualizada =
       TAXA_ENERGIA_RS_KWH * Math.pow(1 + INFLACAO_ENERGIA_ANUAL, ano - 1);
 
+    // Economia gerada no ano
     const economiaAno = geracaoAnoAtual * taxaEnergiaAtualizada;
     economiaAcumulada += economiaAno;
 
     fc.push(economiaAno);
 
+    // Custo estimado sem energia solar
     const custoSemSolarAno = consumoTotalKwhAno * taxaEnergiaAtualizada;
     custoEvitadoAcumulado += custoSemSolarAno;
 
-    // Saldo real do investimento (Lucro líquido acumulado)
-    const saldoCaixaAtual = economiaAcumulada - investimento;
-
-    if (paybackAnos === 0 && saldoCaixaAtual >= 0) {
+    // Cálculo do Payback
+    if (paybackAnos === 0 && economiaAcumulada >= investimento) {
       paybackAnos = ano;
     }
 
@@ -126,9 +107,10 @@ export function calcularEconomiaSolar(custoMensalRs) {
       Ano: anoAtualReal + ano,
       Economia: Number(economiaAcumulada.toFixed(2)),
       Custo: Number(custoEvitadoAcumulado.toFixed(2)),
-      SaldoCaixa: Number(saldoCaixaAtual.toFixed(2)), // Inicia negativo e cruza o zero
+      Payback: Number((economiaAcumulada - investimento).toFixed(2)),
     });
 
+    // Degradação para o próximo ano
     const taxaDegradacao =
       ano === 1 ? DEGRADACAO_PAINEL_ANO1 : DEGRADACAO_PAINEL_ANOS_SEGUINTES;
     geracaoAnoAtual *= 1 - taxaDegradacao;

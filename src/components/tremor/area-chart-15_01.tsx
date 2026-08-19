@@ -1,39 +1,39 @@
 'use client';
 
-import React from 'react';
+// import '@/styles/tremor-tailwind.css';
+import React from 'react'; // Import React se não estiver
 import {
   Area,
   CartesianGrid,
   AreaChart as RechartsAreaChart,
-  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
 
-import { cx } from '@/lib/utils';
+import { cx } from '@/lib/utils'; // Supondo que esta é a importação correta
 
 interface Dado {
-  Ano: number;
-  Economia: number;
-  Custo: number;
-  Payback: number;
+  ['Ano']: number;
+  ['Economia']: number;
+  ['Custo']: number;
+  ['Payback']: number;
 }
 
 interface Project {
-  text_payback: string;
-  data: Dado[];
-  dataResume: Dado[];
-  potenciaEstimadaKwp: number;
-  investimentoEstimado: number;
-  custoMensalInformado: number;
-  economiaAcumulada: number;
-  tir: number;
-  vpl: number;
-  roi: number;
-  taxCostReduct: number;
-  projecao: number;
+  ['text_payback']: string;
+  ['data']: Dado[];
+  ['dataResume']: Dado[];
+  ['potenciaEstimadaKwp']: number;
+  ['investimentoEstimado']: number;
+  ['custoMensalInformado']: number;
+  ['economiaAcumulada']: number;
+  ['tir']: number;
+  ['vpl']: number;
+  ['roi']: number;
+  ['taxCostReduct']: number;
+  ['projecao']: number;
 }
 
 interface ResumoDadosProps {
@@ -44,15 +44,22 @@ const currencyFormatter = (
   value: unknown,
   options?: Intl.NumberFormatOptions,
 ): string => {
-  const number = Number(value);
+  // Especifica o retorno como string
+
+  // Verifica se o valor é null, undefined ou não pode ser convertido para número finito
+  const number = Number(value); // Tenta converter para número
 
   if (value === null || value === undefined || !isFinite(number)) {
-    return 'N/A';
+    console.warn(
+      `currencyFormatter recebeu valor inválido ou não finito: ${typeof value}`,
+      value,
+    );
+    return 'N/A'; // Ou '-', ou ''
   }
   const formatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 0, // Sem centavos para valores grandes
     notation: 'compact',
     compactDisplay: 'short',
     ...options,
@@ -62,15 +69,17 @@ const currencyFormatter = (
 
 const percentFormatter = (number: number): string => {
   if (typeof number !== 'number' || isNaN(number) || !isFinite(number)) {
-    return 'N/A';
+    return 'N/A'; // Ou um valor padrão
   }
   const formatter = new Intl.NumberFormat('pt-BR', {
     style: 'percent',
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   });
-  return formatter.format(number / 100);
+  return formatter.format(number / 100); // Assumindo que o número é ex: 15.5 para 15.5%
 };
+// Ou se o número já for decimal (ex: 0.155):
+// return formatter.format(number);
 
 const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
   const chartContainerRef = React.useRef<HTMLDivElement | null>(null);
@@ -99,7 +108,10 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
     return () => observer.disconnect();
   }, []);
 
+  // Adiciona uma verificação inicial para dataProject null ou com erro
   if (!dataProject) {
+    // Você pode retornar null ou uma mensagem indicando que não há dados
+    console.warn('dataProject não fornecido ou contém erro:', dataProject);
     return (
       <div className="p-4 text-center text-red-500">
         Erro ao carregar dados do gráfico.
@@ -107,39 +119,34 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
     );
   }
 
+  // Usa os dados passados diretamente
   const dataLocal: Project = dataProject;
 
-  // Garante que todos os itens tenham 'Payback' ou cai para 'Economia - Investimento'
-  const chartData: Dado[] = (dataLocal.dataResume ?? dataLocal.data ?? []).map(
-    (item) => {
-      const ano = Number(item.Ano) || 0;
-      const economia = Number(item.Economia) || 0;
-      const custo = Number(item.Custo) || 0;
+  const chartData: Dado[] = (dataLocal.dataResume ?? []).map((item) => ({
+    Ano: Number(item.Ano),
+    Economia: Number(item.Economia),
+    Custo: Number(item.Custo),
+    Payback: Number(item.Payback),
+  }));
 
-      // Se Payback não for informado, calcula como Economia - Investimento
-      const paybackVal =
-        item.Payback !== undefined && item.Payback !== null
-          ? Number(item.Payback)
-          : economia - (dataLocal.investimentoEstimado || 0);
+  // console.log('Dados do gráfico:', chartData); // Log para depuração
 
-      return {
-        Ano: ano,
-        Economia: economia,
-        Custo: custo,
-        Payback: isNaN(paybackVal) ? 0 : paybackVal,
-      };
-    },
-  );
+  const getMaxValue = () => {
+    // Usa data (dados completos) para calcular o máximo
+    if (!dataLocal.data || dataLocal.data.length === 0) return 10000; // Um fallback razoável
+    // Garante que estamos comparando números
+    const maxEconomia = Math.max(
+      ...dataLocal.data.map((item) => Number(item.Economia) || 0),
+    );
+    // Arredonda para o próximo múltiplo de 1000 ou 10000 para uma escala mais limpa
+    const magnitude = Math.pow(10, Math.floor(Math.log10(maxEconomia)));
+    const roundedMax =
+      Math.ceil(maxEconomia / (magnitude / 2)) * (magnitude / 2); // Arredonda para múltiplos de 500, 5000, etc.
 
-  // Cálculo seguro do Domínio do Eixo Y (suporta min/max no Recharts sem quebrar)
-  const yValues = chartData.map((d) => d.Payback);
-  const minY = yValues.length > 0 ? Math.min(...yValues) : -15000;
-  const maxY = yValues.length > 0 ? Math.max(...yValues) : 400000;
+    return Math.max(roundedMax, 1000); // Garante um valor mínimo para o eixo
+  };
 
-  // Arredonda o mínimo para baixo e o máximo para cima de forma segura
-  const domainMin = isFinite(minY) ? Math.floor(minY * 1.1) : 'auto';
-  const domainMax = isFinite(maxY) ? Math.ceil(maxY * 1.05) : 'auto';
-
+  // Formata os totais do sumário usando os formatters
   const summary = [
     {
       category: 'Economia Acumulada (25 Anos)',
@@ -155,12 +162,12 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
       category: 'VPL (Valor Presente Líquido)',
       total: currencyFormatter(Number(dataLocal.vpl)),
       color: 'bg-blue-500',
-    },
+    }, // Cor diferente
     {
       category: 'TIR (Taxa Interna de Retorno)',
       total: percentFormatter(dataLocal.tir),
       color: 'bg-blue-500',
-    },
+    }, // Multiplica TIR por 100 se ela for decimal
     {
       category: 'ROI (Retorno s/ Investimento)',
       total: percentFormatter(Number(dataLocal.roi)),
@@ -187,7 +194,6 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
           aproveitar ao <strong>máximo o retorno do seu investimento</strong>{' '}
           com a <strong>DEV Solar</strong>.
         </p>
-
         <ul
           role="list"
           className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-5"
@@ -205,19 +211,25 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
                   {item.total}
                 </p>
               </div>
-              <p className="pl-3 text-sm text-gray-500 dark:text-gray-500">
-                {item.category}
-              </p>
+              {item.color !== null ? (
+                <p className="pl-3 text-sm text-gray-500 dark:text-gray-500">
+                  {item.category}
+                </p>
+              ) : (
+                <p className="text-sm text-gray-500 dark:text-gray-500">
+                  {item.category}
+                </p>
+              )}
             </li>
           ))}
         </ul>
-
-        {/* Gráfico de Economia e Payback */}
+        {/* {calculationResult.projecao} */}
+        {/* Gráfico de Economia */}
         <div
           ref={chartContainerRef}
           className="mt-8 h-80 min-h-[20rem] w-full min-w-0 max-w-none overflow-x-auto px-0"
         >
-          {isChartContainerReady && chartData.length > 0 ? (
+          {isChartContainerReady ? (
             <ResponsiveContainer
               width="100%"
               height="100%"
@@ -232,38 +244,17 @@ const Example: React.FC<ResumoDadosProps> = ({ dataProject }) => {
                 <XAxis dataKey="Ano" tick={{ fontSize: 12 }} />
                 <YAxis
                   width={80}
-                  domain={[domainMin, domainMax]}
+                  domain={[0, getMaxValue()]}
                   tickFormatter={(value) => currencyFormatter(value)}
                   tick={{ fontSize: 12 }}
                 />
                 <Tooltip
-                  formatter={(value: number) => [
-                    currencyFormatter(value),
-                    'Saldo Acumulado',
-                  ]}
+                  formatter={(value: number) => currencyFormatter(value)}
                   labelFormatter={(label) => `Ano ${label}`}
                 />
-
-                {/* Linha do Ponto Zero de Payback */}
-                <ReferenceLine
-                  y={0}
-                  stroke="#ef4444"
-                  strokeDasharray="4 4"
-                  strokeWidth={1.5}
-                  label={{
-                    value: 'Linha do Payback',
-                    fill: '#ef4444',
-                    fontSize: 12,
-                    fontWeight: 500,
-                    position: 'insideTopRight', // <-- Fixa o texto na extremidade superior direita da linha
-                    dy: -18, // <-- Distância de 6px acima da linha para não colar
-                    dx: 5, // <-- Afasta ligeiramente do eixo Y para não poluir
-                  }}
-                />
-
                 <Area
                   type="monotone"
-                  dataKey="Payback"
+                  dataKey="Economia"
                   stroke="#ff9e00"
                   fill="#ff9e00"
                   fillOpacity={0.2}
