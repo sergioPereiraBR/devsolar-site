@@ -92,6 +92,28 @@
     line-height: 1.5;
 }
 
+.serviceAreaList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.serviceAreaList li {
+    margin-bottom: 10px;
+}
+
+.serviceAreaList a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.serviceAreaList a:hover {
+    color: var(--primary);
+    transform: translateX(5px);
+    font-weight: 900;
+}
 
 /* Colunas de Links */
 .footerLinks .footerTitle {
