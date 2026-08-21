@@ -1,9 +1,6 @@
 'use client';
 
 import React from 'react';
-import { calcularTaxas } from '@/utils/finance';
-import { NotaExplicativaGrafico } from '@/utils/notasExplicativas';
-import { PremissasSolar } from '@/utils/premissasSolar';
 import {
   Area,
   CartesianGrid,
@@ -17,42 +14,6 @@ import {
 } from 'recharts';
 
 import { cx } from '@/lib/utils';
-
-export interface DadoAcumulado {
-  Ano: number;
-  EconomiaBruta: number;
-  CustoFioB: number;
-  ReservaOM: number;
-  Payback: number;
-  CustoSemSolar: number;
-}
-
-// Extensão do tipo de premissas com os valores específicos da rodada de cálculo
-export type PremissasSolarComValoresCalculo = PremissasSolar & {
-  custoMensalRs: number;
-  percentualConsumoDiurno: number;
-  percentualReservaOMPósPayback: number;
-};
-
-export interface ResultadoCalculoEconomia {
-  text_payback: string;
-  data: DadoAcumulado[];
-  dataResume: DadoAcumulado[];
-  potenciaEstimadaKwp: number;
-  investimentoEstimado: number;
-  custoMensalInformado: number;
-  economiaAcumulada: number;
-  custoFioBTotal: number;
-  reservaOMTotal: number;
-  retornoLiquidoReal: number;
-  tir: number;
-  vpl: number;
-  roi: number;
-  taxCostReduct: number;
-  projecao: number;
-  error?: string;
-  premissas: PremissasSolarComValoresCalculo;
-}
 
 interface Dado {
   Ano: number;
@@ -78,7 +39,6 @@ interface Project {
   roi: number;
   taxCostReduct: number;
   projecao: number;
-  premissas: PremissasSolarComValoresCalculo;
 }
 
 interface ResumoDadosProps {
@@ -100,14 +60,6 @@ const currencyFormatter = (
     maximumFractionDigits: 1,
     ...options,
   }).format(number);
-};
-
-const currencyFormatterFull = (value: number): string => {
-  if (value === null || value === undefined || isNaN(value)) return 'R$ 0,00';
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(value);
 };
 
 const percentFormatter = (number: number): string => {
@@ -166,7 +118,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
               {entry.name}:
             </span>
             <span className="font-semibold text-gray-800 dark:text-gray-200">
-              {currencyFormatterFull(entry.value)}
+              {currencyFormatter(entry.value)}
             </span>
           </div>
         ))}
@@ -206,34 +158,34 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
   const investimentoInicial =
     Math.abs(Number(dataProject.investimentoEstimado)) || 0;
 
-  const sourceData = dataProject.data?.length
-    ? dataProject.data
-    : (dataProject.dataResume ?? []);
+  // Montagem das fatias de composição empilhada por ano
+  const chartData = (dataProject.dataResume ?? dataProject.data ?? []).map(
+    (item, index) => {
+      const ano = Number(item.Ano) || 0;
+      const economiaBruta = Number(item.EconomiaBruta) || 0;
+      const custoFioB = Number(item.CustoFioB) || 0;
+      const reservaOM = Number(item.ReservaOM) || 0;
+      const saldoLiquido =
+        index === 0 ? -investimentoInicial : Number(item.Payback) || 0;
 
-  const chartData = sourceData.map((item, index) => {
-    const ano = Number(item.Ano) || 0;
-    const economiaBruta = Number(item.EconomiaBruta) || 0;
-    const custoFioB = Number(item.CustoFioB) || 0;
-    const reservaOM = Number(item.ReservaOM) || 0;
-    const saldoLiquido =
-      index === 0 ? -investimentoInicial : Number(item.Payback) || 0;
+      // Fatias positivas para visualização empilhada do valor bruto
+      const retornoLiquidoReal = Math.max(0, saldoLiquido);
+      const amortizacaoInvestimento = Math.min(
+        investimentoInicial,
+        economiaBruta,
+      );
 
-    const retornoLiquidoReal = Math.max(0, saldoLiquido);
-    const amortizacaoInvestimento = Math.min(
-      investimentoInicial,
-      economiaBruta,
-    );
-
-    return {
-      Ano: ano,
-      Payback: saldoLiquido,
-      'Investimento Inicial': amortizacaoInvestimento,
-      'Tarifa Fio B (Lei 14.300/22)': custoFioB,
-      'Reserva Operacional (O&M)': reservaOM,
-      'Retorno Líquido Real': retornoLiquidoReal,
-      EconomiaBruta: economiaBruta,
-    };
-  });
+      return {
+        Ano: ano,
+        Payback: saldoLiquido,
+        'Investimento Inicial': amortizacaoInvestimento,
+        'Tarifa Fio B (Lei 14.300/22)': custoFioB,
+        'Reserva Operacional (O&M)': reservaOM,
+        'Retorno Líquido Real': retornoLiquidoReal,
+        EconomiaBruta: economiaBruta,
+      };
+    },
+  );
 
   const ultimoPayback =
     chartData.length > 0 ? chartData[chartData.length - 1].Payback : 0;
@@ -251,7 +203,6 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
   const customTicks = [domainMin, 0, ...positiveTicks];
 
   const economiaTotalBruta = Number(dataProject.economiaAcumulada) || 0;
-  const custoMensal = Number(dataProject.custoMensalInformado) || 0;
   const custoFioBTotal = Number(dataProject.custoFioBTotal) || 0;
   const reservaOMTotal = Number(dataProject.reservaOMTotal) || 0;
 
@@ -287,46 +238,16 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
     <div className="mx-0 w-full max-w-none px-0 sm:mx-auto sm:max-w-7xl">
       <div className="mt-6 space-y-3 rounded-lg border border-gray-100 bg-gray-50/50 p-4 dark:border-gray-800 dark:bg-gray-900/40">
         <h2 className="font-medium text-gray-900 dark:text-gray-50">
-          Projeção de Retorno Financeiro em 25 Anos
+          Composição de Valores e Fluxo Financeiro (25 Anos)
         </h2>
         <p className="text-sm text-gray-500">
-          Entenda o poder do seu investimento: ao longo de 25 anos, uma conta de
-          energia de{' '}
-          <strong className="text-gray-700 dark:text-gray-300">
-            {currencyFormatterFull(custoMensal)}{' '}
-          </strong>{' '}
-          com atualização de{' '}
-          {
-            calcularTaxas({
-              valorMensal: custoMensal,
-              valorFinal: economiaTotalBruta,
-              periodosMeses: 300,
-            }).taxaAnual
-          }
-          % ao ano, se transforma em{' '}
-          <strong className="text-gray-700 dark:text-gray-300">
-            {currencyFormatterFull(economiaTotalBruta)}
-          </strong>{' '}
-          de economia bruta acumulada.
-        </p>
-        <p className="text-sm text-gray-500">
-          Mesmo considerando o investimento inicial (
-          <strong className="text-gray-700 dark:text-gray-300">
-            {currencyFormatterFull(investimentoInicial)}
-          </strong>
-          ), os custos de rede da Lei 14.300/22 (
-          <strong className="text-gray-700 dark:text-gray-300">
-            {currencyFormatterFull(custoFioBTotal)}
-          </strong>
-          ) e uma reserva para manutenção preventiva (
-          <strong className="text-gray-700 dark:text-gray-300">
-            {currencyFormatterFull(reservaOMTotal)}
-          </strong>
-          ), você garante um lucro líquido real de{' '}
-          <strong className="text-gray-700 dark:text-gray-300">
-            {currencyFormatterFull(ultimoPayback)}
-          </strong>{' '}
-          — dinheiro que fica no seu bolso, 100% livre de despesas.
+          Visualização detalhada da composição da economia bruta de{' '}
+          {economiaTotalBruta} ao longo do tempo para este projeto de
+          investimento com uma conta de energia de{' '}
+          {dataProject.custoMensalInformado}, destacando o retorno líquido real
+          de {currencyFormatter(ultimoPayback)} limpo, já descontados uma
+          reserva para O&M, a quitação do investimento e o custo da Tarifa Fio B
+          (Lei 14.300/22) de {currencyFormatter(custoFioBTotal)}.
         </p>
       </div>
 
@@ -383,6 +304,7 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
                 }}
               />
 
+              {/* Camadas Empilhadas da Composição (StackID = 1) */}
               <Area
                 type="monotone"
                 dataKey="Investimento Inicial"
@@ -416,6 +338,7 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
                 fillOpacity={0.85}
               />
 
+              {/* Curva de Fluxo de Caixa / Saldo Acumulado Real (Linha de destaque) */}
               <Area
                 type="monotone"
                 dataKey="Payback"
@@ -429,9 +352,7 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
         )}
       </div>
 
-      {/* Passagem corrigida do objeto premissas contido no retorno do projeto */}
-      <NotaExplicativaGrafico premissas={dataProject.premissas} />
-
+      {/* Legenda de Cores Detalhada */}
       <div className="mt-6 space-y-3 rounded-lg border border-gray-100 bg-gray-50/50 p-4 dark:border-gray-800 dark:bg-gray-900/40">
         <p className="text-xs text-gray-600 dark:text-gray-300">
           <strong className="font-semibold text-gray-900 dark:text-gray-100">
@@ -443,26 +364,26 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
             <span className="mr-1.5 inline-block h-3 w-3 rounded-sm bg-blue-500 align-middle"></span>
             <strong>Investimento Inicial:</strong> Quitação progressiva do custo
             do sistema (
-            <strong>-{currencyFormatterFull(investimentoInicial)}</strong> no
-            Ano 0).
+            <strong>-{currencyFormatter(investimentoInicial)}</strong> no Ano
+            0).
           </li>
           <li>
             <span className="mr-1.5 inline-block h-3 w-3 rounded-sm bg-red-500 align-middle"></span>
             <strong>Tarifa Fio B (Lei 14.300/22):</strong> Dedução acumulada de{' '}
-            <strong>{currencyFormatterFull(custoFioBTotal)}</strong> relativa ao
-            uso do sistema de distribuição sobre a energia injetada.
+            <strong>{currencyFormatter(custoFioBTotal)}</strong> relativa ao uso
+            do sistema de distribuição sobre a energia injetada.
           </li>
           <li>
             <span className="mr-1.5 inline-block h-3 w-3 rounded-sm bg-gray-500 align-middle"></span>
             <strong>Reserva Operacional (O&M):</strong> Provisão acumulada de{' '}
-            <strong>{currencyFormatterFull(reservaOMTotal)}</strong> reservada
-            para manutenção preventiva e troca de peças a partir do payback.
+            <strong>{currencyFormatter(reservaOMTotal)}</strong> reservada para
+            manutenção preventiva e troca de peças a partir do payback.
           </li>
           <li>
             <span className="mr-1.5 inline-block h-3 w-3 rounded-sm bg-emerald-500 align-middle"></span>
             <strong>Retorno Líquido Real:</strong> Ganho financeiro limpo
             acumulado que atinge{' '}
-            <strong>{currencyFormatterFull(ultimoPayback)}</strong> ao final do
+            <strong>{currencyFormatter(ultimoPayback)}</strong> ao final do
             projeto.
           </li>
           <li>

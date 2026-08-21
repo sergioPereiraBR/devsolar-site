@@ -2,8 +2,6 @@
 
 import React from 'react';
 import { calcularTaxas } from '@/utils/finance';
-import { NotaExplicativaGrafico } from '@/utils/notasExplicativas';
-import { PremissasSolar } from '@/utils/premissasSolar';
 import {
   Area,
   CartesianGrid,
@@ -17,42 +15,6 @@ import {
 } from 'recharts';
 
 import { cx } from '@/lib/utils';
-
-export interface DadoAcumulado {
-  Ano: number;
-  EconomiaBruta: number;
-  CustoFioB: number;
-  ReservaOM: number;
-  Payback: number;
-  CustoSemSolar: number;
-}
-
-// Extensão do tipo de premissas com os valores específicos da rodada de cálculo
-export type PremissasSolarComValoresCalculo = PremissasSolar & {
-  custoMensalRs: number;
-  percentualConsumoDiurno: number;
-  percentualReservaOMPósPayback: number;
-};
-
-export interface ResultadoCalculoEconomia {
-  text_payback: string;
-  data: DadoAcumulado[];
-  dataResume: DadoAcumulado[];
-  potenciaEstimadaKwp: number;
-  investimentoEstimado: number;
-  custoMensalInformado: number;
-  economiaAcumulada: number;
-  custoFioBTotal: number;
-  reservaOMTotal: number;
-  retornoLiquidoReal: number;
-  tir: number;
-  vpl: number;
-  roi: number;
-  taxCostReduct: number;
-  projecao: number;
-  error?: string;
-  premissas: PremissasSolarComValoresCalculo;
-}
 
 interface Dado {
   Ano: number;
@@ -78,7 +40,6 @@ interface Project {
   roi: number;
   taxCostReduct: number;
   projecao: number;
-  premissas: PremissasSolarComValoresCalculo;
 }
 
 interface ResumoDadosProps {
@@ -206,6 +167,7 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
   const investimentoInicial =
     Math.abs(Number(dataProject.investimentoEstimado)) || 0;
 
+  // Utiliza a série temporal completa `data` para o gráfico contínuo
   const sourceData = dataProject.data?.length
     ? dataProject.data
     : (dataProject.dataResume ?? []);
@@ -328,6 +290,42 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
           </strong>{' '}
           — dinheiro que fica no seu bolso, 100% livre de despesas.
         </p>
+        {/* <p className="text-sm text-gray-500">
+          Visualização detalhada da composição da economia bruta de{' '}
+          <strong className="text-gray-700 dark:text-gray-300">
+            {currencyFormatterFull(economiaTotalBruta)}
+          </strong>{' '}
+          ao longo do tempo para este projeto de investimento com uma conta de
+          energia de{' '}
+          <strong className="text-gray-700 dark:text-gray-300">
+            {currencyFormatterFull(custoMensal)}{' '}
+          </strong>
+          a uma taxa de{' '}
+          {
+            calcularTaxas({
+              valorMensal: custoMensal,
+              valorFinal: economiaTotalBruta,
+              periodosMeses: 300,
+            }).taxaAnual
+          }
+          % ao ano, destacando o retorno líquido real de{' '}
+          <strong className="text-gray-700 dark:text-gray-300">
+            {currencyFormatterFull(ultimoPayback)}
+          </strong>{' '}
+          limpo, já descontados uma reserva para O&M de{' '}
+          <strong className="text-gray-700 dark:text-gray-300">
+            {currencyFormatterFull(reservaOMTotal)}
+          </strong>
+          , a quitação do investimento de{' '}
+          <strong className="text-gray-700 dark:text-gray-300">
+            {currencyFormatterFull(investimentoInicial)}
+          </strong>
+          , e o custo da Tarifa Fio B (Lei 14.300/22) de{' '}
+          <strong className="text-gray-700 dark:text-gray-300">
+            {currencyFormatterFull(custoFioBTotal)}
+          </strong>
+          .
+        </p> */}
       </div>
 
       <ul role="list" className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-5">
@@ -383,6 +381,7 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
                 }}
               />
 
+              {/* Camadas Empilhadas da Composição (StackID = 1) */}
               <Area
                 type="monotone"
                 dataKey="Investimento Inicial"
@@ -416,6 +415,7 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
                 fillOpacity={0.85}
               />
 
+              {/* Curva de Fluxo de Caixa / Saldo Acumulado Real */}
               <Area
                 type="monotone"
                 dataKey="Payback"
@@ -429,9 +429,7 @@ const ResumoDados: React.FC<ResumoDadosProps> = ({ dataProject }) => {
         )}
       </div>
 
-      {/* Passagem corrigida do objeto premissas contido no retorno do projeto */}
-      <NotaExplicativaGrafico premissas={dataProject.premissas} />
-
+      {/* Legenda de Cores Detalhada */}
       <div className="mt-6 space-y-3 rounded-lg border border-gray-100 bg-gray-50/50 p-4 dark:border-gray-800 dark:bg-gray-900/40">
         <p className="text-xs text-gray-600 dark:text-gray-300">
           <strong className="font-semibold text-gray-900 dark:text-gray-100">

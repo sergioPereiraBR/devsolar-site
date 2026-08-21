@@ -5,7 +5,9 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Logo from '@/assets/logo_sm.webp'; // Importa a imagem do logo pequeno
 import Photovoltaic from '@/assets/photovoltaic.webp';
-import { calcularEconomiaSolar } from '@/utils/solarCalculations';
+import { calcularEconomiaSolar } from '@/utils/calcularEconomiaSolar';
+// import { calcularEconomiaSolar } from '@/utils/solarCalculations';
+// import { calcularEconomiaSolar } from '@/utils/calcularEconomiaSolar'; // Importa a função refatorada
 import { Button, Col, Modal, Row, Spinner } from 'react-bootstrap'; // Adicionar Button, Spinner
 
 import { trackEvent, trackWhatsAppClick } from '@/lib/analytics';
@@ -285,6 +287,11 @@ function HeaderDS() {
 
                   <div className={styles.calculatorWrapper}>
                     <h3>SIMULE SUA ECONOMIA AGORA</h3>
+                    <h4>
+                      Entre com o valor da sua conta de luz e nossa{' '}
+                      <strong>calculadora solar dinâmica</strong> irá mostrar{' '}
+                      <strong>sua economia em menos de 1 minuto</strong>.
+                    </h4>
                   </div>
 
                   <label
@@ -349,7 +356,7 @@ function HeaderDS() {
                               aria-label="Calcular Economia"
                               aria-hidden="true"
                             />
-                            VER MINHA ECONOMIA
+                            Simular Economia Grátis
                           </>
                         )}
                       </Button>

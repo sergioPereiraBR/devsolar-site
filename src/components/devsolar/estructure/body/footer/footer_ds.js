@@ -272,6 +272,44 @@ function FooterDS() {
             </div>
           </div>
 
+          {/* Coluna 4: Áreas de Atendimento */}
+          <div className={`${styles.footerColumn} ${styles.footerLinks}`}>
+            <p className={styles.footerTitle}>Atendemos</p>
+            <ul className={styles.serviceAreaList}>
+              <li>
+                <a href="/#contato" aria-label="Atendimento no Rio de Janeiro">
+                  Rio de Janeiro
+                </a>
+              </li>
+              <li>
+                <a href="/#contato" aria-label="Atendimento em Niterói">
+                  Niterói
+                </a>
+              </li>
+              <li>
+                <a href="/#contato" aria-label="Atendimento em São Gonçalo">
+                  São Gonçalo
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#contato"
+                  aria-label="Atendimento na Região dos Lagos"
+                >
+                  Região dos Lagos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#contato"
+                  aria-label="Atendimento na Baixada Fluminense"
+                >
+                  Baixada Fluminense
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Coluna 2: Navegação Principal */}
           <div className={`${styles.footerColumn} ${styles.footerLinks}`}>
             <p className={styles.footerTitle}>Navegação</p>
@@ -316,7 +354,7 @@ function FooterDS() {
             </ul>
           </div>
 
-          {/* Coluna 4: Redes Sociais e Newsletter */}
+          {/* Coluna 5: Redes Sociais e Newsletter */}
           <div className={`${styles.footerColumn} ${styles.footerSocial}`}>
             <p className={styles.footerTitle}>Siga-nos</p>
             <div className={`${styles.socialLinksContainer} d-flex mb-4`}>
@@ -402,6 +440,14 @@ function FooterDS() {
           </div>
         </div>
 
+        {/* <div className={styles.serviceAreaMeta}>
+          <span className={styles.serviceAreaLabel}>Atendemos:</span>{' '}
+          <span className={styles.serviceAreaText}>
+            Rio de Janeiro, Niterói, São Gonçalo, Região dos Lagos e Baixada
+            Fluminense.
+          </span>
+        </div> */}
+
         {/* Seção de Copyright */}
         <div className={styles.footerCopyright}>
           <p>
@@ -456,7 +502,6 @@ function FooterDS() {
       {/* Botão flutuante do WhatsApp com next/image */}
       <Link
         href={WHATSAPP_FLOAT_URL}
-        rel="nofollow"
         target="_blank"
         rel="noopener noreferrer nofollow"
         className={styles.whatsappBtn} // Classe do CSS Module
