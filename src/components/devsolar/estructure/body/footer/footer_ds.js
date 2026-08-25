@@ -292,6 +292,11 @@ function FooterDS() {
                 </a>
               </li>
               <li>
+                <a href="/#contato" aria-label="Atendimento em São Gonçalo">
+                  Duque de Caxias
+                </a>
+              </li>
+              <li>
                 <a
                   href="/#contato"
                   aria-label="Atendimento na Região dos Lagos"
