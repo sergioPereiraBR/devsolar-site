@@ -7,11 +7,12 @@ import { smoothScrollTo } from '@/lib/smoothScroll';
 import FooterDS from '../components/devsolar/estructure/body/footer/footer_ds';
 import HeaderDS from '../components/devsolar/estructure/body/header/header_ds';
 import NavDS from '../components/devsolar/estructure/body/header/nav_ds';
+// import DevSolarAboutSectionDS from '../components/devsolar/estructure/body/main/devsolar_abaut';
+import AppointmentSectionDS from '../components/devsolar/estructure/body/main/appointment_section_ds';
 // import AboutDevSolar from '../components/devsolar/estructure/body/main/abaut_devsolar_section_ds';
 import BenefitsSectionDS from '../components/devsolar/estructure/body/main/benefits_section_ds';
 import ContactSectionDS from '../components/devsolar/estructure/body/main/contact_section_ds';
 import CTASectionDS from '../components/devsolar/estructure/body/main/cta_section_ds';
-// import DevSolarAboutSectionDS from '../components/devsolar/estructure/body/main/devsolar_abaut';
 import FAQSectionDS from '../components/devsolar/estructure/body/main/faq_section_ds';
 import LocationSectionDS from '../components/devsolar/estructure/body/main/location_ds';
 import ModalitiesSectionDS from '../components/devsolar/estructure/body/main/modalities_section_ds';
@@ -84,6 +85,7 @@ export default function HomePageClient() {
         {/* <DevSolarAboutSectionDS /> {/*  About Section */}
         {/* <GarantiasSectionDS />  Guarantees Section */}
         <LocationSectionDS /> {/* Location Section */}
+        <AppointmentSectionDS /> {/* Appointment Section */}
         <ParceirosFinanceirasSectionDS /> {/* Partners Section */}
         <CTASectionDS /> {/* CTA Section */}
         <ContactSectionDS /> {/* Contact Section */}
