@@ -4,6 +4,10 @@ Allow: /
 Allow: /_next/static/
 Allow: /assets/
 Allow: /vendor/
+Allow: /images/
+Allow: /videos/
+
+# Bloqueios Administrativos e Privados
 Disallow: /cgi-sys/
 Disallow: /admin/
 Disallow: /private/
