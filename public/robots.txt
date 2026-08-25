@@ -1,14 +1,14 @@
 # Regra Geral para Mecanismos de Busca (Google, Bing, Yahoo, etc.)
 User-agent: *
 Allow: /
+Allow: /_next/static/
+Allow: /assets/
+Allow: /vendor/
 Disallow: /cgi-sys/
 Disallow: /admin/
 Disallow: /private/
-Disallow: /_next/static/media/
 Disallow: /.well-known/
-Disallow: /assets/
 Disallow: /images/WhatsApp.svg
-Disallow: /vendor/
 
 # Permite endpoints essenciais do Cloudflare
 Allow: /cdn-cgi/l/
