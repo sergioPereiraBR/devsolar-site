@@ -12,8 +12,8 @@ const cspValue = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data: https: https://fonts.gstatic.com",
-  "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://api.staticforms.xyz https://wa.me https://www.google.com https://www.gstatic.com https://www.googleapis.com https://www.recaptcha.net https://calendar.google.com",
-  "frame-src 'self' https://www.google.com https://maps.google.com https://www.gstatic.com https://www.recaptcha.net https://calendar.google.com",
+  "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://api.staticforms.xyz https://wa.me https://www.google.com https://www.gstatic.com https://www.googleapis.com https://www.recaptcha.net https://calendar.google.com https://calendar.google.com/calendar",
+  "frame-src 'self' https://www.google.com https://maps.google.com https://www.gstatic.com https://www.recaptcha.net https://calendar.google.com https://calendar.google.com/calendar",
   "manifest-src 'self'",
   'upgrade-insecure-requests',
 ]
