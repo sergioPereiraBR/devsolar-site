@@ -2,7 +2,6 @@
     padding: 60px 0;
     /* background-color: var(--branco); */
     background-color: #F8F9FA;
-    /* var(--branco); */
 }
 
 .sectionTitle {
@@ -37,8 +36,22 @@
 .scheduleCard iframe {
     display: block;
     width: 100%;
-    min-height: 900px;
+    min-height: 800px;
     border: 0;
+}
+
+@media (max-width: 992px) {
+    .sectionAppointment {
+        padding: 80px 0;
+    }
+
+    .scheduleCard {
+        border-radius: 20px;
+    }
+
+    .scheduleCard iframe {
+        min-height: 750px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -51,6 +64,35 @@
     }
 
     .scheduleCard iframe {
-        min-height: 520px;
+        min-height: 1315px;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .sectionAppointment {
+        padding: 30px 0;
+    }
+
+    .scheduleCard {
+        border-radius: 10px;
+    }
+
+    .scheduleCard iframe {
+        min-height: 1440px;
+    }
+}
+
+@media (max-width: 320px) {
+    .sectionAppointment {
+        padding: 20px 0;
+    }
+
+    .scheduleCard {
+        border-radius: 8px;
+    }
+
+    .scheduleCard iframe {
+        min-height: 1500px;
     }
 }
