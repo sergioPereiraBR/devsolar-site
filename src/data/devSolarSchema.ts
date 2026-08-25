@@ -14,25 +14,10 @@ export const devSolarSchema = {
       "foundingDate": "2024-01-17",
       "url": "https://www.devsolar.com.br/",
       "email": "comercial@devsolar.com.br",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.devsolar.com.br/_next/static/media/logo-dev-branco.0hhcwps62p05p.webp",
-        "caption": "Logo DEV Solar"
-      },
+      "logo": "https://www.devsolar.com.br/_next/static/media/logo-dev-branco.0hhcwps62p05p.webp",
       "image": [
-        {
-          "@type": "ImageObject",
-          "url": "https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png",
-          "width": 1200,
-          "height": 630,
-          "caption": "DEV Solar atua nas modalidades de produção de energia própria, compartilhada e para negócios"
-        },
-        {
-          "@type": "ImageObject",
-          "url": "https://www.devsolar.com.br/assets/photovoltaic-1920.webp",
-          "width": 1920,
-          "caption": "Fazenda de painéis solares fotovoltaicos"
-        }
+        "https://www.devsolar.com.br/images/og-image-devsolar-1200x630.png",
+        "https://www.devsolar.com.br/assets/photovoltaic-1920.webp"
       ],
       "telephone": "+55-21-99967-7722",
       "priceRange": "$$$",
