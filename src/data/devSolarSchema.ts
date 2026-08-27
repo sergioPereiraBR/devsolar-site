@@ -53,7 +53,7 @@ export const devSolarSchema = {
       "hasMap": "https://www.google.com/maps?q=Av.+Jambeiro,+474+Loja+C,+Vila+Valqueire,+Rio+de+Janeiro,+RJ",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Av. Jambeiro, 474 Loja C, Vila Valqueire",
+        "streetAddress": "Av. Jambeiro, 474 - Lj C - Vila Valqueire",
         "addressLocality": "Rio de Janeiro",
         "addressRegion": "RJ",
         "postalCode": "21330-300",
