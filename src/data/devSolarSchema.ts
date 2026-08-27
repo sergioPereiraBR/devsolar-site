@@ -63,7 +63,7 @@ export const devSolarSchema = {
         "@type": "ReserveAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://calendar.app.google/RhXHzWTouKb5GcVW8",
+          "urlTemplate": "https://calendar.app.google/xLxeDtFzjCYUUqhB7",
           "actionPlatform": [
             "http://schema.org/DesktopWebPlatform",
             "http://schema.org/MobileWebPlatform"
