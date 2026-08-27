@@ -36,7 +36,7 @@
 .scheduleCard iframe {
     display: block;
     width: 100%;
-    min-height: 800px;
+    min-height: 950px;
     border: 0;
 }
 
@@ -50,7 +50,7 @@
     }
 
     .scheduleCard iframe {
-        min-height: 750px;
+        min-height: 950px;
     }
 }
 
@@ -64,7 +64,7 @@
     }
 
     .scheduleCard iframe {
-        min-height: 1450px;
+        min-height: 1650px;
     }
 }
 
@@ -79,7 +79,7 @@
     }
 
     .scheduleCard iframe {
-        min-height: 1440px;
+        min-height: 1750px;
     }
 }
 
@@ -93,6 +93,6 @@
     }
 
     .scheduleCard iframe {
-        min-height: 1500px;
+        min-height: 1750px;
     }
 }
