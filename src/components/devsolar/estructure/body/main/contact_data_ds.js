@@ -11,7 +11,7 @@ export const contactInfoData = [
     id: 'address',
     iconClass: 'fas fa-location-dot',
     title: 'Endereço',
-    text: 'Av. Jambeiro, 474 - Lj C - Vila Valqueire - Rio de Janeiro, RJ.',
+    text: 'Av. Jambeiro, 474 - Lj C - Vila Valqueire, Rio de Janeiro, RJ',
   },
   {
     id: 'phone',

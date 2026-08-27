@@ -256,6 +256,8 @@ function FooterDS() {
                       <br />
                       {ADDRESS_INFO.line2}
                       <br />
+                      {ADDRESS_INFO.line3}
+                      <br />
                       CEP: {ADDRESS_INFO.cep}
                     </div>
                   </div>
