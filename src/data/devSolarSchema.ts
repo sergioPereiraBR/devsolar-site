@@ -50,7 +50,7 @@ export const devSolarSchema = {
         "https://www.instagram.com/devsolar_",
         "https://www.linkedin.com/company/dev-solar-efici%C3%AAncia-energ%C3%A9tica"
       ],
-      "hasMap": "https://www.google.com/maps?q=Av.+Jambeiro,+474+Loja+C,+Vila+Valqueire,+Rio+de+Janeiro,+RJ",
+      "hasMap": "https://www.google.com/maps?q=Av.+Jambeiro,+474+-+Lj+C,+-+Vila+Valqueire,+Rio+de+Janeiro+-+RJ,+21330-300",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Av. Jambeiro, 474 - Lj C - Vila Valqueire",
@@ -84,8 +84,8 @@ export const devSolarSchema = {
       ],
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": -22.8893,
-        "longitude": -43.3712
+        "latitude": -22.881593,
+        "longitude": -43.371203
       },
       "areaServed": [
         { "@type": "City", "name": "Rio de Janeiro" },
