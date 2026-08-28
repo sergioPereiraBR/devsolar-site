@@ -9,8 +9,9 @@ export const CONTACT_PHONE_RAW = '5521999677722'; // Número puro para links
 export const CONTACT_PHONE_DISPLAY = '+55 (21) 99967-7722'; // Formato para exibição
 export const CONTACT_EMAIL = 'comercial@devsolar.com.br';
 export const ADDRESS_INFO = {
-  line1: 'Av. Jambeiro, 474 - Lj C',
-  line2: 'Vila Valqueire - Rio de Janeiro/RJ',
+  line1: 'Av. Jambeiro, 474 - Lj C -',
+  line2: 'Vila Valqueire,',
+  line3: 'Rio de Janeiro - RJ,',
   cep: '21330-300', // Adicionado CEP aqui
 };
 export const CURRENT_YEAR = new Date().getFullYear();

@@ -19,10 +19,10 @@ function LocationMap() {
         sandbox="allow-popups-to-escape-sandbox allow-popups allow-same-origin allow-scripts"
       />
       <div className={styles.addressText}>
-        <h4>Av. Jambeiro, 474 - Lj C - Vila Valqueire</h4>
-        <h4>Rio de Janeiro - RJ</h4>
+        <h4>Av. Jambeiro, 474 - Lj C - Vila Valqueire,</h4>
+        <h4>Rio de Janeiro - RJ, 21330-300</h4>
         <a
-          href="https://www.google.com/maps/dir/?api=1&destination=Av.+Jambeiro,+474+-+C+-+Vila+Valqueire,+Rio+de+Janeiro+-+RJ,+21330-300"
+          href="https://www.google.com/maps/dir/?api=1&destination=Av.+Jambeiro,+474+-+Lj+C+-+Vila+Valqueire,+Rio+de+Janeiro+-+RJ"
           target="_blank"
           rel="noopener noreferrer nofollow"
           className={styles.directionsButton}

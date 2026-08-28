@@ -181,7 +181,11 @@ function FooterDS() {
                       className={`${styles.contactIcon} mt-1`}
                       aria-label="Horário de Atendimento DEV Solar"
                     />
-                    <div>Segunda a Sexta, das 9h às 18h</div>
+                    <div>
+                      Segunda a sexta,
+                      <br />
+                      de 9h às 18h.
+                    </div>
                   </div>
                   {/* Telefone Clicável */}
                   <div
@@ -255,6 +259,8 @@ function FooterDS() {
                       {ADDRESS_INFO.line1}
                       <br />
                       {ADDRESS_INFO.line2}
+                      <br />
+                      {ADDRESS_INFO.line3}
                       <br />
                       CEP: {ADDRESS_INFO.cep}
                     </div>
