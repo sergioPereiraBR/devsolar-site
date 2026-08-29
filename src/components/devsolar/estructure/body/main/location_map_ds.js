@@ -9,7 +9,7 @@ function LocationMap() {
     <div className={styles.mapContainer}>
       <iframe
         title="Mapa de localização da DEV Solar"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.118130595175!2d-43.37059842468548!3d-22.90897007925271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sDEV+Solar!2sAv.%20Jambeiro%2C%20474%20-%20C%20-%20Vila%20Valqueire%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2021330-300!5e0!3m2!1spt-BR!2sbr"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1837.9307572125454!2d-43.37119743344199!3d-22.88157360163847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9963a865267047%3A0xe012023a2b57908d!2sDEV%20Solar%20Efici%C3%AAncia%20Energ%C3%A9tica!5e0!3m2!1spt-BR!2sbr!4v1788013492026!5m2!1spt-BR!2sbr"
         width="100%"
         height="450"
         style={{ border: 0, display: 'block' }}
