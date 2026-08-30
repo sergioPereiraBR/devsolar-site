@@ -24,11 +24,11 @@ export const metadata = {
   // Modelo de Título: %s será substituído pelo título da página específica
   title: {
     default:
-      'DEV Solar Eficiência Energética | Empresa de Energia Solar no Rio de Janeiro',
+      'DEV Solar - DEV Eficiência Energética Ltda. | Empresa de Energia Solar no Rio de Janeiro',
   },
   description:
     //'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Solicite um orçamento!', // Descrição padrão/base
-    'A DEV Solar Eficiência Energética é sua empresa de energia solar no Rio de Janeiro. Reduza até 85% na conta de luz. Solicite sua simulação gratuita!',
+    'A DEV Solar é sua empresa de energia solar no Rio de Janeiro. Reduza até 85% na conta de luz. Solicite sua simulação gratuita!',
   metadataBase: new URL('https://www.devsolar.com.br/'), // URL Base para metadados relativos
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical padrão (será sobrescrito nas páginas)
