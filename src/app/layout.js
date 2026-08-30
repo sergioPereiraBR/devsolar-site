@@ -24,7 +24,8 @@ export const metadata = {
   // Modelo de Título: %s será substituído pelo título da página específica
   title: {
     template: '%s | DEV Solar',
-    default: 'DEV Solar | Energia Solar Fotovoltaica no Rio de Janeiro', // Título padrão (ex: homepage)
+    default:
+      'DEV Solar | Empresa de energia solar fotovoltaica no Rio de Janeiro', // Título padrão (ex: homepage)
   },
   description:
     'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Solicite um orçamento!', // Descrição padrão/base
@@ -59,16 +60,17 @@ export const metadata = {
     'financiamento energia solar rj',
     'reduzir conta de luz rj',
   ],
-  authors: [{ name: 'DEV Solar Eficiência Energética Ltda.' }],
+  authors: [{ name: 'DEV Eficiência Energética Ltda.' }],
   other: {
-    publisher: 'DEV Solar Eficiência Energética Ltda.',
+    publisher: 'DEV Eficiência Energética Ltda.',
     copyright: '© 2026 Dev Solar - Todos os direitos reservados.',
   },
   facebook: {
     appId: '706537912532593',
   },
   openGraph: {
-    title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro', // Título OG padrão
+    title:
+      'DEV Solar - Empresa de energia solar fotovoltaica no Rio de Janeiro', // Título OG padrão
     description:
       'Reduza a conta de luz da sua casa, empresa ou condomínio em até 85% com a DEV Solar.', // Descrição OG padrão
     url: 'https://www.devsolar.com.br/', // URL OG padrão (será sobrescrita)
@@ -80,7 +82,7 @@ export const metadata = {
         type: 'image/png',
         width: 1200,
         height: 630,
-        alt: 'DEV Solar - Energia Solar Fotovoltaica',
+        alt: 'DEV Solar - Empresa de energia solar fotovoltaica no Rio de Janeiro',
       },
     ],
     locale: 'pt_BR',
@@ -89,7 +91,8 @@ export const metadata = {
   twitter: {
     // Twitter Card padrão (pode ser sobrescrito)
     card: 'summary_large_image',
-    title: 'DEV Solar - Energia Solar Fotovoltaica no Rio de Janeiro',
+    title:
+      'DEV Solar - Empresa de energia solar fotovoltaica no Rio de Janeiro',
     description:
       'Reduza a conta de luz da sua casa, empresa ou condomínio em até 85% com a DEV Solar.',
     // siteId: 'YourTwitterSiteID', // Opcional
