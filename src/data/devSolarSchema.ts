@@ -84,8 +84,8 @@ export const devSolarSchema = {
       ],
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": -22.8816,
-        "longitude": -43.3712
+        "latitude": -22.881603,
+        "longitude": -43.371210
       },
       "areaServed": [
         { "@type": "City", "name": "Rio de Janeiro" },

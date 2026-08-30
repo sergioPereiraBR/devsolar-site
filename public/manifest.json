@@ -1,8 +1,8 @@
 {
   "name": "DEV Solar - Energia Solar para Todos",
   "short_name": "DEV Solar",
-  "description": "Instalação de sistemas de energia solar fotovoltaica para residências, empresas e condomínios. Economize até 95% na conta de luz.",
-  "start_url": ".",
+  "description": "Instalação de sistemas de energia solar fotovoltaica para residências, empresas e condomínios. Economize até 85% na conta de luz.",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#001f52",

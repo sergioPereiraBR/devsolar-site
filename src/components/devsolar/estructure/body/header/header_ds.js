@@ -543,6 +543,8 @@ function HeaderDS() {
         centered
         size="xl"
         fullscreen="sm-down"
+        dialogClassName={styles.modalResultDialog}
+        contentClassName={styles.modalResultContent}
       >
         {' '}
         {/* Tamanho maior para o gráfico */}

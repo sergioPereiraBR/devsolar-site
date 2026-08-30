@@ -223,11 +223,7 @@ function FooterDS() {
                     <span
                       dangerouslySetInnerHTML={{ __html: '<!--email_off-->' }}
                     /> */}
-                    <SafeEmailLink
-                      email={CONTACT_EMAIL}
-                      location="footer"
-                      className={styles.contactIcon}
-                    />
+                    <SafeEmailLink email={CONTACT_EMAIL} location="footer" />
                     {/* <a
                       href={`mailto:${CONTACT_EMAIL}`}
                       aria-label={`Enviar e-mail para DEV Solar: ${CONTACT_EMAIL}`}

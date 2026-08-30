@@ -264,9 +264,8 @@ function FAQSectionDS() {
                             width={60}
                             height={60}
                             alt="Especialista DEV Solar"
-                            style={{ objectFit: 'cover' }}
+                            style={{ ...devSolarLogo, objectFit: 'cover' }}
                             className={styles.avatarImage}
-                            style={devSolarLogo}
                             title="Especialista DEV Solar"
                           />
                         </div>

@@ -41,6 +41,13 @@ svg {
 	--primary: #ff9e00;
 	--secondary: #2ecc71;
 	--footer-color: #001f52;
+	--theme-rgb: 0, 77, 205;
+	--fundoA: #F8F9FA;
+	--fundoB: #F0F0F0;
+	--fundoC: #E9ECEF;
+	--fundoD: #ffffff;
+	--fundoE: #000000;
+	--faq-bubble-max-width: calc(100% - 72px);
 
 	/* --- AJUSTE AQUI --- */
 	--light: #F8F9FA !important;
