@@ -193,6 +193,13 @@
     transform: scale(1.1);
 }
 
+.socialIconLinkFooter[href*="facebook.com"]:hover {
+    background-color: var(--primary);
+    color: var(--branco);
+    /* Cor do ícone no hover */
+    transform: scale(1.1);
+}
+
 /* O glifo "f" do fa-facebook-f tem viewBox mais estreito (320x512) que os
    demais ícones sociais (448x512), então parece menor/desalinhado dentro
    do mesmo botão circular; compensa ampliando o SVG. */
