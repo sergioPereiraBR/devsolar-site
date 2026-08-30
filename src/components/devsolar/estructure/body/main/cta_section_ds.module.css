@@ -1,11 +1,6 @@
 /* CTASectionDS.module.css */
 
-/* :root deve estar no seu arquivo CSS global (ex: styles/globals.css)
-:root {
-  --primary: #ff9e00;
-  --branco: #ffffff;
-  --theme-rgb: 0, 77, 205; /* Exemplo baseado em --theme */
-/* } */
+/* --primary/--branco/--theme-rgb estão definidas globalmente em src/app/globals.css */
 
 .ctaSection {
     /* Substitui py-5 e bg-primary-custom */

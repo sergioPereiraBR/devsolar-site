@@ -19,13 +19,7 @@
     }
 }
 
-:root {
-    --fundoA: #F8F9FA;
-    --fundoB: #F0F0F0;
-    --fundoC: #E9ECEF;
-    --fundoD: #ffffff;
-    --fundoE: #000000;
-}
+/* --fundoA/B/C/D/E são definidas globalmente em src/app/globals.css */
 
 .modalContent {
     border: 1px solid rgba(0, 31, 82, 0.08);

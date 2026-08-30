@@ -119,6 +119,7 @@ export const metadata = {
     apple: '/images/apple-touch-icon.png', // Ícone Apple
     // outros: { ... }
   },
+  manifest: '/manifest.json',
   // msApplication: { // Para Windows Tiles
   //   tileColor: '#7F7F7F',
   // },
@@ -167,6 +168,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
         {/* <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" /> */}
         {/* DNS Prefetch para recursos críticos */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com/" />
@@ -321,7 +326,7 @@ export default function RootLayout({ children }) {
           Ir para o conteúdo principal
         </a>
         {children}
-        <Script id="defer-manifest" strategy="lazyOnload">
+        {/* <Script id="defer-manifest" strategy="lazyOnload">
           {`(function() {
                 if (document.head.querySelector('link[rel="manifest"]')) {
                     return;
@@ -332,7 +337,7 @@ export default function RootLayout({ children }) {
                 manifestLink.crossOrigin = 'use-credentials';
                 document.head.appendChild(manifestLink);
             })();`}
-        </Script>
+        </Script> */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(devSolarSchema) }}

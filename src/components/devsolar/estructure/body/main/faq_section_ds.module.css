@@ -381,7 +381,8 @@
     /* Padding para área de clique */
     font-size: 1.4rem;
     /* Tamanho dos ícones */
-    color: #555; /* #21C063 */
+    color: #555;
+    /* #21C063 */
     /* Cor dos ícones */
     transition: color 0.2s ease;
     flex-shrink: 0;
@@ -391,13 +392,17 @@
 }
 
 .sendButton {
-    background-color: #25D366; /* Verde WhatsApp */
+    background-color: #25D366;
+    /* Verde WhatsApp */
     border: none;
     cursor: pointer;
     padding: 10px;
-    border-radius: 50%; /* Botão circular */
-    font-size: 1.4rem; /* Tamanho do ícone */
-    color: #fff; /* Ícone branco */
+    border-radius: 50%;
+    /* Botão circular */
+    font-size: 1.4rem;
+    /* Tamanho do ícone */
+    color: #fff;
+    /* Ícone branco */
     transition: background-color 0.2s ease, transform 0.2s ease;
     flex-shrink: 0;
     align-self: center;
@@ -406,13 +411,16 @@
     justify-content: center;
 }
 
-.sendButton:hover:not(:disabled)  {
-    background-color: #20b858; /* Tom mais escuro no hover */
-    transform: scale(1.05); /* Leve aumento no hover */
+.sendButton:hover:not(:disabled) {
+    background-color: #20b858;
+    /* Tom mais escuro no hover */
+    transform: scale(1.05);
+    /* Leve aumento no hover */
 }
 
 .sendButton:active {
-    transform: scale(0.95); /* Feedback ao clicar */
+    transform: scale(0.95);
+    /* Feedback ao clicar */
 }
 
 .sendButton:disabled {
@@ -500,7 +508,7 @@
         padding: 8px 12px;
     }
 
-    .emojiButton{
+    .emojiButton {
         font-size: 1.2rem;
         padding: 6px;
     }
@@ -589,9 +597,7 @@
 }
 
 /* Mantem o mesmo limite horizontal maximo dos dois baloes e evita sobreposicao no icone */
-:root {
-    --faq-bubble-max-width: calc(100% - 72px);
-}
+/* --faq-bubble-max-width é definida globalmente em src/app/globals.css */
 
 .questionRow,
 .answerRow {
