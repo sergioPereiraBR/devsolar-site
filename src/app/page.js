@@ -1,3 +1,4 @@
+// page.js
 import HomePageClient from './page-client';
 
 // Metadados ESPECÍFICOS para esta página (sobrescrevem ou complementam o layout.js)

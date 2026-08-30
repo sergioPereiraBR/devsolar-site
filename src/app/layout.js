@@ -169,6 +169,27 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
+        {/* Polyfill de Array/TypedArray.prototype.at() exigido por scripts de
+            terceiros injetados pela Cloudflare (beacon.min.js) em runtimes
+            sem suporte nativo ao método. Precisa rodar antes de qualquer
+            outro script (beforeInteractive). */}
+        <Script id="polyfill-array-at" strategy="beforeInteractive">
+          {`(function() {
+  function at(n) {
+    n = Math.trunc(n) || 0;
+    if (n < 0) n += this.length;
+    if (n < 0 || n >= this.length) return undefined;
+    return this[n];
+  }
+  var Ctors = [Array, String, Int8Array, Uint8Array, Uint8ClampedArray, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, Float64Array];
+  for (var i = 0; i < Ctors.length; i++) {
+    var Ctor = Ctors[i];
+    if (Ctor && Ctor.prototype && !Ctor.prototype.at) {
+      Object.defineProperty(Ctor.prototype, 'at', { value: at, writable: true, configurable: true });
+    }
+  }
+})();`}
+        </Script>
         {/* <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" /> */}
         {/* DNS Prefetch para recursos críticos */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com/" />
