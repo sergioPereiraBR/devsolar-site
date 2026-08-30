@@ -371,6 +371,8 @@ function FooterDS() {
                 <Link
                   key={social.id}
                   href={social.url}
+                  className={styles.socialIconLinkFooter} // Classe específica do footer
+                  aria-label={`Visitar ${COMPANY_NAME} no ${social.name}: ${social.url}`}
                   target="_blank"
                   rel={
                     social.url.includes('api.whatsapp') ||
@@ -378,8 +380,6 @@ function FooterDS() {
                       ? 'noopener noreferrer nofollow'
                       : 'noopener noreferrer'
                   }
-                  className={styles.socialIconLinkFooter} // Classe específica do footer
-                  aria-label={`Visitar ${COMPANY_NAME} no ${social.name}: ${social.url}`}
                   onClick={() => {
                     if (social.url.includes('api.whatsapp')) {
                       trackWhatsAppClick('footer_social');
