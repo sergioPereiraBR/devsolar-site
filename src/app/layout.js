@@ -23,12 +23,12 @@ const FACEBOOK_DOMAIN_VERIFICATION =
 export const metadata = {
   // Modelo de Título: %s será substituído pelo título da página específica
   title: {
-    template: '%s | DEV Solar',
     default:
-      'DEV Solar | Empresa de energia solar fotovoltaica no Rio de Janeiro', // Título padrão (ex: homepage)
+      'DEV Solar Eficiência Energética | Empresa de Energia Solar no Rio de Janeiro',
   },
   description:
-    'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Solicite um orçamento!', // Descrição padrão/base
+    //'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Solicite um orçamento!', // Descrição padrão/base
+    'A DEV Solar Eficiência Energética é sua empresa de energia solar no Rio de Janeiro. Reduza até 85% na conta de luz. Solicite sua simulação gratuita!',
   metadataBase: new URL('https://www.devsolar.com.br/'), // URL Base para metadados relativos
   alternates: {
     canonical: 'https://www.devsolar.com.br/', // Canonical padrão (será sobrescrito nas páginas)
@@ -160,8 +160,6 @@ export const viewport = {
     // Pode definir cores para light e dark mode
     { media: '(prefers-color-scheme: light)', color: '#ffffff' }, // Ex: Branco para light
     { media: '(prefers-color-scheme: dark)', color: '#001f52' }, // Ex: Azul escuro para dark (seu footer-color)
-    // Ou apenas uma cor se não precisar de distinção:
-    // themeColor: '#001f52',
   ],
   colorScheme: 'light dark', // Opcional: Indica que o site suporta ambos
 };
@@ -199,52 +197,6 @@ export default function RootLayout({ children }) {
           href="/llms.txt"
           title="Documentação para LLM"
         />
-
-        {/* <link
-          rel="stylesheet"
-          href="/vendor/bootstrap/bootstrap.min.css"
-          media="print"
-          onLoad={(e) => {
-            e.currentTarget.media = 'all';
-          }}
-        />
-        <link
-          rel="stylesheet"
-          href="/vendor/fontawesome/styles.css"
-          media="print"
-          onLoad={(e) => {
-            e.currentTarget.media = 'all';
-          }}
-        /> */}
-
-        {/* <Script id="async-css-loader" strategy="afterInteractive">
-          {`
-            (function() {
-              var bs = document.getElementById('bootstrap-css');
-              var fa = document.getElementById('fontawesome-css');
-              if (bs) bs.media = 'all';
-              if (fa) fa.media = 'all';
-            })();
-          `}
-        </Script> */}
-
-        {/* <AsyncStyles /> */}
-
-        {/* Injeção do CSS de forma totalmente assíncrona após a renderização inicial */}
-        {/* <Script id="load-external-css" strategy="afterInteractive">
-          {`
-            [
-              '/vendor/bootstrap/bootstrap.min.css',
-              '/vendor/fontawesome/styles.css'
-            ].forEach(function(src) {
-              var l = document.createElement('link');
-              l.rel = 'stylesheet';
-              l.href = src;
-              document.head.appendChild(l);
-            });
-          `}
-        </Script> */}
-
         <Script id="load-external-css" strategy="lazyOnload">
           {`
             ['/vendor/bootstrap/bootstrap.min.css', '/vendor/fontawesome/styles.css'].forEach(function(href) {
@@ -255,7 +207,6 @@ export default function RootLayout({ children }) {
             });
           `}
         </Script>
-
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -279,16 +230,6 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        {/* <Script id="polyfill-array-at" strategy="beforeInteractive">
-          {`if (!Array.prototype.at) {
-  Array.prototype.at = function (n) {
-    n = Math.trunc(n) || 0;
-    if (n < 0) n += this.length;
-    if (n < 0 || n >= this.length) return undefined;
-    return this[n];
-  };
-}`}
-        </Script> */}
         <Script id="force-passive-touch-listeners" strategy="lazyOnload">
           {`(function() {
     var originalAddEventListener = EventTarget.prototype.addEventListener;
@@ -325,18 +266,6 @@ export default function RootLayout({ children }) {
           Ir para o conteúdo principal
         </a>
         {children}
-        {/* <Script id="defer-manifest" strategy="lazyOnload">
-          {`(function() {
-                if (document.head.querySelector('link[rel="manifest"]')) {
-                    return;
-                }
-                var manifestLink = document.createElement('link');
-                manifestLink.rel = 'manifest';
-                manifestLink.href = '/manifest.json';
-                manifestLink.crossOrigin = 'use-credentials';
-                document.head.appendChild(manifestLink);
-            })();`}
-        </Script> */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(devSolarSchema) }}
