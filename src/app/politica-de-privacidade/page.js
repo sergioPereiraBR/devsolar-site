@@ -15,7 +15,7 @@ export const metadata = {
     'privacidade dev solar',
     'dev solar',
   ],
-  authors: [{ name: 'DEV Eficiência Energética Ltda.' }],
+  authors: [{ name: 'DEV Solar' }],
   robots: {
     index: true,
     follow: true,
@@ -30,7 +30,7 @@ export const metadata = {
     type: 'website',
   },
   other: {
-    publisher: 'DEV Eficiência Energética Ltda.',
+    publisher: 'DEV Solar',
     copyright: '© 2026 DEV Solar - Todos os direitos reservados.',
   },
 };
