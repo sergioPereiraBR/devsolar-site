@@ -12,10 +12,10 @@ Disallow: /cgi-sys/
 Disallow: /admin/
 Disallow: /private/
 Disallow: /.well-known/
+Disallow: /cdn-cgi/l/email-protection
 
 # Permite endpoints essenciais do Cloudflare
 Allow: /cdn-cgi/l/
-Allow: /cdn-cgi/l/email-protection
 Allow: /cdn-cgi/scripts/
 
 # Permite Explicitamente Crawlers de IA Generativa
