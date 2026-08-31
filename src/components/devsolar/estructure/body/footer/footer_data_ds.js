@@ -1,6 +1,7 @@
 'use client';
 
 import LogoDevBranco from '@/assets/logo-dev-branco.webp';
+import WhatsAppIcon from '@/assets/WhatsApp.svg';
 
 export const COMPANY_NAME = 'DEV Solar';
 export const COMPANY_SLOGAN_PA = 'O FUTURO É SOLAR';
@@ -16,7 +17,7 @@ export const ADDRESS_INFO = {
 };
 export const CURRENT_YEAR = new Date().getFullYear();
 export const LOGO_URL = LogoDevBranco.src; // Logo para o rodapé
-export const WHATSAPP_FLOAT_ICON_URL = '@/assets/WhatsApp.svg'; //"https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"; //'/icons/whatsapp-white.svg'; // Ícone branco para botão flutuante
+export const WHATSAPP_FLOAT_ICON_URL = WhatsAppIcon; // Ícone branco para botão flutuante
 export const DEVELOPER_NAME = 'Pereira Dev';
 export const DEVELOPER_URL = 'https://www.linkedin.com/in/sergiopereira-br'; // https://github.com/sergioPereiraBR
 
