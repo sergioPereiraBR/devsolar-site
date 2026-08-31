@@ -1,7 +1,7 @@
 import LegalPageLayout from '@/components/devsolar/estructure/body/main/legal_page_layout';
 
 export const metadata = {
-  title: 'Política de Privacidade',
+  title: 'Política de Privacidade | DEV Solar',
   description:
     'Entenda como a DEV Solar coleta, utiliza, armazena e protege seus dados pessoais em nosso site, em conformidade com a LGPD.',
   metadataBase: new URL('https://www.devsolar.com.br/'),
@@ -214,7 +214,7 @@ const sections = [
 export default function PoliticaPrivacidadePage() {
   return (
     <LegalPageLayout
-      title="Política de Privacidade | DEV Solar"
+      title="Política de Privacidade"
       intro="Esta Política descreve como a DEV Solar trata suas informações pessoais quando você utiliza nosso site, entra em contato ou solicita um orçamento."
       lastUpdated="08 de agosto de 2026"
       sections={sections}
