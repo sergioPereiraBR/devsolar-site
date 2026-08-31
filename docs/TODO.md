@@ -84,3 +84,35 @@ Como corrigir
 Considere melhorar a legibilidade do texto para o seu público-alvo. Textos com frases mais curtas e palavras menos complexas costumam ser mais fáceis de ler e entender.
 
 ---
+
+Descrição
+Páginas com múltiplos <h2>s. Isso não é um problema, pois os padrões HTML permitem múltiplos <h2>s quando usados ​​em uma estrutura de cabeçalho hierárquica lógica. No entanto, este filtro pode ajudar você a verificar rapidamente se eles estão sendo usados ​​corretamente.
+
+Como corrigir
+Certifique-se de que os <h2>s sejam usados ​​em uma estrutura de cabeçalho hierárquica lógica e atualize-os quando necessário, utilizando toda a classificação de cabeçalho (h3 - h6) para cabeçalhos adicionais.
+
+---
+
+Descrição
+Páginas que possuem <h2>s que excedem o limite configurado. Não há um limite rígido para o número de caracteres em um <h2>, porém eles devem ser claros e concisos para os usuários, e títulos longos podem ser menos úteis.
+
+Como corrigir
+Escreva <h2>s concisos para os usuários, incluindo palavras-chave relevantes sempre que forem naturais para eles — sem excesso de palavras-chave.
+
+---
+
+Descrição
+Páginas com títulos abaixo do limite configurado. Isso não é necessariamente um problema, mas indica que pode haver espaço para incluir palavras-chave adicionais ou comunicar seus diferenciais competitivos.
+
+Como corrigir
+Considere atualizar o título da página para aproveitar o espaço disponível e incluir palavras-chave adicionais ou diferenciais competitivos.
+
+---
+
+Descrição
+Páginas com títulos muito mais curtos do que o limite de pixels estimado pelo Google. Isso não é necessariamente um problema, mas indica que pode haver espaço para incluir palavras-chave adicionais ou comunicar seus diferenciais competitivos.
+
+Como corrigir
+Considere atualizar o título da página para aproveitar o espaço disponível e incluir palavras-chave adicionais ou diferenciais competitivos.
+
+---
