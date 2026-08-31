@@ -22,6 +22,7 @@ DirectoryIndex index.html index.php
 
   # Outros cabeçalhos de proteção
   Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 
