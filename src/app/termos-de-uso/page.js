@@ -101,19 +101,19 @@ const sections = [
     title: '1. Aceitação dos termos',
     content: (
       <>
-        <h4>
+        <p>
           Ao acessar, navegar ou utilizar o site da DEV Solar, você declara que
           leu, compreendeu e concorda integralmente com estes Termos de Uso e
           com a nossa Política de Privacidade. Este documento estabelece as
           regras e condições legais para o acesso às informações, simuladores e
           conteúdos sobre energia solar fotovoltaica.
-        </h4>
-        <h4>
+        </p>
+        <p>
           Caso você não concorde com qualquer disposição aqui apresentada,
           solicitamos que descontinue a navegação em nossa plataforma. O uso
           continuado das nossas ferramentas e formulários implica a aceitação
           expressa e irrestrita das atualizações periódicas destes termos.
-        </h4>
+        </p>
       </>
     ),
   },
@@ -121,20 +121,20 @@ const sections = [
     title: '2. Uso do site e propriedade intelectual',
     content: (
       <>
-        <h4>
+        <p>
           Todo o conteúdo disponibilizado no site — incluindo textos, marcas,
           logotipos, imagens, gráficos, simuladores de economia de energia e
           layout — é de propriedade exclusiva da DEV Solar ou de seus
           licenciantes, estando protegido pela legislação brasileira de direitos
           autorais e propriedade industrial.
-        </h4>
-        <h4>
+        </p>
+        <p>
           É concedida a você uma licença limitada, não exclusiva e revogável
           para visualizar e utilizar as informações do site estritamente para
           fins pessoais e informativos. É expressamente proibida a cópia,
           reprodução, modificação, distribuição comercial ou engenharia reversa
           de qualquer elemento da plataforma sem prévia autorização por escrito.
-        </h4>
+        </p>
       </>
     ),
   },
@@ -142,20 +142,20 @@ const sections = [
     title: '3. Solicitacões de orçamentos e comunicações',
     content: (
       <>
-        <h4>
+        <p>
           Ao preencher nossos formulários para solicitação de proposta
           comercial, envio de conta de luz ou contato, você garante que os dados
           fornecidos são precisos, atuais e verdadeiros. Você autoriza
           expressamente a equipe da DEV Solar a entrar em contato via telefone,
           e-mail ou aplicativo de mensagem (WhatsApp).
-        </h4>
-        <h4>
+        </p>
+        <p>
           As estimativas de economia, capacidade de geração e valores
           apresentados nas simulações iniciais do site possuem caráter meramente
           informativo e preliminar. A proposta final e vinculante para a
           instalação do sistema fotovoltaico dependerá exclusivamente da análise
           técnica e da vistoria no local do imóvel.
-        </h4>
+        </p>
       </>
     ),
   },
@@ -163,20 +163,20 @@ const sections = [
     title: '4. Limitações de responsabilidade e disponibilidade',
     content: (
       <>
-        <h4>
+        <p>
           A DEV Solar emprega os melhores esforços para manter a precisão das
           informações e a disponibilidade contínua da plataforma. Contudo, não
           nos responsabilizamos por eventuais falhas técnicas,
           indisponibilidades temporárias do sistema, vírus ou prejuízos
           decorrentes da navegação na internet ou de inconsistências na rede do
           usuário.
-        </h4>
-        <h4>
+        </p>
+        <p>
           Links para sites de terceiros ou distribuidoras de energia podem ser
           disponibilizados para sua conveniência. A DEV Solar não exerce
           controle e não assume responsabilidade pelo conteúdo, políticas ou
           práticas de sites de terceiros vinculados à nossa plataforma.
-        </h4>
+        </p>
       </>
     ),
   },
@@ -184,17 +184,17 @@ const sections = [
     title: '5. Legislação aplicável e foro',
     content: (
       <>
-        <h4>
+        <p>
           Estes Termos de Uso são regidos e interpretados estritamente de acordo
           com as leis da República Federativa do Brasil, incluindo o Código de
           Defesa do Consumidor e o Marco Civil da Internet.
-        </h4>
-        <h4>
+        </p>
+        <p>
           Para dirimir quaisquer controvérsias ou litígios decorrentes do uso
           deste site ou do descumprimento destes termos, fica eleito o Foro da
           Comarca da Capital do Estado do Rio de Janeiro, com renúncia expressa
           a qualquer outro, por mais privilegiado que seja.
-        </h4>
+        </p>
       </>
     ),
   },

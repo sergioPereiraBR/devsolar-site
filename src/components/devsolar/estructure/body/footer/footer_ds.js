@@ -162,10 +162,10 @@ function FooterDS() {
                 />
               </Link>
             </div>
-            <h2 className={styles.slogan}>
+            <p className={`${styles.slogan} footer-callout`}>
               {COMPANY_SLOGAN_PA}
               <br></br> {COMPANY_SLOGAN_PB}
-            </h2>
+            </p>
             {/* <h3 className={styles.atendimentoInfo}>
               Atendimento de Segunda a Sexta, das 9h às 18h
             </h3> */}

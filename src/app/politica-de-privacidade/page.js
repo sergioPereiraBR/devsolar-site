@@ -102,21 +102,21 @@ const sections = [
     title: '1. Informações que coletamos',
     content: (
       <>
-        <h4>
+        <p>
           Coletamos informações pessoais fornecidas diretamente por você ao
           preencher formulários de contato, solicitar orçamentos de sistemas
           fotovoltaicos ou interagir com nossos canais de atendimento. Esses
           dados incluem seu nome completo, endereço de e-mail, número de
           telefone com WhatsApp, endereço de instalação do projeto e dados do
           seu consumo de energia.
-        </h4>
-        <h4>
+        </p>
+        <p>
           Além disso, coletamos automaticamente dados técnicos durante a sua
           navegação em nosso site, tais como seu endereço IP, tipo de navegador,
           páginas visitadas, tempo de permanência e dados de cookies. Essa
           coleta é fundamental para garantir o funcionamento adequado da
           plataforma e otimizar a sua experiência de navegação.
-        </h4>
+        </p>
       </>
     ),
   },
@@ -124,22 +124,22 @@ const sections = [
     title: '2. Como usamos suas informações',
     content: (
       <>
-        <h4>
+        <p>
           Os dados coletados são utilizados para viabilizar o atendimento e a
           elaboração de propostas comerciais personalizadas para a sua
           residência, condomínio ou empresa no Rio de Janeiro. Utilizamos suas
           informações para dimensionar corretamente o sistema de energia solar,
           entrar em contato para esclarecer dúvidas e formalizar contratos de
           prestação de serviços.
-        </h4>
-        <h4>
+        </p>
+        <p>
           Com o seu consentimento, também podemos utilizar seus dados para
           enviar novidades sobre o setor fotovoltaico, conteúdos educativos,
           ofertas especiais e materiais informativos. Tratamos seus dados para
           cumprir obrigações regulatórias da ANEEL e obrigações legais,
           garantindo sempre a transparência e o uso estritamente necessário das
           informações.
-        </h4>
+        </p>
       </>
     ),
   },
@@ -147,22 +147,22 @@ const sections = [
     title: '3. Compartilhamento de dados',
     content: (
       <>
-        <h4>
+        <p>
           A DEV Solar não vende, aluga ou comercializa seus dados pessoais com
           terceiros. No entanto, para a execução eficiente dos nossos serviços,
           podemos compartilhar suas informações com parceiros estratégicos, como
           distribuidoras locais de energia elétrica para homologação de
           projetos, instituições financeiras para linhas de crédito solar e
           fornecedores de equipamentos.
-        </h4>
-        <h4>
+        </p>
+        <p>
           Também utilizamos prestadores de serviços de tecnologia, incluindo
           hospedagem de sites e ferramentas de automação de marketing. Todos os
           nossos parceiros comerciais são contratualmente obrigados a manter a
           confidencialidade, segurança e privacidade dos seus dados,
           utilizando-os exclusivamente para as finalidades autorizadas por nossa
           empresa.
-        </h4>
+        </p>
       </>
     ),
   },
@@ -170,20 +170,20 @@ const sections = [
     title: '4. Segurança da informação',
     content: (
       <>
-        <h4>
+        <p>
           Adotamos rigorosas medidas de segurança técnicas e administrativas
           para proteger suas informações contra acessos não autorizados, perdas,
           alterações, destruição ou qualquer forma de tratamento inadequado.
           Utilizamos protocolos de criptografia (HTTPS/SSL), controles de acesso
           restrito e monitoramento contínuo em nossos servidores e bancos de
           dados.
-        </h4>
-        <h4>
+        </p>
+        <p>
           Embora empreguemos os melhores esforços e padrões de mercado para
           proteger seus dados, destacamos que nenhum sistema é completamente
           infalível. Por isso, incentivamos que os usuários também tomem
           precauções ao navegar na internet e ao compartilhar suas informações.
-        </h4>
+        </p>
       </>
     ),
   },
@@ -191,21 +191,21 @@ const sections = [
     title: '5. Seus direitos (LGPD)',
     content: (
       <>
-        <h4>
+        <p>
           Em conformidade com a Lei Geral de Proteção de Dados (LGPD), você
           possui o direito de confirmar a existência do tratamento de seus
           dados, acessar suas informações e solicitar a correção de dados
           incompletos ou desatualizados. Você também pode solicitar a
           anonimização, bloqueio ou eliminação de dados desnecessários ou
           tratados em desconformidade.
-        </h4>
-        <h4>
+        </p>
+        <p>
           Além disso, você pode revogar seu consentimento a qualquer momento
           para o recebimento de comunicações de marketing. Para exercer qualquer
           um destes direitos, basta entrar em contato com nossa equipe pelo
           e-mail comercial@devsolar.com.br ou através dos nossos canais de
           atendimento oficiais.
-        </h4>
+        </p>
       </>
     ),
   },
