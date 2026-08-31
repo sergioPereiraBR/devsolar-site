@@ -14,7 +14,7 @@ export const metadata = {
     'termos legais dev solar',
     'dev solar',
   ],
-  authors: [{ name: 'DEV Solar Eficiência Energética Ltda.' }],
+  authors: [{ name: 'DEV Eficiência Energética Ltda.' }],
   robots: {
     index: true,
     follow: true,
@@ -29,7 +29,7 @@ export const metadata = {
     type: 'website',
   },
   other: {
-    publisher: 'DEV Solar Eficiência Energética Ltda.',
+    publisher: 'DEV Eficiência Energética Ltda.',
     copyright: '© 2026 DEV Solar - Todos os direitos reservados.',
   },
 };

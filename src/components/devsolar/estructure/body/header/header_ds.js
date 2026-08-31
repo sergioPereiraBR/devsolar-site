@@ -471,7 +471,7 @@ function HeaderDS() {
                 Copyright Notice: © Dev Solar, suas entidades relacionadas e
                 prepostos. Todos os direitos reservados. Conheça nossos Termos e
                 Condições de Uso do Site Dev Solar. DEV Eficiência Energética
-                Ltda. Fale conosco pelo WhatsApp. Av. Jambeiro, 474 Loja C, Vila
+                Ltda. Fale conosco pelo WhatsApp. Av. Jambeiro, 474 - Lj C - Vila
                 Valqueire - Rio de Janeiro - RJ Cep: 21330-300 CNPJ
                 53.538.425/0001-15. Rápida** Turbo: Pedidos aprovados entre 10h
                 e 17h, serão entregues em até 4h (exceto sábados, domingos e

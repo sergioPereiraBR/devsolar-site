@@ -273,7 +273,6 @@ function FooterDS() {
               )}
             </div>
           </div>
-
           {/* Coluna 4: Áreas de Atendimento */}
           <div className={`${styles.footerColumn} ${styles.footerLinks}`}>
             <p className={styles.footerTitle}>Atendemos</p>
