@@ -4,7 +4,7 @@ export const contactInfoData = [
   {
     id: 'cnpj',
     iconClass: 'fas fa-handshake',
-    title: 'DEV Solar | DEV Eficiência Energética Ltda.',
+    title: 'DEV Solar - DEV Eficiência Energética Ltda.',
     text: 'CNPJ: 53.538.425/0001-15',
   },
   {

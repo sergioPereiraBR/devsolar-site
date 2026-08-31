@@ -166,7 +166,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" data-scroll-behavior="smooth">
       <head>
         {/* Polyfill de Array/TypedArray.prototype.at() exigido por scripts de
             terceiros injetados pela Cloudflare (beacon.min.js) em runtimes
