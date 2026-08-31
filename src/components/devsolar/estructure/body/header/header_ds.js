@@ -264,11 +264,11 @@ function HeaderDS() {
                 <h1 className="display-4 fw-bold mb-4">
                   Reduza até 85% da sua Conta de Luz com Energia Solar
                 </h1>
-                <h2 className="lead mb-4">
+                <p className="lead mb-4">
                   Proteja sua casa, condomínio ou empresa no Rio de Janeiro
                   contra aumentos tarifários. Reduza até 85% na conta de luz.
                   Solicite um orçamento!
-                </h2>
+                </p>
               </div>
               <div className={`col-lg-6 ${styles.calculatorContainer}`}>
                 <div className={styles.calculatorInline}>
