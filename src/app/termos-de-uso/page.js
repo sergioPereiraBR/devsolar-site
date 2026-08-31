@@ -1,7 +1,7 @@
 import LegalPageLayout from '@/components/devsolar/estructure/body/main/legal_page_layout';
 
 export const metadata = {
-  title: 'Termos de Uso',
+  title: 'Termos de Uso | DEV Solar',
   description:
     'Consulte os termos de uso do site da DEV Solar e entenda as regras, condições e responsabilidades para o uso de nossos serviços e navegação.',
   metadataBase: new URL('https://www.devsolar.com.br/'),

@@ -3,7 +3,7 @@ import HomePageClient from './page-client';
 
 // Metadados ESPECÍFICOS para esta página (sobrescrevem ou complementam o layout.js)
 export const metadata = {
-  title: 'DEV Solar | Empresa de Energia Solar no Rio de Janeiro',
+  title: 'Empresa de Energia Solar no Rio de Janeiro | DEV Solar',
   description:
     // 'Reduza até 85% da sua Conta de Luz no RJ com Energia Solar para casas, condomínios e empresas. Peça orçamento gratuito!', // Descrição específica
     //'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Simule sua economia agora!', // Descrição específica
@@ -19,7 +19,7 @@ export const metadata = {
     appId: '706537912532593',
   },
   openGraph: {
-    title: 'DEV Solar | Empresa de Energia Solar no Rio de Janeiro',
+    title: 'Empresa de Energia Solar no Rio de Janeiro | DEV Solar',
     description:
       //'Reduza até 85% da sua Conta de Luz no RJ com Energia Solar para casas, condomínios e empresas. Peça orçamento gratuito!', // Descrição OG específica
       'A DEV Solar é sua empresa de energia solar no Rio de Janeiro. Reduza até 85% na conta de luz. Solicite sua simulação gratuita!',
@@ -40,7 +40,7 @@ export const metadata = {
   },
   twitter: {
     // Pode sobrescrever twitter tags também se necessário
-    title: 'DEV Solar | Empresa de Energia Solar no Rio de Janeiro',
+    title: 'Empresa de Energia Solar no Rio de Janeiro | DEV Solar',
     description:
       //'Reduza até 85% da sua Conta de Luz no RJ com Energia Solar para casas, condomínios e empresas. Peça orçamento gratuito.',
       'A DEV Solar é sua empresa de energia solar no Rio de Janeiro. Reduza até 85% na conta de luz. Solicite sua simulação gratuita!',
