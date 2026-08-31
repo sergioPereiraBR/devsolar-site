@@ -20,7 +20,7 @@ export default function LegalPageLayout({
               ← Voltar para a home
             </Link>
             <h1 className={styles.title}>{title}</h1>
-            <p className={styles.intro}>{intro}</p>
+            <h2 className={styles.intro}>{intro}</h2>
             {lastUpdated ? (
               <p className={styles.updated}>
                 Última atualização: {lastUpdated}
@@ -34,7 +34,7 @@ export default function LegalPageLayout({
             <div className={styles.card}>
               {sections.map((section) => (
                 <article key={section.title} className={styles.section}>
-                  <h2 className={styles.sectionTitle}>{section.title}</h2>
+                  <h3 className={styles.sectionTitle}>{section.title}</h3>
                   {section.content}
                 </article>
               ))}
