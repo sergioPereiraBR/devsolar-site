@@ -23,8 +23,7 @@ const FACEBOOK_DOMAIN_VERIFICATION =
 export const metadata = {
   // Modelo de Título: %s será substituído pelo título da página específica
   title: {
-    default:
-      'DEV Solar - DEV Eficiência Energética Ltda. | Empresa de Energia Solar no Rio de Janeiro',
+    default: 'DEV Solar | Empresa de Energia Solar no Rio de Janeiro',
   },
   description:
     //'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Solicite um orçamento!', // Descrição padrão/base
@@ -60,10 +59,10 @@ export const metadata = {
     'financiamento energia solar rj',
     'reduzir conta de luz rj',
   ],
-  authors: [{ name: 'DEV Eficiência Energética Ltda.' }],
+  authors: [{ name: 'DEV Solar' }],
   other: {
-    publisher: 'DEV Eficiência Energética Ltda.',
-    copyright: '© 2026 Dev Solar - Todos os direitos reservados.',
+    publisher: 'DEV Solar',
+    copyright: '© 2026 DEV Solar - Todos os direitos reservados.',
   },
   facebook: {
     appId: '706537912532593',
