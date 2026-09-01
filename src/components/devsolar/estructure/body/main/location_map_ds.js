@@ -19,8 +19,8 @@ function LocationMap() {
         sandbox="allow-popups-to-escape-sandbox allow-popups allow-same-origin allow-scripts"
       />
       <div className={styles.addressText}>
-        <h4>Av. Jambeiro, 474 - Lj C - Vila Valqueire,</h4>
-        <h4>Rio de Janeiro - RJ.</h4>
+        <p>Av. Jambeiro, 474 - Lj C - Vila Valqueire,</p>
+        <p>Rio de Janeiro - RJ.</p>
         <a
           href="https://www.google.com/maps/dir/?api=1&destination=DEV+Solar+Vila+Valqueire"
           target="_blank"

@@ -40,7 +40,7 @@ function buildHtmlMessage(formData: Record<string, unknown>): string {
 
   return `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
-      <h2 style="margin-bottom: 16px;">Nova mensagem do formulário de contato</h2>
+      <h3 style="margin-bottom: 16px;">Nova mensagem do formulário de contato</h3>
       <p><strong>Nome:</strong> ${name || 'Não informado'}</p>
       <p><strong>E-mail:</strong> ${email || 'Não informado'}</p>
       <p><strong>Telefone:</strong> ${phone || 'Não informado'}</p>

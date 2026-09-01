@@ -68,9 +68,9 @@ Visitei o site e quero agendar minha vistoria técnica para uma avaliação grat
               {/* Exemplo com FontAwesome */}
               <span>Pronto para começar a economizar?</span>
             </h2>
-            <h3 className={styles.subtext}>
+            <p className={styles.subtext}>
               Solicite agora mesmo uma avaliação gratuita para seu imóvel.
-            </h3>
+            </p>
           </div>
           <div className={`col-lg-4 text-lg-end ${styles.buttonContainer}`}>
             {/* <FaleConoscoDS

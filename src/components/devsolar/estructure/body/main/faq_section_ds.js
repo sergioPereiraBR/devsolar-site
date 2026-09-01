@@ -232,7 +232,7 @@ function FAQSectionDS() {
                         <div
                           className={`${styles.messageBubble} ${styles.questionBubble}`}
                         >
-                          <h3>{item.question}</h3>
+                          <p>{item.question}</p>
                         </div>
                         <span className={styles.toggleIcon} aria-hidden="false">
                           <FontAwesomeIcon
@@ -256,7 +256,7 @@ function FAQSectionDS() {
                         <div
                           className={`${styles.messageBubble} ${styles.answerBubble}`}
                         >
-                          <h4>{renderAnswerWithLineBreaks(item.answer)}</h4>
+                          <p>{renderAnswerWithLineBreaks(item.answer)}</p>
                         </div>
                         <div className={styles.avatarContainer}>
                           <Image
@@ -277,9 +277,9 @@ function FAQSectionDS() {
 
               {/* Área de Input do Usuário */}
               <div className={styles.userInputSection}>
-                <h3 className={styles.userInputTitle}>
+                <p className={styles.userInputTitle}>
                   Tire suas dúvidas sobre <strong>energia solar</strong>:
-                </h3>
+                </p>
                 <div className={styles.inputAreaContainer}>
                   {/* Botão Emoji e Picker */}
                   <button

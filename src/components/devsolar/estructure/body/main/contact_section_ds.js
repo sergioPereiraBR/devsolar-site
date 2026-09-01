@@ -40,10 +40,10 @@ const ContactInfoItem = ({
           onClick={onClick}
           data-tab-entry={tabEntry ? 'true' : undefined}
         >
-          <h4 className={`${styles.contactText} mb-0`}>{text}</h4>
+          <p className={`${styles.contactText} mb-0`}>{text}</p>
         </a>
       ) : (
-        <h4 className={`${styles.contactText} mb-0`}>{text}</h4>
+        <p className={`${styles.contactText} mb-0`}>{text}</p>
       )}
     </div>
   </div>
@@ -257,12 +257,12 @@ function ContactSectionDS() {
             >
               Entre em Contato
             </h2>
-            <h3 className={`${styles.sectionSubtitle} mb-4`}>
+            <p className={`${styles.sectionSubtitle} mb-4`}>
               Estamos à disposição em todas as etapas do seu projeto. Seja para
               tirar dúvidas antes de investir, acompanhar sua instalação ou
               oferecer suporte no pós-venda, nossa equipe está pronta para
               atender você, seu condomínio ou sua empresa.
-            </h3>
+            </p>
             <div className="mb-4 mt-5 pt-3" suppressHydrationWarning>
               {contactInfoData.map((item) => (
                 <Fragment key={item.id}>
@@ -377,9 +377,9 @@ function ContactSectionDS() {
           <div className="col-lg-6 mt-lg-0 mt-4">
             <div className={`${styles.formCard} card shadow-sm`}>
               <div className="card-body p-4">
-                <h3 className={`${styles.formTitle} fw-bold mb-4`}>
+                <h2 className={`${styles.formTitle} fw-bold mb-4`}>
                   Envie sua Mensagem
-                </h3>
+                </h2>
                 {/* ***** FORMULÁRIO AGORA USA onSubmit ***** */}
                 <form
                   id="contactForm"
@@ -511,18 +511,18 @@ function ContactSectionDS() {
                   )}
                   {/* Mensagens de Feedback */}
                   {submitStatus === 'success' && (
-                    <div className="alert alert-success">
+                    <p className="alert alert-success">
                       Obrigado! Sua mensagem foi enviada com sucesso! Entraremos
                       em contato em breve. Respondemos em até 2 horas dentro do
                       horário comercial. Caso não receba resposta, verifique sua
                       caixa de spam ou entre em contato por outro canal.
-                    </div>
+                    </p>
                   )}
                   {submitStatus === 'error' && (
-                    <div className="alert alert-danger">
+                    <p className="alert alert-danger">
                       Ocorreu um erro ao enviar a mensagem. Por favor, tente
                       novamente ou entre em contato por outro canal.
-                    </div>
+                    </p>
                   )}
 
                   {/* Botão Submit */}

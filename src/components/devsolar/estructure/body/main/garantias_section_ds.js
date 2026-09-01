@@ -53,7 +53,7 @@ function GarantiasSectionDS() {
           {garantiasItems.map((item) => (
             <div className="col-lg-6" key={item.title}>
               <div className={styles.featureCard}>
-                <h4 className={styles.featureTitle}>{item.title}</h4>
+                <h3 className={styles.featureTitle}>{item.title}</h3>
                 <p className={`${styles.sectionText} mb-0`}>
                   {item.description}
                 </p>
