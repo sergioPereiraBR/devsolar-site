@@ -23,7 +23,7 @@ const FACEBOOK_DOMAIN_VERIFICATION =
 export const metadata = {
   // Modelo de Título: %s será substituído pelo título da página específica
   title: {
-    default: 'Empresa de Energia Solar no Rio de Janeiro | DEV Solar',
+    default: 'DEV Solar - Empresa de Energia Solar no Rio de Janeiro',
   },
   description:
     //'Proteja sua casa, condomínio ou empresa no Rio de Janeiro contra aumentos tarifários. Reduza até 85% na conta de luz. Solicite um orçamento!', // Descrição padrão/base
@@ -69,7 +69,7 @@ export const metadata = {
   },
   openGraph: {
     title:
-      'Empresa de energia solar fotovoltaica no Rio de Janeiro | DEV Solar', // Título OG padrão
+      'DEV Solar - Empresa de energia solar fotovoltaica no Rio de Janeiro', // Título OG padrão
     description:
       'Reduza a conta de luz da sua casa, empresa ou condomínio em até 85% com a DEV Solar.', // Descrição OG padrão
     url: 'https://www.devsolar.com.br/', // URL OG padrão (será sobrescrita)

@@ -28,7 +28,7 @@ const BenefitCard = ({ benefit, onClick, isTabEntry = false }) => (
             iconClass={benefit.iconClass}
             className={styles.benefitIcon}
           ></FaIcon>
-          <Card.Title as="h3" className={`${styles.benefitTitle} fw-bold`}>
+          <Card.Title className={`${styles.benefitTitle} fw-bold`}>
             {benefit.title}
           </Card.Title>
           <Card.Text className={styles.benefitDescription}>
@@ -56,9 +56,7 @@ const CategoryCard = ({ category, onClick }) => (
             className={styles.categoryIcon}
             aria-label={category.description}
           />
-          <Card.Title as="h4" className="fw-bold">
-            {category.title}
-          </Card.Title>
+          <Card.Title className="fw-bold">{category.title}</Card.Title>
           <Card.Text className={`${styles.categoryDescription} flex-grow-1`}>
             {category.description}
           </Card.Text>
