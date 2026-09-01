@@ -5,6 +5,7 @@ const withPWA = withPWAInit({
   disable: process.env.NODE_ENV === 'development', // Desativa o cache no ambiente de desenvolvimento
   register: true,
   skipWaiting: true,
+  cleanupOutdatedCaches: true,
 });
 
 const isDev = process.env.NODE_ENV !== 'production';
