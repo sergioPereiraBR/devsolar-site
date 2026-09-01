@@ -34,6 +34,9 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: bingbot
+Allow: /
+
 # Mapeamento de Sitemaps
 Sitemap: https://www.devsolar.com.br/sitemap.xml
 
