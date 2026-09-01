@@ -13,7 +13,7 @@ export const devSolarSchema = {
       "description": "Empresa de energia solar fotovoltaica no Rio de Janeiro. Projeto, homologação, instalação e manutenção de sistemas solares residenciais, comerciais e condominiais, com até 85% de redução na conta de luz.",
       "foundingDate": "2024-01-17",
       "url": "https://www.devsolar.com.br/",
-      "openingHours": [
+      "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -82,14 +82,6 @@ export const devSolarSchema = {
           "name": "Agendamento de Consultoria em Energia Solar"
         }
       },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
-      ],
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": -22.881603,
@@ -100,24 +92,8 @@ export const devSolarSchema = {
         { "@type": "City", "name": "Niterói" },
         { "@type": "City", "name": "São Gonçalo" },
         { "@type": "City", "name": "Duque de Caxias" },
-        { "@type": "City", "name": "Nova Iguaçu" },
-        { "@type": "City", "name": "Belford Roxo" },
-        { "@type": "City", "name": "São João de Meriti" },
-        { "@type": "City", "name": "Mesquita" },
-        { "@type": "City", "name": "Nilópolis" },
-        { "@type": "City", "name": "Itaboraí" },
-        { "@type": "City", "name": "Maricá" },
-        { "@type": "City", "name": "Magé" },
-        { "@type": "City", "name": "Itaguaí" },
-        { "@type": "City", "name": "Guapimirim" },
-        { "@type": "City", "name": "Queimados" },
-        { "@type": "City", "name": "Japeri" },
-        { "@type": "City", "name": "Paracambi" },
-        { "@type": "City", "name": "Seropédica" },
-        { "@type": "City", "name": "Mangaratiba" },
-        { "@type": "City", "name": "Tanguá" },
         { "@type": "AdministrativeArea", "name": "Baixada Fluminense" },
-        { "@type": "AdministrativeArea", "name": "Região Metropolitana do Rio de Janeiro" }
+        { "@type": "AdministrativeArea", "name": "Região dos Lagos" }
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
