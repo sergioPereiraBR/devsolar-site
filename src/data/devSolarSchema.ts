@@ -13,14 +13,18 @@ export const devSolarSchema = {
       "description": "Empresa de energia solar fotovoltaica no Rio de Janeiro. Projeto, homologação, instalação e manutenção de sistemas solares residenciais, comerciais e condominiais, com até 85% de redução na conta de luz.",
       "foundingDate": "2024-01-17",
       "url": "https://www.devsolar.com.br/",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
-      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
       "email": "comercial@devsolar.com.br",
       "logo": "https://www.devsolar.com.br/_next/static/media/logo-dev-branco.0hhcwps62p05p.webp",
       "image": [
@@ -212,12 +216,11 @@ export const devSolarSchema = {
         "name": "DEV Solar"
       },
       "offers": {
-        "@type": "Offer",
+        "@type": "AggregateOffer",
         "priceCurrency": "BRL",
-        "price": "0.00",
-        "priceValidUntil": "2026-12-31",
-        "availability": "https://schema.org/InStock",
-        "url": "https://www.devsolar.com.br/#kit-residencial"
+        "lowPrice": "5000.00",
+        "highPrice": "50000.00",
+        "offerCount": "10"
       },
       "manufacturer": [
         { "@id": "https://www.devsolar.com.br/#fornecedor-intelbras" },
@@ -258,12 +261,11 @@ export const devSolarSchema = {
         "name": "DEV Solar"
       },
       "offers": {
-        "@type": "Offer",
+        "@type": "AggregateOffer",
         "priceCurrency": "BRL",
-        "price": "0.00",
-        "priceValidUntil": "2026-12-31",
-        "availability": "https://schema.org/InStock",
-        "url": "https://www.devsolar.com.br/#kit-comercial"
+        "lowPrice": "15000.00",
+        "highPrice": "150000.00",
+        "offerCount": "8"
       },
       "manufacturer": [
         { "@id": "https://www.devsolar.com.br/#fornecedor-intelbras" },
@@ -333,3 +335,22 @@ export const devSolarSchema = {
     }
   ]
 } as const;
+
+      // "openingHoursSpecification": [
+      //   {
+      //     "@type": "OpeningHoursSpecification",
+      //     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      //     "opens": "09:00",
+      //     "closes": "18:00"
+      //   }
+      // ],
+
+
+      // "offers": {
+      //   "@type": "AggregateOffer",
+      //   "priceCurrency": "BRL",
+      //   "lowPrice": "5000.00",
+      //   "highPrice": "50000.00",
+      //   "offerCount": "10"
+      // }
+
