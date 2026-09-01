@@ -66,11 +66,11 @@ function VideoPlayerContent() {
         ← Voltar para o site
       </a>
 
-      <h3
+      <h4
         style={{ fontSize: '20px', marginBottom: '12px', textAlign: 'center' }}
       >
         {title}
-      </h3>
+      </h4>
 
       <video
         ref={videoRef}

@@ -32,7 +32,7 @@ const AtendimentoApp = () => {
   if (!isAuthenticated) {
     return (
       <div style={{ textAlign: 'center', padding: '50px', fontSize: '24px' }}>
-        <h2>Acesso Restrito</h2>
+        <p>Acesso Restrito</p>
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}
@@ -60,7 +60,7 @@ const AtendimentoApp = () => {
         borderRadius: '15px',
       }}
     >
-      <h2 style={{ fontSize: '32px' }}>Foco no Atendimento</h2>
+      <h3 style={{ fontSize: '32px' }}>Foco no Atendimento</h3>
       <hr />
       <div
         style={{

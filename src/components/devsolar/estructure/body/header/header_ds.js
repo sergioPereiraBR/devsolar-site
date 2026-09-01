@@ -287,8 +287,8 @@ function HeaderDS() {
                   </div> */}
 
                   <div className={styles.calculatorWrapper}>
-                    <h3>SIMULE SUA ECONOMIA AGORA</h3>
-                    <h4>
+                    <h2>SIMULE SUA ECONOMIA AGORA</h2>
+                    <p>
                       {/* Entre com o valor da sua conta de luz e nossa{' '}
                       <strong>calculadora solar dinâmica</strong> irá mostrar{' '}
                       <strong>sua economia em menos de 1 minuto</strong> */}
@@ -298,7 +298,7 @@ function HeaderDS() {
                         aumentos tarifários até {(today().year + 25).toString()}
                       </strong>{' '}
                       em menos de 1 minuto.
-                    </h4>
+                    </p>
                   </div>
 
                   <label

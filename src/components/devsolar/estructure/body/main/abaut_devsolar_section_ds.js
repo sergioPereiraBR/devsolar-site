@@ -49,9 +49,9 @@ export default function AboutDevSolar() {
             <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-500 sm:text-sm">
               Corpo Técnico & Engenharia
             </span>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+            <h3 className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
               Quem Faz Acontecer na DEV Solar
-            </h2>
+            </h3>
             <p className="mt-3 text-base text-slate-600 sm:text-lg">
               Por trás de cada projeto de energia solar, há uma equipe
               qualificada de engenheiros e instaladores comprometida com a

@@ -74,9 +74,9 @@ function LocationSectionDS() {
           <h2 id="location-title" className={`${styles.sectionTitle} fw-bold`}>
             Nossa localização
           </h2>
-          <h3 className={`${styles.sectionSubtitle} lead`}>
+          <p className={`${styles.sectionSubtitle} lead`}>
             Vamos marcar, encontre sua rota para vir falar com a gente!
-          </h3>
+          </p>
         </div>
         {/* Map Section */}
         <Row className="g-4 justify-content-center">

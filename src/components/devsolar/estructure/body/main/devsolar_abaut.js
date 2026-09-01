@@ -34,9 +34,9 @@ function DevSolarAboutSectionDS() {
 
           <div className="col-lg-5">
             <div className={styles.featureCard}>
-              <h4 className={styles.featureTitle}>
+              <h3 className={styles.featureTitle}>
                 Por que escolher a Dev Solar?
-              </h4>
+              </h3>
               <ul className={styles.featureList}>
                 <li>Atendimento especializado e humano</li>
                 <li>Projetos personalizados para cada necessidade</li>

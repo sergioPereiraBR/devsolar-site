@@ -19,7 +19,7 @@ const PartnerCard = ({ id, id_service, logoUrl, name, description }) => {
         />
       </div>
       <div id={id_service} className={styles.textContainer}>
-        <h4 className={styles.partnerName}>{name}</h4>
+        <p className={styles.partnerName}>{name}</p>
         <p className={styles.partnerDescription}>{description}</p>
       </div>
     </div>

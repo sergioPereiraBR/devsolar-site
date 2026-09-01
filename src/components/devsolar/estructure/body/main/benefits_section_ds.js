@@ -138,12 +138,12 @@ Visitei o site na seção dos benefícios e quero falar com especialista sobre e
   const renderDetailView = () => (
     <>
       <Modal.Body className={styles.detailModalBody}>
-        <h4 className={styles.detailTitle}>{modalContent?.detailTitle}</h4>
+        <h3 className={styles.detailTitle}>{modalContent?.detailTitle}</h3>
         <p className={styles.detailText}>{modalContent?.text}</p>
 
         {modalContent?.citations?.length > 0 && (
           <div className={styles.citations}>
-            <h5>Citações</h5>
+            <h4>Citações</h4>
             {modalContent.citations.map((cite) => (
               <p key={cite.id}>
                 <strong>Citação {cite.id.split('-').pop()}:</strong> {cite.text}
@@ -173,7 +173,7 @@ Visitei o site na seção dos benefícios e quero falar com especialista sobre e
 
         {modalContent?.references?.length > 0 && (
           <div className={styles.references}>
-            <h6>Referências</h6>
+            <h4>Referências</h4>
             {modalContent.references.map((ref) => (
               <p key={ref.id}>
                 [{ref.id.split('-').pop()}] {ref.text}
