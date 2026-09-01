@@ -13,6 +13,14 @@ export const devSolarSchema = {
       "description": "Empresa de energia solar fotovoltaica no Rio de Janeiro. Projeto, homologação, instalação e manutenção de sistemas solares residenciais, comerciais e condominiais, com até 85% de redução na conta de luz.",
       "foundingDate": "2024-01-17",
       "url": "https://www.devsolar.com.br/",
+      "openingHours": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
       "email": "comercial@devsolar.com.br",
       "logo": "https://www.devsolar.com.br/_next/static/media/logo-dev-branco.0hhcwps62p05p.webp",
       "image": [
@@ -150,7 +158,7 @@ export const devSolarSchema = {
       "name": "Intelbras Solar",
       "url": "https://www.intelbras.com/pt-br/energia-solar",
       "logo": "https://www.devsolar.com.br/_next/static/media/intelbras.2-ze0yczdah13.webp",
-      "description": "Soluções completas em equipamentos para energia solar fotovoltaica."
+      "description": "Soluções completas em equipamentos para energia solar fotovoltaica.",
     },
     {
       "@type": "Organization",
@@ -158,7 +166,7 @@ export const devSolarSchema = {
       "name": "WEG Solar",
       "url": "https://www.weg.net/institutional/BR/pt/solutions/solar",
       "logo": "https://www.devsolar.com.br/_next/static/media/weg.2nv-q87pwy7xf.webp",
-      "description": "Tecnologia e eficiência em inversores, módulos e kits solares."
+      "description": "Tecnologia e eficiência em inversores, módulos e kits solares.",
     },
     {
       "@type": "Organization",
