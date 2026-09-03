@@ -116,7 +116,7 @@ export const metadata = {
   icons: {
     // Convenção Next.js para favicons e ícones
     icon: '/images/favicon.ico', // Ou /icon.png
-    shortcut: '/images/favicon.png', // Favicon legado (opcional)
+    shortcut: '/images/favicon.ico',
     apple: '/images/apple-touch-icon.png', // Ícone Apple
     // outros: { ... }
   },

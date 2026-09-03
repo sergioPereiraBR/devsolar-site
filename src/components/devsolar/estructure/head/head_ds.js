@@ -12,7 +12,7 @@ function HeadDS() {
       />
       <meta name="theme-color" content="#000000" />
       <link rel="manifest" href="/manifest.json" />
-      <link rel="shortcut icon" href="/images/favicon.png" />
+      <link rel="shortcut icon" href="/images/favicon.ico" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       {/* <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1.0" /> */}
       <title>DEV Solar - Energia Solar para Todos</title>
