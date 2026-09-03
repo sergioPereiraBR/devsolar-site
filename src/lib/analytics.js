@@ -1,9 +1,5 @@
+// analytics.js
 const isBrowser = typeof window !== 'undefined';
-
-function getGtag() {
-  if (!isBrowser) return null;
-  return typeof window.gtag === 'function' ? window.gtag : null;
-}
 
 function getDataLayer() {
   if (!isBrowser) return null;
@@ -13,18 +9,12 @@ function getDataLayer() {
   return window.dataLayer;
 }
 
-function queueGtagCall(command, ...args) {
+function pushDataLayerEvent(eventName, params) {
   if (!isBrowser) return;
-
-  const gtag = getGtag();
-  if (gtag) {
-    gtag(command, ...args);
-    return;
-  }
 
   const dataLayer = getDataLayer();
   if (dataLayer) {
-    dataLayer.push([command, ...args]);
+    dataLayer.push({ ...params, event: eventName });
   }
 }
 
@@ -160,7 +150,7 @@ function initGlobalClickTracking() {
 export function trackEvent(eventName, params = {}) {
   if (!eventName) return;
 
-  queueGtagCall('event', eventName, sanitizeParams(params));
+  pushDataLayerEvent(eventName, sanitizeParams(params));
 }
 
 export function trackWhatsAppClick(location, label = 'whatsapp_contact') {

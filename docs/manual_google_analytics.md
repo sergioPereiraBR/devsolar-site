@@ -1,8 +1,8 @@
-# Manual de configuração do Google Analytics para o site DEV Solar
+# Manual de configuração do Google Analytics via GTM para o site DEV Solar
 
 ## 1. Objetivo
 
-Este manual descreve como configurar e manter o envio de eventos e parâmetros para o Google Analytics 4 (GA4) no projeto da DEV Solar. O objetivo é garantir que interações importantes do usuário sejam registradas de forma consistente, legível e útil para análise.
+Este manual descreve como configurar e manter o envio de eventos e parâmetros para o Google Analytics 4 (GA4) usando exclusivamente o Google Tag Manager (GTM). O site envia eventos para o `dataLayer`; o GTM é responsável por encaminhá-los ao GA4.
 
 ---
 
@@ -16,48 +16,48 @@ O rastreamento do site está centralizado em dois pontos principais:
   - Também implementa o rastreamento global de cliques em elementos interativos.
 
 - src/app/layout.js
-  - Carrega o script do Google Analytics e inicializa o GA4 no projeto.
-  - Espera a variável de ambiente NEXT_PUBLIC_GA_ID.
+
+  - Carrega exclusivamente o container do Google Tag Manager.
+
+- src/lib/analytics.js
+  - Publica eventos como objetos no `dataLayer`, no formato esperado pelo GTM.
 
 ---
 
-## 3. Configuração inicial do GA4
+## 3. Configuração inicial do GTM e GA4
 
-### 3.1. Defina o ID de medição
+### 3.1. Configure o container no GTM
 
-No ambiente do projeto, defina a variável abaixo:
+O container usado pelo site é `GTM-T5L82K9C`. No painel do GTM:
 
-```env
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
-```
+1. Crie uma variável constante com o ID de medição do GA4, por exemplo `G-XXXXXXXXXX`.
+2. Crie uma tag **Google Analytics: evento do GA4**.
+3. Na tag, use a variável integrada `{{Event}}` como nome do evento.
+4. Configure os parâmetros necessários como variáveis de camada de dados, usando os mesmos nomes enviados pelo site.
+5. Crie um acionador **Evento personalizado** com `Nome do evento` igual a `.*` e habilite a correspondência por expressão regular, ou crie acionadores específicos para os eventos relevantes.
+6. Associe o acionador à tag e publique a versão do container.
 
-Use este valor no arquivo de ambiente local ou de produção, por exemplo:
+O GA4 não deve ser carregado diretamente no código. Não adicione `NEXT_PUBLIC_GA_ID` ao ambiente da aplicação.
 
-- .env.local
-- .env.production
+### 3.2. Verifique se o GTM está sendo carregado
 
-### 3.2. Verifique se o script está sendo carregado
+O arquivo `src/app/layout.js` carrega o container GTM em todas as rotas:
 
-No arquivo src/app/layout.js, o script do GA4 é carregado de forma assíncrona e só é inicializado quando existe um ID válido.
-
-O fluxo é:
-
-1. O site lê a variável NEXT_PUBLIC_GA_ID.
-2. O script do Google Analytics é carregado no navegador.
-3. O GA4 é inicializado com o ID de medição.
-
-Se o ID estiver vazio, o rastreamento não será ativado.
+1. O site carrega o container `GTM-T5L82K9C`.
+2. A função `trackEvent` publica um objeto no `dataLayer`.
+3. O acionador de evento personalizado do GTM identifica o campo `event`.
+4. A tag GA4 do GTM encaminha o evento ao Google Analytics.
 
 ---
 
-## 4. Como os dados são enviados
+## 4. Como os dados são enviados ao GTM
 
 O envio de eventos é feito por meio da função abaixo, localizada em src/lib/analytics.js:
 
 ```js
 export function trackEvent(eventName, params = {}) {
   if (!eventName) return;
-  queueGtagCall('event', eventName, params);
+  window.dataLayer.push({ event: eventName, ...params });
 }
 ```
 
@@ -68,6 +68,16 @@ trackEvent('nome_do_evento', {
   parametro_1: 'valor',
   parametro_2: 'valor',
 });
+```
+
+O resultado no `dataLayer` será equivalente a:
+
+```js
+{
+  event: 'nome_do_evento',
+  parametro_1: 'valor',
+  parametro_2: 'valor',
+}
 ```
 
 Exemplo real:
@@ -491,15 +501,21 @@ Use para ignorar elementos que não devem gerar rastreamento.
 4. Clique em elementos do site.
 5. Confirme que o evento aparece no console ou que o payload é enviado para a camada dataLayer.
 
-### 11.2. Use o modo de depuração do GA4
+### 11.2. Use o modo de pré-visualização do GTM
 
-No Google Analytics, você pode verificar se os eventos estão chegando em tempo real:
+No GTM, abra **Visualizar** e conecte ao site:
 
-1. Abra o GA4.
-2. Entre em Reports.
-3. Acesse Realtime.
-4. Interaja com o site.
-5. Confirme se os eventos aparecem.
+1. Abra o container `GTM-T5L82K9C`.
+2. Inicie o modo de pré-visualização.
+3. Interaja com o site.
+4. Confirme que os eventos aparecem como eventos personalizados.
+5. Confirme que a tag GA4 é acionada e recebe os parâmetros.
+
+Depois, no GA4:
+
+1. Acesse **Relatórios > Tempo real**.
+2. Interaja com o site.
+3. Confirme se os eventos aparecem.
 
 ### 11.3. Teste fluxos principais
 
@@ -518,8 +534,9 @@ Teste pelo menos:
 
 Antes de publicar alterações de rastreamento, confirme:
 
-- [ ] a variável NEXT_PUBLIC_GA_ID está definida corretamente
-- [ ] o GA4 está carregando sem erro
+- [ ] o container GTM correto está publicado
+- [ ] a tag GA4 está configurada dentro do GTM
+- [ ] o acionador de evento personalizado está configurado
 - [ ] os eventos principais estão sendo disparados
 - [ ] os parâmetros importantes foram definidos como dimensões personalizadas
 - [ ] os nomes dos eventos seguem um padrão consistente
@@ -533,11 +550,11 @@ Antes de publicar alterações de rastreamento, confirme:
 
 Possíveis causas:
 
-- o ID de medição está incorreto
-- o script não carregou corretamente
+- o ID do container GTM ou do GA4 está incorreto
+- o container GTM não foi publicado
 - o navegador bloqueou o script
 - a função trackEvent não foi chamada corretamente
-- o evento foi disparado antes do GA4 estar pronto
+- não existe uma tag GA4 do GTM associada ao acionador
 
 ### O evento aparece, mas sem os parâmetros esperados
 
@@ -561,8 +578,9 @@ Se isso acontecer, use:
 
 Para manter o Google Analytics bem configurado neste projeto:
 
-1. mantenha o ID de medição correto;
-2. use eventos padronizados e legíveis;
-3. envie parâmetros úteis como location, section, label e path;
-4. configure dimensões personalizadas no GA4;
-5. teste os fluxos principais antes de publicar.
+1. mantenha o container GTM correto publicado;
+2. mantenha o ID de medição apenas na configuração da tag do GTM;
+3. use eventos padronizados e legíveis;
+4. envie parâmetros úteis como location, section, label e path;
+5. configure dimensões personalizadas no GA4;
+6. teste os fluxos principais antes de publicar.
