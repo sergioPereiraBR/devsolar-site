@@ -12,8 +12,6 @@ import { devSolarSchema } from '@/data/devSolarSchema';
 config.autoAddCss = false;
 const isEnabled = true;
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
-const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID; // Substitua pelo seu ID do GA4
-const hasGaTrackingId = Boolean(GA_TRACKING_ID);
 const FACEBOOK_DOMAIN_VERIFICATION =
   process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION || '';
 
@@ -246,9 +244,7 @@ export default function RootLayout({ children }) {
         {/* <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" /> */}
         {/* DNS Prefetch para recursos críticos */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com/" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com/" />
         <link rel="preconnect" href="https://www.googletagmanager.com/" />
-        <link rel="preconnect" href="https://www.google-analytics.com/" />
         <link
           rel="preload"
           as="image"
@@ -355,35 +351,6 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(devSolarSchema) }}
         />
-        {hasGaTrackingId ? (
-          <Script id="deferred-ga-loader" strategy="lazyOnload">
-            {`
-              (function() {
-                var loaded = false;
-                function loadGA() {
-                  if (loaded) return;
-                  loaded = true;
-                  var s = document.createElement('script');
-                  s.async = true;
-                  s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}';
-                  document.head.appendChild(s);
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${GA_TRACKING_ID}');
-                }
-                if ('requestIdleCallback' in window) {
-                  window.requestIdleCallback(loadGA, { timeout: 4000 });
-                } else {
-                  window.setTimeout(loadGA, 2500);
-                }
-                window.addEventListener('scroll', loadGA, { passive: true, once: true });
-                window.addEventListener('touchstart', loadGA, { passive: true, once: true });
-                document.addEventListener('click', loadGA, { passive: true, once: true });
-              })();
-            `}
-          </Script>
-        ) : null}
         <noscript>
           <div className="noscript-warning">
             <span>

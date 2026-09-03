@@ -1,0 +1,94 @@
+{
+    "exportFormatVersion": 2,
+    "containerVersion": {
+        "container": {
+            "publicId": "GTM-T5L82K9C"
+        },
+        "trigger": [
+            {
+                "name": "TRG - user_click",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "user_click"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "TRG - contact_click",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "contact_click"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "TRG - Conversoes com Sucesso",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "contact_form_submit_success|specialist_form_submit_success|calculator_result_generated|newsletter_submit_success"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "TRG - Outros Eventos Customizados",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "^(?!gtm\\.|user_click$|contact_click$|contact_form_submit_success$|specialist_form_submit_success$|calculator_result_generated$|newsletter_submit_success$).+"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
