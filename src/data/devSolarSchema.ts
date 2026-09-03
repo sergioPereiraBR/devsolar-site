@@ -10,7 +10,7 @@ export const devSolarSchema = {
       "legalName": "DEV Eficiência Energética Ltda.",
       "alternateName": "DEV Solar",
       "slogan": "O futuro é solar",
-      "description": "Empresa de energia solar fotovoltaica no Rio de Janeiro. Projeto, homologação, instalação e manutenção de sistemas solares residenciais, comerciais e condominiais, com até 85% de redução na conta de luz.",
+      "description": "A DEV Solar é sua empresa de energia solar fotovoltaica no Rio de Janeiro. Projeto, homologação, instalação e manutenção de sistemas solares residenciais, comerciais e condominiais, com até 85% de redução na conta de luz.",
       "foundingDate": "2024-01-17",
       "url": "https://www.devsolar.com.br/",
       "openingHours": "Mo-Fr 09:00-18:00",
