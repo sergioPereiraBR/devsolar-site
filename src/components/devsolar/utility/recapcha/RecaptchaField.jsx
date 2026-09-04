@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Script from 'next/script';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Spinner } from 'react-bootstrap';
 
@@ -30,7 +29,6 @@ const RecaptchaField = forwardRef(function RecaptchaField(
         onErrored,
         loadingFallback = null,
         containerClassName,
-        scriptProps = {},
         enabled = RECAPTCHA_ENABLED,
         ...props
     },
@@ -54,15 +52,6 @@ const RecaptchaField = forwardRef(function RecaptchaField(
 
     return (
         <div className={containerClassName}>
-            {shouldLoad && (
-                <Script
-                    src="https://www.google.com/recaptcha/api.js/"
-                    strategy="lazyOnload"
-                    async
-                    defer
-                    {...scriptProps}
-                />
-            )}
             {shouldLoad ? (
                 <ReCAPTCHA
                     ref={recaptchaRef}
