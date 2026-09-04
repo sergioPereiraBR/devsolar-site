@@ -85,6 +85,12 @@ DirectoryIndex index.html index.php
   <FilesMatch "\.(?:js|css)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+
+  <FilesMatch "^sw\.js$">
+    Header always set Cache-Control "no-cache, no-store, must-revalidate"
+    Header unset Pragma
+    Header unset Expires
+  </FilesMatch>
 </IfModule>
 
 # Gzip para compactar os arquivos ao navegador.

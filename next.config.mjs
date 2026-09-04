@@ -1,14 +1,3 @@
-import withPWAInit from '@ducanh2912/next-pwa';
-
-const withPWA = withPWAInit({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development', // Desativa o cache no ambiente de desenvolvimento
-  register: true,
-  skipWaiting: true,
-  cleanupOutdatedCaches: true,
-  publicExcludes: ['!images/favicon.png'],
-});
-
 const isDev = process.env.NODE_ENV !== 'production';
 const isCspReportOnly = process.env.CSP_REPORT_ONLY === 'true';
 
@@ -150,4 +139,4 @@ if (nextConfig.output !== 'export') {
 
 // module.exports = nextConfig;
 
-export default withPWA(nextConfig);
+export default nextConfig;
