@@ -20,7 +20,7 @@ const cspValue = [
   "form-action 'self'",
   // Em desenvolvimento (isDev), libera 'unsafe-eval' exigido pelo React/Next.js para sourcemaps
   `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ''} https://www.googletagmanager.com https://tagassistant.google.com https://www.google-analytics.com https://static.cloudflareinsights.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://calendar.app.google/ https://calendar.google.com https://calendar.google.com/calendar`,
-  "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagassistant.google.com https://static.cloudflareinsights.com",
+  "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagassistant.google.com https://static.cloudflareinsights.com https://www.google.com https://www.gstatic.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net",
   "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://ssl.gstatic.com https://www.gstatic.com https:",
   "font-src 'self' data: https: https://fonts.gstatic.com",
