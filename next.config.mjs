@@ -24,7 +24,7 @@ const cspValue = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net",
   "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://ssl.gstatic.com https://www.gstatic.com https:",
   "font-src 'self' data: https: https://fonts.gstatic.com",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://api.staticforms.xyz https://wa.me https://www.google.com https://www.gstatic.com https://www.googleapis.com https://www.recaptcha.net https://calendar.app.google/ https://calendar.google.com https://calendar.google.com/calendar",
+  "connect-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cloudflareinsights.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://api.staticforms.xyz https://wa.me https://www.google.com https://www.gstatic.com https://www.googleapis.com https://www.recaptcha.net https://calendar.app.google/ https://calendar.google.com https://calendar.google.com/calendar",
   "frame-src 'self' https://tagassistant.google.com https://www.google.com https://maps.google.com https://www.gstatic.com https://www.recaptcha.net https://calendar.app.google.com/ https://calendar.google.com https://calendar.google.com/calendar",
   "manifest-src 'self'",
   "worker-src 'self' blob:",
