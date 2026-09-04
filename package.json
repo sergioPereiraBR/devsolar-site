@@ -1,10 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
+    "dev": "next dev",
     "start": "next start",
     "markdown": "node ./utils/generate-markdown.js ./src/content/components/",
-    "build": "next build --webpack",
+    "build": "next build",
     "lint": "next lint",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
@@ -20,7 +20,6 @@
     "Edge >= 80"
   ],
   "dependencies": {
-    "@ducanh2912/next-pwa": "^10.2.9",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
     "@fortawesome/free-brands-svg-icons": "^7.3.1",

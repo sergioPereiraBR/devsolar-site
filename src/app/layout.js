@@ -8,6 +8,8 @@ import './globals.css';
 
 import { devSolarSchema } from '@/data/devSolarSchema';
 
+import ServiceWorkerRegistration from '@/components/pwa/ServiceWorkerRegistration';
+
 // Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.
 config.autoAddCss = false;
 const isEnabled = true;
@@ -167,35 +169,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" data-scroll-behavior="smooth">
       <head>
-        {/* Tratamento para exceções não capturadas (Precache do Workbox / Chunks 404) */}
-        <Script id="sw-pwa-error-handler" strategy="beforeInteractive">
-          {`
-            (function() {
-              window.addEventListener('unhandledrejection', function(event) {
-                var reason = event.reason;
-                var message = (reason && reason.message) ? reason.message : String(reason);
-
-                if (
-                  message.indexOf('bad-precaching-response') !== -1 ||
-                  message.indexOf('Loading chunk') !== -1 ||
-                  message.indexOf('Failed to fetch dynamically imported module') !== -1
-                ) {
-                  // Previne repetição infinita de reload caso o erro persista
-                  if (!sessionStorage.getItem('pwa_reloaded')) {
-                    sessionStorage.setItem('pwa_reloaded', 'true');
-                    window.location.reload(true);
-                  }
-                }
-              });
-
-              // Limpa a flag de reload quando a página carrega com sucesso
-              window.addEventListener('load', function() {
-                sessionStorage.removeItem('pwa_reloaded');
-              });
-            })();
-          `}
-        </Script>
-
         {/* Google Tag Manager */}
         <Script id="google-tag-manager" strategy="lazyOnload">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -346,6 +319,7 @@ export default function RootLayout({ children }) {
         </noscript>
         {/*<!-- End Google Tag Manager (noscript) -->*/}
         {children}
+        <ServiceWorkerRegistration />
         <Script
           id="devsolar-structured-data"
           type="application/ld+json"
