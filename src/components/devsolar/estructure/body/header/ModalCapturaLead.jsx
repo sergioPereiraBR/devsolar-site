@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Form, InputGroup, Modal } from 'react-bootstrap';
 
 import { sendContactEmail } from '@/components/devsolar/utility/email/SendEmail';
+import { enqueueLead, flushPendingLeads, startLeadQueueSync } from '@/components/devsolar/utility/lead/leadQueue';
 import { formatPhoneValue } from '@/components/devsolar/utility/phone/formatPhoneValue';
 import { STATICFORMS_ACCESS_KEY } from '@/lib/email-config';
 import styles from './ModalCapturaLead.module.css';
@@ -16,6 +17,31 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
   const [validated, setValidated] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  useEffect(() => {
+    if (!show) return;
+
+    const cleanup = startLeadQueueSync({
+      sendFn: async (queuedLead) => {
+        const result = await sendContactEmail({
+          formData: {
+            firstName: queuedLead.nome,
+            phone: queuedLead.whatsapp,
+            message: queuedLead.mensagem,
+            previsaoInstalacao: queuedLead.previsaoTexto,
+            valorContaMensal: `R$ ${queuedLead.valorContaMensal}`,
+          },
+          accessKey: STATICFORMS_ACCESS_KEY,
+          subject: `Lead DEV Solar - ${queuedLead.nome}`,
+          replyTo: queuedLead.whatsapp,
+        });
+
+        return result;
+      },
+    });
+
+    return cleanup;
+  }, [show]);
 
   const handlePhoneChange = (e) => {
     const nextValue = e.target.value;
@@ -64,31 +90,79 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
       mensagem,
     };
 
-    try {
-      const result = await sendContactEmail({
-        formData: {
-          firstName: formData.nome,
-          phone: formData.whatsapp,
-          message: mensagem,
-          previsaoInstalacao: previsaoTexto,
-          valorContaMensal: `R$ ${valorConta}`,
-        },
-        accessKey: STATICFORMS_ACCESS_KEY,
-        subject: `Lead DEV Solar - ${formData.nome}`,
-        replyTo: formData.whatsapp,
-      });
+    const sendLeadWithFallback = async () => {
+      const shouldAttemptImmediateSend = typeof navigator === 'undefined' ? true : navigator.onLine;
 
-      if (result.success) {
-        setSubmitStatus('success');
-        if (onSuccess) {
-          onSuccess(leadData);
+      if (!shouldAttemptImmediateSend) {
+        enqueueLead(leadData);
+        return { queued: true, success: false };
+      }
+
+      try {
+        const result = await sendContactEmail({
+          formData: {
+            firstName: formData.nome,
+            phone: formData.whatsapp,
+            message: mensagem,
+            previsaoInstalacao: previsaoTexto,
+            valorContaMensal: `R$ ${valorConta}`,
+          },
+          accessKey: STATICFORMS_ACCESS_KEY,
+          subject: `Lead DEV Solar - ${formData.nome}`,
+          replyTo: formData.whatsapp,
+        });
+
+        if (result && result.success) {
+          return result;
         }
+
+        enqueueLead(leadData);
+        return { queued: true, success: false, result };
+      } catch (error) {
+        enqueueLead(leadData);
+        console.warn('Lead salvo localmente para sincronização posterior:', error);
+        return { queued: true, success: false, error };
+      }
+    };
+
+    try {
+      const result = await sendLeadWithFallback();
+
+      if (result && result.queued) {
+        console.info('Lead em fila local. Será sincronizado quando a rede voltar.');
+        setSubmitStatus('queued');
+      } else if (typeof navigator !== 'undefined' && navigator.onLine) {
+        await flushPendingLeads({
+          sendFn: async (queuedLead) => {
+            return sendContactEmail({
+              formData: {
+                firstName: queuedLead.nome,
+                phone: queuedLead.whatsapp,
+                message: queuedLead.mensagem,
+                previsaoInstalacao: queuedLead.previsaoTexto,
+                valorContaMensal: `R$ ${queuedLead.valorContaMensal}`,
+              },
+              accessKey: STATICFORMS_ACCESS_KEY,
+              subject: `Lead DEV Solar - ${queuedLead.nome}`,
+              replyTo: queuedLead.whatsapp,
+            });
+          },
+        });
+        setSubmitStatus('success');
       } else {
-        setSubmitStatus('error');
+        setSubmitStatus('queued');
+      }
+
+      if (onSuccess) {
+        onSuccess(leadData);
       }
     } catch (error) {
-      setSubmitStatus('error');
-      console.error('Erro ao enviar o lead:', error);
+      console.warn('Lead não enviado por indisponibilidade de rede; continuando com o relatório local.', error);
+      enqueueLead(leadData);
+      setSubmitStatus('queued');
+      if (onSuccess) {
+        onSuccess(leadData);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -196,6 +270,12 @@ export default function ModalCapturaLead({ show, handleClose, valorConta, onSucc
             {submitStatus === 'success' && (
               <div className={`${styles.statusMessage} ${styles.statusSuccess}`}>
                 Seu relatório de investimento será preparado em breve.
+              </div>
+            )}
+
+            {submitStatus === 'queued' && (
+              <div className={`${styles.statusMessage} ${styles.statusSuccess}`}>
+                Seu interesse foi salvo e será enviado quando a conexão voltar.
               </div>
             )}
 
