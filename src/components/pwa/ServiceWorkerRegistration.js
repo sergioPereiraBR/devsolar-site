@@ -12,6 +12,7 @@ export default function ServiceWorkerRegistration() {
     }
 
     let isCancelled = false;
+    let hasReloadedForUpdate = false;
     let cleanup = () => {};
 
     const refreshRegistration = async () => {
@@ -30,12 +31,6 @@ export default function ServiceWorkerRegistration() {
       }
     };
 
-    const handleControllerChange = () => {
-      if (!isCancelled) {
-        window.location.reload();
-      }
-    };
-
     const registerServiceWorker = async () => {
       try {
         const registration = await navigator.serviceWorker.register('/sw.js', {
@@ -48,16 +43,23 @@ export default function ServiceWorkerRegistration() {
         }
 
         const onUpdateFound = () => {
-          if (registration.waiting) {
-            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+          if (!registration.waiting || hasReloadedForUpdate) {
+            return;
           }
+
+          hasReloadedForUpdate = true;
+          registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+          window.location.reload();
         };
 
         registration.addEventListener('updatefound', onUpdateFound);
-        navigator.serviceWorker.addEventListener(
-          'controllerchange',
-          handleControllerChange,
-        );
+        const onVisibilityChange = () => {
+          if (!document.hidden) {
+            refreshRegistration();
+          }
+        };
+
+        document.addEventListener('visibilitychange', onVisibilityChange);
         window.addEventListener('focus', handleFocusOrOnline);
         window.addEventListener('online', handleFocusOrOnline);
 
@@ -68,10 +70,7 @@ export default function ServiceWorkerRegistration() {
         cleanup = () => {
           isCancelled = true;
           registration.removeEventListener('updatefound', onUpdateFound);
-          navigator.serviceWorker.removeEventListener(
-            'controllerchange',
-            handleControllerChange,
-          );
+          document.removeEventListener('visibilitychange', onVisibilityChange);
           window.removeEventListener('focus', handleFocusOrOnline);
           window.removeEventListener('online', handleFocusOrOnline);
           window.clearInterval(intervalId);
