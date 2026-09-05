@@ -8,6 +8,7 @@ import './globals.css';
 
 import { devSolarSchema } from '@/data/devSolarSchema';
 
+import PwaRecoveryNotice from '@/components/pwa/PwaRecoveryNotice';
 import ServiceWorkerRegistration from '@/components/pwa/ServiceWorkerRegistration';
 
 // Evita injeção assíncrona de CSS do Font Awesome e reduz CLS dos ícones.
@@ -325,6 +326,7 @@ export default function RootLayout({ children }) {
         {/*<!-- End Google Tag Manager (noscript) -->*/}
         {children}
         <ServiceWorkerRegistration />
+        <PwaRecoveryNotice />
         <Script
           id="devsolar-structured-data"
           type="application/ld+json"
