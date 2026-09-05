@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+declare global {
+  interface Window {
+    __devsolarPwaRecoveryShown?: boolean;
+  }
+}
+
 export default function PwaRecoveryNotice() {
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
@@ -15,6 +21,11 @@ export default function PwaRecoveryNotice() {
           ? detail.message
           : 'O PWA do DEV Solar ficou com estado antigo e não conseguiu se recuperar automaticamente. Limpe os dados do site no navegador ou remova o atalho do aplicativo e reinstale.';
 
+      if (window.__devsolarPwaRecoveryShown) {
+        return;
+      }
+
+      window.__devsolarPwaRecoveryShown = true;
       setMessage(nextMessage);
       setVisible(true);
     };
@@ -52,10 +63,38 @@ export default function PwaRecoveryNotice() {
         padding: '14px 16px',
       }}
     >
-      <div style={{ fontWeight: 700, marginBottom: '6px' }}>
-        Aplicativo travado
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          gap: '12px',
+        }}
+      >
+        <div>
+          <div style={{ fontWeight: 700, marginBottom: '6px' }}>
+            Aplicativo travado
+          </div>
+          <div style={{ fontSize: '0.95rem', lineHeight: 1.5 }}>{message}</div>
+        </div>
+        <button
+          type="button"
+          aria-label="Fechar aviso do aplicativo travado"
+          onClick={() => setVisible(false)}
+          style={{
+            border: 'none',
+            background: 'transparent',
+            color: '#f9fafb',
+            fontSize: '1.2rem',
+            cursor: 'pointer',
+            lineHeight: 1,
+            padding: '0',
+            marginTop: '2px',
+          }}
+        >
+          ×
+        </button>
       </div>
-      <div style={{ fontSize: '0.95rem', lineHeight: 1.5 }}>{message}</div>
     </div>
   );
 }
