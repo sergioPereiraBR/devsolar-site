@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+declare global {
+  interface Window {
+    __devsolarPwaRecoveryShown?: boolean;
+  }
+}
+
 export default function PwaRecoveryNotice() {
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
