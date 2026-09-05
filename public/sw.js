@@ -1,4 +1,4 @@
-const CACHE_NAME = 'devsolar-shell-v1';
+const CACHE_NAME = 'devsolar-shell-v2';
 const PRECACHE_URLS = ['/', '/manifest.json', '/images/favicon.ico'];
 const CACHEABLE_DESTINATIONS = new Set(['font', 'image', 'script', 'style']);
 
@@ -20,13 +20,20 @@ self.addEventListener('activate', (event) => {
           cacheNames
             .filter(
               (cacheName) =>
-                cacheName.startsWith('devsolar-') && cacheName !== CACHE_NAME,
+                cacheName.startsWith('devsolar-shell-') &&
+                cacheName !== CACHE_NAME,
             )
             .map((cacheName) => caches.delete(cacheName)),
         ),
       )
       .then(() => self.clients.claim()),
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener('fetch', (event) => {
