@@ -49,9 +49,11 @@ export const usefulLinksData = [
   // { id: 'privacy', href: '/politica-de-privacidade', text: 'Política de Privacidade' }, // Exemplo página interna
 ];
 
+// Dados específicos do botão flutuante do WhatsApp
 const WHATSAPP_MESSAGE =
   'Olá! 👋\n\nVisitei o site da DEV Solar e gostaria de falar com um atendente.';
 const WHATSAPP_MESSAGE_ENCODED = encodeURIComponent(WHATSAPP_MESSAGE);
+export const WHATSAPP_FLOAT_URL = `https://api.whatsapp.com/send?phone=${CONTACT_PHONE_RAW}&text=${WHATSAPP_MESSAGE_ENCODED}`;
 
 const linkedinCompany = 'dev-solar-eficiência-energética';
 // Encode da string acentuada
@@ -87,11 +89,9 @@ export const socialLinksData = [
   {
     id: 'whatsapp',
     name: 'WhatsApp',
-    url: `https://api.whatsapp.com/send?phone=${CONTACT_PHONE_RAW}&text=${WHATSAPP_MESSAGE_ENCODED}`,
+    url: WHATSAPP_FLOAT_URL, //`https://api.whatsapp.com/send?phone=${CONTACT_PHONE_RAW}&text=${WHATSAPP_MESSAGE_ENCODED}`,
     iconClass: 'fab fa-whatsapp',
     accessibility: 'Entre em contato conosco via WhatsApp',
     rel: 'noopener noreferrer nofollow',
   },
 ];
-// Dados específicos do botão flutuante do WhatsApp
-export const WHATSAPP_FLOAT_URL = `https://api.whatsapp.com/send?phone=${CONTACT_PHONE_RAW}&text=${WHATSAPP_MESSAGE_ENCODED}`;
