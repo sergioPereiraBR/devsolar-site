@@ -69,10 +69,35 @@ function clearPwaRecoveryAttempted(storage) {
   resolvedStorage.removeItem(STORAGE_KEY);
 }
 
+function isStandalonePwaMode(win) {
+  if (!win) {
+    return false;
+  }
+
+  const navigator = win.navigator;
+  if (!navigator) {
+    return false;
+  }
+
+  const hasStandaloneFlag = Boolean(navigator.standalone);
+  const hasStandaloneMedia = Boolean(
+    typeof win.matchMedia === 'function' &&
+      win.matchMedia('(display-mode: standalone)').matches,
+  );
+
+  return hasStandaloneFlag || hasStandaloneMedia;
+}
+
+function shouldShowPwaRecoveryNotice(win) {
+  return isStandalonePwaMode(win);
+}
+
 module.exports = {
   STORAGE_KEY,
   RECOVERY_TIMEOUT_MS,
   shouldAttemptPwaRecovery,
   markPwaRecoveryAttempted,
   clearPwaRecoveryAttempted,
+  isStandalonePwaMode,
+  shouldShowPwaRecoveryNotice,
 };
