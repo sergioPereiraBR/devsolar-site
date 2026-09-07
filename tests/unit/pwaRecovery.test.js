@@ -4,6 +4,8 @@ const assert = require('node:assert/strict');
 const {
   shouldAttemptPwaRecovery,
   markPwaRecoveryAttempted,
+  clearPwaRecoveryAttempted,
+  shouldShowPwaRecoveryNotice,
 } = require('../../src/components/pwa/serviceWorkerRecovery.js');
 
 function createStorage() {
@@ -39,4 +41,21 @@ test('markPwaRecoveryAttempted stores the guard flag', () => {
 
   assert.equal(typeof parsed.attemptedAt, 'number');
   assert.ok(parsed.attemptedAt > 0);
+});
+
+test('shouldShowPwaRecoveryNotice only triggers in standalone PWA mode', () => {
+  const standaloneWindow = {
+    matchMedia: () => ({ matches: true }),
+    navigator: { standalone: true },
+  };
+
+  const browserWindow = {
+    matchMedia: () => ({ matches: false }),
+    navigator: { standalone: false },
+  };
+
+  assert.equal(shouldShowPwaRecoveryNotice(standaloneWindow), true);
+  assert.equal(shouldShowPwaRecoveryNotice(browserWindow), false);
+
+  clearPwaRecoveryAttempted();
 });

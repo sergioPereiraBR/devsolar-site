@@ -5,13 +5,15 @@ import { useEffect } from 'react';
 import {
   markPwaRecoveryAttempted,
   shouldAttemptPwaRecovery,
+  shouldShowPwaRecoveryNotice,
 } from '@/components/pwa/serviceWorkerRecovery';
 
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
     if (
       process.env.NODE_ENV !== 'production' ||
-      !('serviceWorker' in navigator)
+      !('serviceWorker' in navigator) ||
+      !shouldShowPwaRecoveryNotice(window)
     ) {
       return;
     }
