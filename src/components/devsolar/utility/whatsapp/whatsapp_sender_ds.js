@@ -39,6 +39,30 @@ const prepareMessages = (baseMessage, userMessage) => {
   return { encodedMessageApp, encodedMessageWeb };
 };
 
+// Handler para a escolha no modal ou chamada por preferência salva
+const handleAppOptionWithFallback = (urls) => {
+  let appOpened = false;
+
+  const handleBlur = () => {
+    appOpened = true; // O app abriu e tirou o foco do navegador
+    window.removeEventListener('blur', handleBlur);
+  };
+
+  window.addEventListener('blur', handleBlur);
+
+  // Tenta disparar o protocolo do app nativo
+  window.location.href = urls.app;
+
+  // Aguarda 1.5s: se a página não perdeu o foco, abre o WhatsApp Web como fallback
+  setTimeout(() => {
+    window.removeEventListener('blur', handleBlur);
+    if (!appOpened) {
+      // App não instalado/não respondeu -> Fallback para WhatsApp Web
+      window.open(urls.web, '_blank', 'noopener,noreferrer,nofollow');
+    }
+  }, 1500);
+};
+
 /**
  * Componente/Hook para lidar com o envio de mensagens para o WhatsApp,
  * incluindo detecção mobile/desktop e modal de escolha.
@@ -71,6 +95,12 @@ function WhatsAppSender({
   }, []);
 
   useEffect(() => {
+    // Adicionar dentro do Modal (ou no rodapé) caso o usuário queira trocar a preferência salva futuramente:
+    const clearSavedPreference = () => {
+      localStorage.removeItem(WHATSAPP_PREFERENCE_KEY);
+      setRememberChoice(false);
+    };
+
     setDeviceType(getDeviceType);
     // Só processa quando 'show' é true e não está processando
     if (show && !isProcessing && userMessage && deviceType !== 'Unknown') {
@@ -160,7 +190,16 @@ function WhatsAppSender({
       //console.log("Usuário escolheu Navegador (Desktop). Abrindo URL:", preparedUrls.web);
       window.open(preparedUrls.web, '_blank', 'noopener,noreferrer,nofollow'); // Abre api.whatsapp
     }
-    onHide(); // Chama onHide após a escolha e tentativa
+    onHide(); // Chama onHide após a escolha e tentativa <<<<<<<<==========
+
+    // No seu useEffect (Desktop com preferência salva):
+    if (savedPreference === 'app') {
+      handleAppOptionWithFallback(urls);
+      setTimeout(onHide, 1600);
+    } else if (savedPreference === 'web') {
+      window.open(urls.web, '_blank', 'noopener,noreferrer,nofollow');
+      onHide();
+    }
   };
 
   // --- Renderização ---

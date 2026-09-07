@@ -2,6 +2,11 @@
 
 import { useEffect } from 'react';
 
+import {
+  markPwaRecoveryAttempted,
+  shouldAttemptPwaRecovery,
+} from '@/components/pwa/serviceWorkerRecovery';
+
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
     if (
@@ -14,8 +19,6 @@ export default function ServiceWorkerRegistration() {
     const manualRecoveryMessage =
       'O PWA do DEV Solar ficou com estado antigo e não conseguiu se recuperar automaticamente. ' +
       'Limpe os dados do site no navegador ou remova o atalho do aplicativo e reinstale.';
-
-    let hasAttemptedRecovery = false;
 
     const showManualRecoveryNotice = () => {
       if (typeof window === 'undefined') return;
@@ -30,12 +33,9 @@ export default function ServiceWorkerRegistration() {
     };
 
     const resetStaleServiceWorker = async () => {
-      if (hasAttemptedRecovery) return false;
-      hasAttemptedRecovery = true;
-
       try {
         const registrations = await navigator.serviceWorker.getRegistrations();
-        if (!registrations.length) return true;
+        if (!registrations.length) return false;
 
         let didUnregister = false;
         for (const registration of registrations) {
@@ -44,11 +44,16 @@ export default function ServiceWorkerRegistration() {
             await registration.unregister();
             didUnregister = true;
             if (wasActive) {
+              markPwaRecoveryAttempted();
               return true;
             }
           } catch (error) {
             console.warn('PWA: falha ao limpar worker antigo.', error);
           }
+        }
+
+        if (didUnregister) {
+          markPwaRecoveryAttempted();
         }
 
         return didUnregister;
@@ -70,9 +75,14 @@ export default function ServiceWorkerRegistration() {
 
     const registerServiceWorker = async () => {
       try {
+        if (!shouldAttemptPwaRecovery()) {
+          return;
+        }
+
         const didReset = await resetStaleServiceWorker();
 
         if (didReset) {
+          markPwaRecoveryAttempted();
           window.location.reload();
           return;
         }
@@ -85,6 +95,7 @@ export default function ServiceWorkerRegistration() {
         const onUpdateFound = () => {
           if (!registration.waiting) return;
           registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+          // Atualização do worker só recarrega uma única vez após o novo SW entrar em espera.
           window.location.reload();
         };
 
