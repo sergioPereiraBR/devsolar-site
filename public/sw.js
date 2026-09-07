@@ -1,4 +1,4 @@
-const CACHE_NAME = 'devsolar-shell-v3';
+const CACHE_NAME = 'devsolar-shell-v4';
 const PRECACHE_URLS = ['/', '/manifest.json', '/images/favicon.ico'];
 const CACHEABLE_DESTINATIONS = new Set([
   'document',
@@ -6,13 +6,25 @@ const CACHEABLE_DESTINATIONS = new Set([
   'image',
   'script',
   'style',
+  'worker',
+  'manifest',
+  'audio',
+  'video',
 ]);
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches
       .open(CACHE_NAME)
-      .then((cache) => cache.addAll(PRECACHE_URLS))
+      .then(async (cache) => {
+        for (const url of PRECACHE_URLS) {
+          try {
+            await cache.add(url);
+          } catch (error) {
+            // Ignora URLs indisponíveis no momento da instalação.
+          }
+        }
+      })
       .then(() => self.skipWaiting()),
   );
 });
@@ -47,9 +59,14 @@ async function cacheResponse(request, response) {
     return response;
   }
 
-  const clone = response.clone();
-  const cache = await caches.open(CACHE_NAME);
-  await cache.put(request, clone);
+  try {
+    const clone = response.clone();
+    const cache = await caches.open(CACHE_NAME);
+    await cache.put(request, clone);
+  } catch (error) {
+    // Ignora falha de escrita em cache do navegador.
+  }
+
   return response;
 }
 
@@ -60,7 +77,17 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === 'navigate') {
+  const isNavigationRequest =
+    request.mode === 'navigate' || request.destination === 'document';
+  const isStaticAssetRequest =
+    CACHEABLE_DESTINATIONS.has(request.destination) ||
+    url.pathname.startsWith('/_next/') ||
+    url.pathname.startsWith('/assets/') ||
+    url.pathname.startsWith('/images/') ||
+    url.pathname.startsWith('/fonts/') ||
+    url.pathname.startsWith('/vendor/');
+
+  if (isNavigationRequest) {
     event.respondWith(
       (async () => {
         try {
@@ -70,11 +97,12 @@ self.addEventListener('fetch', (event) => {
           }
           return networkResponse;
         } catch (error) {
-          const cachedPage = await caches.match(request);
-          if (cachedPage) return cachedPage;
+          const cachedPage =
+            (await caches.match(request)) ||
+            (await caches.match('/')) ||
+            (await caches.match('/manifest.json'));
 
-          const fallbackHome = await caches.match('/');
-          if (fallbackHome) return fallbackHome;
+          if (cachedPage) return cachedPage;
 
           return Response.error();
         }
@@ -83,16 +111,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (!CACHEABLE_DESTINATIONS.has(request.destination)) return;
+  if (!isStaticAssetRequest) return;
 
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) return cachedResponse;
 
-      return fetch(request).then((networkResponse) => {
-        if (!networkResponse || !networkResponse.ok) return networkResponse;
-        return cacheResponse(request, networkResponse);
-      });
+      return fetch(request)
+        .then((networkResponse) => {
+          if (!networkResponse || !networkResponse.ok) {
+            return networkResponse;
+          }
+          return cacheResponse(request, networkResponse);
+        })
+        .catch(async () => {
+          const fallback = await caches.match('/');
+          return fallback || Response.error();
+        });
     }),
   );
 });
