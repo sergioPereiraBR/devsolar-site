@@ -1,4 +1,4 @@
-const CACHE_NAME = 'devsolar-shell-v4';
+const CACHE_NAME = 'devsolar-shell-v5';
 const PRECACHE_URLS = ['/', '/manifest.json', '/images/favicon.ico'];
 const CACHEABLE_DESTINATIONS = new Set([
   'document',
@@ -98,9 +98,7 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         } catch (error) {
           const cachedPage =
-            (await caches.match(request)) ||
-            (await caches.match('/')) ||
-            (await caches.match('/manifest.json'));
+            (await caches.match(request)) || (await caches.match('/'));
 
           if (cachedPage) return cachedPage;
 
@@ -124,10 +122,7 @@ self.addEventListener('fetch', (event) => {
           }
           return cacheResponse(request, networkResponse);
         })
-        .catch(async () => {
-          const fallback = await caches.match('/');
-          return fallback || Response.error();
-        });
+        .catch(() => Response.error());
     }),
   );
 });
