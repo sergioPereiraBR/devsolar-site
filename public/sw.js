@@ -1,6 +1,12 @@
-const CACHE_NAME = 'devsolar-shell-v2';
+const CACHE_NAME = 'devsolar-shell-v3';
 const PRECACHE_URLS = ['/', '/manifest.json', '/images/favicon.ico'];
-const CACHEABLE_DESTINATIONS = new Set(['font', 'image', 'script', 'style']);
+const CACHEABLE_DESTINATIONS = new Set([
+  'document',
+  'font',
+  'image',
+  'script',
+  'style',
+]);
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -36,6 +42,17 @@ self.addEventListener('message', (event) => {
   }
 });
 
+async function cacheResponse(request, response) {
+  if (!response || response.type !== 'basic' || response.status !== 200) {
+    return response;
+  }
+
+  const clone = response.clone();
+  const cache = await caches.open(CACHE_NAME);
+  await cache.put(request, clone);
+  return response;
+}
+
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   if (request.method !== 'GET') return;
@@ -44,7 +61,25 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (request.mode === 'navigate') {
-    event.respondWith(fetch(request).catch(() => caches.match('/')));
+    event.respondWith(
+      (async () => {
+        try {
+          const networkResponse = await fetch(request);
+          if (networkResponse && networkResponse.ok) {
+            await cacheResponse(request, networkResponse);
+          }
+          return networkResponse;
+        } catch (error) {
+          const cachedPage = await caches.match(request);
+          if (cachedPage) return cachedPage;
+
+          const fallbackHome = await caches.match('/');
+          if (fallbackHome) return fallbackHome;
+
+          return Response.error();
+        }
+      })(),
+    );
     return;
   }
 
@@ -56,12 +91,7 @@ self.addEventListener('fetch', (event) => {
 
       return fetch(request).then((networkResponse) => {
         if (!networkResponse || !networkResponse.ok) return networkResponse;
-
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(request, responseToCache);
-        });
-        return networkResponse;
+        return cacheResponse(request, networkResponse);
       });
     }),
   );
