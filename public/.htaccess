@@ -33,6 +33,9 @@ DirectoryIndex index.html index.php
 
 # Liberação explícita de CORS para o arquivo llms.txt para leitores e agentes de IA
 <Files "llms.txt">
+  Order allow,deny
+  Allow from all
+  Satisfy Any
   <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "*"
     Header set Content-Type "text/plain; charset=utf-8"
