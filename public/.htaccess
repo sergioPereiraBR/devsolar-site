@@ -6,6 +6,7 @@ DirectoryIndex index.html index.php
 <IfModule mod_mime.c>
   AddType video/mp4 .mp4 .m4v
   AddType video/webm .webm
+  AddType text/plain .txt
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -30,6 +31,14 @@ DirectoryIndex index.html index.php
   Header set Accept-Ranges bytes
 </IfModule>
 
+# Liberação explícita de CORS para o arquivo llms.txt para leitores e agentes de IA
+<Files "llms.txt">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Content-Type "text/plain; charset=utf-8"
+  </IfModule>
+</Files>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -38,7 +47,7 @@ DirectoryIndex index.html index.php
   RewriteCond %{HTTP_USER_AGENT} ^$
   RewriteRule ^ - [F,L]
 
-  # Bloqueia bots conhecidos
+  # Bloqueia bots nocivos conhecidos
   RewriteCond %{HTTP_USER_AGENT} \b(baiduspider|researchbot|trendiction|nutch|seekbot)\b [NC]
   RewriteRule ^ - [F,L]
 
@@ -49,24 +58,21 @@ DirectoryIndex index.html index.php
   # Redirecionamento do WhatsApp
   RewriteRule ^whatsapp/?$ "https://api.whatsapp.com/send?phone=5521999677722&text=Olá!+Visitei+seu+Instagram+e+quero+saber+como+economizar+com+Energia+Solar" [R=301,L,QSD]
 
-  # Nunca reescrever assets estáticos (chunks, css, imagens, mídias)
+  # NUNCA reescrever ou redirecionar assets estáticos ou arquivos de texto de raiz
   RewriteRule ^_next/ - [L]
   RewriteCond %{REQUEST_URI} \.(?:js|css|map|json|txt|xml|ico|png|jpe?g|gif|webp|avif|svg|woff2?|mp4|m4v|webm)$ [NC]
   RewriteRule ^ - [L]
 
-  # Garante que pastas de rotas estáticas com index.html sejam servidas corretamente em hosts Apache/cPanel
+  # Garante que pastas de rotas estáticas geradas com trailingSlash (contendo index.html) sejam servidas corretamente
   RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
   RewriteRule ^(.+)$ /$1/index.html [L]
 
-  # 1. Remove a barra do final da URL se ela existir (ex: /termos-de-uso/ -> /termos-de-uso)
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.+)/$ /$1 [L,R=301]
-
-  # 2. Mapeia rotas para arquivos .html estáticos (ex: /termos-de-uso -> /termos-de-uso.html)
+  # Mapeia rotas sem extensão para arquivos .html estáticos
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
   RewriteRule ^(.*)$ $1.html [L]
 
-  # 3. Regras padrão do site (Fallback SPA)
+  # Regras padrão do site (Fallback SPA)
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
@@ -75,7 +81,7 @@ DirectoryIndex index.html index.php
 </IfModule>
 
 <IfModule mod_headers.c>
-  # Evita HTML em cache antigo apontando para chunks removidos.
+  # Evita HTML em cache antigo apontando para chunks removidos
   <FilesMatch "\.(?:html)$">
     Header always set Cache-Control "max-age=0, must-revalidate"
     Header unset Pragma
@@ -93,7 +99,7 @@ DirectoryIndex index.html index.php
   </FilesMatch>
 </IfModule>
 
-# Gzip para compactar os arquivos ao navegador.
+# Gzip para compactar os arquivos ao navegador
 <IfModule mod_deflate.c>
   # Impede compactação em arquivos de áudio/vídeo para não quebrar streaming do Safari
   SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|mp4|webm)$ no-gzip dont-vary
